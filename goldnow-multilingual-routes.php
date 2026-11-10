@@ -546,7 +546,7 @@ if (empty($gold_view)) :
         }
 
         if ($country_slug !== '') {
-            $base_country_url = home_url('/en/country/' . rawurlencode($country_slug) . '/');
+            $base_country_url = home_url('/' . $goldnow_mlr_language . '/country/' . rawurlencode($country_slug) . '/');
         }
     } else {
         // Keep the original Arabic URL behavior.
@@ -3451,7 +3451,7 @@ if (empty($gold_view)) :
         }
 
         if ($country_slug !== '') {
-            $base_country_url = home_url('/en/country/' . rawurlencode($country_slug) . '/');
+            $base_country_url = home_url('/' . $goldnow_mlr_language . '/country/' . rawurlencode($country_slug) . '/');
         }
     } else {
         // Keep the original Arabic URL behavior.
