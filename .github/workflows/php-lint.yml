@@ -6,7 +6,7 @@ on:
     paths:
       - 'goldnow-multilingual-routes.php'
       - 'goldnow-language-manager.php'
-      - 'goldnow-seo-content.php'
+      - 'goldnow-seo-content.php'\n      - 'goldnow-seo-admin.php'
       - 'tests/test-seo-renderer.php'
       - '.github/workflows/php-lint.yml'
   pull_request:
@@ -39,20 +39,20 @@ jobs:
         run: |
           php -l goldnow-multilingual-routes.php
           php -l goldnow-language-manager.php
-          php -l goldnow-seo-content.php
+          php -l goldnow-seo-content.php\n          php -l goldnow-seo-admin.php
           php tests/test-seo-renderer.php
 
       - name: Rebuild plugin ZIP with SEO module
         run: |
           rm -rf dist
           mkdir -p dist/goldnow-language-manager
-          cp goldnow-language-manager.php goldnow-seo-content.php dist/goldnow-language-manager/
+          cp goldnow-language-manager.php goldnow-seo-content.php goldnow-seo-admin.php dist/goldnow-language-manager/
           (cd dist && zip -qr ../goldnow-language-manager.zip goldnow-language-manager)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add goldnow-language-manager.zip
           if ! git diff --cached --quiet; then
-            git commit -m "Build GoldNow Language Manager v1.2.0 package"
+            git commit -m "Build GoldNow Language Manager v1.3.0 package"
             git pull --rebase origin main
             git push
           fi
@@ -60,4 +60,4 @@ jobs:
           rm -rf package-check
           unzip -q goldnow-language-manager.zip -d package-check
           php -l package-check/goldnow-language-manager/goldnow-language-manager.php
-          php -l package-check/goldnow-language-manager/goldnow-seo-content.php
+          php -l package-check/goldnow-language-manager/goldnow-seo-content.php\n          php -l package-check/goldnow-language-manager/goldnow-seo-admin.php
