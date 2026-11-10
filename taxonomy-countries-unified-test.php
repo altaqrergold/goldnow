@@ -626,7 +626,9 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 </main>
 
 <script>
+const goldnowLocaleTranslations = <?php echo wp_json_encode(function_exists('goldnow_mt_client_dictionary') ? goldnow_mt_client_dictionary($en_header_language) : array()); ?>;
 // Translate legacy Arabic labels returned by the existing indicator AJAX action.
+
 function altaqrerTranslateEnglishIndicator(root) {
     if (!root) return;
     const translations = {
@@ -647,6 +649,12 @@ function altaqrerTranslateEnglishIndicator(root) {
         Object.keys(translations).forEach(function (arabic) {
             value = value.split(arabic).join(translations[arabic]);
         });
+        const trimmedValue = value.trim();
+        if (goldnowLocaleTranslations[trimmedValue]) {
+            const leading = value.match(/^\\s*/)[0];
+            const trailing = value.match(/\\s*$/)[0];
+            value = leading + goldnowLocaleTranslations[trimmedValue] + trailing;
+        }
         node.nodeValue = value;
     });
     root.querySelectorAll('[aria-label],[title],[alt]').forEach(function (element) {
@@ -656,6 +664,10 @@ function altaqrerTranslateEnglishIndicator(root) {
             Object.keys(translations).forEach(function (arabic) {
                 value = value.split(arabic).join(translations[arabic]);
             });
+            const trimmedValue = value.trim();
+            if (goldnowLocaleTranslations[trimmedValue]) {
+                value = goldnowLocaleTranslations[trimmedValue];
+            }
             element.setAttribute(attribute, value);
         });
     });
