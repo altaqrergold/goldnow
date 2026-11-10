@@ -2,11 +2,10 @@
 /**
  * Template Name: GoldNow Multilingual Routes
  * Description: Unified ten-language country template using GoldNow Language Manager.
- * Version: 1.1.0
+ * Version: 1.2.0
  *
- * The original Arabic, English and French templates are embedded unchanged
- * as source branches. Other languages render the Arabic source through the
- * shared GoldNow Language Manager dictionary; no English-only fallback.
+ * Preserves the existing Arabic, English and French page branches and renders
+ * localized SEO articles through the GoldNow Language Manager SEO module.
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -837,7 +836,8 @@ if (function_exists('goldnow_render_seo_article')) {
         'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
     );
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
-    $goldnow_seo_base_url = home_url($goldnow_mlr_language === 'ar' ? '/country/' : '/' . $goldnow_mlr_language . '/country/' . rawurlencode((string) $country_code) . '/');
+    $goldnow_seo_base_path = ($goldnow_mlr_language === 'ar') ? '/country/' : '/' . $goldnow_mlr_language . '/country/';
+    $goldnow_seo_base_url = home_url($goldnow_seo_base_path . rawurlencode((string) $country_code) . '/');
     echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $country_name,
         'currency' => $currency_label,
