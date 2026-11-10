@@ -97,6 +97,15 @@ get_header(); ?>
     // 1️⃣ جلب بيانات الدولة الحالية (من الرابط)
     $current_term = get_queried_object();
     $country_name = $current_term->name; // الاسم بالعربي
+    // Use the existing multilingual country-name resolver for non-Arabic routes.
+    if (
+        isset($goldnow_mlr_language) &&
+        $goldnow_mlr_language !== 'ar' &&
+        function_exists('altaqrer_ml_country_name') &&
+        $current_term instanceof WP_Term
+    ) {
+        $country_name = altaqrer_ml_country_name($current_term, $goldnow_mlr_language);
+    }
     $english_name = get_term_meta($current_term->term_id, 'country_english_name', true);
     $country_code = get_term_meta($current_term->term_id, 'country_code', true);
     $country_flag = get_term_meta($current_term->term_id, 'country_flag', true);
