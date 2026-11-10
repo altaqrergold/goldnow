@@ -196,18 +196,21 @@ if (!function_exists('goldnow_render_seo_article')) {
         $formatted_price = ($price !== null) ? number_format_i18n($price, 2) : '';
         $price_sentence = '';
         if ($price !== null && $section !== 'overview' && $section !== 'gold-index' && $section !== 'usd') {
-            $price_sentence = '<p class="goldnow-seo-current-price">' .
-                esc_html($language === 'ar' ? 'السعر المرجعي المعروض حاليًا:' : (
-                    $language === 'fr' ? 'Valeur de référence affichée :' :
-                    ($language === 'de' ? 'Angezeigter Referenzwert:' :
-                    ($language === 'es' ? 'Valor de referencia mostrado:' :
-                    ($language === 'it' ? 'Valore di riferimento mostrato:' :
-                    ($language === 'pt' ? 'Valor de referência apresentado:' :
-                    ($language === 'ru' ? 'Отображаемое справочное значение:' :
-                    ($language === 'hi' ? 'दिखाया गया संदर्भ मूल्य:' :
-                    ($language === 'tr' ? 'Gösterilen referans değer:' : 'Current reference value:')))))))) .
-                '</p>';
-            $price_sentence = str_replace('</p>', ' <strong>' . esc_html($formatted_price . ' ' . $price_label) . '</strong></p>', $price_sentence);
+            $price_prefixes = array(
+                'ar' => 'السعر المرجعي المعروض حاليًا:',
+                'en' => 'Current reference value:',
+                'fr' => 'Valeur de référence affichée :',
+                'de' => 'Angezeigter Referenzwert:',
+                'es' => 'Valor de referencia mostrado:',
+                'it' => 'Valore di riferimento mostrato:',
+                'pt' => 'Valor de referência apresentado:',
+                'ru' => 'Отображаемое справочное значение:',
+                'hi' => 'दिखाया गया संदर्भ मूल्य:',
+                'tr' => 'Gösterilen referans değer:'
+            );
+            $price_prefix = isset($price_prefixes[$language]) ? $price_prefixes[$language] : $price_prefixes['en'];
+            $price_sentence = '<p class="goldnow-seo-current-price">' . esc_html($price_prefix) .
+                ' <strong>' . esc_html($formatted_price . ' ' . $price_label) . '</strong></p>';
         }
 
         $links = array();
