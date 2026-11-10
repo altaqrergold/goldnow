@@ -496,7 +496,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
             <!-- A) Gold Bars Price Table -->
             <section id="sabika-price" class="gold-section mt-4">
                 <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
-                    <h4>Gold Bullion Bar Prices in <?php echo esc_html($display_country_name); ?></h4>
+                    <h4><?php echo esc_html(goldnow_mt_translate_block('gold_bullion_heading', $en_header_language, null, array('country' => $display_country_name))); ?></h4>
                     <span class="date-badge" style="background: #262930; padding: 4px 10px; border-radius: 4px; font-size: 13px;"><?php echo esc_html($today); ?></span>
                 </div>
                 <div class="table-responsive">
@@ -545,7 +545,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 
             <section id="gold-pounds-price" class="gold-section mt-4">
                 <div class="section-header">
-                    <h4>Gold Coin Prices in <?php echo esc_html($display_country_name); ?></h4>
+                    <h4><?php echo esc_html(goldnow_mt_translate_block('gold_coin_heading', $en_header_language, null, array('country' => $display_country_name))); ?></h4>
                 </div>
                 <div class="table-responsive">
                     <table class="gold-table" style="width: 100%; text-align: left; direction: ltr;">
@@ -586,11 +586,11 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 
             <div class="raw-gold-alert mt-4" style="background: #1f2126; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb301;">
                 <span class="alert-icon">⚠️</span>
-                <strong>Important:</strong> The prices shown above for bars and coins represent <u>gold value only</u>; they exclude making charges, hallmarking fees, and taxes.
+                <strong><?php echo esc_html(goldnow_mt_translate_text('Important:', $en_header_language)); ?></strong> <?php echo esc_html(goldnow_mt_translate_block('bar_coin_disclaimer', $en_header_language)); ?>
             </div>
 
         <?php } else { ?>
-            <p style="text-align:center; padding:20px;">Sorry, the market data is currently unavailable.</p>
+            <p style="text-align:center; padding:20px;"><?php echo esc_html(goldnow_mt_translate_block('market_unavailable', $en_header_language)); ?></p>
         <?php } ?>
       </div>
 
@@ -598,7 +598,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Gold Price Chart in <?php echo esc_html($display_country_name); ?>
+          <?php echo esc_html(goldnow_mt_translate_block('chart_title', $en_header_language)); ?> — <?php echo esc_html($display_country_name); ?>
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
