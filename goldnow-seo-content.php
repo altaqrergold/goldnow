@@ -271,6 +271,26 @@ if (!function_exists('goldnow_render_seo_article')) {
         $html .= '</header>';
         $html .= '<section><h3>' . esc_html($topic[1]) . '</h3>';
         $html .= '<p>' . esc_html($topic[2]) . '</p>';
+        if ($section === 'overview') {
+            $snapshot_title = array('ar'=>'ملخص الأسعار المرجعية الحالية','en'=>'Current reference price snapshot','fr'=>'Résumé des cours de référence actuels','de'=>'Aktuelle Referenzpreise im Überblick','es'=>'Resumen de precios de referencia actuales','it'=>'Riepilogo dei prezzi di riferimento attuali','pt'=>'Resumo dos preços de referência atuais','ru'=>'Текущие справочные цены','hi'=>'वर्तमान संदर्भ कीमतों का सार','tr'=>'Güncel referans fiyat özeti');
+            $snapshot_labels = array(
+                '24k'=>array('ar'=>'جرام عيار 24','en'=>'24K gram','fr'=>'Gramme 24 carats','de'=>'24-Karat-Gramm','es'=>'Gramo de 24 quilates','it'=>'Grammo 24 carati','pt'=>'Grama 24 quilates','ru'=>'Грамм 24 карата','hi'=>'24 कैरेट ग्राम','tr'=>'24 ayar gram'),
+                '21k'=>array('ar'=>'جرام عيار 21','en'=>'21K gram','fr'=>'Gramme 21 carats','de'=>'21-Karat-Gramm','es'=>'Gramo de 21 quilates','it'=>'Grammo 21 carati','pt'=>'Grama 21 quilates','ru'=>'Грамм 21 карата','hi'=>'21 कैरेट ग्राम','tr'=>'21 ayar gram'),
+                'ounce_usd'=>array('ar'=>'الأونصة العالمية','en'=>'Global gold ounce','fr'=>'Once mondiale','de'=>'Weltweite Goldunze','es'=>'Onza mundial de oro','it'=>'Oncia mondiale','pt'=>'Onça mundial','ru'=>'Мировая унция золота','hi'=>'वैश्विक सोने का औंस','tr'=>'Küresel altın onsu'),
+                'usd_rate'=>array('ar'=>'سعر الدولار مقابل العملة المحلية','en'=>'USD exchange rate','fr'=>'Taux de change USD','de'=>'USD-Wechselkurs','es'=>'Tipo de cambio USD','it'=>'Tasso di cambio USD','pt'=>'Taxa de câmbio USD','ru'=>'Курс USD','hi'=>'USD विनिमय दर','tr'=>'USD döviz kuru')
+            );
+            $snapshot_currency = array('ar'=>'العملة المحلية','en'=>'local currency','fr'=>'monnaie locale','de'=>'Landeswährung','es'=>'moneda local','it'=>'valuta locale','pt'=>'moeda local','ru'=>'местная валюта','hi'=>'स्थानीय मुद्रा','tr'=>'yerel para birimi');
+            $html .= '<section class="goldnow-seo-snapshot"><h3>' . esc_html($snapshot_title[$language]) . '</h3><ul>';
+            foreach (array('24k','21k','ounce_usd','usd_rate') as $snapshot_key) {
+                if (!isset($prices[$snapshot_key]) || !is_numeric($prices[$snapshot_key])) {
+                    continue;
+                }
+                $snapshot_unit = ($snapshot_key === 'ounce_usd') ? 'USD' : (($snapshot_key === 'usd_rate') ? $currency . ' / USD' : $currency);
+                $html .= '<li><strong>' . esc_html($snapshot_labels[$snapshot_key][$language]) . ':</strong> ' .
+                    esc_html(number_format_i18n((float) $prices[$snapshot_key], 2) . ' ' . $snapshot_unit) . '</li>';
+            }
+            $html .= '</ul><p><small>' . esc_html($snapshot_currency[$language]) . '</small></p></section>';
+        }
         $html .= $price_sentence;
         $html .= '<p>' . esc_html($market) . '</p>';
         if ($section === 'ounce') {
