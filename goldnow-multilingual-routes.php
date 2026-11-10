@@ -840,7 +840,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     $goldnow_seo_base_url = home_url($goldnow_seo_base_path . rawurlencode((string) $country_code) . '/');
     echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $country_name,
-        'currency' => $currency_label,
+        'currency' => $country_currency,
         'date' => $today,
         'country_slug' => $country_code,
         'base_url' => $goldnow_seo_base_url,
@@ -1826,7 +1826,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     $goldnow_seo_base_url = home_url('/en/country/' . rawurlencode((string) $en_header_country_slug) . '/');
     echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $display_country_name,
-        'currency' => $currency_label,
+        'currency' => $country_currency,
         'date' => $today,
         'country_slug' => $en_header_country_slug,
         'base_url' => $goldnow_seo_base_url,
@@ -2898,7 +2898,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     $goldnow_seo_base_url = home_url('/fr/country/' . rawurlencode((string) $fr_header_country_slug) . '/');
     echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $display_country_name,
-        'currency' => $currency_label,
+        'currency' => $country_currency,
         'date' => $today,
         'country_slug' => $fr_header_country_slug,
         'base_url' => $goldnow_seo_base_url,
@@ -2997,6 +2997,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // 1️⃣ جلب بيانات الدولة الحالية (من الرابط)
     $current_term = get_queried_object();
     $country_name = $current_term->name; // الاسم بالعربي
+    if (
+        $goldnow_mlr_language !== 'ar' &&
+        function_exists('altaqrer_ml_country_name') &&
+        $current_term instanceof WP_Term
+    ) {
+        $country_name = altaqrer_ml_country_name($current_term, $goldnow_mlr_language);
+    }
     $english_name = get_term_meta($current_term->term_id, 'country_english_name', true);
     $country_code = get_term_meta($current_term->term_id, 'country_code', true);
     $country_flag = get_term_meta($current_term->term_id, 'country_flag', true);
@@ -3732,7 +3739,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     $goldnow_seo_base_url = home_url($goldnow_seo_base_path . rawurlencode((string) $country_code) . '/');
     echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $country_name,
-        'currency' => $currency_label,
+        'currency' => $country_currency,
         'date' => $today,
         'country_slug' => $country_code,
         'base_url' => $goldnow_seo_base_url,
