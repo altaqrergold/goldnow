@@ -38,7 +38,8 @@ if (!function_exists('goldnow_seo_article_shortcode')) {
         $section = sanitize_key($decode($atts['section']));
         $prices = array();
         foreach (array('24k', '22k', '21k', '18k', '14k', 'ounce_usd', 'coin', 'usd_rate') as $key) {
-            $value = $decode($atts[$key]);
+            $attribute = 'price_' . $key;
+            $value = $decode($atts[$attribute]);
             $prices[$key] = ($value !== '' && is_numeric($value)) ? (float) $value : null;
         }
 
