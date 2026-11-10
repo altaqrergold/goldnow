@@ -65,6 +65,11 @@ if (!class_exists('GoldNow_SEO_Admin')) {
                 $raw = isset($_POST[$field]) ? wp_unslash($_POST[$field]) : '';
                 $saved[$language][$section][$field] = ($field === 'body') ? wp_kses_post($raw) : sanitize_textarea_field($raw);
             }
+            foreach (array('faq1_q', 'faq1_a', 'faq2_q', 'faq2_a') as $field) {
+                if (isset($_POST[$field])) {
+                    $saved[$language][$section][$field] = sanitize_textarea_field(wp_unslash($_POST[$field]));
+                }
+            }
             update_option(self::OPTION, $saved, false);
 
             $url = add_query_arg(array(
@@ -93,6 +98,24 @@ if (!class_exists('GoldNow_SEO_Admin')) {
             }
             $article = function_exists('goldnow_seo_article_data') ? goldnow_seo_article_data($language, $section) : array('', '', '');
             $article = array_pad(is_array($article) ? $article : array(), 3, '');
+            $overrides = get_option(self::OPTION, array());
+            $current = (is_array($overrides) && isset($overrides[$language][$section]) && is_array($overrides[$language][$section])) ? $overrides[$language][$section] : array();
+            $faq_defaults = array('faq1_q' => '', 'faq1_a' => '', 'faq2_q' => '', 'faq2_a' => '');
+            if (function_exists('goldnow_render_seo_article')) {
+                $preview = goldnow_render_seo_article($language, $section, array());
+                if (preg_match_all('/<details><summary>(.*?)<\\/summary><p>(.*?)<\\/p><\\/details>/s', $preview, $faq_matches, PREG_SET_ORDER)) {
+                    foreach (array_slice($faq_matches, 0, 2) as $index => $match) {
+                        $number = $index + 1;
+                        $faq_defaults['faq' . $number . '_q'] = html_entity_decode(wp_strip_all_tags($match[1]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                        $faq_defaults['faq' . $number . '_a'] = html_entity_decode(wp_strip_all_tags($match[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                    }
+                }
+            }
+            foreach ($faq_defaults as $field => $default_value) {
+                if (isset($current[$field]) && is_string($current[$field])) {
+                    $faq_defaults[$field] = $current[$field];
+                }
+            }
             ?>
             <div class="wrap">
                 <h1>مكتبة مقالات GoldNow SEO</h1>
@@ -128,11 +151,20 @@ if (!class_exists('GoldNow_SEO_Admin')) {
                     <textarea id="gnseo-intro" name="intro" rows="3" class="large-text"><?php echo esc_textarea($article[1]); ?></textarea>
                     <p><label for="gnseo-body"><strong>محتوى المقال</strong></label></p>
                     <textarea id="gnseo-body" name="body" rows="12" class="large-text" style="direction:auto"><?php echo esc_textarea(wp_strip_all_tags($article[2], false)); ?></textarea>
+                    <h3>الأسئلة الشائعة</h3>
+                    <p><label for="gnseo-faq1-q"><strong>السؤال الأول</strong></label></p>
+                    <textarea id="gnseo-faq1-q" name="faq1_q" rows="2" class="large-text"><?php echo esc_textarea($faq_defaults['faq1_q']); ?></textarea>
+                    <p><label for="gnseo-faq1-a"><strong>إجابة السؤال الأول</strong></label></p>
+                    <textarea id="gnseo-faq1-a" name="faq1_a" rows="3" class="large-text"><?php echo esc_textarea($faq_defaults['faq1_a']); ?></textarea>
+                    <p><label for="gnseo-faq2-q"><strong>السؤال الثاني</strong></label></p>
+                    <textarea id="gnseo-faq2-q" name="faq2_q" rows="2" class="large-text"><?php echo esc_textarea($faq_defaults['faq2_q']); ?></textarea>
+                    <p><label for="gnseo-faq2-a"><strong>إجابة السؤال الثاني</strong></label></p>
+                    <textarea id="gnseo-faq2-a" name="faq2_a" rows="3" class="large-text"><?php echo esc_textarea($faq_defaults['faq2_a']); ?></textarea>
                     <p class="description">يمكنك كتابة فقرات متعددة. تُحفظ النصوص كبدائل للمحتوى الافتراضي لهذا القسم واللغة فقط. لا تغيّر هذه الشاشة الأسعار أو الحسابات أو أوزان الذهب.</p>
                     <?php submit_button('حفظ المقال'); ?>
                 </form>
                 <hr>
-                <p><strong>ملاحظة:</strong> النسخة الحالية تتيح تعديل العنوان والمقدمة ونص المقال. الأسئلة الشائعة والروابط الداخلية تبقى من المحتوى الافتراضي داخل ملف SEO، ولا يتم حذفها عند حفظ المقال.</p>
+                <p><strong>ملاحظة:</strong> النسخة الحالية تتيح تعديل العنوان والمقدمة ونص المقال والسؤالين وإجابتيهما. الروابط الداخلية تبقى من المحتوى الافتراضي داخل ملف SEO.</p>
             </div>
             <?php
         }
