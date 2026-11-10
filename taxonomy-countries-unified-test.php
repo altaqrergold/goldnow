@@ -323,7 +323,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
             $display_country_name = $locale_country;
         }
     }
-    $country_name = $display_country_name; // Keep AJAX/legacy country data in the active page language.
+    $country_name = $english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country'); // Keep the AJAX lookup value in English; display labels are localized separately.
 
     // Complete English currency labels for the currencies used by the site's country map.
     $currency_labels_en = array(
