@@ -1,0 +1,254 @@
+# GoldNow multilingual template translation audit
+
+Branch: `work/unified-country-template-rebuild`
+
+Source template: `taxonomy-countries-en.php` (preserved unchanged)
+
+New test template: `taxonomy-countries-unified-test.php`
+
+New test plugin: `goldnow-language-manager-multilingual-test.php`
+
+The unified template uses the exact-text adapter for dictionary phrases and the existing localized SEO renderer for the 11 SEO sections. This audit lists remaining visible English text nodes and strings found in the new template. Dynamic values such as country names, dates, prices and currency values are marked as `{dynamic}`; they must remain data, not be translated as numbers.
+
+## Already covered by exact dictionary entries (18)
+
+- All Countries
+- Coin Purity
+- Follow Us
+- Gold Bars
+- Gold Index
+- Gold Price Chart
+- Gold Price Sections
+- Gold Prices
+- Home
+- Important Links
+- Important:
+- Join Our Telegram Channel
+- Live Prices
+- Price (USD)
+- Regional Gold Prices
+- Sorry, the market data is currently unavailable.
+- USD Exchange Rates
+- Weight / Type
+
+## Still needs explicit translation or a language-aware data source (199)
+
+- — the most widely traded purity — as well as
+- , offering an economical choice for luxury jewelry work.
+- , presenting a durable alloy framework for constant retail utility.
+- ; they exclude making charges, hallmarking fees, and taxes.
+- . Characterized by 99.9% purity, this karat is the industrial asset benchmark for bullion production.
+- . It balances high intrinsic precious metal content with raw structural durability.
+- . Sovereign gold coins weighing exactly 8 grams are widely monitored as safe haven physical assets.
+- . The tracker also covers precious-metal prices, jewellery markets, and daily market movements.
+- . This is the international spot benchmark; local gold prices are converted separately using the latest available exchange rate.
+- . This karat accounts for the vast majority of local consumer jewelry trading.
+- ' . $leading . esc_html($translated) . $trailing . '
+- ' . strtr($m[1], $translations) . '
+- " dir="
+- " src="
+- " style="
+- (31.1 grams of 24K gold) is
+- (an 8-gram coin in the widely traded 21K purity) is approximately
+- (equivalent to
+- (Pure 24K Gold):
+- (Standard 8 Gram Weight):
+- ). This purity is the primary standard for
+- * Updates are performed programmatically via official live market indices. We advise installing the official
+- ✨ Live market data, excluding making charges, puts the
+- 💡 This report lets you track live gold prices across all categories, including
+- 💵 Live exchange rates against
+- 💵 Live Exchange Rates against
+- 📈 Live Gold Market Index in
+- 📈 The
+- 📊 Global Gold Ounce Price Today (31.1g):
+- 📊 Live Report for 14K Gold Price per Gram Today in
+- 📊 Live Report for 18K Gold Price per Gram Today in
+- 📊 Live Report for 21K Gold Price per Gram Today in
+- 📊 Live Report for 22K Gold Price per Gram Today in
+- 📊 Live Report for 24K Gold Price per Gram Today in
+- 📊 The gold tracker monitors the latest movements in
+- 🪙 For savers and investors, the
+- 🪙 Gold Bullion Bar Prices Today in
+- 🪙 Gold Coin Price Today in
+- 🛠️ To help preserve the value of your savings, tracking the
+- 14K gold
+- 14K gold price per gram today
+- 14K Gold Price Today in
+- 18K gold
+- 18K gold price per gram today
+- 18K Gold Price Today in
+- 21K Gold Coin (8g):
+- 21K Gold Price Movement
+- 21K gold price per gram today
+- 21K Gold Price per Gram Today in
+- 21K gold price today
+- 22K gold
+- 22K Gold Coin (8g):
+- 22K gold price per gram today
+- 22K Gold Price Today in
+- 24K Gold Coin (8g):
+- 24K gold price per gram
+- 24K gold price per gram today
+- 24K Gold Price Today in
+- 8g Gold Coin (
+- About AlTaqrer Gold
+- across weights from 1 gram to 1 kilogram can help you follow market movements when considering a purchase or sale.
+- against macroeconomic inflation.
+- All rights reserved ©
+- AlTaqrer Gold
+- AlTaqrer Gold home
+- and
+- at approximately
+- Bahraini Dinar:
+- because of its high refinement status.
+- British Pound:
+- Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.
+- composed exclusively of 999.9 pure 24K gold. Gold bullion bar accumulation remains a primary hedge for wealth conservation and long-term liquidity protection inside
+- Countries ▾
+- Egypt
+- Equivalent in US Dollars:
+- Euro:
+- Exchange Rate Indicator:
+- Flag of {dynamic}
+- Flag of AE
+- Flag of Bahrain
+- Flag of BH
+- Flag of EU
+- Flag of European Union
+- Flag of Japan
+- Flag of Kuwait
+- Flag of KW
+- Flag of Oman
+- Flag of QA
+- Flag of Qatar
+- Flag of SA
+- Flag of Saudi Arabia
+- Flag of UK
+- Flag of United Arab Emirates
+- Flag of United Kingdom
+- Flag of United States
+- Flag of US
+- for timely price alerts.
+- Get live updates on the current
+- Global Gold Ounce (31.1g):
+- global gold ounce price today
+- Global Gold Ounce Price Today (USD)
+- Gold Bar — 1 Gram
+- Gold Bar — 1 Gram:
+- Gold Bar — 10 Grams
+- Gold Bar — 10 Grams:
+- Gold Bar — 100 Grams
+- Gold Bar — 100 Grams:
+- Gold Bar — 2.5 Grams
+- Gold Bar — 2.5 Grams:
+- Gold Bar — 20 Grams
+- Gold Bar — 20 Grams:
+- Gold Bar — 5 Grams
+- Gold Bar — 5 Grams:
+- Gold Bar — 50 Grams
+- Gold Bar — 50 Grams:
+- Gold bar prices today
+- gold bars
+- Gold Bars and Coins
+- Gold Bars and Coins in
+- Gold Bars and Coins in {dynamic}
+- Gold Bullion Bar Prices in
+- Gold Bullion Bar Prices Today in
+- gold coin price today
+- Gold coin price today
+- Gold Coin Price Today in
+- Gold Coin Prices in
+- Gold Ounce in Local Currency (31.1g):
+- Gold Price Chart in
+- Gold Price in
+- gold prices app
+- Gold prices in
+- Gold Prices in
+- Gold Prices in Egypt
+- Gold Prices in Kuwait
+- Gold Prices in Saudi Arabia
+- Gold Prices in the UAE
+- gold value only
+- helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes.
+- in real time
+- International spot benchmark for one troy ounce of 24K gold, quoted in USD
+- International spot price, quoted in USD
+- International Spot Price:
+- Japanese Yen:
+- Kuwait
+- Kuwaiti Dinar:
+- Latest gold bar and coin prices (excluding making charges)
+- Light 14K Gold:
+- Live foreign exchange rates for major international and regional currencies
+- Live Gold Index
+- live gold market index
+- Live Gold Market Index Today in
+- Local gold prices move with exchange rates. The
+- Main navigation
+- Market updates place the standard
+- Omani Rial:
+- per US dollar, based on the latest available market data. Download the
+- Popular 21K Gold:
+- Premium 22K Gold:
+- Price (
+- Price in Local Currency:
+- Prices of gold bars
+- Prices of gold live in {dynamic}
+- Pure 24K Gold:
+- Qatari Riyal:
+- Quote Currency:
+- registers at
+- Saudi Arabia
+- Saudi Riyal:
+- Standard 18K Gold:
+- stands at
+- term_id, 'country_code', true)); } if ($en_header_country_slug === '') { $en_header_country_slug = 'eg'; } $en_header_language = function_exists('goldnow_mt_current_language') ? goldnow_mt_current_language() : 'en'; $en_header_country_url = function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/' . rawurlencode($en_header_country_slug) . '/')) : home_url('/en/country/' . rawurlencode($en_header_country_slug) . '/'); $en_header_home_url = function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/')) : home_url('/en/'); $en_header_accent = get_theme_mod('infi_default_color', '#ffb301'); $en_header_logo_id = (int) get_theme_mod('custom_logo'); $en_header_is_app = (isset($_GET['view']) && sanitize_text_field(wp_unslash($_GET['view'])) === 'app'); /** * Exact dictionary lookup on visible text nodes only. HTML tags, URLs, * JavaScript, CSS, price values and markup structure are preserved. */ if (!function_exists('altaqrer_gold_mt_translate_page_html')) { function altaqrer_gold_mt_translate_page_html($html, $language) { if (!is_string($html) || $html === '' || !function_exists('goldnow_mt_translate_text')) { return $html; } $protected = array(); $html = preg_replace_callback('~ |
+- The global gold ounce is priced internationally in US dollars and represents 31.1 grams of 24K gold. Local-currency conversions are intentionally excluded from this global benchmark; local gold prices are calculated separately using the applicable exchange rate.
+- The live
+- The premium
+- The prices shown above for bars and coins represent
+- The programmatic index values
+- The same global ounce benchmark converted to the local currency
+- The widely requested
+- This dynamic index monitors banking cross rates. Local gold price benchmarks scale directly with exchange fluctuations against global reserves.
+- This index compares the main gold purities in
+- This tracker provides structural tracking of
+- today
+- trades at
+- Troy Ounce (31.1 g)
+- Troy Ounce (31.1 Grams):
+- UAE Dirham:
+- United Arab Emirates
+- US Dollar (USD)
+- US Dollar and Currency Exchange Rates Today in
+- US dollar exchange rate today in
+- US Dollar:
+- US dollars
+- USD
+- USD and Currency Rates
+- using regional market data and the international gold stock exchange rate for (
+- value options, and
+- Value:
+- with the international spot benchmark. The global ounce is quoted in USD, while the local-currency ounce is the same benchmark converted using the country exchange rate. Retail making charges and dealer premiums are not included.
+- within the investment markets of
+
+## Areas requiring full sentence/block translations
+
+- The introductory live report paragraphs above the country currency comparison.
+- Currency comparison labels (US Dollar, British Pound, Saudi Riyal, Bahraini Dinar, Omani Rial, Euro, UAE Dirham, Kuwaiti Dinar, Qatari Riyal and Japanese Yen).
+- The live gold index cards and their short descriptions.
+- The bullion-weight cards and their explanatory paragraph.
+- The 8-gram gold coin cards and their explanatory paragraph.
+- The USD exchange-rate summary and the per-karat report descriptions.
+- Loading and AJAX error messages inside the indicator panel.
+- Footer and accessibility labels that are not exact dictionary phrases.
+
+## Data and layout invariants
+
+- Keep the source price variables and conversion calculations unchanged.
+- Keep the gold coin reference weight at 8 grams.
+- Keep the global ounce benchmark in USD.
+- Preserve table order, cards, tabs, ads, and existing CSS class names.
+- Never translate numeric values, currency codes, country codes, dates, URLs, CSS, JavaScript or shortcode attributes.
+
