@@ -3728,7 +3728,8 @@ if (function_exists('goldnow_render_seo_article')) {
         'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
     );
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
-    $goldnow_seo_base_url = home_url($goldnow_mlr_language === 'ar' ? '/country/' : '/' . $goldnow_mlr_language . '/country/' . rawurlencode((string) $country_code) . '/');
+    $goldnow_seo_base_path = ($goldnow_mlr_language === 'ar') ? '/country/' : '/' . $goldnow_mlr_language . '/country/';
+    $goldnow_seo_base_url = home_url($goldnow_seo_base_path . rawurlencode((string) $country_code) . '/');
     echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $country_name,
         'currency' => $currency_label,
