@@ -247,7 +247,7 @@ if (!$en_header_is_app && function_exists('goldnow_display_ad')) :
  * CSS and JavaScript are deliberately left untouched.
  */
 if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
-    function altaqrer_gold_en_translate_shortcode_html($html, $translations = array()) {
+    function altaqrer_gold_en_translate_shortcode_html($html, $translations = array(), $language = 'en') {
         if (!is_string($html) || $html === '' || empty($translations) || !is_array($translations)) {
             return $html;
         }
@@ -260,13 +260,31 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         }, $html);
 
         // Translate text nodes only, never href/src or other structural attributes.
-        $html = preg_replace_callback('~>([^<>]+)<~u', function ($m) use ($translations) {
-            return '>' . strtr($m[1], $translations) . '<';
+        $html = preg_replace_callback('~>([^<>]+)<~u', function ($m) use ($translations, $language) {
+            $english = strtr($m[1], $translations);
+            $trimmed = trim(html_entity_decode($english, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            if (function_exists('goldnow_mt_translate_text') && $trimmed !== '') {
+                $localized = goldnow_mt_translate_text($trimmed, $language);
+                if ($localized !== $trimmed) {
+                    $leading = substr($english, 0, strlen($english) - strlen(ltrim($english)));
+                    $trailing = substr($english, strlen(rtrim($english)));
+                    $english = $leading . esc_html($localized) . $trailing;
+                }
+            }
+            return '>' . $english . '<';
         }, $html);
 
         // Translate visible/accessibility attributes only.
-        $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\"'])(.*?)\\2~isu", function ($m) use ($translations) {
-            return $m[1] . '=' . $m[2] . strtr($m[3], $translations) . $m[2];
+        $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\"'])(.*?)\\2~isu", function ($m) use ($translations, $language) {
+            $value = strtr($m[3], $translations);
+            $trimmed = trim(html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+            if (function_exists('goldnow_mt_translate_text') && $trimmed !== '') {
+                $localized = goldnow_mt_translate_text($trimmed, $language);
+                if ($localized !== $trimmed) {
+                    $value = esc_attr($localized);
+                }
+            }
+            return $m[1] . '=' . $m[2] . $value . $m[2];
         }, $html);
 
         if (!empty($protected)) {
@@ -483,12 +501,12 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 
         <!-- Gold Price Cards Shortcode Section -->
         <section id="gold-cards" class="mb-4">
-            <?php echo altaqrer_gold_en_translate_shortcode_html(do_shortcode('[infi_gold_cards currency="' . esc_attr($country_currency) . '" currency_label="' . esc_attr($currency_label) . '"]'), $shortcode_translation_map); ?>
+            <?php echo altaqrer_gold_en_translate_shortcode_html(do_shortcode('[infi_gold_cards currency="' . esc_attr($country_currency) . '" currency_label="' . esc_attr($currency_label) . '"]'), $shortcode_translation_map, $en_header_language); ?>
         </section>
 
         <!-- Gold Information Panels Shortcode Section -->
         <section id="gold-info-boxes" class="mb-4">
-            <?php echo altaqrer_gold_en_translate_shortcode_html(do_shortcode('[infi_gold_info_boxes currency="' . esc_attr($country_currency) . '"]'), $shortcode_translation_map); ?>
+            <?php echo altaqrer_gold_en_translate_shortcode_html(do_shortcode('[infi_gold_info_boxes currency="' . esc_attr($country_currency) . '"]'), $shortcode_translation_map, $en_header_language); ?>
         </section>
 	  </div>
 		
@@ -614,7 +632,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
           $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="' . esc_attr(goldnow_mt_translate_block('chart_title', $en_header_language)) . '"]';
-          echo altaqrer_gold_en_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map);
+          echo altaqrer_gold_en_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map, $en_header_language);
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
