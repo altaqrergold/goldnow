@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: GoldNow Language Manager - Multilingual Test
+ * Plugin Name: GoldNow Multilingual Test Manager - Multilingual Test
  * Plugin URI: https://gold.altaqrer.com/
  * Description: Test build with strict language fallback, safe multilingual HTML blocks, placeholders, and the existing GoldNow SEO renderer.
  * Version: 2.0.0-test
@@ -32,13 +32,13 @@ if (is_readable($goldnow_seo_admin_file)) {
     require_once $goldnow_seo_admin_file;
 }
 
-if (!class_exists('GoldNow_Language_Manager')) {
-    final class GoldNow_Language_Manager {
+if (!class_exists('GoldNow_Multilingual_Test_Manager')) {
+    final class GoldNow_Multilingual_Test_Manager {
         const VERSION = '2.0.0-test';
-        const OPTION_TRANSLATIONS = 'goldnow_lm_translations';
-        const OPTION_ENABLED = 'goldnow_lm_enabled_languages';
-        const OPTION_DEFAULT = 'goldnow_lm_default_language';
-        const MENU_SLUG = 'goldnow-language-manager';
+        const OPTION_TRANSLATIONS = 'goldnow_mt_translations';
+        const OPTION_ENABLED = 'goldnow_mt_enabled_languages';
+        const OPTION_DEFAULT = 'goldnow_mt_default_language';
+        const MENU_SLUG = 'goldnow-multilingual-test';
 
         private static $instance = null;
         private $translations_cache = null;
@@ -67,11 +67,11 @@ if (!class_exists('GoldNow_Language_Manager')) {
 
         private function __construct() {
             add_action('admin_menu', array($this, 'admin_menu'));
-            add_action('admin_post_goldnow_lm_save', array($this, 'save_settings'));
-            add_action('admin_post_goldnow_lm_export', array($this, 'export_dictionary'));
-            add_shortcode('goldnow_translate', array($this, 'translation_shortcode'));
-            add_shortcode('goldnow_translate_block', array($this, 'translation_block_shortcode'));
-            add_shortcode('goldnow_language_switcher', array($this, 'language_switcher_shortcode'));
+            add_action('admin_post_goldnow_mt_save', array($this, 'save_settings'));
+            add_action('admin_post_goldnow_mt_export', array($this, 'export_dictionary'));
+            add_shortcode('goldnow_mt_translate', array($this, 'translation_shortcode'));
+            add_shortcode('goldnow_mt_translate_block', array($this, 'translation_block_shortcode'));
+            add_shortcode('goldnow_mt_language_switcher', array($this, 'language_switcher_shortcode'));
         }
 
         public function activate() {
@@ -629,7 +629,7 @@ GOLDNOW_DICTIONARY;
             if (!isset(self::languages()[$language])) {
                 $language = $this->default_language();
             }
-            $blocks = get_option('goldnow_lm_blocks', array());
+            $blocks = get_option('goldnow_mt_blocks', array());
             $entry = (is_array($blocks) && isset($blocks[$key]) && is_array($blocks[$key])) ? $blocks[$key] : array();
             $value = '';
             if (isset($entry[$language]) && is_scalar($entry[$language])) {
@@ -653,7 +653,7 @@ GOLDNOW_DICTIONARY;
         }
 
         public function translation_block_shortcode($atts) {
-            $atts = shortcode_atts(array('key' => '', 'lang' => '', 'fallback' => ''), $atts, 'goldnow_translate_block');
+            $atts = shortcode_atts(array('key' => '', 'lang' => '', 'fallback' => ''), $atts, 'goldnow_mt_translate_block');
             $fallback = ($atts['fallback'] !== '') ? $atts['fallback'] : null;
             return $this->translate_block($atts['key'], $atts['lang'] !== '' ? $atts['lang'] : null, $fallback);
         }
@@ -713,14 +713,14 @@ GOLDNOW_DICTIONARY;
         }
 
         public function translation_shortcode($atts) {
-            $atts = shortcode_atts(array('key' => '', 'lang' => '', 'fallback' => ''), $atts, 'goldnow_translate');
+            $atts = shortcode_atts(array('key' => '', 'lang' => '', 'fallback' => ''), $atts, 'goldnow_mt_translate');
             $fallback = ($atts['fallback'] !== '') ? $atts['fallback'] : null;
             $value = $this->translate($atts['key'], $atts['lang'] !== '' ? $atts['lang'] : null, $fallback);
             return esc_html($value);
         }
 
         public function language_switcher_shortcode($atts) {
-            $atts = shortcode_atts(array('current' => '1', 'class' => 'goldnow-language-switcher'), $atts, 'goldnow_language_switcher');
+            $atts = shortcode_atts(array('current' => '1', 'class' => 'goldnow-language-switcher'), $atts, 'goldnow_mt_language_switcher');
             $current = $this->current_language();
             $items = array();
             foreach ($this->enabled_languages() as $code) {
@@ -733,7 +733,7 @@ GOLDNOW_DICTIONARY;
         }
 
         public function admin_menu() {
-            add_options_page('GoldNow Language Manager', 'GoldNow Languages', 'manage_options', self::MENU_SLUG, array($this, 'settings_page'));
+            add_options_page('GoldNow Multilingual Test Manager', 'GoldNow Multilingual Test', 'manage_options', self::MENU_SLUG, array($this, 'settings_page'));
         }
 
         private function sanitize_dictionary($dictionary) {
@@ -767,7 +767,7 @@ GOLDNOW_DICTIONARY;
             if (!current_user_can('manage_options')) {
                 wp_die(esc_html__('You are not allowed to manage translations.', 'goldnow-language-manager'), 403);
             }
-            check_admin_referer('goldnow_lm_save');
+            check_admin_referer('goldnow_mt_save');
 
             $raw = isset($_POST['translations_json']) ? wp_unslash($_POST['translations_json']) : '{}';
             $decoded = json_decode($raw, true);
@@ -796,7 +796,7 @@ GOLDNOW_DICTIONARY;
                 if (is_array($blocks_decoded) && json_last_error() === JSON_ERROR_NONE) {
                     $blocks_clean = $this->sanitize_blocks($blocks_decoded);
                     if (!is_wp_error($blocks_clean)) {
-                        update_option('goldnow_lm_blocks', $blocks_clean, false);
+                        update_option('goldnow_mt_blocks', $blocks_clean, false);
                     }
                 }
             }
@@ -815,7 +815,7 @@ GOLDNOW_DICTIONARY;
             if (!current_user_can('manage_options')) {
                 wp_die(esc_html__('You are not allowed to export translations.', 'goldnow-language-manager'), 403);
             }
-            check_admin_referer('goldnow_lm_export');
+            check_admin_referer('goldnow_mt_export');
             nocache_headers();
             header('Content-Type: application/json; charset=utf-8');
             header('Content-Disposition: attachment; filename=goldnow-translations.json');
@@ -830,17 +830,17 @@ GOLDNOW_DICTIONARY;
             $languages = self::languages();
             $enabled = $this->enabled_languages();
             $dictionary = $this->translations();
-            $blocks = get_option('goldnow_lm_blocks', array());
+            $blocks = get_option('goldnow_mt_blocks', array());
             if (!is_array($blocks)) { $blocks = array(); }
             $status = isset($_GET['gnlm_status']) ? sanitize_key(wp_unslash($_GET['gnlm_status'])) : '';
             ?>
             <div class="wrap">
-                <h1>GoldNow Language Manager</h1>
+                <h1>GoldNow Multilingual Test Manager</h1>
                 <p>قاموس ترجمة مركزي داخل الموقع. القوالب والإضافات تستدعي الترجمات من هذا المكان، ولا يتم تغيير أسعار الذهب أو حسابات Gold Manager.</p>
                 <?php if ($status === 'saved') : ?><div class="notice notice-success is-dismissible"><p>تم حفظ إعدادات اللغات والترجمات.</p></div><?php elseif ($status === 'invalid_json') : ?><div class="notice notice-error"><p>ملف JSON غير صالح. لم يتم حفظ أي تغيير.</p></div><?php endif; ?>
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                    <input type="hidden" name="action" value="goldnow_lm_save">
-                    <?php wp_nonce_field('goldnow_lm_save'); ?>
+                    <input type="hidden" name="action" value="goldnow_mt_save">
+                    <?php wp_nonce_field('goldnow_mt_save'); ?>
                     <h2>اللغات المفعّلة</h2>
                     <p>العربية هي اللغة الافتراضية للمسارات التي لا تبدأ برمز لغة. يمكنك تعطيل أي لغة أخرى دون حذف ترجماتها.</p>
                     <fieldset style="display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 20px">
@@ -861,19 +861,19 @@ GOLDNOW_DICTIONARY;
                     <?php submit_button('حفظ إعدادات الترجمة'); ?>
                 </form>
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="margin-top:12px">
-                    <input type="hidden" name="action" value="goldnow_lm_export">
-                    <?php wp_nonce_field('goldnow_lm_export'); ?>
+                    <input type="hidden" name="action" value="goldnow_mt_export">
+                    <?php wp_nonce_field('goldnow_mt_export'); ?>
                     <?php submit_button('تصدير القاموس كملف JSON', 'secondary'); ?>
                 </form>
                 <hr>
                 <h2>طريقة الاستخدام</h2>
-                <p><strong>داخل ملفات PHP:</strong> <code>goldnow_translate('gold_price');</code></p>
-                <p><strong>تحديد لغة الصفحة:</strong> <code>goldnow_current_language();</code></p>
-                <p><strong>ترجمة نص عربي مطابق للمصدر:</strong> <code>goldnow_translate_text('سعر الذهب');</code></p>
-                <p><strong>تحديد اتجاه الصفحة:</strong> <code>goldnow_is_rtl();</code></p>
+                <p><strong>داخل ملفات PHP:</strong> <code>goldnow_mt_translate('gold_price');</code></p>
+                <p><strong>تحديد لغة الصفحة:</strong> <code>goldnow_mt_current_language();</code></p>
+                <p><strong>ترجمة نص عربي مطابق للمصدر:</strong> <code>goldnow_mt_translate_text('سعر الذهب');</code></p>
+                <p><strong>تحديد اتجاه الصفحة:</strong> <code>goldnow_mt_is_rtl();</code></p>
                 <p><strong>داخل المحرر أو محتوى الصفحة:</strong> <code>[goldnow_translate key="gold_price"]</code></p>
-                <p><strong>للفقرات الطويلة مع HTML آمن:</strong> <code>[goldnow_translate_block key="seo_intro" ]</code></p>
-                <p><strong>داخل ملفات PHP:</strong> <code>goldnow_translate_block('seo_intro', $language, null, array('country' =&gt; $country));</code></p>
+                <p><strong>للفقرات الطويلة مع HTML آمن:</strong> <code>[goldnow_mt_translate_block key="seo_intro" ]</code></p>
+                <p><strong>داخل ملفات PHP:</strong> <code>goldnow_mt_translate_block('seo_intro', $language, null, array('country' =&gt; $country));</code></p>
                 <p><strong>روابط تبديل اللغة:</strong> <code>[goldnow_language_switcher]</code></p>
                 <p><strong>قائمة الدول الموحدة مع البطاقات والبحث:</strong> <code>[goldnow_country_directory]</code></p>
                 <p class="description">ملاحظة: الإضافة توفر القاموس وواجهات الاستدعاء. لا تستطيع ترجمة كل نصوص القوالب والشورت كودز تلقائيًا قبل ربط مواضع النصوص بها.</p>
@@ -882,45 +882,45 @@ GOLDNOW_DICTIONARY;
         }
     }
 
-    GoldNow_Language_Manager::instance();
+    GoldNow_Multilingual_Test_Manager::instance();
 
     register_activation_hook(__FILE__, function () {
-        GoldNow_Language_Manager::instance()->activate();
+        GoldNow_Multilingual_Test_Manager::instance()->activate();
     });
     // Also initialize defaults on first load in case activation hooks were bypassed by deployment tools.
     add_action('plugins_loaded', function () {
-        GoldNow_Language_Manager::instance()->activate();
+        GoldNow_Multilingual_Test_Manager::instance()->activate();
     });
 }
 
-if (!function_exists('goldnow_translate')) {
-    function goldnow_translate($key, $language = null, $fallback = null, $replacements = array()) {
-        return GoldNow_Language_Manager::instance()->translate($key, $language, $fallback, $replacements);
+if (!function_exists('goldnow_mt_translate')) {
+    function goldnow_mt_translate($key, $language = null, $fallback = null, $replacements = array()) {
+        return GoldNow_Multilingual_Test_Manager::instance()->translate($key, $language, $fallback, $replacements);
     }
 }
-if (!function_exists('goldnow_translate_block')) {
-    function goldnow_translate_block($key, $language = null, $fallback = null, $replacements = array()) {
-        return GoldNow_Language_Manager::instance()->translate_block($key, $language, $fallback, $replacements);
+if (!function_exists('goldnow_mt_translate_block')) {
+    function goldnow_mt_translate_block($key, $language = null, $fallback = null, $replacements = array()) {
+        return GoldNow_Multilingual_Test_Manager::instance()->translate_block($key, $language, $fallback, $replacements);
     }
 }
-if (!function_exists('goldnow_current_language')) {
-    function goldnow_current_language() {
-        return GoldNow_Language_Manager::instance()->current_language();
+if (!function_exists('goldnow_mt_current_language')) {
+    function goldnow_mt_current_language() {
+        return GoldNow_Multilingual_Test_Manager::instance()->current_language();
     }
 }
-if (!function_exists('goldnow_is_rtl')) {
-    function goldnow_is_rtl($language = null) {
-        return GoldNow_Language_Manager::instance()->is_rtl($language);
+if (!function_exists('goldnow_mt_is_rtl')) {
+    function goldnow_mt_is_rtl($language = null) {
+        return GoldNow_Multilingual_Test_Manager::instance()->is_rtl($language);
     }
 }
-if (!function_exists('goldnow_translate_text')) {
-    function goldnow_translate_text($text, $language = null) {
-        return GoldNow_Language_Manager::instance()->translate_text($text, $language);
+if (!function_exists('goldnow_mt_translate_text')) {
+    function goldnow_mt_translate_text($text, $language = null) {
+        return GoldNow_Multilingual_Test_Manager::instance()->translate_text($text, $language);
     }
 }
-if (!function_exists('goldnow_language_url')) {
-    function goldnow_language_url($language, $url = '') {
-        return GoldNow_Language_Manager::instance()->language_url($language, $url);
+if (!function_exists('goldnow_mt_language_url')) {
+    function goldnow_mt_language_url($language, $url = '') {
+        return GoldNow_Multilingual_Test_Manager::instance()->language_url($language, $url);
     }
 }
 
@@ -931,7 +931,7 @@ if (!function_exists('goldnow_language_url')) {
  */
 if (!function_exists('goldnow_country_directory_labels')) {
     function goldnow_country_directory_labels($language = null) {
-        $language = $language ? sanitize_key($language) : goldnow_current_language();
+        $language = $language ? sanitize_key($language) : goldnow_mt_current_language();
         $labels = [
 'ar'=>['home'=>'الرئيسية','prices'=>'أسعار الذهب','bars'=>'سبائك الذهب','index'=>'مؤشر الذهب','usd'=>'أسعار الدولار','countries'=>'الدول','all'=>'جميع الدول','search'=>'ابحث عن دولة أو عملة...','arab'=>'العالم العربي','rest'=>'باقي دول العالم','empty'=>'لم يتم العثور على نتائج','try'=>'جرّب البحث باسم الدولة أو العملة أو الرمز.','about'=>'عن التقرير جولد','sections'=>'أقسام أسعار الذهب','regional'=>'أسعار الذهب حسب المنطقة','seo_title'=>'تابع أسعار الذهب لحظة بلحظة مع التقرير جولد','seo'=>'تابع أسعار الذهب اليوم وقارن الأسعار بين الدول والعملات المحلية، وتعرّف إلى اتجاهات سوق الذهب العالمي.','back'=>'العودة للرئيسية','rights'=>'جميع الحقوق محفوظة'],
 'en'=>['home'=>'Home','prices'=>'Gold Prices','bars'=>'Gold Bars','index'=>'Gold Index','usd'=>'USD Rates','countries'=>'Countries','all'=>'All Countries','search'=>'Search for a country or currency...','arab'=>'Arab World','rest'=>'Rest of the World','empty'=>'No results found','try'=>'Try searching by country, currency or code.','about'=>'About AlTaqrer Gold','sections'=>'Gold Price Sections','regional'=>'Gold Prices by Region','seo_title'=>'Follow Live Gold Prices with AlTaqrer Gold','seo'=>'Track today’s gold prices, compare local currencies across countries, and follow global gold market trends.','back'=>'Back to Home','rights'=>'All rights reserved'],
@@ -950,7 +950,7 @@ if (!function_exists('goldnow_country_directory_labels')) {
 
 if (!function_exists('goldnow_country_directory_shortcode')) {
     function goldnow_country_directory_shortcode($atts = array()) {
-        $language = goldnow_current_language();
+        $language = goldnow_mt_current_language();
         $labels = goldnow_country_directory_labels($language);
         $countries = [
 'sa'=>'SAR|Saudi Arabia','eg'=>'EGP|Egypt','ae'=>'AED|United Arab Emirates','kw'=>'KWD|Kuwait','qa'=>'QAR|Qatar','bh'=>'BHD|Bahrain','om'=>'OMR|Oman','jo'=>'JOD|Jordan','iq'=>'IQD|Iraq','lb'=>'LBP|Lebanon','ps'=>'ILS|Palestine','sy'=>'SYP|Syria','ye'=>'YER|Yemen','ly'=>'LYD|Libya','sd'=>'SDG|Sudan','dz'=>'DZD|Algeria','ma'=>'MAD|Morocco','tn'=>'TND|Tunisia','mr'=>'MRU|Mauritania','dj'=>'DJF|Djibouti','km'=>'KMF|Comoros',
@@ -986,8 +986,8 @@ if (!function_exists('goldnow_country_directory_shortcode')) {
                         $country_name = $localized;
                     }
                 }
-                if ($country_name === $english && function_exists('goldnow_translate_text')) {
-                    $country_name = goldnow_translate_text($english, $language);
+                if ($country_name === $english && function_exists('goldnow_mt_translate_text')) {
+                    $country_name = goldnow_mt_translate_text($english, $language);
                 }
                 $flag_local = get_template_directory() . '/assets/flags/' . $code . '.svg';
                 $flag_local_png = get_template_directory() . '/assets/flags/' . $code . '.png';
