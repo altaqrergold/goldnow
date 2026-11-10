@@ -824,7 +824,7 @@ if (!empty($gold_view) && $goldnow_mlr_language === 'ar') {
 
 
 <?php
-if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
+if (function_exists('goldnow_render_seo_article_shortcode') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -838,7 +838,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
     $goldnow_seo_base_path = ($goldnow_mlr_language === 'ar') ? '/country/' : '/' . $goldnow_mlr_language . '/country/';
     $goldnow_seo_base_url = home_url($goldnow_seo_base_path . rawurlencode((string) $country_code) . '/');
-    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+    echo goldnow_render_seo_article_shortcode($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $country_name,
         'currency' => $country_currency,
         'date' => $today,
@@ -1811,7 +1811,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php
-if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
+if (function_exists('goldnow_render_seo_article_shortcode') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -1824,7 +1824,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     );
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
     $goldnow_seo_base_url = home_url('/en/country/' . rawurlencode((string) $en_header_country_slug) . '/');
-    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+    echo goldnow_render_seo_article_shortcode($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $display_country_name,
         'currency' => $country_currency,
         'date' => $today,
@@ -2883,7 +2883,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php
-if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
+if (function_exists('goldnow_render_seo_article_shortcode') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -2896,7 +2896,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     );
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
     $goldnow_seo_base_url = home_url('/fr/country/' . rawurlencode((string) $fr_header_country_slug) . '/');
-    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+    echo goldnow_render_seo_article_shortcode($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $display_country_name,
         'currency' => $country_currency,
         'date' => $today,
@@ -3723,7 +3723,7 @@ if (!empty($gold_view) && $goldnow_mlr_language === 'ar') {
 
 
 <?php
-if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
+if (function_exists('goldnow_render_seo_article_shortcode') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -3737,7 +3737,7 @@ if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== '
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
     $goldnow_seo_base_path = ($goldnow_mlr_language === 'ar') ? '/country/' : '/' . $goldnow_mlr_language . '/country/';
     $goldnow_seo_base_url = home_url($goldnow_seo_base_path . rawurlencode((string) $country_code) . '/');
-    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+    echo goldnow_render_seo_article_shortcode($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $country_name,
         'currency' => $country_currency,
         'date' => $today,

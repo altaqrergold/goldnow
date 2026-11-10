@@ -20,6 +20,12 @@ if (is_readable($goldnow_seo_content_file)) {
     require_once $goldnow_seo_content_file;
 }
 
+// Load the reusable SEO article shortcode after its renderer is available.
+$goldnow_seo_shortcode_file = __DIR__ . '/goldnow-seo-shortcode.php';
+if (is_readable($goldnow_seo_shortcode_file)) {
+    require_once $goldnow_seo_shortcode_file;
+}
+
 // Load the SEO content editor; it uses the renderer's defaults and stores only admin overrides.
 $goldnow_seo_admin_file = __DIR__ . '/goldnow-seo-admin.php';
 if (is_readable($goldnow_seo_admin_file)) {
@@ -28,7 +34,7 @@ if (is_readable($goldnow_seo_admin_file)) {
 
 if (!class_exists('GoldNow_Language_Manager')) {
     final class GoldNow_Language_Manager {
-        const VERSION = '1.4.0';
+        const VERSION = '1.5.0';
         const OPTION_TRANSLATIONS = 'goldnow_lm_translations';
         const OPTION_ENABLED = 'goldnow_lm_enabled_languages';
         const OPTION_DEFAULT = 'goldnow_lm_default_language';
