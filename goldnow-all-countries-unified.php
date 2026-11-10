@@ -10,9 +10,6 @@ $gn_uri_path = trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_P
 $gn_segments = $gn_uri_path === '' ? [] : explode('/', $gn_uri_path);
 $gn_lang = (!empty($gn_segments[0]) && in_array($gn_segments[0], $gn_langs, true)) ? $gn_segments[0] : 'ar';
 $gn_is_rtl = ($gn_lang === 'ar' || $gn_lang === 'fa');
-$gn_locale = [
-    'ar'=>'ar','en'=>'en','fr'=>'fr','de'=>'de','es'=>'es','it'=>'it','pt'=>'pt','ru'=>'ru','hi'=>'hi','tr'=>'tr'
-][$gn_lang];
 $gn_home_url = home_url($gn_lang === 'ar' ? '/' : '/' . $gn_lang . '/');
 $gn_country_base = home_url($gn_lang === 'ar' ? '/country/' : '/' . $gn_lang . '/country/');
 $gn_is_app = isset($_GET['view']) && sanitize_text_field(wp_unslash($_GET['view'])) === 'app';
@@ -20,17 +17,13 @@ $gn_accent = get_theme_mod('infi_default_color', '#ffb301');
 $gn_logo_id = (int) get_theme_mod('custom_logo');
 
 $gn = goldnow_country_directory_labels($gn_lang);
-// Prefer the central Language Manager for keys already present in its dictionary;
-// keep this template's translations as fallbacks so it also works before every key is added.
+// Keep the three existing dictionary overrides for compatibility with saved translations.
 if (function_exists('goldnow_translate')) {
     foreach (['all'=>'all_countries','search'=>'search_country','empty'=>'no_results'] as $field=>$key) {
         $managed = goldnow_translate($key);
         if (is_string($managed) && $managed !== '' && $managed !== $key) { $gn[$field] = $managed; }
     }
 }
-
-// Shared country/currency dataset. Country names are localized through PHP Intl when available,
-// then through the site's GoldNow Language Manager translation helper, with English as a safe fallback.
 
 
 wp_enqueue_style('goldnow-countries-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', [], '6.4.0');
