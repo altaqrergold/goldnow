@@ -990,6 +990,29 @@ GOLDNOW_DICTIONARY;
         }
 
         /**
+         * Allow the same common content structure and safe inline styling used
+         * by the template while keeping scripts, event handlers and unsafe URLs out.
+         */
+        private function allowed_block_html() {
+            $allowed = wp_kses_allowed_html('post');
+            $tags = array('div','span','section','article','header','footer','nav','h2','h3','h4','p','ul','ol','li','table','thead','tbody','tr','th','td','small','strong','b','em','i','u','a','br','hr','details','summary','blockquote');
+            foreach ($tags as $tag) {
+                if (!isset($allowed[$tag]) || !is_array($allowed[$tag])) {
+                    $allowed[$tag] = array();
+                }
+                foreach (array('class','id','style','dir','lang','title','role') as $attribute) {
+                    $allowed[$tag][$attribute] = true;
+                }
+            }
+            if (isset($allowed['a'])) {
+                foreach (array('href','target','rel') as $attribute) {
+                    $allowed['a'][$attribute] = true;
+                }
+            }
+            return $allowed;
+        }
+
+        /**
          * Translate a complete HTML/text block. Unlike the short dictionary,
          * blocks preserve safe post HTML and multiline content.
          */
@@ -1022,7 +1045,7 @@ GOLDNOW_DICTIONARY;
                     }
                 }
             }
-            return wp_kses($value, wp_kses_allowed_html('post'));
+            return wp_kses($value, $this->allowed_block_html());
         }
 
         public function translation_block_shortcode($atts) {
@@ -1045,7 +1068,7 @@ GOLDNOW_DICTIONARY;
                 $clean[$key] = array();
                 foreach (array_merge(array('source'), $allowed) as $code) {
                     if (isset($entry[$code]) && is_scalar($entry[$code])) {
-                        $clean[$key][$code] = wp_kses((string) $entry[$code], wp_kses_allowed_html('post'));
+                        $clean[$key][$code] = wp_kses((string) $entry[$code], $this->allowed_block_html());
                     }
                 }
                 if (empty($clean[$key])) {
