@@ -504,21 +504,21 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
                         <thead>
                             <tr>
                                 <th>Weight / Type</th>
-                                <th>Price (<?php echo $currency_label; ?>)</th>
+                                <th><?php echo esc_html(goldnow_mt_translate_text('Price', $en_header_language)); ?> (<?php echo esc_html($currency_label); ?>)</th>
                                 <th>Price (USD)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $weights = [
-                                ['weight' => 1, 'name' => 'Gold Bar — 1 Gram'],
-                                ['weight' => 2.5, 'name' => 'Gold Bar — 2.5 Grams'],
-                                ['weight' => 5, 'name' => 'Gold Bar — 5 Grams'],
-                                ['weight' => 10, 'name' => 'Gold Bar — 10 Grams'],
-                                ['weight' => 20, 'name' => 'Gold Bar — 20 Grams'],
-                                ['weight' => 31.1, 'name' => 'Troy Ounce (31.1 g)'],
-                                ['weight' => 50, 'name' => 'Gold Bar — 50 Grams'],
-                                ['weight' => 100, 'name' => 'Gold Bar — 100 Grams'],
+                                ['weight' => 1, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '1')) : 'Gold Bar — 1 Gram'],
+                                ['weight' => 2.5, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '2.5')) : 'Gold Bar — 2.5 Grams'],
+                                ['weight' => 5, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '5')) : 'Gold Bar — 5 Grams'],
+                                ['weight' => 10, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '10')) : 'Gold Bar — 10 Grams'],
+                                ['weight' => 20, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '20')) : 'Gold Bar — 20 Grams'],
+                                ['weight' => 31.1, 'name' => function_exists('goldnow_mt_translate') ? goldnow_mt_translate('global_gold_ounce', $en_header_language) . ' (31.1 g)' : 'Troy Ounce (31.1 g)'],
+                                ['weight' => 50, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '50')) : 'Gold Bar — 50 Grams'],
+                                ['weight' => 100, 'name' => function_exists('goldnow_mt_translate_block') ? goldnow_mt_translate_block('gold_bar_weight', $en_header_language, null, array('weight' => '100')) : 'Gold Bar — 100 Grams'],
                             ];
                             
                             foreach ($weights as $bar) {
@@ -551,8 +551,8 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
                     <table class="gold-table" style="width: 100%; text-align: left; direction: ltr;">
                         <thead>
                             <tr>
-                                <th>Coin Purity</th>
-                                <th>Price (<?php echo $currency_label; ?>)</th>
+                                <th><?php echo esc_html(goldnow_mt_translate_text('Coin Purity', $en_header_language)); ?></th>
+                                <th><?php echo esc_html(goldnow_mt_translate_text('Price', $en_header_language)); ?> (<?php echo esc_html($currency_label); ?>)</th>
                                 <th>Price (USD)</th>
                             </tr>
                         </thead>
@@ -571,7 +571,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
                                     $carat_num = str_replace('k', '', $carat);
                                 ?>
                                 <tr>
-                                    <td class="font-bold">8g Gold Coin (<?php echo $carat_num; ?>K)</td>
+                                    <td class="font-bold"><?php echo esc_html(goldnow_mt_translate_block('gold_coin_karat', $en_header_language, null, array('karat' => $carat_num))); ?></td>
                                     <td class="price-cell"><?php echo number_format($pound_price_currency, 2); ?></td>
                                     <td class="usd-cell"><?php echo number_format($pound_price_usd, 2); ?> $</td>
                                 </tr>
