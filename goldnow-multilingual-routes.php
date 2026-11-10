@@ -394,7 +394,7 @@ $gold_view = get_query_var('gold_view');
 
 <?php 
 // 2️⃣ شروط إخفاء وإظهار ذكية: يظهر البوكس العلوي الكبير المطور وجدول عملاته فقط فى صفحة الدولة الرئيسية ويختفي من الفرعيات
-if (empty($gold_view)) : 
+if (empty($gold_view) && $goldnow_mlr_language === 'ar') : 
 ?>
 <!-- حاوية المقال الذكي محددة العرض (بوكس) بلون متباين وهادئ لمنع التداخل البصري -->
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-right: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: rtl; text-align: right; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
@@ -824,7 +824,7 @@ if (!empty($gold_view)) {
 
 
 <?php
-if (function_exists('goldnow_render_seo_article')) {
+if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -1811,7 +1811,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php
-if (function_exists('goldnow_render_seo_article')) {
+if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -2883,7 +2883,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php
-if (function_exists('goldnow_render_seo_article')) {
+if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -3286,7 +3286,7 @@ $gold_view = get_query_var('gold_view');
 
 <?php 
 // 2️⃣ شروط إخفاء وإظهار ذكية: يظهر البوكس العلوي الكبير المطور وجدول عملاته فقط فى صفحة الدولة الرئيسية ويختفي من الفرعيات
-if (empty($gold_view)) : 
+if (empty($gold_view) && $goldnow_mlr_language === 'ar') : 
 ?>
 <!-- حاوية المقال الذكي محددة العرض (بوكس) بلون متباين وهادئ لمنع التداخل البصري -->
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-right: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: rtl; text-align: right; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
@@ -3716,7 +3716,7 @@ if (!empty($gold_view)) {
 
 
 <?php
-if (function_exists('goldnow_render_seo_article')) {
+if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
