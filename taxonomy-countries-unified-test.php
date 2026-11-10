@@ -41,7 +41,7 @@ $en_country_label_ae = (class_exists('Locale') && $en_header_language !== 'en') 
 $en_country_label_kw = (class_exists('Locale') && $en_header_language !== 'en') ? Locale::getDisplayRegion('en_KW', $en_header_language) : 'Kuwait';
 
 /**
- * Exact dictionary lookup on visible text nodes only. HTML tags, URLs,
+ * Exact dictionary/block lookup on visible text nodes only. HTML tags, URLs,
  * JavaScript, CSS, price values and markup structure are preserved.
  */
 if (!function_exists('altaqrer_gold_mt_translate_page_html')) {
@@ -242,9 +242,9 @@ if (!$en_header_is_app && function_exists('goldnow_display_ad')) :
 
 <?php
 /**
- * English-only text adapter for shortcode HTML.
- * It translates visible text and accessibility labels only; URLs, HTML structure,
- * CSS and JavaScript are deliberately left untouched.
+ * Multilingual text adapter for shortcode HTML.
+ * It normalizes legacy Arabic labels, then applies the current locale dictionary
+ * to visible text and accessibility labels; URLs and markup structure stay untouched.
  */
 if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
     function altaqrer_gold_en_translate_shortcode_html($html, $translations = array(), $language = 'en') {
@@ -308,7 +308,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
     $country_flag = $term_id ? (string) get_term_meta($term_id, 'country_flag', true) : '';
     $country_currency = $term_id ? strtoupper((string) get_term_meta($term_id, 'country_currency', true)) : '';
 
-    // Never fall back to an Arabic taxonomy name on an English URL.
+    // Never fall back to an Arabic taxonomy name on a non-Arabic URL.
     $country_fallback = '';
     if (is_object($current_term) && !empty($current_term->slug)) {
         $country_fallback = ucwords(str_replace(array('-', '_'), ' ', (string) $current_term->slug));
@@ -653,7 +653,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 const goldnowLocaleTranslations = <?php echo wp_json_encode(function_exists('goldnow_mt_client_dictionary') ? goldnow_mt_client_dictionary($en_header_language) : array()); ?>;
 // Translate legacy Arabic labels returned by the existing indicator AJAX action.
 
-function altaqrerTranslateEnglishIndicator(root) {
+function altaqrerTranslateIndicatorLocale(root) {
     if (!root) return;
     const translations = {
         'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
@@ -728,7 +728,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     framesContainer.innerHTML = await response.text();
-                    altaqrerTranslateEnglishIndicator(framesContainer);
+                    altaqrerTranslateIndicatorLocale(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
                     framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">' + <?php echo wp_json_encode(goldnow_mt_translate_block('chart_error', $en_header_language)); ?> + '</p>';
