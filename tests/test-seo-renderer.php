@@ -65,11 +65,15 @@ function get_option($key, $default = false) {
 
 
 $GLOBALS['goldnow_test_option_overrides'] = array(
-    'en' => array('24k' => array('title' => 'Custom English SEO title', 'intro' => 'Custom intro', 'body' => 'Custom body paragraph.'))
+    'en' => array('24k' => array('title' => 'Custom English SEO title', 'intro' => 'Custom intro', 'body' => 'Custom first paragraph.\\n\\nCustom second paragraph.'))
 );
 $override = goldnow_seo_article_data('en', '24k');
 $GLOBALS['goldnow_test_option_overrides']['en']['24k']['faq1_q'] = 'Custom FAQ question';
 $faq_html = goldnow_render_seo_article('en', '24k', array());
+if (strpos($faq_html, '<p>Custom first paragraph.</p><p>Custom second paragraph.</p>') === false) {
+    fwrite(STDERR, "Multi-paragraph SEO body was not rendered as separate paragraphs.\\n");
+    exit(1);
+}
 if (strpos($faq_html, 'Custom FAQ question') === false) {
     fwrite(STDERR, "Saved FAQ overrides were not applied.\\n");
     exit(1);
