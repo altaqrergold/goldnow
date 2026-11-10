@@ -3,7 +3,7 @@
  * Plugin Name: GoldNow Language Manager
  * Plugin URI: https://gold.altaqrer.com/
  * Description: Shared 10-language translation dictionary, language detection, URL helpers, and shortcodes for GoldNow themes and plugins.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: GoldNow
  * Text Domain: goldnow-language-manager
  * Requires at least: 5.8
@@ -28,7 +28,7 @@ if (is_readable($goldnow_seo_admin_file)) {
 
 if (!class_exists('GoldNow_Language_Manager')) {
     final class GoldNow_Language_Manager {
-        const VERSION = '1.3.0';
+        const VERSION = '1.4.0';
         const OPTION_TRANSLATIONS = 'goldnow_lm_translations';
         const OPTION_ENABLED = 'goldnow_lm_enabled_languages';
         const OPTION_DEFAULT = 'goldnow_lm_default_language';
@@ -65,6 +65,7 @@ if (!class_exists('GoldNow_Language_Manager')) {
             add_action('admin_post_goldnow_lm_export', array($this, 'export_dictionary'));
             add_shortcode('goldnow_translate', array($this, 'translation_shortcode'));
             add_shortcode('goldnow_language_switcher', array($this, 'language_switcher_shortcode'));
+            add_shortcode('goldnow_country_directory', 'goldnow_country_directory_shortcode');
         }
 
         public function activate() {
@@ -813,3 +814,90 @@ if (!function_exists('goldnow_language_url')) {
         return GoldNow_Language_Manager::instance()->language_url($language, $url);
     }
 }
+
+
+/**
+ * Centralized labels and country data for the All Countries directory.
+ * The directory shortcode returns the same HTML class structure as the original template.
+ */
+if (!function_exists('goldnow_country_directory_labels')) {
+    function goldnow_country_directory_labels($language = null) {
+        $language = $language ? sanitize_key($language) : goldnow_current_language();
+        $labels = [
+'ar'=>['home'=>'الرئيسية','prices'=>'أسعار الذهب','bars'=>'سبائك الذهب','index'=>'مؤشر الذهب','usd'=>'أسعار الدولار','countries'=>'الدول','all'=>'جميع الدول','search'=>'ابحث عن دولة أو عملة...','arab'=>'العالم العربي','rest'=>'باقي دول العالم','empty'=>'لم يتم العثور على نتائج','try'=>'جرّب البحث باسم الدولة أو العملة أو الرمز.','about'=>'عن التقرير جولد','sections'=>'أقسام أسعار الذهب','regional'=>'أسعار الذهب حسب المنطقة','seo_title'=>'تابع أسعار الذهب لحظة بلحظة مع التقرير جولد','seo'=>'تابع أسعار الذهب اليوم وقارن الأسعار بين الدول والعملات المحلية، وتعرّف إلى اتجاهات سوق الذهب العالمي.','back'=>'العودة للرئيسية','rights'=>'جميع الحقوق محفوظة'],
+'en'=>['home'=>'Home','prices'=>'Gold Prices','bars'=>'Gold Bars','index'=>'Gold Index','usd'=>'USD Rates','countries'=>'Countries','all'=>'All Countries','search'=>'Search for a country or currency...','arab'=>'Arab World','rest'=>'Rest of the World','empty'=>'No results found','try'=>'Try searching by country, currency or code.','about'=>'About AlTaqrer Gold','sections'=>'Gold Price Sections','regional'=>'Gold Prices by Region','seo_title'=>'Follow Live Gold Prices with AlTaqrer Gold','seo'=>'Track today’s gold prices, compare local currencies across countries, and follow global gold market trends.','back'=>'Back to Home','rights'=>'All rights reserved'],
+'fr'=>['home'=>'Accueil','prices'=>'Cours de l’or','bars'=>'Lingots d’or','index'=>'Indice de l’or','usd'=>'Taux USD','countries'=>'Pays','all'=>'Tous les pays','search'=>'Rechercher un pays ou une devise...','arab'=>'Monde arabe','rest'=>'Reste du monde','empty'=>'Aucun résultat trouvé','try'=>'Recherchez un pays, une devise ou un code.','about'=>'À propos d’AlTaqrer Gold','sections'=>'Rubriques des cours de l’or','regional'=>'Cours de l’or par région','seo_title'=>'Suivez les cours de l’or en direct avec AlTaqrer Gold','seo'=>'Consultez les cours de l’or du jour, comparez les devises locales et suivez les tendances du marché mondial.','back'=>'Retour à l’accueil','rights'=>'Tous droits réservés'],
+'de'=>['home'=>'Startseite','prices'=>'Goldpreise','bars'=>'Goldbarren','index'=>'Goldindex','usd'=>'USD-Kurse','countries'=>'Länder','all'=>'Alle Länder','search'=>'Land oder Währung suchen...','arab'=>'Arabische Welt','rest'=>'Übrige Welt','empty'=>'Keine Ergebnisse gefunden','try'=>'Suche nach Land, Währung oder Kürzel.','about'=>'Über AlTaqrer Gold','sections'=>'Goldpreis-Bereiche','regional'=>'Goldpreise nach Regionen','seo_title'=>'Verfolgen Sie Goldpreise live mit AlTaqrer Gold','seo'=>'Sehen Sie die heutigen Goldpreise, vergleichen Sie lokale Währungen und verfolgen Sie globale Markttrends.','back'=>'Zur Startseite','rights'=>'Alle Rechte vorbehalten'],
+'es'=>['home'=>'Inicio','prices'=>'Precios del oro','bars'=>'Lingotes de oro','index'=>'Índice del oro','usd'=>'Tipos USD','countries'=>'Países','all'=>'Todos los países','search'=>'Buscar país o moneda...','arab'=>'Mundo árabe','rest'=>'Resto del mundo','empty'=>'No se encontraron resultados','try'=>'Busca por país, moneda o código.','about'=>'Acerca de AlTaqrer Gold','sections'=>'Secciones del precio del oro','regional'=>'Precio del oro por región','seo_title'=>'Sigue el precio del oro en directo con AlTaqrer Gold','seo'=>'Consulta los precios del oro de hoy, compara monedas locales y sigue las tendencias del mercado mundial.','back'=>'Volver al inicio','rights'=>'Todos los derechos reservados'],
+'it'=>['home'=>'Home','prices'=>'Prezzi dell’oro','bars'=>'Lingotti d’oro','index'=>'Indice dell’oro','usd'=>'Tassi USD','countries'=>'Paesi','all'=>'Tutti i paesi','search'=>'Cerca un paese o una valuta...','arab'=>'Mondo arabo','rest'=>'Resto del mondo','empty'=>'Nessun risultato trovato','try'=>'Cerca per paese, valuta o codice.','about'=>'Informazioni su AlTaqrer Gold','sections'=>'Sezioni dei prezzi dell’oro','regional'=>'Prezzi dell’oro per regione','seo_title'=>'Segui le quotazioni dell’oro in tempo reale con AlTaqrer Gold','seo'=>'Consulta i prezzi dell’oro di oggi, confronta le valute locali e segui le tendenze del mercato globale.','back'=>'Torna alla home','rights'=>'Tutti i diritti riservati'],
+'pt'=>['home'=>'Início','prices'=>'Preços do ouro','bars'=>'Barras de ouro','index'=>'Índice do ouro','usd'=>'Taxas USD','countries'=>'Países','all'=>'Todos os países','search'=>'Pesquisar país ou moeda...','arab'=>'Mundo árabe','rest'=>'Resto do mundo','empty'=>'Nenhum resultado encontrado','try'=>'Pesquise por país, moeda ou código.','about'=>'Sobre a AlTaqrer Gold','sections'=>'Secções dos preços do ouro','regional'=>'Preços do ouro por região','seo_title'=>'Acompanhe os preços do ouro em direto com a AlTaqrer Gold','seo'=>'Consulte os preços do ouro de hoje, compare moedas locais e acompanhe as tendências do mercado mundial.','back'=>'Voltar ao início','rights'=>'Todos os direitos reservados'],
+'ru'=>['home'=>'Главная','prices'=>'Цены на золото','bars'=>'Золотые слитки','index'=>'Индекс золота','usd'=>'Курс USD','countries'=>'Страны','all'=>'Все страны','search'=>'Поиск страны или валюты...','arab'=>'Арабский мир','rest'=>'Остальной мир','empty'=>'Ничего не найдено','try'=>'Попробуйте поискать по стране, валюте или коду.','about'=>'Об AlTaqrer Gold','sections'=>'Разделы цен на золото','regional'=>'Цены на золото по регионам','seo_title'=>'Следите за ценами на золото вместе с AlTaqrer Gold','seo'=>'Смотрите сегодняшние цены на золото, сравнивайте местные валюты и следите за мировым рынком.','back'=>'На главную','rights'=>'Все права защищены'],
+'hi'=>['home'=>'होम','prices'=>'सोने की कीमतें','bars'=>'सोने की छड़ें','index'=>'गोल्ड इंडेक्स','usd'=>'USD दरें','countries'=>'देश','all'=>'सभी देश','search'=>'देश या मुद्रा खोजें...','arab'=>'अरब जगत','rest'=>'शेष विश्व','empty'=>'कोई परिणाम नहीं मिला','try'=>'देश, मुद्रा या कोड से खोजें।','about'=>'AlTaqrer Gold के बारे में','sections'=>'सोने की कीमत के अनुभाग','regional'=>'क्षेत्र के अनुसार सोने की कीमतें','seo_title'=>'AlTaqrer Gold के साथ सोने की कीमतें लाइव देखें','seo'=>'आज की सोने की कीमतें देखें, स्थानीय मुद्राओं की तुलना करें और वैश्विक बाजार के रुझान जानें।','back'=>'होम पर वापस जाएँ','rights'=>'सर्वाधिकार सुरक्षित'],
+'tr'=>['home'=>'Ana Sayfa','prices'=>'Altın Fiyatları','bars'=>'Altın Külçeleri','index'=>'Altın Endeksi','usd'=>'USD Kurları','countries'=>'Ülkeler','all'=>'Tüm Ülkeler','search'=>'Ülke veya para birimi ara...','arab'=>'Arap Dünyası','rest'=>'Dünyanın Geri Kalanı','empty'=>'Sonuç bulunamadı','try'=>'Ülke, para birimi veya kodla arayın.','about'=>'AlTaqrer Gold Hakkında','sections'=>'Altın Fiyatı Bölümleri','regional'=>'Bölgelere Göre Altın Fiyatları','seo_title'=>'AlTaqrer Gold ile canlı altın fiyatlarını takip edin','seo'=>'Bugünün altın fiyatlarını inceleyin, yerel para birimlerini karşılaştırın ve küresel piyasa trendlerini takip edin.','back'=>'Ana Sayfaya Dön','rights'=>'Tüm hakları saklıdır']
+];
+        return isset($labels[$language]) ? $labels[$language] : $labels['ar'];
+    }
+}
+
+if (!function_exists('goldnow_country_directory_shortcode')) {
+    function goldnow_country_directory_shortcode($atts = array()) {
+        $language = goldnow_current_language();
+        $labels = goldnow_country_directory_labels($language);
+        $countries = [
+'sa'=>'SAR|Saudi Arabia','eg'=>'EGP|Egypt','ae'=>'AED|United Arab Emirates','kw'=>'KWD|Kuwait','qa'=>'QAR|Qatar','bh'=>'BHD|Bahrain','om'=>'OMR|Oman','jo'=>'JOD|Jordan','iq'=>'IQD|Iraq','lb'=>'LBP|Lebanon','ps'=>'ILS|Palestine','sy'=>'SYP|Syria','ye'=>'YER|Yemen','ly'=>'LYD|Libya','sd'=>'SDG|Sudan','dz'=>'DZD|Algeria','ma'=>'MAD|Morocco','tn'=>'TND|Tunisia','mr'=>'MRU|Mauritania','dj'=>'DJF|Djibouti','km'=>'KMF|Comoros',
+'us'=>'USD|United States','gb'=>'GBP|United Kingdom','ca'=>'CAD|Canada','au'=>'AUD|Australia','nz'=>'NZD|New Zealand','eu'=>'EUR|Europe','ch'=>'CHF|Switzerland','no'=>'NOK|Norway','se'=>'SEK|Sweden','dk'=>'DKK|Denmark','is'=>'ISK|Iceland','pl'=>'PLN|Poland','cz'=>'CZK|Czechia','hu'=>'HUF|Hungary','ro'=>'RON|Romania','bg'=>'BGN|Bulgaria','hr'=>'HRK|Croatia','rs'=>'RSD|Serbia','al'=>'ALL|Albania','mk'=>'MKD|North Macedonia','ba'=>'BAM|Bosnia and Herzegovina','ge'=>'GEL|Georgia','ua'=>'UAH|Ukraine','by'=>'BYN|Belarus','md'=>'MDL|Moldova','ru'=>'RUB|Russia','cn'=>'CNY|China','jp'=>'JPY|Japan','in'=>'INR|India','kr'=>'KRW|South Korea','sg'=>'SGD|Singapore','my'=>'MYR|Malaysia','th'=>'THB|Thailand','id'=>'IDR|Indonesia','ph'=>'PHP|Philippines','vn'=>'VND|Vietnam','mm'=>'MMK|Myanmar','kz'=>'KZT|Kazakhstan','uz'=>'UZS|Uzbekistan','tj'=>'TJS|Tajikistan','tm'=>'TMT|Turkmenistan','la'=>'LAK|Laos','kh'=>'KHR|Cambodia','mn'=>'MNT|Mongolia','bd'=>'BDT|Bangladesh','pk'=>'PKR|Pakistan','lk'=>'LKR|Sri Lanka','np'=>'NPR|Nepal','bt'=>'BTN|Bhutan','mv'=>'MVR|Maldives','ir'=>'IRR|Iran','af'=>'AFN|Afghanistan',
+'za'=>'ZAR|South Africa','ng'=>'NGN|Nigeria','ke'=>'KES|Kenya','et'=>'ETB|Ethiopia','gh'=>'GHS|Ghana','ci'=>'XOF|Ivory Coast','sn'=>'XOF|Senegal','tz'=>'TZS|Tanzania','ug'=>'UGX|Uganda','cm'=>'XAF|Cameroon','cd'=>'CDF|Democratic Republic of the Congo','ao'=>'AOA|Angola','mz'=>'MZN|Mozambique','zw'=>'ZWL|Zimbabwe','mg'=>'MGA|Madagascar','mu'=>'MUR|Mauritius',
+'mx'=>'MXN|Mexico','br'=>'BRL|Brazil','ar'=>'ARS|Argentina','cl'=>'CLP|Chile','co'=>'COP|Colombia','pe'=>'PEN|Peru','ve'=>'VES|Venezuela','py'=>'PYG|Paraguay','uy'=>'UYU|Uruguay','bo'=>'BOB|Bolivia','gt'=>'GTQ|Guatemala','hn'=>'HNL|Honduras','ni'=>'NIO|Nicaragua','cr'=>'CRC|Costa Rica','pa'=>'PAB|Panama','bs'=>'BSD|Bahamas','jm'=>'JMD|Jamaica','ht'=>'HTG|Haiti','do'=>'DOP|Dominican Republic','tt'=>'TTD|Trinidad and Tobago','gy'=>'GYD|Guyana','sr'=>'SRD|Suriname','bz'=>'BZD|Belize',
+'fj'=>'FJD|Fiji','pg'=>'PGK|Papua New Guinea','sb'=>'SBD|Solomon Islands','vu'=>'VUV|Vanuatu','ws'=>'WST|Samoa','to'=>'TOP|Tonga','ki'=>'AUD|Kiribati','nr'=>'AUD|Nauru','tv'=>'AUD|Tuvalu','pw'=>'USD|Palau','fm'=>'USD|Micronesia','mh'=>'USD|Marshall Islands'
+];
+        $arab_codes = ['sa','eg','ae','kw','qa','bh','om','jo','iq','lb','ps','sy','ye','ly','sd','dz','ma','tn','mr','dj','km'];
+        $region_groups = array(
+            $labels['arab'] => $arab_codes,
+            $labels['rest'] => array_values(array_diff(array_keys($countries), $arab_codes))
+        );
+        $locale_map = array('ar'=>'ar','en'=>'en','fr'=>'fr','de'=>'de','es'=>'es','it'=>'it','pt'=>'pt','ru'=>'ru','hi'=>'hi','tr'=>'tr');
+        $locale = isset($locale_map[$language]) ? $locale_map[$language] : 'en';
+        $html = '';
+        foreach ($region_groups as $region_name => $codes) {
+            $html .= '<section class="gn-region"><h2 class="gn-region-title">' . esc_html($region_name) . '</h2><div class="gn-grid">';
+            foreach ($codes as $code) {
+                if (!isset($countries[$code])) {
+                    continue;
+                }
+                $parts = explode('|', $countries[$code]);
+                $currency = isset($parts[0]) ? $parts[0] : '';
+                $english = isset($parts[1]) ? $parts[1] : $code;
+                $country_name = $english;
+                if ($code === 'eu') {
+                    $eu_names = array('ar'=>'أوروبا','en'=>'Europe','fr'=>'Europe','de'=>'Europa','es'=>'Europa','it'=>'Europa','pt'=>'Europa','ru'=>'Европа','hi'=>'यूरोप','tr'=>'Avrupa');
+                    $country_name = isset($eu_names[$language]) ? $eu_names[$language] : 'Europe';
+                } elseif (class_exists('Locale')) {
+                    $localized = Locale::getDisplayRegion('en_' . strtoupper($code), $locale);
+                    if (is_string($localized) && $localized !== '' && $localized !== strtoupper($code)) {
+                        $country_name = $localized;
+                    }
+                }
+                if ($country_name === $english && function_exists('goldnow_translate_text')) {
+                    $country_name = goldnow_translate_text($english, $language);
+                }
+                $flag_local = get_template_directory() . '/assets/flags/' . $code . '.svg';
+                $flag_local_png = get_template_directory() . '/assets/flags/' . $code . '.png';
+                $flag_url = file_exists($flag_local)
+                    ? get_template_directory_uri() . '/assets/flags/' . $code . '.svg'
+                    : (file_exists($flag_local_png)
+                        ? get_template_directory_uri() . '/assets/flags/' . $code . '.png'
+                        : 'https://flagcdn.com/w160/' . $code . '.png');
+                $search = $country_name . ' ' . $english . ' ' . $currency . ' ' . $code;
+                $search = function_exists('mb_strtolower') ? mb_strtolower($search, 'UTF-8') : strtolower($search);
+                $url = home_url(($language === 'ar' ? '/country/' : '/' . $language . '/country/') . rawurlencode($code) . '/');
+                $html .= '<a class="gn-country" href="' . esc_url($url) . '" data-search="' . esc_attr($search) . '">';
+                $html .= '<div class="gn-card"><div class="gn-flag"><img src="' . esc_url($flag_url) . '" alt="' . esc_attr($country_name) . '" loading="lazy" width="52" height="52"></div>';
+                $html .= '<span class="gn-name">' . esc_html($country_name) . '</span><span class="gn-currency">' . esc_html($currency) . '</span></div></a>';
+            }
+            $html .= '</div></section>';
+        }
+        $html .= '<div id="gnCountryEmpty" class="gn-empty gn-hide"><i class="fa-solid fa-earth-americas" aria-hidden="true"></i><h3>' . esc_html($labels['empty']) . '</h3><p>' . esc_html($labels['try']) . '</p></div>';
+        return $html;
+    }
+}
+add_shortcode('goldnow_country_directory', 'goldnow_country_directory_shortcode');
