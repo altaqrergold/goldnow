@@ -89,7 +89,7 @@ if ($goldnow_mlr_translate_output) {
 }
 ?>
 <?php if ($goldnow_mlr_language === 'ar') : ?>
-get_header(); ?>
+<?php get_header(); ?>
 
 <main class="p-0 font-2">
   <div class="container home px-2">
@@ -824,18 +824,33 @@ if (!empty($gold_view)) {
 ?>
 
 
-<!-- قسم الوصف المحسن للسيو (SEO Description Section) -->
-<div class="gold-seo-description" style="margin: 20px 0; padding: 15px; background: #fff; border-right: 4px solid #d4af37; border-radius: 4px; direction: rtl; text-align: justify;">
-    <h2 style="font-size: 1.3rem; color: #333; margin-bottom: 10px; font-weight: bold;">
-        تابع أسعار الذهب اليوم في مصر والدول العربية لحظة بلحظة
-    </h2>
-    <p style="font-size: 1rem; color: #555; line-height: 1.8; margin: 0;">
-        تابع <strong>أسعار الذهب اليوم في مصر</strong> و<strong>أسعار الذهب لحظة بلحظة</strong> مع تطبيق وموقع "التقرير جولد" دليلك الموثوق من قلب الصاغة وحركة <strong>بورصة الذهب مباشر</strong>. تعرف فوراً <strong>سعر الذهب عيار 21 بكام النهاردة</strong>، وتابع تحديثات <strong>أسعار الذهب عيار 18</strong> وعيار 24، بالإضافة إلى رصد دقيق لـ <strong>سعر الجنيه الذهب اليوم</strong> وأسعار السبائك وتوقعات السوق.
-    </p>
-</div>
+<?php
+if (function_exists('goldnow_render_seo_article')) {
+    $goldnow_seo_prices = array(
+        '24k' => isset($price_24k_local) ? $price_24k_local : null,
+        '22k' => isset($price_22k_local) ? $price_22k_local : null,
+        '21k' => isset($price_21k_local) ? $price_21k_local : null,
+        '18k' => isset($price_18k_local) ? $price_18k_local : null,
+        '14k' => isset($price_14k_local) ? $price_14k_local : null,
+        'ounce_usd' => isset($ounce_price_usd) ? $ounce_price_usd : null,
+        'coin' => isset($price_21k_local) ? ($price_21k_local * 8) : null,
+        'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
+    );
+    $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
+    $goldnow_seo_base_url = home_url($goldnow_mlr_language === 'ar' ? '/country/' : '/' . $goldnow_mlr_language . '/country/' . rawurlencode((string) $country_code) . '/');
+    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+        'country' => $country_name,
+        'currency' => $currency_label,
+        'date' => $today,
+        'country_slug' => $country_code,
+        'base_url' => $goldnow_seo_base_url,
+        'prices' => $goldnow_seo_prices
+    ));
+}
+?>
 
-<?php get_footer();
-<?php elseif ($goldnow_mlr_language === 'en') : ?>
+<?php get_footer(); elseif ($goldnow_mlr_language === 'en') : ?>
+<?php
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
@@ -1795,102 +1810,30 @@ if (!empty($gold_view)) {
 }
 ?>
 
-<?php if (!empty($gold_view)) :
-    // The live values below use the same price snapshot and conversions as the tables above.
-    $en_seo_base = home_url('/en/country/' . rawurlencode($en_header_country_slug) . '/');
-    $en_seo_price_map = array(
-        '24k' => array($price_24k_local, $price_24k_usd),
-        '22k' => array($price_22k_local, $price_22k_usd),
-        '21k' => array($price_21k_local, $price_21k_usd),
-        '18k' => array($price_18k_local, $price_18k_usd),
-        '14k' => array($price_14k_local, $price_14k_usd)
+<?php
+if (function_exists('goldnow_render_seo_article')) {
+    $goldnow_seo_prices = array(
+        '24k' => isset($price_24k_local) ? $price_24k_local : null,
+        '22k' => isset($price_22k_local) ? $price_22k_local : null,
+        '21k' => isset($price_21k_local) ? $price_21k_local : null,
+        '18k' => isset($price_18k_local) ? $price_18k_local : null,
+        '14k' => isset($price_14k_local) ? $price_14k_local : null,
+        'ounce_usd' => isset($ounce_price_usd) ? $ounce_price_usd : null,
+        'coin' => isset($price_21k_local) ? ($price_21k_local * 8) : null,
+        'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
     );
+    $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
+    $goldnow_seo_base_url = home_url('/en/country/' . rawurlencode((string) $en_header_country_slug) . '/');
+    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+        'country' => $display_country_name,
+        'currency' => $currency_label,
+        'date' => $today,
+        'country_slug' => $en_header_country_slug,
+        'base_url' => $goldnow_seo_base_url,
+        'prices' => $goldnow_seo_prices
+    ));
+}
 ?>
-<article class="en-seo-article" aria-labelledby="en-seo-title">
-<?php if (isset($en_seo_price_map[$gold_view])) :
-    $en_active_price_local = $en_seo_price_map[$gold_view][0];
-    $en_active_price_usd = $en_seo_price_map[$gold_view][1];
-    $en_karat = strtoupper($gold_view);
-?>
-    <h2 id="en-seo-title"><?php echo esc_html($en_karat); ?> Gold Price Today in <?php echo esc_html($display_country_name); ?> per Gram</h2>
-    <p>Follow the latest <strong><?php echo esc_html($en_karat); ?> gold price today in <?php echo esc_html($display_country_name); ?></strong> with the live reference shown above. The current indicative value is <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> per gram, equivalent to approximately <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. These figures are calculated from the latest available 24K reference price, the purity factor for <?php echo esc_html($en_karat); ?> gold, and the latest available currency conversion used by the site.</p>
-    <h3>What does <?php echo esc_html($en_karat); ?> gold mean?</h3>
-    <p>Karat indicates the proportion of pure gold in an alloy. 24K is treated as the pure-gold reference, while lower karats contain a greater share of other metals. The <?php echo esc_html($en_karat); ?> rate therefore reflects its gold content rather than the finished retail price of a jewellery item. The final shop price may also include workmanship, retailer premiums, taxes, and other local charges that are not included in the raw market value displayed here.</p>
-    <h3>How to read the local and USD prices</h3>
-    <p>The local-currency figure helps compare the reference value in <?php echo esc_html($display_country_name); ?>, while the USD equivalent makes it easier to compare the same gold content with international quotations. Local prices can move when the global gold benchmark changes, when exchange rates change, or when local market conditions affect premiums. The figures on this page are indicative reference values, not a guaranteed buy-back or retail offer.</p>
-    <h3>Related gold prices</h3>
-    <p>Compare this rate with <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gold</a>, <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K gold</a>, <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">gold bar prices</a>, and the <a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">live gold market index</a> for a broader view of the market.</p>
-    <h3>Frequently asked questions</h3>
-    <details><summary>Is the displayed <?php echo esc_html($en_karat); ?> price the final jewellery shop price?</summary><p>No. It is an indicative raw-gold reference and excludes workmanship, retailer premiums, taxes, and any other charges that may apply to a finished item.</p></details>
-    <details><summary>Why is the USD equivalent different from the local price?</summary><p>The two values use different currencies. The local figure is converted using the latest available exchange-rate data used by the site; the USD figure represents the corresponding gold value in US dollars.</p></details>
-<?php elseif ($gold_view === 'ounce') : ?>
-    <h2 id="en-seo-title">Global Gold Ounce Price Today in USD</h2>
-    <p>The international gold ounce reference on this page is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> for one troy ounce of approximately 31.1 grams of 24K gold. This is the <strong>global gold spot benchmark</strong>, quoted in US dollars. It is deliberately not presented as a country-specific local-currency ounce price; local gram prices are converted separately for the selected country.</p>
-    <h3>Why the global gold ounce matters</h3>
-    <p>Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement.</p>
-    <h3>From the global ounce to a local gram price</h3>
-    <p>For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price per gram also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations.</p>
-    <p>Continue to the <a href="<?php echo esc_url($en_seo_base); ?>">gold price in <?php echo esc_html($display_country_name); ?></a>, review <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gold per gram</a>, or open the <a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">gold market index</a>.</p>
-    <h3>Frequently asked questions</h3>
-    <details><summary>How many grams are in a gold troy ounce?</summary><p>One troy ounce is approximately 31.1035 grams. The page uses 31.1 grams for its displayed reference calculation.</p></details>
-    <details><summary>Is this ounce price converted to local currency?</summary><p>No. This page shows the international gold ounce benchmark in USD only. Local-currency values are shown separately in the country gold-price tables where applicable.</p></details>
-<?php elseif ($gold_view === 'coin') : ?>
-    <h2 id="en-seo-title">8-Gram Gold Coin Price Today in <?php echo esc_html($display_country_name); ?></h2>
-    <p>Track the reference value of an <strong>8-gram gold coin</strong> in <?php echo esc_html($display_country_name); ?>. Using the current gram prices, the indicative 21K coin value is <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (about <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). The page also compares 22K and 24K values for the same 8-gram weight so that the effect of purity is clear.</p>
-    <h3>How the 8-gram coin value is calculated</h3>
-    <p>The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site's established 8-gram coin calculation.</p>
-    <p>Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, and local taxes. The values here represent the gold-content reference and should not be treated as a guaranteed transaction quote. Compare the <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K gold gram price</a>, <a href="<?php echo esc_url($en_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">gold bar prices</a>.</p>
-    <h3>Frequently asked questions</h3>
-    <details><summary>What weight is used for the gold coin calculation?</summary><p>This page retains the site's standard 8-gram calculation for the gold coin comparison.</p></details>
-    <details><summary>Does the displayed value include a dealer premium?</summary><p>No. It estimates the gold content only and does not include minting costs, dealer premiums, workmanship, or taxes.</p></details>
-<?php elseif ($gold_view === 'gold-bars') : ?>
-    <h2 id="en-seo-title">Gold Bar Prices Today in <?php echo esc_html($display_country_name); ?></h2>
-    <p>Gold bars are commonly valued using the 24K gold benchmark. Based on the current 24K reference of <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?> per gram</strong> (approximately <strong><?php echo number_format($price_24k_usd, 2); ?> USD</strong>), a 10-gram bar has an indicative gold-content value of <strong><?php echo number_format($price_24k_local * 10, 2); ?> <?php echo esc_html($currency_label); ?></strong>, while a 100-gram bar is approximately <strong><?php echo number_format($price_24k_local * 100, 2); ?> <?php echo esc_html($currency_label); ?></strong>. The table above lists additional weights for quick comparison.</p>
-    <h3>How to compare gold bullion bar weights</h3>
-    <p>For a straightforward estimate, multiply the 24K gram benchmark by the bar's weight. The resulting figure represents the reference value of the gold content before any fabrication premium, assay or hallmarking fee, dealer margin, delivery cost, or tax. A bar's final selling price can therefore be higher than the raw calculation shown on this page.</p>
-    <p>Check the bar's stated purity, exact weight, certification, manufacturer, and seller reputation before a transaction. The <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gold price</a> is the key per-gram reference, while the <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">global gold ounce</a> provides an international comparison in USD.</p>
-    <h3>Frequently asked questions</h3>
-    <details><summary>Are the gold bar prices inclusive of making charges?</summary><p>No. The table estimates the gold value only and excludes fabrication, certification, dealer premiums, and taxes.</p></details>
-    <details><summary>Why can two bars of the same weight have different prices?</summary><p>Brand, certification, manufacturing costs, dealer premiums, availability, and local taxes can affect the final selling price.</p></details>
-<?php elseif ($gold_view === 'gold-index') : ?>
-    <!-- Global XAU/USD chart added specifically to the Gold Index SEO section. -->
-    <section class="en-gold-index-chart" aria-labelledby="en-gold-index-chart-title" style="background:#17191d;border:1px solid #323742;border-radius:8px;padding:12px;margin:0 0 22px;direction:ltr;text-align:left;">
-        <h3 id="en-gold-index-chart-title" style="color:#f0f1f5;text-align:left;margin:5px 5px 12px;font-size:20px;">Gold Price Charts</h3>
-        <div style="position:relative;width:100%;height:520px;overflow:hidden;border-radius:6px;">
-            <iframe
-                id="tradingview_gold_index"
-                title="Global Gold Price Charts — XAU/USD"
-                src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_gold_index&symbol=OANDA%3AXAUUSD&interval=D&hidesidetoolbar=0&symboledit=0&saveimage=0&toolbarbg=%2317191d&studies=%5B%5D&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&locale=en"
-                style="width:100%;height:100%;border:0;"
-                allowtransparency="true"
-                scrolling="no"
-                loading="lazy"
-                allowfullscreen>
-            </iframe>
-        </div>
-        <p style="color:#94a3b8;text-align:left;font-size:13px;margin:10px 4px 2px;">Track the international gold spot price in US dollars (USD) using the global XAU/USD market chart. This is a worldwide benchmark, not a country-specific retail price.</p>
-    </section>
-    <h2 id="en-seo-title">Live Gold Market Index and Karat Prices in <?php echo esc_html($display_country_name); ?></h2>
-    <p>This gold market overview brings together the latest available reference values for several purities. The current 24K benchmark is <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> per gram, while 22K is approximately <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> and 21K is approximately <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. The global troy ounce is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>, and its local-currency equivalent is <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
-    <h3>What the gold index helps you compare</h3>
-    <p>The index is a convenient snapshot of gold values across common purities and currencies. It helps readers compare the 24K bullion benchmark with the lower-karat values commonly used for jewellery. Local values are derived from the reference gold price and the available exchange-rate data; the USD figures allow comparison with the international market.</p>
-    <p>Gold prices can respond to global spot-market activity, currency movements, interest-rate expectations, inflation concerns, and changes in investment demand. A single snapshot does not establish a trend, so readers should compare updates over time before drawing conclusions. Visit the <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K price page</a>, <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K price page</a>, and <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">global ounce page</a>.</p>
-    <h3>Frequently asked questions</h3>
-    <details><summary>Does the index show a guaranteed market trading price?</summary><p>No. It is an informational reference based on the latest available data used by the site. Actual transaction prices may include local premiums and fees.</p></details>
-    <details><summary>Why are different karats priced differently?</summary><p>Each karat contains a different proportion of pure gold. Lower-purity alloys have a lower raw-gold value per gram than 24K gold, before other costs are considered.</p></details>
-<?php elseif ($gold_view === 'usd') : ?>
-    <h2 id="en-seo-title">USD Exchange Rate and Currency Conversion in <?php echo esc_html($display_country_name); ?></h2>
-    <p>The latest available reference used by this page values one US dollar at approximately <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Exchange rates matter to gold buyers because international bullion prices are commonly quoted in USD. When the local currency changes against the dollar, the converted local value of gold can change even if the international USD gold price remains steady.</p>
-    <h3>How currency movements affect local gold prices</h3>
-    <p>A local gold-price estimate combines an international gold benchmark with a currency conversion and, in real retail markets, any applicable local premiums, taxes, or costs. This page lists selected currency comparisons to help readers understand the conversion context. Rates are informational and may differ from bank, cash-market, card, or remittance rates available to an individual customer.</p>
-    <p>For the gold side of the comparison, review the <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gram price</a>, the <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K gram price</a>, and the <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">international gold ounce in USD</a>.</p>
-    <h3>Frequently asked questions</h3>
-    <details><summary>Is this exchange rate the rate offered by every bank?</summary><p>No. It is the latest available reference used by the site. Banks and exchange providers may apply different buy and sell rates, spreads, or fees.</p></details>
-    <details><summary>Why does the dollar rate matter for gold?</summary><p>Because international gold is commonly quoted in US dollars, converting that benchmark into local currency is one of the factors used to estimate local gold values.</p></details>
-<?php endif; ?>
-    <p class="en-seo-update-note" style="margin:20px 0 0;padding-top:12px;border-top:1px solid #3a3f4d;color:#9ca3af;font-size:12px;">Reference date: <?php echo esc_html($today); ?>. Prices are indicative and reflect the latest available data returned to this page; they may change as market and exchange-rate data are updated.</p>
-</article>
-<?php endif; ?>
 
 <?php if (!$en_header_is_app) : ?>
 <footer class="en-site-footer">
@@ -1974,6 +1917,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </html>
 
 <?php elseif ($goldnow_mlr_language === 'fr') : ?>
+<?php
 /**
  * En-tête français autonome du modèle de prix de l’or par pays.
  * L’en-tête et la navigation du thème arabe ne sont pas chargés ici.
@@ -2938,102 +2882,30 @@ if (!empty($gold_view)) {
 }
 ?>
 
-<?php if (!empty($gold_view)) :
-    // Les valeurs en direct ci-dessous utilisent le même instantané de prix et les mêmes conversions que les tableaux ci-dessus.
-    $en_seo_base = home_url('/fr/country/' . rawurlencode($fr_header_country_slug) . '/');
-    $en_seo_price_map = array(
-        '24k' => array($price_24k_local, $price_24k_usd),
-        '22k' => array($price_22k_local, $price_22k_usd),
-        '21k' => array($price_21k_local, $price_21k_usd),
-        '18k' => array($price_18k_local, $price_18k_usd),
-        '14k' => array($price_14k_local, $price_14k_usd)
+<?php
+if (function_exists('goldnow_render_seo_article')) {
+    $goldnow_seo_prices = array(
+        '24k' => isset($price_24k_local) ? $price_24k_local : null,
+        '22k' => isset($price_22k_local) ? $price_22k_local : null,
+        '21k' => isset($price_21k_local) ? $price_21k_local : null,
+        '18k' => isset($price_18k_local) ? $price_18k_local : null,
+        '14k' => isset($price_14k_local) ? $price_14k_local : null,
+        'ounce_usd' => isset($ounce_price_usd) ? $ounce_price_usd : null,
+        'coin' => isset($price_21k_local) ? ($price_21k_local * 8) : null,
+        'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
     );
+    $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
+    $goldnow_seo_base_url = home_url('/fr/country/' . rawurlencode((string) $fr_header_country_slug) . '/');
+    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+        'country' => $display_country_name,
+        'currency' => $currency_label,
+        'date' => $today,
+        'country_slug' => $fr_header_country_slug,
+        'base_url' => $goldnow_seo_base_url,
+        'prices' => $goldnow_seo_prices
+    ));
+}
 ?>
-<article class="en-seo-article" aria-labelledby="fr-seo-title">
-<?php if (isset($en_seo_price_map[$gold_view])) :
-    $en_active_price_local = $en_seo_price_map[$gold_view][0];
-    $en_active_price_usd = $en_seo_price_map[$gold_view][1];
-    $en_karat = strtoupper($gold_view);
-?>
-    <h2 id="fr-seo-title"><?php echo esc_html($en_karat); ?> Prix de l’or aujourd’hui en <?php echo esc_html($display_country_name); ?> per Gram</h2>
-    <p>Suivez le dernier cours de <strong><?php echo esc_html($en_karat); ?> aujourd’hui en <?php echo esc_html($display_country_name); ?></strong> grâce au cours de référence en direct affiché ci-dessus. La valeur indicative actuelle est de <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> par gramme, soit environ <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Ces montants sont calculés à partir du dernier cours de référence disponible pour l’or 24 carats, du coefficient de pureté de l’or <?php echo esc_html($en_karat); ?> et du dernier taux de conversion monétaire disponible sur le site.</p>
-    <h3>Que signifie l’or <?php echo esc_html($en_karat); ?> ?</h3>
-    <p>Le carat indique la proportion d’or pur dans un alliage. L’or 24 carats sert de référence pour l’or pur, tandis que les titrages inférieurs contiennent une part plus importante d’autres métaux. Le cours de l’or <?php echo esc_html($en_karat); ?> reflète donc sa teneur en or et non le prix de vente final d’un bijou. Le prix en boutique peut également inclure la main-d’œuvre, les marges du détaillant, les taxes et d’autres frais locaux qui ne sont pas compris dans la valeur brute affichée ici.</p>
-    <h3>Comment lire les prix en monnaie locale et en USD</h3>
-    <p>Le montant en monnaie locale permet de comparer la valeur de référence en <?php echo esc_html($display_country_name); ?>, tandis que l’équivalent en USD facilite la comparaison de la même teneur en or avec les cotations internationales. Les prix locaux peuvent évoluer en fonction du cours mondial de l’or, des taux de change ou des conditions du marché local. Les montants affichés sur cette page sont des valeurs indicatives et ne constituent pas une offre ferme de rachat ou de vente.</p>
-    <h3>Cours de l’or associés</h3>
-    <p>Comparez ce cours avec <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gold</a>, <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K gold</a>, <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">prix des lingots d’or</a>, and the <a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">live indice du marché de l’or</a> afin d’obtenir une vue plus complète du marché.</p>
-    <h3>Questions fréquentes</h3>
-    <details><summary>Le cours affiché de <?php echo esc_html($en_karat); ?> correspond-il au prix final en bijouterie ?</summary><p>Non. Il s’agit d’une référence indicative de la valeur de l’or brut, hors main-d’œuvre, marges des détaillants, taxes et autres frais éventuels liés au produit fini.</p></details>
-    <details><summary>Pourquoi l’équivalent en USD diffère-t-il du prix local ?</summary><p>Les deux montants sont exprimés dans des devises différentes. Le montant local est converti à partir des derniers taux de change disponibles utilisés par le site ; le montant en USD représente la valeur correspondante de l’or en dollars américains.</p></details>
-<?php elseif ($gold_view === 'ounce') : ?>
-    <h2 id="fr-seo-title">Cours de l’once d’or mondiale aujourd’hui en USD</h2>
-    <p>Le cours international de l’once d’or présenté sur cette page est de <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> pour une once troy d’environ 31,1 grammes d’or 24 carats. Il s’agit du <strong>cours mondial de référence de l’or au comptant</strong>, exprimé en dollars américains. Il n’est volontairement pas présenté comme un prix local propre à un pays ; les prix au gramme sont convertis séparément pour le pays sélectionné.</p>
-    <h3>Pourquoi l’once d’or mondiale est importante</h3>
-    <p>Sur les marchés internationaux, l’or est généralement coté à l’once troy. Les négociants, les affineurs, les sociétés financières et les marchands de lingots utilisent cette référence pour comparer la valeur de l’or entre les marchés. Les variations du dollar américain, les anticipations de taux d’intérêt, les perspectives d’inflation, l’activité des banques centrales et la demande des investisseurs peuvent influencer le cours international de l’or. Il s’agit de facteurs généraux du marché, sans attribuer le mouvement du jour à un facteur particulier.</p>
-    <h3>Du cours de l’once mondiale au prix local du gramme</h3>
-    <p>À titre de référence, une once troy contient environ 31,1 grammes. Le prix local au gramme dépend également de la conversion dans la devise sélectionnée et des conditions du marché local. Le cours de l’once mondiale ci-dessus reste exprimé en USD afin de permettre une comparaison cohérente avec les cotations internationales.</p>
-    <p>Consultez également le <a href="<?php echo esc_url($en_seo_base); ?>">cours de l’or en <?php echo esc_html($display_country_name); ?></a> ; consultez aussi <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">prix du gramme d’or 24 carats</a> ou ouvrez l’<a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">indice du marché de l’or</a>.</p>
-    <h3>Questions fréquentes</h3>
-    <details><summary>Combien de grammes contient une once troy d’or ?</summary><p>Une once troy équivaut à environ 31,1035 grammes. Cette page utilise 31,1 grammes pour le calcul de référence affiché.</p></details>
-    <details><summary>Ce cours de l’once est-il converti en monnaie locale ?</summary><p>Non. Cette page affiche uniquement le cours international de l’once d’or en USD. Les valeurs en monnaie locale sont indiquées séparément dans les tableaux de prix du pays, le cas échéant.</p></details>
-<?php elseif ($gold_view === 'coin') : ?>
-    <h2 id="fr-seo-title">Prix de la pièce d’or de 8 grammes aujourd’hui en <?php echo esc_html($display_country_name); ?></h2>
-    <p>Suivez la valeur de référence d’une <strong>pièce d’or de 8 grammes</strong> en <?php echo esc_html($display_country_name); ?>. Sur la base des cours actuels au gramme, la valeur indicative d’une pièce de 21 carats est de <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (soit environ <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). La page compare également les valeurs en 22 et 24 carats pour le même poids de 8 grammes afin de montrer l’effet du titrage.</p>
-    <h3>Comment est calculée la valeur de la pièce de 8 grammes</h3>
-    <p>Le calcul multiplie le cours correspondant au gramme par un poids de 8 grammes. Pour la référence courante en 21 carats, l’estimation affichée correspond au prix du gramme 21 carats multiplié par huit. Les valeurs comparatives en 22 et 24 carats utilisent leurs cours respectifs pour le même poids. Le calcul standard de la pièce de 8 grammes utilisé par le site est ainsi conservé.</p>
-    <p>Le prix réel d’une pièce peut varier selon sa frappe, son état, son design, sa rareté, les marges du vendeur et les taxes locales. Les valeurs présentées ici correspondent à la teneur en or et ne constituent pas une offre de transaction garantie. Comparez le <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">prix du gramme d’or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . '22k/'); ?>">prix de l’or 22 carats</a>, and <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">prix des lingots d’or</a>.</p>
-    <h3>Questions fréquentes</h3>
-    <details><summary>Quel poids est utilisé pour le calcul de la pièce d’or ?</summary><p>Cette page conserve le calcul standard de 8 grammes du site pour la comparaison des pièces d’or.</p></details>
-    <details><summary>La valeur affichée inclut-elle une marge du vendeur ?</summary><p>Non. Elle estime uniquement la teneur en or et n’inclut pas les frais de frappe, les marges du vendeur, la main-d’œuvre ou les taxes.</p></details>
-<?php elseif ($gold_view === 'gold-bars') : ?>
-    <h2 id="fr-seo-title">Prix des lingots d’or aujourd’hui in <?php echo esc_html($display_country_name); ?></h2>
-    <p>Les lingots d’or sont généralement évalués à partir du cours de référence de l’or 24 carats. Sur la base du cours actuel de <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?> par gramme</strong> (soit environ <strong><?php echo number_format($price_24k_usd, 2); ?> USD</strong>), un lingot de 10 grammes présente une valeur indicative en or de <strong><?php echo number_format($price_24k_local * 10, 2); ?> <?php echo esc_html($currency_label); ?></strong>, tandis qu’un lingot de 100 grammes vaut environ <strong><?php echo number_format($price_24k_local * 100, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Le tableau ci-dessus présente d’autres poids pour faciliter la comparaison.</p>
-    <h3>Comment comparer les poids des lingots d’or</h3>
-    <p>Pour obtenir une estimation simple, multipliez le cours de référence du gramme 24 carats par le poids du lingot. Le résultat représente la valeur indicative de l’or contenu avant toute prime de fabrication, frais d’analyse ou de poinçonnage, marge du vendeur, coût de livraison ou taxe. Le prix de vente final d’un lingot peut donc être supérieur au calcul brut présenté sur cette page.</p>
-    <p>Avant toute transaction, vérifiez le titrage indiqué, le poids exact, le certificat, le fabricant et la réputation du vendeur. Le <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">cours de l’or 24 carats</a> constitue la principale référence au gramme, tandis que l’<a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">once d’or mondiale</a> permet une comparaison internationale en USD.</p>
-    <h3>Questions fréquentes</h3>
-    <details><summary>Les prix des lingots incluent-ils les frais de fabrication ?</summary><p>Non. Le tableau estime uniquement la valeur de l’or et exclut la fabrication, la certification, les marges des vendeurs et les taxes.</p></details>
-    <details><summary>Pourquoi deux lingots de même poids peuvent-ils avoir des prix différents ?</summary><p>La marque, la certification, les coûts de fabrication, les marges des vendeurs, la disponibilité et les taxes locales peuvent influencer le prix de vente final.</p></details>
-<?php elseif ($gold_view === 'gold-index') : ?>
-    <!-- Global XAU/USD chart added specifically to the Indice de l’or SEO section. -->
-    <section class="en-gold-index-chart" aria-labelledby="en-gold-index-chart-title" style="background:#17191d;border:1px solid #323742;border-radius:8px;padding:12px;margin:0 0 22px;direction:ltr;text-align:left;">
-        <h3 id="en-gold-index-chart-title" style="color:#f0f1f5;text-align:left;margin:5px 5px 12px;font-size:20px;">Graphiques du cours de l’or</h3>
-        <div style="position:relative;width:100%;height:520px;overflow:hidden;border-radius:6px;">
-            <iframe
-                id="tradingview_gold_index"
-                title="Graphiques mondiaux du cours de l’or — XAU/USD"
-                src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_gold_index&symbol=OANDA%3AXAUUSD&interval=D&hidesidetoolbar=0&symboledit=0&saveimage=0&toolbarbg=%2317191d&studies=%5B%5D&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hideideas=1&locale=fr"
-                style="width:100%;height:100%;border:0;"
-                allowtransparency="true"
-                scrolling="no"
-                loading="lazy"
-                allowfullscreen>
-            </iframe>
-        </div>
-        <p style="color:#94a3b8;text-align:left;font-size:13px;margin:10px 4px 2px;">Suivez le cours international de l’or au comptant en dollars américains (USD) grâce au graphique mondial XAU/USD. Il s’agit d’une référence mondiale et non d’un prix de détail propre à un pays.</p>
-    </section>
-    <h2 id="fr-seo-title">Indice du marché de l’or en direct et cours par carat en <?php echo esc_html($display_country_name); ?></h2>
-    <p>Cette présentation du marché de l’or rassemble les dernières valeurs de référence disponibles pour plusieurs titrages. Le cours de référence actuel de l’or 24 carats est de <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> par gramme, tandis que le 22 carats est d’environ <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> et le 21 carats est d’environ <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> . Le cours de l’once troy mondiale est de <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> et son équivalent en monnaie locale est de <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
-    <h3>Ce que l’indice de l’or permet de comparer</h3>
-    <p>L’indice offre un aperçu pratique des valeurs de l’or selon les titrages et les devises courants. Il permet de comparer la référence de l’or 24 carats aux titrages inférieurs utilisés en bijouterie. Les valeurs locales sont calculées à partir du cours de référence de l’or et des taux de change disponibles ; les montants en USD facilitent la comparaison avec le marché international.</p>
-    <p>Les cours de l’or peuvent réagir à l’activité du marché international, aux variations des devises, aux anticipations de taux d’intérêt, aux inquiétudes liées à l’inflation et à l’évolution de la demande d’investissement. Une seule observation ne suffit pas à établir une tendance ; il est donc préférable de comparer les mises à jour dans le temps. Consultez la page <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">page du cours de l’or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">page du cours de l’or 24 carats</a>, and <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">page de l’once mondiale</a>.</p>
-    <h3>Questions fréquentes</h3>
-    <details><summary>L’indice indique-t-il un prix de marché garanti ?</summary><p>Non. Il s’agit d’une référence informative fondée sur les dernières données disponibles utilisées par le site. Les prix des transactions réelles peuvent inclure des primes et des frais locaux.</p></details>
-    <details><summary>Pourquoi les différents carats ont-ils des prix différents ?</summary><p>Chaque titrage contient une proportion différente d’or pur. À poids égal, les alliages moins purs ont une valeur d’or brut inférieure à celle de l’or 24 carats, avant prise en compte des autres frais.</p></details>
-<?php elseif ($gold_view === 'usd') : ?>
-    <h2 id="fr-seo-title">Taux de change USD et conversion des devises en <?php echo esc_html($display_country_name); ?></h2>
-    <p>Selon la dernière valeur de référence disponible sur cette page, un dollar américain vaut environ <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Les taux de change sont importants pour les acheteurs d’or, car les cours internationaux des lingots sont généralement exprimés en USD. Lorsque la monnaie locale évolue face au dollar, la valeur locale de l’or peut changer même si le cours international en dollars reste stable.</p>
-    <h3>Comment les variations des devises influencent les prix locaux de l’or</h3>
-    <p>Une estimation du prix local de l’or combine un cours international de référence et une conversion monétaire auxquels peuvent s’ajouter, dans les marchés de détail, des primes, taxes ou frais locaux. Cette page présente plusieurs comparaisons de devises afin de mieux comprendre le contexte de conversion. Ces taux sont fournis à titre indicatif et peuvent différer des taux appliqués par les banques, les bureaux de change, les cartes ou les services de transfert.</p>
-    <p>Pour comparer les cours de l’or, consultez le <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">prix du gramme 24 carats</a>, le <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">prix du gramme 21 carats</a>, ainsi que le <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">cours international de l’once d’or en USD</a>.</p>
-    <h3>Questions fréquentes</h3>
-    <details><summary>Ce taux de change est-il celui proposé par toutes les banques ?</summary><p>Non. Il s’agit de la dernière valeur de référence disponible sur le site. Les banques et les bureaux de change peuvent appliquer des taux d’achat et de vente, des marges ou des frais différents.</p></details>
-    <details><summary>Pourquoi le taux du dollar est-il important pour l’or ?</summary><p>Comme le cours international de l’or est généralement exprimé en dollars américains, la conversion de cette référence en monnaie locale contribue à estimer la valeur locale de l’or.</p></details>
-<?php endif; ?>
-    <p class="en-seo-update-note" style="margin:20px 0 0;padding-top:12px;border-top:1px solid #3a3f4d;color:#9ca3af;font-size:12px;">Date de référence : <?php echo esc_html($today); ?>. Les prix sont indicatifs et reflètent les dernières données disponibles sur cette page ; ils peuvent évoluer au fil des mises à jour des marchés et des taux de change.</p>
-</article>
-<?php endif; ?>
 
 <?php if (!$fr_header_is_app) : ?>
 <footer class="en-site-footer">
@@ -3117,7 +2989,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </html>
 
 <?php else : // de, it, pt, ru, hi, es, tr: Arabic source translated by GoldNow Language Manager dictionary. ?>
-get_header(); ?>
+<?php get_header(); ?>
 
 <main class="p-0 font-2">
   <div class="container home px-2">
@@ -3843,16 +3715,30 @@ if (!empty($gold_view)) {
 ?>
 
 
-<!-- قسم الوصف المحسن للسيو (SEO Description Section) -->
-<div class="gold-seo-description" style="margin: 20px 0; padding: 15px; background: #fff; border-right: 4px solid #d4af37; border-radius: 4px; direction: rtl; text-align: justify;">
-    <h2 style="font-size: 1.3rem; color: #333; margin-bottom: 10px; font-weight: bold;">
-        تابع أسعار الذهب اليوم في مصر والدول العربية لحظة بلحظة
-    </h2>
-    <p style="font-size: 1rem; color: #555; line-height: 1.8; margin: 0;">
-        تابع <strong>أسعار الذهب اليوم في مصر</strong> و<strong>أسعار الذهب لحظة بلحظة</strong> مع تطبيق وموقع "التقرير جولد" دليلك الموثوق من قلب الصاغة وحركة <strong>بورصة الذهب مباشر</strong>. تعرف فوراً <strong>سعر الذهب عيار 21 بكام النهاردة</strong>، وتابع تحديثات <strong>أسعار الذهب عيار 18</strong> وعيار 24، بالإضافة إلى رصد دقيق لـ <strong>سعر الجنيه الذهب اليوم</strong> وأسعار السبائك وتوقعات السوق.
-    </p>
-</div>
+<?php
+if (function_exists('goldnow_render_seo_article')) {
+    $goldnow_seo_prices = array(
+        '24k' => isset($price_24k_local) ? $price_24k_local : null,
+        '22k' => isset($price_22k_local) ? $price_22k_local : null,
+        '21k' => isset($price_21k_local) ? $price_21k_local : null,
+        '18k' => isset($price_18k_local) ? $price_18k_local : null,
+        '14k' => isset($price_14k_local) ? $price_14k_local : null,
+        'ounce_usd' => isset($ounce_price_usd) ? $ounce_price_usd : null,
+        'coin' => isset($price_21k_local) ? ($price_21k_local * 8) : null,
+        'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
+    );
+    $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
+    $goldnow_seo_base_url = home_url($goldnow_mlr_language === 'ar' ? '/country/' : '/' . $goldnow_mlr_language . '/country/' . rawurlencode((string) $country_code) . '/');
+    echo goldnow_render_seo_article($goldnow_mlr_language, $goldnow_seo_section, array(
+        'country' => $country_name,
+        'currency' => $currency_label,
+        'date' => $today,
+        'country_slug' => $country_code,
+        'base_url' => $goldnow_seo_base_url,
+        'prices' => $goldnow_seo_prices
+    ));
+}
+?>
 
-<?php get_footer();
-<?php endif; ?>
+<?php get_footer(); endif; ?>
 <?php if ($goldnow_mlr_translate_output && ob_get_level() > 0) { ob_end_flush(); } ?>
