@@ -3,7 +3,7 @@
  * Plugin Name: GoldNow Language Manager
  * Plugin URI: https://gold.altaqrer.com/
  * Description: Shared 10-language translation dictionary, language detection, URL helpers, and shortcodes for GoldNow themes and plugins.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: GoldNow
  * Text Domain: goldnow-language-manager
  * Requires at least: 5.8
@@ -20,9 +20,15 @@ if (is_readable($goldnow_seo_content_file)) {
     require_once $goldnow_seo_content_file;
 }
 
+// Load the SEO content editor; it uses the renderer's defaults and stores only admin overrides.
+$goldnow_seo_admin_file = __DIR__ . '/goldnow-seo-admin.php';
+if (is_readable($goldnow_seo_admin_file)) {
+    require_once $goldnow_seo_admin_file;
+}
+
 if (!class_exists('GoldNow_Language_Manager')) {
     final class GoldNow_Language_Manager {
-        const VERSION = '1.2.0';
+        const VERSION = '1.3.0';
         const OPTION_TRANSLATIONS = 'goldnow_lm_translations';
         const OPTION_ENABLED = 'goldnow_lm_enabled_languages';
         const OPTION_DEFAULT = 'goldnow_lm_default_language';
