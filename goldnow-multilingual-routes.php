@@ -94,6 +94,64 @@ if (function_exists('add_filter')) {
         if (isset($labels[$text]) && isset($labels[$text][$language])) {
             return $labels[$text][$language];
         }
+
+        // Dynamic gold-price report labels and sentence fragments.
+        $report_labels = array(
+            'Price in Local Currency:' => array(
+                'fr'=>'Prix en monnaie locale :','de'=>'Preis in Landeswährung:','es'=>'Precio en moneda local:','it'=>'Prezzo in valuta locale:','pt'=>'Preço na moeda local:','ru'=>'Цена в местной валюте:','hi'=>'स्थानीय मुद्रा में कीमत:','tr'=>'Yerel Para Biriminde Fiyat:'
+            ),
+            'Equivalent in US Dollars:' => array(
+                'fr'=>'Équivalent en dollars américains :','de'=>'Gegenwert in US-Dollar:','es'=>'Equivalente en dólares estadounidenses:','it'=>'Equivalente in dollari USA:','pt'=>'Equivalente em dólares americanos:','ru'=>'Эквивалент в долларах США:','hi'=>'अमेरिकी डॉलर में समतुल्य:','tr'=>'ABD Doları Karşılığı:'
+            ),
+            'The live ' => array('fr'=>'Le cours en direct de ','de'=>'Der aktuelle ','es'=>'El precio en directo del ','it'=>'Il prezzo in tempo reale dell’','pt'=>'O preço em direto do ','ru'=>'Текущая цена ','hi'=>'लाइव ','tr'=>'Canlı '),
+            ' stands at ' => array('fr'=>' s’établit à ','de'=>' liegt bei ','es'=>' se sitúa en ','it'=>' è pari a ','pt'=>' situa-se em ','ru'=>' составляет ','hi'=>' है ','tr'=>' '),
+            ' registers at ' => array('fr'=>' s’établit à ','de'=>' wird mit ','es'=>' se sitúa en ','it'=>' è pari a ','pt'=>' está em ','ru'=>' составляет ','hi'=>' दर्ज है: ','tr'=>' '),
+            ' trades at ' => array('fr'=>' s’échange à ','de'=>' wird zu ','es'=>' cotiza a ','it'=>' è scambiato a ','pt'=>' é negociado a ','ru'=>' торгуется по ','hi'=>' पर कारोबार कर रहा है: ','tr'=>' seviyesinde işlem görüyor: '),
+            'Market updates place the standard ' => array('fr'=>'Les dernières données situent le cours standard de ','de'=>'Aktuelle Marktdaten beziffern den Standardkurs für ','es'=>'Las actualizaciones del mercado sitúan el precio estándar del ','it'=>'Gli aggiornamenti di mercato indicano il prezzo standard dell’','pt'=>'As atualizações do mercado situam o preço padrão do ','ru'=>'По последним рыночным данным стандартная цена ','hi'=>'बाज़ार अपडेट के अनुसार मानक ','tr'=>'Piyasa güncellemelerine göre standart '),
+            'The programmatic index values ' => array('fr'=>'L’indice de référence évalue le cours du ','de'=>'Der berechnete Index bewertet den Preis für ','es'=>'El índice de referencia sitúa el precio del ','it'=>'L’indice di riferimento valuta il prezzo dell’','pt'=>'O índice de referência estima o preço do ','ru'=>'Расчетный индекс оценивает цену ','hi'=>'सूचकांक के अनुसार ','tr'=>'Hesaplanan endeks '),
+            ' gold price per gram today' => array('fr'=>' : prix du gramme d’or aujourd’hui','de'=>' Goldpreis je Gramm heute','es'=>': precio del oro por gramo hoy','it'=>': prezzo dell’oro al grammo oggi','pt'=>': preço do ouro por grama hoje','ru'=>' — цена золота за грамм сегодня','hi'=>' सोने का आज का प्रति ग्राम भाव','tr'=>' bugün gram altın fiyatı'),
+            '. Characterized by 99.9% purity, this karat is the industrial asset benchmark for bullion production.' => array('fr'=>'. Avec une pureté de 99,9 %, ce titre constitue une référence pour la production de lingots.','de'=>'. Mit einer Reinheit von 99,9 % dient diese Legierung als Industriestandard für die Herstellung von Anlagebarren.','es'=>'. Con una pureza del 99,9 %, este quilate es una referencia industrial para la producción de lingotes.','it'=>'. Con una purezza del 99,9%, questa caratura è un riferimento industriale per la produzione di lingotti.','pt'=>'. Com pureza de 99,9%, esta quilatagem é uma referência industrial para a produção de barras de investimento.','ru'=>'. Благодаря чистоте 99,9 % эта проба служит промышленным эталоном для производства слитков.','hi'=>'. 99.9% शुद्धता के साथ, यह कैरेट बुलियन उत्पादन के लिए औद्योगिक मानक है।','tr'=>'. %99,9 saflık oranıyla bu ayar, külçe üretiminde endüstriyel referanstır.'),
+            '. It balances high intrinsic precious metal content with raw structural durability.' => array('fr'=>'. Il associe une forte teneur en métal précieux à une bonne résistance structurelle.','de'=>'. Sie verbindet einen hohen Edelmetallanteil mit struktureller Festigkeit.','es'=>'. Combina un alto contenido de metal precioso con resistencia estructural.','it'=>'. Unisce un elevato contenuto di metallo prezioso a una buona resistenza strutturale.','pt'=>'. Combina um elevado teor de metal precioso com resistência estrutural.','ru'=>'. Она сочетает высокое содержание драгоценного металла с прочностью.','hi'=>'. इसमें कीमती धातु की उच्च मात्रा और संरचनात्मक मजबूती का संतुलन है।','tr'=>'. Yüksek değerli metal içeriğini yapısal dayanıklılıkla dengeler.'),
+            '. This karat accounts for the vast majority of local consumer jewelry trading.' => array('fr'=>'. Ce titre représente une grande part des échanges de bijoux sur le marché local.','de'=>'. Diese Legierung macht einen großen Teil des lokalen Schmuckhandels aus.','es'=>'. Este quilate representa gran parte del comercio local de joyería.','it'=>'. Questa caratura rappresenta gran parte del commercio locale di gioielli.','pt'=>'. Esta quilatagem representa grande parte do comércio local de joias.','ru'=>'. Эта проба занимает значительную долю местной торговли ювелирными изделиями.','hi'=>'. स्थानीय आभूषण बाज़ार में इस कैरेट का बड़ा हिस्सा है।','tr'=>'. Bu ayar, yerel mücevher ticaretinin büyük bölümünü oluşturur.'),
+            ', offering an economical choice for luxury jewelry work.' => array('fr'=>', offrant une option économique pour la bijouterie haut de gamme.','de'=>', und bietet eine wirtschaftliche Wahl für hochwertigen Schmuck.','es'=>', ofreciendo una opción económica para joyería de lujo.','it'=>', offrendo una scelta economica per la gioielleria di lusso.','pt'=>', oferecendo uma opção económica para joalharia de luxo.','ru'=>', предлагая более доступный вариант для ювелирных изделий.','hi'=>', जो आभूषणों के लिए किफायती विकल्प प्रदान करता है।','tr'=>', lüks takılar için ekonomik bir seçenek sunar.'),
+            ', presenting a durable alloy framework for constant retail utility.' => array('fr'=>', offrant un alliage résistant adapté à un usage commercial régulier.','de'=>', und bietet eine robuste Legierung für den täglichen Gebrauch.','es'=>', ofreciendo una aleación resistente para el uso comercial diario.','it'=>', offrendo una lega resistente per l’uso commerciale quotidiano.','pt'=>', oferecendo uma liga resistente para uso comercial contínuo.','ru'=>', представляя собой прочный сплав для повседневного использования.','hi'=>', जो नियमित उपयोग के लिए टिकाऊ मिश्रधातु प्रदान करता है।','tr'=>', günlük kullanım için dayanıklı bir alaşım sunar.')
+        );
+        if (isset($report_labels[$text]) && isset($report_labels[$text][$language])) {
+            return $report_labels[$text][$language];
+        }
+
+        // Karat labels are embedded as separate text nodes around strong tags.
+        if (preg_match('/^(24|22|21|18|14)K gold price per gram today$/u', $text, $karat_match)) {
+            $k = $karat_match[1];
+            $translated_karat = array(
+                'fr'=>$k.' carats : prix du gramme d’or aujourd’hui',
+                'de'=>'Goldpreis je Gramm heute, '.$k.' Karat',
+                'es'=>'precio del oro de '.$k.' quilates por gramo hoy',
+                'it'=>'prezzo dell’oro '.$k.' carati al grammo oggi',
+                'pt'=>'preço do ouro de '.$k.' quilates por grama hoje',
+                'ru'=>'цена золота '.$k.' карата за грамм сегодня',
+                'hi'=>$k.' कैरेट सोने का आज का प्रति ग्राम भाव',
+                'tr'=>'bugün '.$k.' ayar gram altın fiyatı'
+            );
+            if (isset($translated_karat[$language])) return $translated_karat[$language];
+        }
+
+        // Country name is dynamic; translate the report heading without changing the country value.
+        if (preg_match('/^📊 Live Report for (24K|22K|21K|18K|14K) Gold Price per Gram Today in (.+):$/u', $text, $heading_match)) {
+            $k = substr($heading_match[1], 0, 2);
+            $country_name = $heading_match[2];
+            $prefixes = array(
+                'fr'=>'📊 Cours en direct de l’or '.$k.' carats par gramme aujourd’hui en ',
+                'de'=>'📊 Live-Bericht zum Goldpreis je Gramm, '.$k.' Karat, heute in ',
+                'es'=>'📊 Informe en directo del precio del oro de '.$k.' quilates por gramo hoy en ',
+                'it'=>'📊 Report in tempo reale sul prezzo dell’oro '.$k.' carati al grammo oggi in ',
+                'pt'=>'📊 Relatório em direto do preço do ouro de '.$k.' quilates por grama hoje em ',
+                'ru'=>'📊 Текущий отчет о цене золота '.$k.' карата за грамм сегодня в ',
+                'hi'=>'📊 आज '.$k.' कैरेट सोने की प्रति ग्राम लाइव कीमत — ',
+                'tr'=>'📊 Bugün '.$k.' ayar gram altın canlı fiyat raporu: '
+            );
+            if (isset($prefixes[$language])) return $prefixes[$language] . $country_name . ($language === 'hi' ? '' : ':');
+        }
         return $text;
     }, 20, 2);
 }
