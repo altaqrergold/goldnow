@@ -564,8 +564,18 @@ GOLDNOW_DICTIONARY;
             if (isset($entry[$language]) && is_scalar($entry[$language])) {
                 $value = (string) $entry[$language];
             }
-            if ($value === '' && isset($entry['source'])) {
-                $value = (string) $entry['source'];
+            // Strict locale behavior: never fall back to Arabic on a non-Arabic page.
+            if ($value === '' && $language !== 'ar' && isset($entry['en']) && is_scalar($entry['en'])) {
+                $value = (string) $entry['en'];
+            }
+            if ($value === '' && $language === 'ar' && isset($entry['ar']) && is_scalar($entry['ar'])) {
+                $value = (string) $entry['ar'];
+            }
+            if ($value === '' && isset($entry['source']) && is_scalar($entry['source'])) {
+                $source_value = (string) $entry['source'];
+                if ($language === 'ar' || !preg_match('/[\\x{0600}-\\x{06FF}]/u', $source_value)) {
+                    $value = $source_value;
+                }
             }
             if ($value === '') {
                 $value = ($fallback !== null) ? (string) $fallback : $key;
@@ -590,9 +600,16 @@ GOLDNOW_DICTIONARY;
                 if (!is_array($entry)) {
                     continue;
                 }
-                $source = isset($entry['source']) ? (string) $entry['source'] : '';
-                $arabic = isset($entry['ar']) ? (string) $entry['ar'] : '';
-                if ($source_text === $source || ($arabic !== '' && $source_text === $arabic)) {
+                // Match the text against every known locale value so an English
+                // template can be translated without rewriting its original wording.
+                $matched = false;
+                foreach (array_merge(array('source'), array_keys(self::languages())) as $locale_key) {
+                    if (isset($entry[$locale_key]) && is_scalar($entry[$locale_key]) && (string) $entry[$locale_key] !== '' && $source_text === (string) $entry[$locale_key]) {
+                        $matched = true;
+                        break;
+                    }
+                }
+                if ($matched) {
                     return $this->translate($key, $language, $source_text);
                 }
             }
