@@ -771,6 +771,7 @@ GOLDNOW_DICTIONARY;
                 <p><strong>تحديد اتجاه الصفحة:</strong> <code>goldnow_is_rtl();</code></p>
                 <p><strong>داخل المحرر أو محتوى الصفحة:</strong> <code>[goldnow_translate key="gold_price"]</code></p>
                 <p><strong>روابط تبديل اللغة:</strong> <code>[goldnow_language_switcher]</code></p>
+                <p><strong>قائمة الدول الموحدة مع البطاقات والبحث:</strong> <code>[goldnow_country_directory]</code></p>
                 <p class="description">ملاحظة: الإضافة توفر القاموس وواجهات الاستدعاء. لا تستطيع ترجمة كل نصوص القوالب والشورت كودز تلقائيًا قبل ربط مواضع النصوص بها.</p>
             </div>
             <?php
