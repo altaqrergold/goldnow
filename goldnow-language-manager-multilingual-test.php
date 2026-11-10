@@ -1254,6 +1254,27 @@ GOLDNOW_DICTIONARY;
                     return $this->translate($key, $language, $safe_fallback);
                 }
             }
+            $blocks = get_option('goldnow_mt_blocks', array());
+            if (is_array($blocks)) {
+                foreach ($blocks as $key => $entry) {
+                    if (!is_array($entry)) {
+                        continue;
+                    }
+                    $matched = false;
+                    foreach (array_merge(array('source'), array_keys(self::languages())) as $locale_key) {
+                        if (isset($entry[$locale_key]) && is_scalar($entry[$locale_key]) && (string) $entry[$locale_key] !== '' && $source_text === (string) $entry[$locale_key]) {
+                            $matched = true;
+                            break;
+                        }
+                    }
+                    if ($matched) {
+                        $safe_fallback = ($language === 'ar' || !preg_match('/[\\x{0600}-\\x{06FF}]/u', $source_text))
+                            ? $source_text
+                            : null;
+                        return $this->translate_block($key, $language, $safe_fallback);
+                    }
+                }
+            }
             return apply_filters('goldnow_language_manager_unmatched_text', $source_text, $language);
         }
 
@@ -1299,9 +1320,18 @@ GOLDNOW_DICTIONARY;
             if (isset($entry[$language]) && is_scalar($entry[$language])) {
                 $value = (string) $entry[$language];
             }
-            // Never silently substitute Arabic on a non-Arabic page.
+            // Use English as the safe fallback on non-Arabic pages; never silently substitute Arabic.
+            if ($value === '' && $language !== 'ar' && isset($entry['en']) && is_scalar($entry['en'])) {
+                $value = (string) $entry['en'];
+            }
+            if ($value === '' && $language === 'ar' && isset($entry['ar']) && is_scalar($entry['ar'])) {
+                $value = (string) $entry['ar'];
+            }
             if ($value === '' && isset($entry['source']) && is_scalar($entry['source'])) {
-                $value = (string) $entry['source'];
+                $source_value = (string) $entry['source'];
+                if ($language === 'ar' || !preg_match('/[\\x{0600}-\\x{06FF}]/u', $source_value)) {
+                    $value = $source_value;
+                }
             }
             if ($value === '' && $fallback !== null) {
                 $value = (string) $fallback;
@@ -1361,6 +1391,19 @@ GOLDNOW_DICTIONARY;
                 $translated = $this->translate($key, $language, $english);
                 if ($english !== '' && $translated !== '') {
                     $pairs[$english] = $translated;
+                }
+            }
+            $blocks = get_option('goldnow_mt_blocks', array());
+            if (is_array($blocks)) {
+                foreach ($blocks as $key => $entry) {
+                    if (!is_array($entry) || empty($entry['en']) || !is_scalar($entry['en'])) {
+                        continue;
+                    }
+                    $english = (string) $entry['en'];
+                    $translated = $this->translate_block($key, $language, $english);
+                    if ($english !== '' && $translated !== '') {
+                        $pairs[$english] = wp_strip_all_tags($translated);
+                    }
                 }
             }
             return $pairs;
