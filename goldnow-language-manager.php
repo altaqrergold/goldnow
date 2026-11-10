@@ -65,7 +65,6 @@ if (!class_exists('GoldNow_Language_Manager')) {
             add_action('admin_post_goldnow_lm_export', array($this, 'export_dictionary'));
             add_shortcode('goldnow_translate', array($this, 'translation_shortcode'));
             add_shortcode('goldnow_language_switcher', array($this, 'language_switcher_shortcode'));
-            add_shortcode('goldnow_country_directory', 'goldnow_country_directory_shortcode');
         }
 
         public function activate() {
