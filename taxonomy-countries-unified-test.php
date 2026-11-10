@@ -1,6 +1,7 @@
 <?php
 /**
- * Unified multilingual test template based on the working English layout.
+ * Template Name: Unified Countries - Multilingual Test
+ * Unified test template based on the working English layout.
  * Original Arabic, English and French templates remain untouched.
  */
 $en_header_term = get_queried_object();
@@ -16,13 +17,56 @@ if ($en_header_country_slug === '') {
 $en_header_language = function_exists('goldnow_mt_current_language') ? goldnow_mt_current_language() : 'en';
 $en_header_country_url = function_exists('goldnow_mt_language_url')
     ? goldnow_mt_language_url($en_header_language, home_url('/country/' . rawurlencode($en_header_country_slug) . '/'))
-    : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/' . rawurlencode($en_header_country_slug) . '/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/' . rawurlencode($en_header_country_slug) . '/')) : home_url('/en/country/' . rawurlencode($en_header_country_slug) . '/')));
+    : home_url('/en/country/' . rawurlencode($en_header_country_slug) . '/');
 $en_header_home_url = function_exists('goldnow_mt_language_url')
     ? goldnow_mt_language_url($en_header_language, home_url('/'))
     : home_url('/en/');
 $en_header_accent = get_theme_mod('infi_default_color', '#ffb301');
 $en_header_logo_id = (int) get_theme_mod('custom_logo');
 $en_header_is_app = (isset($_GET['view']) && sanitize_text_field(wp_unslash($_GET['view'])) === 'app');
+/**
+ * Exact dictionary lookup on visible text nodes only. HTML tags, URLs,
+ * JavaScript, CSS, price values and markup structure are preserved.
+ */
+if (!function_exists('altaqrer_gold_mt_translate_page_html')) {
+    function altaqrer_gold_mt_translate_page_html($html, $language) {
+        if (!is_string($html) || $html === '' || !function_exists('goldnow_mt_translate_text')) {
+            return $html;
+        }
+        $protected = array();
+        $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function ($match) use (&$protected) {
+            $token = 'GOLDNOWMTBLOCK' . count($protected) . 'TOKEN';
+            $protected[$token] = $match[0];
+            return $token;
+        }, $html);
+        $html = preg_replace_callback('~>([^<>]+)<~u', function ($match) use ($language) {
+            $raw = $match[1];
+            $decoded = html_entity_decode(trim($raw), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            if ($decoded === '') {
+                return $match[0];
+            }
+            $translated = goldnow_mt_translate_text($decoded, $language);
+            if ($translated === $decoded) {
+                return $match[0];
+            }
+            $leading = substr($raw, 0, strlen($raw) - strlen(ltrim($raw)));
+            $trailing = substr($raw, strlen(rtrim($raw)));
+            return '>' . $leading . esc_html($translated) . $trailing . '<';
+        }, $html);
+        $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\"'])(.*?)\\2~isu", function ($match) use ($language) {
+            $decoded = html_entity_decode($match[3], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $translated = goldnow_mt_translate_text($decoded, $language);
+            return $match[1] . '=' . $match[2] . esc_attr($translated) . $match[2];
+        }, $html);
+        if (!empty($protected)) {
+            $html = strtr($html, $protected);
+        }
+        return $html;
+    }
+}
+$en_mt_buffer_level = ob_get_level();
+ob_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo esc_attr($en_header_language); ?>" dir="<?php echo esc_attr(function_exists('goldnow_mt_is_rtl') && goldnow_mt_is_rtl($en_header_language) ? 'rtl' : 'ltr'); ?>">
@@ -1068,5 +1112,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <?php wp_footer(); ?>
+<?php
+$en_mt_output = ob_get_clean();
+echo altaqrer_gold_mt_translate_page_html($en_mt_output, $en_header_language);
+?>
 </body>
 </html>
