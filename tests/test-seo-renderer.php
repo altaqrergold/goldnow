@@ -54,6 +54,26 @@ function wp_html_excerpt($value, $length, $more = null) {
 
 require_once dirname(__DIR__) . '/goldnow-seo-content.php';
 
+// Verify that saved editorial overrides are applied without changing the bundled defaults.
+$GLOBALS['goldnow_test_option_overrides'] = array();
+function get_option($key, $default = false) {
+    if ($key === 'goldnow_seo_article_overrides') {
+        return $GLOBALS['goldnow_test_option_overrides'];
+    }
+    return $default;
+}
+
+
+$GLOBALS['goldnow_test_option_overrides'] = array(
+    'en' => array('24k' => array('title' => 'Custom English SEO title', 'intro' => 'Custom intro', 'body' => 'Custom body paragraph.'))
+);
+$override = goldnow_seo_article_data('en', '24k');
+if ($override[0] !== 'Custom English SEO title' || $override[1] !== 'Custom intro' || $override[2] !== 'Custom body paragraph.') {
+    fwrite(STDERR, "Saved SEO editorial overrides were not applied.\\n");
+    exit(1);
+}
+$GLOBALS['goldnow_test_option_overrides'] = array();
+
 $languages = array('ar','en','fr','de','es','it','pt','ru','hi','tr');
 $sections = array('overview','24k','22k','21k','18k','14k','ounce','coin','gold-bars','gold-index','usd');
 $prices = array(
