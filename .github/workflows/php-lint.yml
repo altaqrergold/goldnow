@@ -1,0 +1,32 @@
+name: PHP syntax checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'goldnow-multilingual-routes.php'
+      - 'goldnow-language-manager.php'
+      - 'goldnow-seo-content.php'
+      - '.github/workflows/php-lint.yml'
+  pull_request:
+    paths:
+      - 'goldnow-multilingual-routes.php'
+      - 'goldnow-language-manager.php'
+      - 'goldnow-seo-content.php'
+      - '.github/workflows/php-lint.yml'
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Lint changed PHP source files
+        run: |
+          php -l goldnow-multilingual-routes.php
+          php -l goldnow-language-manager.php
+          php -l goldnow-seo-content.php
