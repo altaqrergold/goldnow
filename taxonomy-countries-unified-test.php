@@ -595,7 +595,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
-        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.</p>
+        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;"><?php echo esc_html(goldnow_mt_translate_block('chart_note', $en_header_language)); ?></p>
       </div>
 
     </div>
@@ -656,7 +656,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">' + <?php echo wp_json_encode(goldnow_mt_translate_block('chart_loading', $en_header_language)); ?> + '</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -672,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateEnglishIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">' + <?php echo wp_json_encode(goldnow_mt_translate_block('chart_error', $en_header_language)); ?> + '</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
@@ -687,33 +687,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <?php if (empty($gold_view)) : ?>
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-left: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: ltr; text-align: left; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
-    <p style="margin-top: 0; margin-bottom: 15px;">
-        📊 The gold tracker monitors the latest movements in <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong>Gold prices in <?php echo esc_html($display_country_name); ?> in real time</strong></span> today <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> on <strong><?php echo esc_html($today); ?></strong> using regional market data and the international gold stock exchange rate for (<?php echo esc_html($display_country_name); ?>).
-    </p>
-
-    <p style="margin-bottom: 15px;">
-        💡 This report lets you track live gold prices across all categories, including <strong>21K gold price today</strong> — the most widely traded purity — as well as <strong>22K gold</strong>, <strong>18K gold</strong> value options, and <strong>14K gold</strong>. The tracker also covers precious-metal prices, jewellery markets, and daily market movements.
-    </p>
-
-    <p style="margin-bottom: 15px;">
-        ✨ Live market data, excluding making charges, puts the <strong>24K gold price per gram</strong> at approximately <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> (equivalent to <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> US dollars</strong>). This purity is the primary standard for <strong>gold bars</strong> because of its high refinement status.
-    </p>
-
-    <p style="margin-bottom: 15px;">
-        📈 The <strong>global gold ounce price today</strong> (31.1 grams of 24K gold) is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>. This is the international spot benchmark; local gold prices are converted separately using the latest available exchange rate.
-    </p>
-
-    <p style="margin-bottom: 15px;">
-        🪙 For savers and investors, the <strong>gold coin price today</strong> (an 8-gram coin in the widely traded 21K purity) is approximately <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.
-    </p>
-
-    <p style="margin-bottom: 20px;">
-        🛠️ To help preserve the value of your savings, tracking the <strong>live gold market index</strong> and <strong>Prices of gold bars</strong> across weights from 1 gram to 1 kilogram can help you follow market movements when considering a purchase or sale.
-    </p>
-
-    <div style="background: #17191d; padding: 12px; border-radius: 6px; border: 1px dashed #3a3f4d; color: #d1d5db; font-size: 14px; margin-top: 15px;">
-        💵 <strong>Exchange Rate Indicator:</strong> Local gold prices move with exchange rates. The <strong>US dollar exchange rate today in <?php echo esc_html($display_country_name); ?></strong> is <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> per US dollar, based on the latest available market data. Download the <strong>gold prices app</strong> for timely price alerts.
-    </div>
+    <p style="margin-top: 0; margin-bottom: 15px;">📊 <?php echo esc_html(goldnow_mt_translate_block('live_intro', $en_header_language, null, array('country' => $display_country_name))); ?> <img alt="<?php echo esc_attr(goldnow_mt_translate_block('flag_of_country', $en_header_language, 'Flag of {country}', array('country' => $display_country_name))); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> <strong><?php echo esc_html($today); ?></strong>.</p>
+    <p style="margin-bottom: 15px;">💡 <?php echo esc_html(goldnow_mt_translate_block('live_categories', $en_header_language)); ?></p>
+    <p style="margin-bottom: 15px;">✨ <?php echo esc_html(goldnow_mt_translate_block('live_24k', $en_header_language, null, array('price' => number_format($gram_24k_price_currency, 2), 'currency' => $currency_label, 'usd' => number_format($gram_24k_price_usd_converted, 2)))); ?></p>
+    <p style="margin-bottom: 15px;">📈 <?php echo esc_html(goldnow_mt_translate_block('live_ounce', $en_header_language, null, array('price' => number_format($ounce_price_usd, 2)))); ?></p>
+    <p style="margin-bottom: 15px;">🪙 <?php echo esc_html(goldnow_mt_translate_block('live_coin', $en_header_language, null, array('price' => number_format($gold_pound_currency, 2), 'currency' => $currency_label))); ?></p>
+    <p style="margin-bottom: 20px;">🛠️ <?php echo esc_html(goldnow_mt_translate_block('live_index', $en_header_language)); ?></p>
+    <div style="background: #17191d; padding: 12px; border-radius: 6px; border: 1px dashed #3a3f4d; color: #d1d5db; font-size: 14px; margin-top: 15px;">💵 <?php echo esc_html(goldnow_mt_translate_block('live_exchange', $en_header_language, null, array('country' => $display_country_name, 'rate' => number_format($local_currency_per_usd, 2), 'currency' => $currency_label))); ?></div>
 </div>
 <?php endif; ?>
 
