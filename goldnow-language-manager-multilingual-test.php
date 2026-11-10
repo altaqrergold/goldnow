@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: GoldNow Multilingual Test Manager - Multilingual Test
+ * Plugin Name: GoldNow Multilingual Test Manager
  * Plugin URI: https://gold.altaqrer.com/
  * Description: Test build with strict language fallback, safe multilingual HTML blocks, placeholders, and the existing GoldNow SEO renderer.
  * Version: 2.0.0-test
@@ -961,7 +961,12 @@ GOLDNOW_DICTIONARY;
                     }
                 }
                 if ($matched) {
-                    return $this->translate($key, $language, $source_text);
+                    // The original English text is a safe fallback for non-Arabic locales;
+                    // never pass an Arabic source string as a fallback to a non-Arabic page.
+                    $safe_fallback = ($language === 'ar' || !preg_match('/[\\x{0600}-\\x{06FF}]/u', $source_text))
+                        ? $source_text
+                        : null;
+                    return $this->translate($key, $language, $safe_fallback);
                 }
             }
             return apply_filters('goldnow_language_manager_unmatched_text', $source_text, $language);
