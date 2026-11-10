@@ -516,7 +516,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
                             <tr>
                                 <th>Weight / Type</th>
                                 <th><?php echo esc_html(goldnow_mt_translate_text('Price', $en_header_language)); ?> (<?php echo esc_html($currency_label); ?>)</th>
-                                <th>Price (USD)</th>
+                                <th><?php echo esc_html(goldnow_mt_translate_text('Price (USD)', $en_header_language)); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -845,7 +845,26 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
             } else {
                 $tab_style .= "color: {$default_color}; background: {$default_bg}; font-weight: 500;";
             }
-            $label = $tab['en'];
+            $tab_translation_keys = array(
+                '' => 'gold_price',
+                '24k' => 'karat_24',
+                '22k' => 'karat_22',
+                '21k' => 'karat_21',
+                '18k' => 'karat_18',
+                '14k' => 'karat_14',
+                'ounce' => 'gold_ounce_tab',
+                'coin' => 'gold_coin',
+                'gold-bars' => 'gold_bars',
+                'gold-index' => 'gold_index',
+                'usd' => 'usd_and_currency_rates'
+            );
+            if ($key === 'ounce') {
+                $label = goldnow_mt_translate_block('gold_ounce_tab', $en_header_language);
+            } elseif ($key === 'usd') {
+                $label = goldnow_mt_translate_block('usd_and_currency_rates', $en_header_language);
+            } else {
+                $label = isset($tab_translation_keys[$key]) ? goldnow_mt_translate($tab_translation_keys[$key], $en_header_language, $tab['en']) : $tab['en'];
+            }
         ?>
             <a href="<?php echo esc_url($tab_url); ?>" style="<?php echo esc_attr($tab_style); ?>" <?php echo $is_active ? 'aria-current="page"' : ''; ?>>
                 <?php echo esc_html($label); ?>
@@ -880,8 +899,8 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><?php echo esc_html(goldnow_mt_translate_block('gold_label_21k', $en_header_language)); ?>:</strong> <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($price_21k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;"><?php echo esc_html(goldnow_mt_translate_block('value_label', $en_header_language)); ?>: <?php echo number_format($price_21k_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong><?php echo esc_html(goldnow_mt_translate_block('gold_label_18k', $en_header_language)); ?>:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_18k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;"><?php echo esc_html(goldnow_mt_translate_block('value_label', $en_header_language)); ?>: <?php echo number_format($price_18k_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong><?php echo esc_html(goldnow_mt_translate_block('gold_label_14k', $en_header_language)); ?>:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_14k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;"><?php echo esc_html(goldnow_mt_translate_block('value_label', $en_header_language)); ?>: <?php echo number_format($price_14k_usd, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong><?php echo esc_html(goldnow_mt_translate('global_gold_ounce', $en_header_language)); ?> (31.1g):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong></span><br><small style="color:#94a3b8;">International spot price, quoted in USD</small></div>
-                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong><?php echo esc_html(goldnow_mt_translate('local_gold_ounce', $en_header_language)); ?> (31.1g):</strong> <span style="color: #ffffff;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">The same global ounce benchmark converted to the local currency</small></div>
+                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong><?php echo esc_html(goldnow_mt_translate('global_gold_ounce', $en_header_language)); ?> (31.1g):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong></span><br><small style="color:#94a3b8;"><?php echo esc_html(goldnow_mt_translate_block('international_spot', $en_header_language)); ?></small></div>
+                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong><?php echo esc_html(goldnow_mt_translate('local_gold_ounce', $en_header_language)); ?> (31.1g):</strong> <span style="color: #ffffff;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;"><?php echo esc_html(goldnow_mt_translate_block('local_ounce_note', $en_header_language)); ?></small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
                     <?php $en_localized_topic = function_exists('goldnow_seo_article_data') ? goldnow_seo_article_data($en_header_language, 'gold-index') : array(); echo esc_html(isset($en_localized_topic[2]) ? $en_localized_topic[2] : ''); ?>
@@ -1011,10 +1030,10 @@ if (!empty($gold_view)) {
                 </p>
 
             <?php elseif ($gold_view == 'ounce') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 Global Gold Ounce Price Today (31.1g):</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 <?php echo esc_html(goldnow_mt_translate('global_gold_ounce', $en_header_language)); ?> (31.1g):</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong><?php echo esc_html(goldnow_mt_translate_block('international_spot', $en_header_language)); ?>:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($ounce_price_usd, 2); ?></strong></span> USD</li>
-                    <li>🔹 <strong><?php echo esc_html(goldnow_mt_translate_block('quote_currency', $en_header_language)); ?>:</strong> US Dollar (USD)</li>
+                    <li>🔹 <strong><?php echo esc_html(goldnow_mt_translate_block('quote_currency', $en_header_language)); ?>:</strong> <?php echo esc_html(goldnow_mt_translate_block('currency_usd', $en_header_language)); ?> (USD)</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
                     <?php $en_localized_topic = function_exists('goldnow_seo_article_data') ? goldnow_seo_article_data($en_header_language, 'ounce') : array(); echo esc_html(isset($en_localized_topic[2]) ? $en_localized_topic[2] : ''); ?>
@@ -1056,7 +1075,7 @@ endif;
   <div class="en-site-footer-inner">
     <section>
       <h3><?php echo esc_html(goldnow_mt_translate_block('about_altaqrer', $en_header_language)); ?></h3>
-      <p><strong>AlTaqrer Gold</strong> helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes.</p>
+      <p><?php echo esc_html(goldnow_mt_translate_block('footer_about', $en_header_language)); ?></p>
     </section>
     <section>
       <h3><?php echo esc_html(goldnow_mt_translate('gold_price_sections', $en_header_language)); ?></h3>
@@ -1107,7 +1126,7 @@ endif;
     </section>
     <?php endif; ?>
   </div>
-  <div class="en-footer-bottom">All rights reserved &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> to <a href="<?php echo esc_url($en_header_home_url); ?>">AlTaqrer Gold</a>.</div>
+  <div class="en-footer-bottom"><?php echo esc_html(goldnow_mt_translate_text('All rights reserved', $en_header_language)); ?> &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> <a href="<?php echo esc_url($en_header_home_url); ?>">AlTaqrer Gold</a>.</div>
 </footer>
 <?php endif; ?>
 <script>
