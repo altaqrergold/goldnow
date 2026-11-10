@@ -162,7 +162,18 @@ if (!function_exists('goldnow_seo_article_data')) {
         if (!isset($topics[$language][$section])) {
             $section = 'overview';
         }
-        return $topics[$language][$section];
+                $article = $topics[$language][$section];
+        // Saved admin edits override only editorial fields; built-in localized defaults remain intact.
+        $saved_articles = get_option('goldnow_seo_article_overrides', array());
+        if (is_array($saved_articles) && isset($saved_articles[$language][$section]) && is_array($saved_articles[$language][$section])) {
+            foreach (array('title', 'intro', 'body') as $field) {
+                if (isset($saved_articles[$language][$section][$field]) && is_string($saved_articles[$language][$section][$field])) {
+                    $article_field_index = array('title' => 0, 'intro' => 1, 'body' => 2);
+                    $article[$article_field_index[$field]] = $saved_articles[$language][$section][$field];
+                }
+            }
+        }
+        return $article;
     }
 }
 
