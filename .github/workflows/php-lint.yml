@@ -6,7 +6,8 @@ on:
     paths:
       - 'goldnow-multilingual-routes.php'
       - 'goldnow-language-manager.php'
-      - 'goldnow-seo-content.php'\n      - 'goldnow-seo-admin.php'
+      - 'goldnow-seo-content.php'
+      - 'goldnow-seo-admin.php'
       - 'tests/test-seo-renderer.php'
       - '.github/workflows/php-lint.yml'
   pull_request:
@@ -14,6 +15,7 @@ on:
       - 'goldnow-multilingual-routes.php'
       - 'goldnow-language-manager.php'
       - 'goldnow-seo-content.php'
+      - 'goldnow-seo-admin.php'
       - '.github/workflows/php-lint.yml'
 
 permissions:
@@ -39,7 +41,8 @@ jobs:
         run: |
           php -l goldnow-multilingual-routes.php
           php -l goldnow-language-manager.php
-          php -l goldnow-seo-content.php\n          php -l goldnow-seo-admin.php
+          php -l goldnow-seo-content.php
+          php -l goldnow-seo-admin.php
           php tests/test-seo-renderer.php
 
       - name: Rebuild plugin ZIP with SEO module
@@ -60,4 +63,5 @@ jobs:
           rm -rf package-check
           unzip -q goldnow-language-manager.zip -d package-check
           php -l package-check/goldnow-language-manager/goldnow-language-manager.php
-          php -l package-check/goldnow-language-manager/goldnow-seo-content.php\n          php -l package-check/goldnow-language-manager/goldnow-seo-admin.php
+          php -l package-check/goldnow-language-manager/goldnow-seo-content.php
+          php -l package-check/goldnow-language-manager/goldnow-seo-admin.php
