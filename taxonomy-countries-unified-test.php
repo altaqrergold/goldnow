@@ -193,10 +193,10 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
       <div class="en-country-wrap">
         <button class="en-country-toggle" type="button" aria-expanded="false" aria-controls="en-country-menu">Countries ▾</button>
         <div class="en-country-menu" id="en-country-menu">
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : home_url('/en/country/eg/')))); ?>">Egypt</a>
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : home_url('/en/country/sa/')))); ?>">Saudi Arabia</a>
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : home_url('/en/country/ae/')))); ?>">United Arab Emirates</a>
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : home_url('/en/country/kw/')))); ?>">Kuwait</a>
+          <a href="<?php echo esc_url(function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : home_url('/en/country/eg/')); ?>">Egypt</a>
+          <a href="<?php echo esc_url(function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : home_url('/en/country/sa/')); ?>">Saudi Arabia</a>
+          <a href="<?php echo esc_url(function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : home_url('/en/country/ae/')); ?>">United Arab Emirates</a>
+          <a href="<?php echo esc_url(function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : home_url('/en/country/kw/')); ?>">Kuwait</a>
           <a href="<?php echo esc_url($en_header_home_url); ?>">All Countries</a>
         </div>
       </div>
