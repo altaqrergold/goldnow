@@ -15,6 +15,9 @@ on:
       - 'goldnow-seo-content.php'
       - '.github/workflows/php-lint.yml'
 
+permissions:
+  contents: write
+
 jobs:
   php-lint:
     runs-on: ubuntu-latest
@@ -32,3 +35,17 @@ jobs:
           php -l goldnow-multilingual-routes.php
           php -l goldnow-language-manager.php
           php -l goldnow-seo-content.php
+
+      - name: Rebuild plugin ZIP with SEO module
+        run: |
+          rm -rf dist
+          mkdir -p dist/goldnow-language-manager
+          cp goldnow-language-manager.php goldnow-seo-content.php dist/goldnow-language-manager/
+          (cd dist && zip -qr ../goldnow-language-manager.zip goldnow-language-manager)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add goldnow-language-manager.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Build GoldNow Language Manager v1.2.0 package"
+            git push
+          fi
