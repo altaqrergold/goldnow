@@ -1344,6 +1344,26 @@ GOLDNOW_DICTIONARY;
             return $clean;
         }
 
+        /**
+         * Export exact English phrase -> current-locale phrase pairs for
+         * JavaScript widgets that update after the server-rendered page loads.
+         */
+        public function client_dictionary($language = null) {
+            $language = $language ? sanitize_key($language) : $this->current_language();
+            $pairs = array();
+            foreach ($this->translations() as $key => $entry) {
+                if (!is_array($entry) || empty($entry['en']) || !is_scalar($entry['en'])) {
+                    continue;
+                }
+                $english = (string) $entry['en'];
+                $translated = $this->translate($key, $language, $english);
+                if ($english !== '' && $translated !== '') {
+                    $pairs[$english] = $translated;
+                }
+            }
+            return $pairs;
+        }
+
         public function language_url($language, $url = '') {
             $language = sanitize_key($language);
             if (!isset(self::languages()[$language])) {
@@ -1585,6 +1605,11 @@ if (!function_exists('goldnow_mt_translate')) {
 if (!function_exists('goldnow_mt_translate_block')) {
     function goldnow_mt_translate_block($key, $language = null, $fallback = null, $replacements = array()) {
         return GoldNow_Multilingual_Test_Manager::instance()->translate_block($key, $language, $fallback, $replacements);
+    }
+}
+if (!function_exists('goldnow_mt_client_dictionary')) {
+    function goldnow_mt_client_dictionary($language = null) {
+        return GoldNow_Multilingual_Test_Manager::instance()->client_dictionary($language);
     }
 }
 if (!function_exists('goldnow_mt_current_language')) {
