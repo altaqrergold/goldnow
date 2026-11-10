@@ -5,7 +5,7 @@
  * Description: Test build with strict language fallback, safe multilingual HTML blocks, placeholders, and the existing GoldNow SEO renderer.
  * Version: 2.0.0-test
  * Author: GoldNow
- * Text Domain: goldnow-language-manager
+ * Text Domain: goldnow-multilingual-test
  * Requires at least: 5.8
  * Requires PHP: 7.4
  */
@@ -1242,6 +1242,23 @@ GOLDNOW_DICTIONARY;
     add_action('plugins_loaded', function () {
         GoldNow_Multilingual_Test_Manager::instance()->activate();
     });
+}
+
+// Compatibility aliases used by the existing SEO renderer and legacy theme code.
+if (!function_exists('goldnow_current_language')) {
+    function goldnow_current_language() { return goldnow_mt_current_language(); }
+}
+if (!function_exists('goldnow_is_rtl')) {
+    function goldnow_is_rtl($language = null) { return goldnow_mt_is_rtl($language); }
+}
+if (!function_exists('goldnow_translate_text')) {
+    function goldnow_translate_text($text, $language = null) { return goldnow_mt_translate_text($text, $language); }
+}
+if (!function_exists('goldnow_language_url')) {
+    function goldnow_language_url($language, $url = '') { return goldnow_mt_language_url($language, $url); }
+}
+if (!function_exists('goldnow_translate')) {
+    function goldnow_translate($key, $language = null, $fallback = null, $replacements = array()) { return goldnow_mt_translate($key, $language, $fallback, $replacements); }
 }
 
 if (!function_exists('goldnow_mt_translate')) {
