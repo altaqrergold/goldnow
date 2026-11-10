@@ -617,8 +617,8 @@ if (empty($gold_view)) :
 
 
 <?php
-// 3️⃣ تطوير البوكس السفلي للفرعيات: توليد نصوص سيو متغيرة وديناميكية بالكامل لكل تبويب على حدة لمنع تكرار نص عيار 22
-if (!empty($gold_view)) {
+// 3️⃣ Preserve the original Arabic SEO box only for Arabic; other languages use the dedicated localized SEO renderer.
+if (!empty($gold_view) && $goldnow_mlr_language === 'ar') {
     // 📊 حسابات الأعيرة والوحدات الاستثمارية الأساسية لتمريرها في الجداول والمقالات المطولة
     $ounce_price_currency = $gram_24k_price_currency * 31.1; 
     $ounce_price_usd      = $gram_24k_price_usd_converted * 31.1;   
@@ -824,7 +824,7 @@ if (!empty($gold_view)) {
 
 
 <?php
-if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
+if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -1811,7 +1811,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php
-if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
+if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -2883,7 +2883,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php
-if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
+if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
@@ -3509,8 +3509,8 @@ if (empty($gold_view)) :
 
 
 <?php
-// 3️⃣ تطوير البوكس السفلي للفرعيات: توليد نصوص سيو متغيرة وديناميكية بالكامل لكل تبويب على حدة لمنع تكرار نص عيار 22
-if (!empty($gold_view)) {
+// 3️⃣ Preserve the original Arabic SEO box only for Arabic; other languages use the dedicated localized SEO renderer.
+if (!empty($gold_view) && $goldnow_mlr_language === 'ar') {
     // 📊 حسابات الأعيرة والوحدات الاستثمارية الأساسية لتمريرها في الجداول والمقالات المطولة
     $ounce_price_currency = $gram_24k_price_currency * 31.1; 
     $ounce_price_usd      = $gram_24k_price_usd_converted * 31.1;   
@@ -3716,7 +3716,7 @@ if (!empty($gold_view)) {
 
 
 <?php
-if (function_exists('goldnow_render_seo_article') && !($goldnow_mlr_language === 'ar' && empty($gold_view))) {
+if (function_exists('goldnow_render_seo_article') && $goldnow_mlr_language !== 'ar' && !(empty($gold_view) && in_array($goldnow_mlr_language, array('en','fr'), true))) {
     $goldnow_seo_prices = array(
         '24k' => isset($price_24k_local) ? $price_24k_local : null,
         '22k' => isset($price_22k_local) ? $price_22k_local : null,
