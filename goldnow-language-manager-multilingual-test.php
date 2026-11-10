@@ -1546,8 +1546,14 @@ GOLDNOW_DICTIONARY;
             check_admin_referer('goldnow_mt_export');
             nocache_headers();
             header('Content-Type: application/json; charset=utf-8');
-            header('Content-Disposition: attachment; filename=goldnow-translations.json');
-            echo wp_json_encode($this->translations(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            header('Content-Disposition: attachment; filename=goldnow-multilingual-test-export.json');
+            $export = array(
+                'translations' => $this->translations(),
+                'blocks' => get_option('goldnow_mt_blocks', array()),
+                'enabled_languages' => $this->enabled_languages(),
+                'default_language' => $this->default_language()
+            );
+            echo wp_json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             exit;
         }
 
