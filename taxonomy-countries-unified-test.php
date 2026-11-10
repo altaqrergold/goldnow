@@ -289,7 +289,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
             $display_country_name = $locale_country;
         }
     }
-    $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
+    $country_name = $display_country_name; // Keep AJAX/legacy country data in the active page language.
 
     // Complete English currency labels for the currencies used by the site's country map.
     $currency_labels_en = array(
@@ -329,6 +329,18 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         'VUV'=>'Vanuatu Vatu','WST'=>'Samoan Tala','TOP'=>'Tongan Paʻanga','XPF'=>'CFP Franc','SHP'=>'Saint Helena Pound'
     );
     $currency_label = isset($currency_labels_en[$country_currency]) ? $currency_labels_en[$country_currency] : ($country_currency !== '' ? $country_currency : 'Local Currency');
+    if ($en_header_language !== 'en' && $country_currency !== '' && function_exists('goldnow_mt_translate_block')) {
+        $currency_block_keys = array(
+            'USD'=>'currency_usd','GBP'=>'currency_gbp','SAR'=>'currency_sar','BHD'=>'currency_bhd',
+            'OMR'=>'currency_omr','EUR'=>'currency_eur','AED'=>'currency_aed','KWD'=>'currency_kwd',
+            'QAR'=>'currency_qar','JPY'=>'currency_jpy','EGP'=>'currency_egp','CHF'=>'currency_chf',
+            'CAD'=>'currency_cad','AUD'=>'currency_aud','INR'=>'currency_inr','RUB'=>'currency_rub',
+            'CNY'=>'currency_cny','TRY'=>'currency_try','JOD'=>'currency_jod','ILS'=>'currency_ils'
+        );
+        $currency_label = isset($currency_block_keys[$country_currency])
+            ? goldnow_mt_translate_block($currency_block_keys[$country_currency], $en_header_language)
+            : $country_currency;
+    }
     $today = function_exists('wp_date') ? wp_date('d/m/Y') : date('d/m/Y');
 
     // Build a text-only translation dictionary for legacy shortcodes that still use Arabic labels.
