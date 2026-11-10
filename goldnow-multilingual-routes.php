@@ -29,6 +29,76 @@ if (!in_array($goldnow_mlr_language, $goldnow_mlr_languages, true)) {
 $goldnow_mlr_translate_output = ($goldnow_mlr_language !== 'ar')
     && function_exists('goldnow_translate_text');
 
+
+/**
+ * Template-level fallback glossary for the shared LTR country renderer.
+ * The Language Manager remains the primary dictionary; these labels cover
+ * the English source phrases used by this template when no saved entry exists.
+ */
+if (function_exists('add_filter')) {
+    add_filter('goldnow_language_manager_unmatched_text', function ($text, $language) {
+        static $labels = array(
+            'Home' => array('de'=>'Startseite','es'=>'Inicio','it'=>'Home','pt'=>'Início','ru'=>'Главная','hi'=>'होम','tr'=>'Ana Sayfa'),
+            'Gold Prices' => array('de'=>'Goldpreise','es'=>'Precios del oro','it'=>'Prezzi dell’oro','pt'=>'Preços do ouro','ru'=>'Цены на золото','hi'=>'सोने की कीमतें','tr'=>'Altın Fiyatları'),
+            'Gold Bars' => array('de'=>'Goldbarren','es'=>'Lingotes de oro','it'=>'Lingotti d’oro','pt'=>'Barras de ouro','ru'=>'Золотые слитки','hi'=>'सोने की छड़ें','tr'=>'Altın Külçeleri'),
+            'Gold Index' => array('de'=>'Goldindex','es'=>'Índice del oro','it'=>'Indice dell’oro','pt'=>'Índice do ouro','ru'=>'Индекс золота','hi'=>'गोल्ड इंडेक्स','tr'=>'Altın Endeksi'),
+            'USD Rates' => array('de'=>'USD-Kurse','es'=>'Tipos de cambio USD','it'=>'Tassi USD','pt'=>'Taxas USD','ru'=>'Курс USD','hi'=>'USD दरें','tr'=>'USD Kurları'),
+            'Countries' => array('de'=>'Länder','es'=>'Países','it'=>'Paesi','pt'=>'Países','ru'=>'Страны','hi'=>'देश','tr'=>'Ülkeler'),
+            'All Countries' => array('de'=>'Alle Länder','es'=>'Todos los países','it'=>'Tutti i paesi','pt'=>'Todos os países','ru'=>'Все страны','hi'=>'सभी देश','tr'=>'Tüm Ülkeler'),
+            'Search for a country' => array('de'=>'Land suchen','es'=>'Buscar un país','it'=>'Cerca un paese','pt'=>'Pesquisar um país','ru'=>'Поиск страны','hi'=>'देश खोजें','tr'=>'Ülke ara'),
+            'Live Prices' => array('de'=>'Live-Preise','es'=>'Precios en directo','it'=>'Prezzi in tempo reale','pt'=>'Preços em direto','ru'=>'Цены в реальном времени','hi'=>'लाइव कीमतें','tr'=>'Canlı Fiyatlar'),
+            'Gold Price Chart' => array('de'=>'Goldpreisdiagramm','es'=>'Gráfico del precio del oro','it'=>'Grafico del prezzo dell’oro','pt'=>'Gráfico do preço do ouro','ru'=>'График цены золота','hi'=>'सोने की कीमत का चार्ट','tr'=>'Altın Fiyat Grafiği'),
+            'Gold Bars and Coins' => array('de'=>'Goldbarren und Münzen','es'=>'Lingotes y monedas de oro','it'=>'Lingotti e monete d’oro','pt'=>'Barras e moedas de ouro','ru'=>'Золотые слитки и монеты','hi'=>'सोने की छड़ें और सिक्के','tr'=>'Altın Külçeleri ve Sikkeler'),
+            'Weight / Type' => array('de'=>'Gewicht / Typ','es'=>'Peso / Tipo','it'=>'Peso / Tipo','pt'=>'Peso / Tipo','ru'=>'Вес / Тип','hi'=>'वज़न / प्रकार','tr'=>'Ağırlık / Tür'),
+            'Price' => array('de'=>'Preis','es'=>'Precio','it'=>'Prezzo','pt'=>'Preço','ru'=>'Цена','hi'=>'कीमत','tr'=>'Fiyat'),
+            'Important:' => array('de'=>'Wichtig:','es'=>'Importante:','it'=>'Importante:','pt'=>'Importante:','ru'=>'Важно:','hi'=>'महत्वपूर्ण:','tr'=>'Önemli:'),
+            'Gold Price Sections' => array('de'=>'Goldpreisbereiche','es'=>'Secciones del precio del oro','it'=>'Sezioni dei prezzi dell’oro','pt'=>'Secções dos preços do ouro','ru'=>'Разделы цен на золото','hi'=>'सोने की कीमत के अनुभाग','tr'=>'Altın Fiyatı Bölümleri'),
+            'Regional Gold Prices' => array('de'=>'Goldpreise nach Regionen','es'=>'Precios del oro por región','it'=>'Prezzi dell’oro per regione','pt'=>'Preços do ouro por região','ru'=>'Цены на золото по регионам','hi'=>'क्षेत्र के अनुसार सोने की कीमतें','tr'=>'Bölgelere Göre Altın Fiyatları'),
+            'Follow Us' => array('de'=>'Folgen Sie uns','es'=>'Síguenos','it'=>'Seguici','pt'=>'Siga-nos','ru'=>'Подписывайтесь на нас','hi'=>'हमें फ़ॉलो करें','tr'=>'Bizi Takip Edin'),
+            'Important Links' => array('de'=>'Wichtige Links','es'=>'Enlaces importantes','it'=>'Link importanti','pt'=>'Ligações importantes','ru'=>'Важные ссылки','hi'=>'महत्वपूर्ण लिंक','tr'=>'Önemli Bağlantılar'),
+            'Join Our Telegram Channel' => array('de'=>'Unserem Telegram-Kanal beitreten','es'=>'Únete a nuestro canal de Telegram','it'=>'Unisciti al nostro canale Telegram','pt'=>'Junte-se ao nosso canal do Telegram','ru'=>'Подпишитесь на наш канал в Telegram','hi'=>'हमारे टेलीग्राम चैनल से जुड़ें','tr'=>'Telegram Kanalımıza Katılın'),
+            'Gold Prices in' => array('de'=>'Goldpreise in','es'=>'Precios del oro en','it'=>'Prezzi dell’oro in','pt'=>'Preços do ouro em','ru'=>'Цены на золото в','hi'=>'में सोने की कीमतें','tr'=>'Altın Fiyatları:'),
+            'Gold Bars and Coins in' => array('de'=>'Goldbarren und Münzen in','es'=>'Lingotes y monedas de oro en','it'=>'Lingotti e monete d’oro in','pt'=>'Barras e moedas de ouro em','ru'=>'Золотые слитки и монеты в','hi'=>'में सोने की छड़ें और सिक्के','tr'=>'Altın Külçeleri ve Sikkeler:'),
+            'Gold Coin Prices in' => array('de'=>'Goldmünzenpreise in','es'=>'Precios de las monedas de oro en','it'=>'Prezzi delle monete d’oro in','pt'=>'Preços das moedas de ouro em','ru'=>'Цены на золотые монеты в','hi'=>'में सोने के सिक्कों की कीमतें','tr'=>'Altın Sikke Fiyatları:'),
+            'The chart data could not be loaded. Please try again.' => array('de'=>'Die Diagrammdaten konnten nicht geladen werden. Bitte versuchen Sie es erneut.','es'=>'No se pudieron cargar los datos del gráfico. Inténtalo de nuevo.','it'=>'Impossibile caricare i dati del grafico. Riprova.','pt'=>'Não foi possível carregar os dados do gráfico. Tente novamente.','ru'=>'Не удалось загрузить данные графика. Попробуйте ещё раз.','hi'=>'चार्ट डेटा लोड नहीं हो सका। कृपया फिर प्रयास करें।','tr'=>'Grafik verileri yüklenemedi. Lütfen tekrar deneyin.'),
+            'Loading gold charts...' => array('de'=>'Golddiagramme werden geladen…','es'=>'Cargando gráficos del oro…','it'=>'Caricamento dei grafici dell’oro…','pt'=>'A carregar gráficos do ouro…','ru'=>'Загрузка графиков золота…','hi'=>'सोने के चार्ट लोड हो रहे हैं…','tr'=>'Altın grafikleri yükleniyor…'),
+            'About AlTaqrer Gold' => array('de'=>'Über AlTaqrer Gold','es'=>'Acerca de AlTaqrer Gold','it'=>'Informazioni su AlTaqrer Gold','pt'=>'Sobre a AlTaqrer Gold','ru'=>'Об AlTaqrer Gold','hi'=>'AlTaqrer Gold के बारे में','tr'=>'AlTaqrer Gold Hakkında'),
+            'All rights reserved' => array('de'=>'Alle Rechte vorbehalten','es'=>'Todos los derechos reservados','it'=>'Tutti i diritti riservati','pt'=>'Todos os direitos reservados','ru'=>'Все права защищены','hi'=>'सर्वाधिकार सुरक्षित','tr'=>'Tüm hakları saklıdır'),
+            '24K Gold' => array('de'=>'24-karätiges Gold','es'=>'Oro de 24 quilates','it'=>'Oro a 24 carati','pt'=>'Ouro de 24 quilates','ru'=>'Золото 24 карата','hi'=>'24 कैरेट सोना','tr'=>'24 Ayar Altın'),
+            '22K Gold' => array('de'=>'22-karätiges Gold','es'=>'Oro de 22 quilates','it'=>'Oro a 22 carati','pt'=>'Ouro de 22 quilates','ru'=>'Золото 22 карата','hi'=>'22 कैरेट सोना','tr'=>'22 Ayar Altın'),
+            '21K Gold' => array('de'=>'21-karätiges Gold','es'=>'Oro de 21 quilates','it'=>'Oro a 21 carati','pt'=>'Ouro de 21 quilates','ru'=>'Золото 21 карата','hi'=>'21 कैरेट सोना','tr'=>'21 Ayar Altın'),
+            '18K Gold' => array('de'=>'18-karätiges Gold','es'=>'Oro de 18 quilates','it'=>'Oro a 18 carati','pt'=>'Ouro de 18 quilates','ru'=>'Золото 18 карата','hi'=>'18 कैरेट सोना','tr'=>'18 Ayar Altın'),
+            '14K Gold' => array('de'=>'14-karätiges Gold','es'=>'Oro de 14 quilates','it'=>'Oro a 14 carati','pt'=>'Ouro de 14 quilates','ru'=>'Золото 14 карата','hi'=>'14 कैरेट सोना','tr'=>'14 Ayar Altın'),
+            'Global Gold Ounce' => array('de'=>'Weltweiter Goldpreis je Unze','es'=>'Precio mundial del oro por onza','it'=>'Prezzo mondiale dell’oro per oncia','pt'=>'Preço mundial do ouro por onça','ru'=>'Мировая цена золота за унцию','hi'=>'अंतरराष्ट्रीय सोने का भाव प्रति औंस','tr'=>'Küresel Ons Altın Fiyatı'),
+            'Gold Ounce in Local Currency' => array('de'=>'Goldunze in Landeswährung','es'=>'Onza de oro en moneda local','it'=>'Oncia d’oro in valuta locale','pt'=>'Onça de ouro na moeda local','ru'=>'Унция золота в местной валюте','hi'=>'स्थानीय मुद्रा में सोने का भाव प्रति औंस','tr'=>'Yerel Para Biriminde Ons Altın Fiyatı'),
+            'Gold Coin' => array('de'=>'Goldmünze','es'=>'Moneda de oro','it'=>'Moneta d’oro','pt'=>'Moeda de ouro','ru'=>'Золотая монета','hi'=>'सोने का सिक्का','tr'=>'Altın Sikke'),
+            'Gold Sovereign / Coin' => array('de'=>'Goldmünze','es'=>'Moneda de oro','it'=>'Moneta d’oro','pt'=>'Moeda de ouro','ru'=>'Золотая монета','hi'=>'सोने का सिक्का','tr'=>'Altın Sikke'),
+            'Exchange Rate Indicator:' => array('de'=>'Wechselkursanzeige:','es'=>'Indicador del tipo de cambio:','it'=>'Indicatore del tasso di cambio:','pt'=>'Indicador da taxa de câmbio:','ru'=>'Индикатор обменного курса:','hi'=>'विनिमय दर संकेतक:','tr'=>'Döviz Kuru Göstergesi:'),
+            'Pure 24K Gold:' => array('de'=>'Reines 24-karätiges Gold:','es'=>'Oro puro de 24 quilates:','it'=>'Oro puro a 24 carati:','pt'=>'Ouro puro de 24 quilates:','ru'=>'Чистое золото 24 карата:','hi'=>'शुद्ध 24 कैरेट सोना:','tr'=>'Saf 24 Ayar Altın:'),
+            'Premium 22K Gold:' => array('de'=>'Hochwertiges 22-karätiges Gold:','es'=>'Oro de 22 quilates:','it'=>'Oro a 22 carati:','pt'=>'Ouro de 22 quilates:','ru'=>'Золото 22 карата:','hi'=>'22 कैरेट सोना:','tr'=>'22 Ayar Altın:'),
+            'Popular 21K Gold:' => array('de'=>'Beliebtes 21-karätiges Gold:','es'=>'Oro de 21 quilates:','it'=>'Oro a 21 carati:','pt'=>'Ouro de 21 quilates:','ru'=>'Золото 21 карата:','hi'=>'21 कैरेट सोना:','tr'=>'21 Ayar Altın:'),
+            'Standard 18K Gold:' => array('de'=>'Standardmäßiges 18-karätiges Gold:','es'=>'Oro estándar de 18 quilates:','it'=>'Oro standard a 18 carati:','pt'=>'Ouro padrão de 18 quilates:','ru'=>'Стандартное золото 18 карата:','hi'=>'मानक 18 कैरेट सोना:','tr'=>'Standart 18 Ayar Altın:'),
+            'Light 14K Gold:' => array('de'=>'14-karätiges Gold:','es'=>'Oro de 14 quilates:','it'=>'Oro a 14 carati:','pt'=>'Ouro de 14 quilates:','ru'=>'Золото 14 карата:','hi'=>'14 कैरेट सोना:','tr'=>'14 Ayar Altın:'),
+            'International spot price, quoted in USD' => array('de'=>'Internationaler Kassapreis in USD','es'=>'Precio internacional al contado en USD','it'=>'Prezzo spot internazionale in USD','pt'=>'Preço à vista internacional em USD','ru'=>'Международная спотовая цена в долларах США','hi'=>'USD में अंतरराष्ट्रीय स्पॉट मूल्य','tr'=>'USD cinsinden uluslararası spot fiyat'),
+            'Price in Local Currency:' => array('de'=>'Preis in Landeswährung:','es'=>'Precio en moneda local:','it'=>'Prezzo in valuta locale:','pt'=>'Preço na moeda local:','ru'=>'Цена в местной валюте:','hi'=>'स्थानीय मुद्रा में कीमत:','tr'=>'Yerel Para Biriminde Fiyat:'),
+            'Equivalent in US Dollars:' => array('de'=>'Gegenwert in US-Dollar:','es'=>'Equivalente en dólares estadounidenses:','it'=>'Equivalente in dollari USA:','pt'=>'Equivalente em dólares americanos:','ru'=>'Эквивалент в долларах США:','hi'=>'अमेरिकी डॉलर में समतुल्य:','tr'=>'ABD Doları Karşılığı:'),
+            'US Dollar:' => array('de'=>'US-Dollar:','es'=>'Dólar estadounidense:','it'=>'Dollaro USA:','pt'=>'Dólar americano:','ru'=>'Доллар США:','hi'=>'अमेरिकी डॉलर:','tr'=>'ABD Doları:'),
+            'British Pound:' => array('de'=>'Britisches Pfund:','es'=>'Libra esterlina:','it'=>'Sterlina britannica:','pt'=>'Libra esterlina:','ru'=>'Британский фунт:','hi'=>'ब्रिटिश पाउंड:','tr'=>'İngiliz Sterlini:'),
+            'Saudi Riyal:' => array('de'=>'Saudi-Riyal:','es'=>'Riyal saudí:','it'=>'Riyal saudita:','pt'=>'Riyal saudita:','ru'=>'Саудовский риял:','hi'=>'सऊदी रियाल:','tr'=>'Suudi Riyali:'),
+            'Euro:' => array('de'=>'Euro:','es'=>'Euro:','it'=>'Euro:','pt'=>'Euro:','ru'=>'Евро:','hi'=>'यूरो:','tr'=>'Euro:'),
+            'Kuwaiti Dinar:' => array('de'=>'Kuwaitischer Dinar:','es'=>'Dinar kuwaití:','it'=>'Dinaro kuwaitiano:','pt'=>'Dinar kuwaitiano:','ru'=>'Кувейтский динар:','hi'=>'कुवैती दीनार:','tr'=>'Kuveyt Dinarı:'),
+            'Japanese Yen:' => array('de'=>'Japanischer Yen:','es'=>'Yen japonés:','it'=>'Yen giapponese:','pt'=>'Iene japonês:','ru'=>'Японская иена:','hi'=>'जापानी येन:','tr'=>'Japon Yeni:'),
+            'The same global ounce benchmark converted to the local currency' => array('de'=>'Derselbe globale Unzen-Referenzpreis, umgerechnet in die Landeswährung','es'=>'El mismo precio mundial de referencia por onza convertido a la moneda local','it'=>'Lo stesso prezzo globale di riferimento per oncia convertito nella valuta locale','pt'=>'O mesmo preço global de referência por onça convertido na moeda local','ru'=>'Та же мировая базовая цена за унцию, пересчитанная в местную валюту','hi'=>'वही वैश्विक औंस संदर्भ मूल्य स्थानीय मुद्रा में परिवर्तित','tr'=>'Aynı küresel ons referans fiyatının yerel para birimine çevrilmiş hâli')
+        );
+        $text = (string) $text;
+        if (isset($labels[$text]) && isset($labels[$text][$language])) {
+            return $labels[$text][$language];
+        }
+        return $text;
+    }, 20, 2);
+}
+
+
 if ($goldnow_mlr_translate_output) {
     add_filter('language_attributes', function ($output) use ($goldnow_mlr_language) {
         $output = preg_replace('/\bdir=(["\'])rtl\1/i', 'dir="ltr"', $output);
