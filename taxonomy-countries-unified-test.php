@@ -363,14 +363,14 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         'VUV'=>'Vanuatu Vatu','WST'=>'Samoan Tala','TOP'=>'Tongan Paʻanga','XPF'=>'CFP Franc','SHP'=>'Saint Helena Pound'
     );
     $currency_label = isset($currency_labels_en[$country_currency]) ? $currency_labels_en[$country_currency] : ($country_currency !== '' ? $country_currency : 'Local Currency');
+    $currency_block_keys = array(
+        'USD'=>'currency_usd','GBP'=>'currency_gbp','SAR'=>'currency_sar','BHD'=>'currency_bhd',
+        'OMR'=>'currency_omr','EUR'=>'currency_eur','AED'=>'currency_aed','KWD'=>'currency_kwd',
+        'QAR'=>'currency_qar','JPY'=>'currency_jpy','EGP'=>'currency_egp','CHF'=>'currency_chf',
+        'CAD'=>'currency_cad','AUD'=>'currency_aud','INR'=>'currency_inr','RUB'=>'currency_rub',
+        'CNY'=>'currency_cny','TRY'=>'currency_try','JOD'=>'currency_jod','ILS'=>'currency_ils'
+    );
     if ($en_header_language !== 'en' && $country_currency !== '' && function_exists('goldnow_mt_translate_block')) {
-        $currency_block_keys = array(
-            'USD'=>'currency_usd','GBP'=>'currency_gbp','SAR'=>'currency_sar','BHD'=>'currency_bhd',
-            'OMR'=>'currency_omr','EUR'=>'currency_eur','AED'=>'currency_aed','KWD'=>'currency_kwd',
-            'QAR'=>'currency_qar','JPY'=>'currency_jpy','EGP'=>'currency_egp','CHF'=>'currency_chf',
-            'CAD'=>'currency_cad','AUD'=>'currency_aud','INR'=>'currency_inr','RUB'=>'currency_rub',
-            'CNY'=>'currency_cny','TRY'=>'currency_try','JOD'=>'currency_jod','ILS'=>'currency_ils'
-        );
         $currency_label = isset($currency_block_keys[$country_currency])
             ? goldnow_mt_translate_block($currency_block_keys[$country_currency], $en_header_language)
             : $country_currency;
@@ -404,7 +404,13 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
     if (is_array($currency_names)) {
         foreach ($currency_names as $code => $arabic_label) {
             if (isset($currency_labels_en[$code]) && is_string($arabic_label) && $arabic_label !== '') {
-                $shortcode_translation_map[$arabic_label] = $currency_labels_en[$code];
+                if ($en_header_language === 'en') {
+                    $shortcode_translation_map[$arabic_label] = $currency_labels_en[$code];
+                } else {
+                    $shortcode_translation_map[$arabic_label] = isset($currency_block_keys[$code])
+                        ? goldnow_mt_translate_block($currency_block_keys[$code], $en_header_language)
+                        : $code;
+                }
             }
         }
     }
