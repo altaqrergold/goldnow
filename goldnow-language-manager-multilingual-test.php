@@ -38,6 +38,7 @@ if (!class_exists('GoldNow_Multilingual_Test_Manager')) {
         const OPTION_TRANSLATIONS = 'goldnow_mt_translations';
         const OPTION_ENABLED = 'goldnow_mt_enabled_languages';
         const OPTION_DEFAULT = 'goldnow_mt_default_language';
+        const OPTION_TEMPLATE_TEST = 'goldnow_mt_enable_unified_template';
         const MENU_SLUG = 'goldnow-multilingual-test';
 
         private static $instance = null;
@@ -67,6 +68,7 @@ if (!class_exists('GoldNow_Multilingual_Test_Manager')) {
 
         private function __construct() {
             add_action('admin_menu', array($this, 'admin_menu'));
+            add_filter('template_include', array($this, 'maybe_use_unified_template'), 99);
             add_action('admin_post_goldnow_mt_save', array($this, 'save_settings'));
             add_action('admin_post_goldnow_mt_export', array($this, 'export_dictionary'));
             add_shortcode('goldnow_mt_translate', array($this, 'translation_shortcode'));
@@ -92,6 +94,21 @@ if (!class_exists('GoldNow_Multilingual_Test_Manager')) {
             if (get_option(self::OPTION_DEFAULT, false) === false) {
                 add_option(self::OPTION_DEFAULT, 'ar', '', false);
             }
+            if (get_option(self::OPTION_TEMPLATE_TEST, false) === false) {
+                add_option(self::OPTION_TEMPLATE_TEST, false, '', false);
+            }
+        }
+
+        /** Load the new theme template only after an explicit test toggle. */
+        public function maybe_use_unified_template($template) {
+            if (!get_option(self::OPTION_TEMPLATE_TEST, false) || !function_exists('is_tax') || !is_tax('countries')) {
+                return $template;
+            }
+            $candidate = trailingslashit(get_stylesheet_directory()) . 'taxonomy-countries-unified-test.php';
+            if (!is_readable($candidate)) {
+                $candidate = trailingslashit(get_template_directory()) . 'taxonomy-countries-unified-test.php';
+            }
+            return is_readable($candidate) ? $candidate : $template;
         }
 
         public static function default_dictionary() {
@@ -1158,6 +1175,7 @@ GOLDNOW_DICTIONARY;
             }
             update_option(self::OPTION_ENABLED, $enabled, false);
             update_option(self::OPTION_DEFAULT, $default, false);
+            update_option(self::OPTION_TEMPLATE_TEST, !empty($_POST['enable_unified_template']), false);
             $this->translations_cache = null;
             $this->redirect_admin('saved');
         }
@@ -1188,6 +1206,7 @@ GOLDNOW_DICTIONARY;
             $dictionary = $this->translations();
             $blocks = get_option('goldnow_mt_blocks', array());
             if (!is_array($blocks)) { $blocks = array(); }
+            $template_enabled = (bool) get_option(self::OPTION_TEMPLATE_TEST, false);
             $status = isset($_GET['gnlm_status']) ? sanitize_key(wp_unslash($_GET['gnlm_status'])) : '';
             ?>
             <div class="wrap">
@@ -1208,6 +1227,9 @@ GOLDNOW_DICTIONARY;
                     <select id="goldnow-lm-default" name="default_language">
                         <?php foreach ($languages as $code => $meta) : ?><option value="<?php echo esc_attr($code); ?>" <?php selected($this->default_language(), $code); ?>><?php echo esc_html($meta['native'] . ' (' . $code . ')'); ?></option><?php endforeach; ?>
                     </select>
+                    <h2 style="margin-top:28px">تجربة القالب الموحد</h2>
+                    <label><input type="checkbox" name="enable_unified_template" value="1" <?php checked($template_enabled); ?>> تفعيل القالب الجديد لصفحات تصنيف الدول فقط (يتطلب نسخ ملف القالب إلى مجلد القالب النشط)</label>
+                    <p class="description">اترك الخيار مغلقًا أثناء تجهيز الملفات. عند تفعيله، سيستخدم WordPress الملف الجديد بدل القالب الحالي لصفحات الدول فقط. يمكن إيقافه في أي وقت من نفس الصفحة.</p>
                     <h2 style="margin-top:28px">قاموس الترجمات</h2>
                     <p>كل مفتاح يحتوي على <code>source</code> للنص الأصلي، ثم الترجمات حسب رموز اللغات. احتفظ بالمفاتيح كما هي عند التعديل، ويمكنك إضافة مفاتيح جديدة.</p>
                     <textarea name="translations_json" spellcheck="false" rows="22" style="width:100%;max-width:1200px;font-family:monospace;direction:ltr;text-align:left"><?php echo esc_textarea(wp_json_encode($dictionary, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)); ?></textarea>
