@@ -160,7 +160,7 @@ if (!class_exists('GoldNow_SEO_Admin')) {
                     <textarea id="gnseo-faq2-q" name="faq2_q" rows="2" class="large-text"><?php echo esc_textarea($faq_defaults['faq2_q']); ?></textarea>
                     <p><label for="gnseo-faq2-a"><strong>إجابة السؤال الثاني</strong></label></p>
                     <textarea id="gnseo-faq2-a" name="faq2_a" rows="3" class="large-text"><?php echo esc_textarea($faq_defaults['faq2_a']); ?></textarea>
-                    <p class="description">يمكنك كتابة فقرات متعددة. تُحفظ النصوص كبدائل للمحتوى الافتراضي لهذا القسم واللغة فقط. لا تغيّر هذه الشاشة الأسعار أو الحسابات أو أوزان الذهب.</p>
+                    <p class="description">افصل بين الفقرات بسطر فارغ. تُحفظ النصوص كبدائل للمحتوى الافتراضي لهذا القسم واللغة فقط. لا تغيّر هذه الشاشة الأسعار أو الحسابات أو أوزان الذهب.</p>
                     <?php submit_button('حفظ المقال'); ?>
                 </form>
                 <hr>
