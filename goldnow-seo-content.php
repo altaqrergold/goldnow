@@ -166,6 +166,54 @@ if (!function_exists('goldnow_seo_article_data')) {
     }
 }
 
+
+/**
+ * Supply a localized meta description only when the SEO plugin has no saved one.
+ * Existing per-page descriptions remain untouched.
+ */
+if (!function_exists('goldnow_seo_meta_description')) {
+    function goldnow_seo_meta_description($description = '') {
+        if (trim((string) $description) !== '') {
+            return $description;
+        }
+        if (!function_exists('get_queried_object') || !function_exists('get_query_var')) {
+            return $description;
+        }
+        $term = get_queried_object();
+        if (!is_object($term) || empty($term->taxonomy) || $term->taxonomy !== 'countries') {
+            return $description;
+        }
+
+        $language = function_exists('altaqrer_ml_current_language')
+            ? strtolower((string) altaqrer_ml_current_language())
+            : (function_exists('goldnow_current_language') ? strtolower((string) goldnow_current_language()) : 'en');
+        $section = (string) get_query_var('gold_view');
+        if ($section === '') {
+            $section = 'overview';
+        }
+        $topic = goldnow_seo_article_data($language, $section);
+        $country = function_exists('altaqrer_ml_country_name')
+            ? (string) altaqrer_ml_country_name($term, $language)
+            : (isset($term->name) ? (string) $term->name : '');
+
+        if ($section === 'ounce') {
+            $meta = $topic[0] . '. ' . $topic[2];
+        } else {
+            $meta = $topic[0] . ($country !== '' ? ' — ' . $country : '') . '. ' . $topic[2];
+        }
+
+        $meta = function_exists('wp_strip_all_tags') ? wp_strip_all_tags($meta) : strip_tags($meta);
+        return function_exists('wp_html_excerpt')
+            ? wp_html_excerpt($meta, 155, '…')
+            : (function_exists('mb_substr') ? mb_substr($meta, 0, 155, 'UTF-8') : $meta);
+    }
+}
+
+if (function_exists('add_filter')) {
+    add_filter('rank_math/frontend/description', 'goldnow_seo_meta_description', 100);
+    add_filter('wpseo_metadesc', 'goldnow_seo_meta_description', 100);
+}
+
 if (!function_exists('goldnow_render_seo_article')) {
     /**
      * Render a localized, country-aware SEO article.
