@@ -788,7 +788,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 Live exchange rates against <?php echo esc_html($currency_label); ?> in <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            <?php echo esc_html(goldnow_mt_translate_block('exchange_rates_heading', $en_header_language, null, array('currency' => $currency_label, 'country' => $display_country_name))); ?> <img alt="<?php echo esc_attr(goldnow_mt_translate_block('flag_of_country', $en_header_language, 'Flag of {country}', array('country' => $display_country_name))); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -921,7 +921,7 @@ if (!empty($gold_view)) {
         <div class="altaqrer-dynamic-inner-content">
             
             <?php if ($gold_view == 'gold-index') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;"><?php echo esc_html(goldnow_mt_translate_block('gold_index_heading', $en_header_language, null, array('country' => $display_country_name))); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;"><?php echo esc_html(goldnow_mt_translate_block('gold_index_heading', $en_header_language, null, array('country' => $display_country_name))); ?> <img alt="<?php echo esc_attr(goldnow_mt_translate_block('flag_of_country', $en_header_language, 'Flag of {country}', array('country' => $display_country_name))); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong><?php echo esc_html(goldnow_mt_translate_block('gold_label_24k', $en_header_language)); ?>:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;"><?php echo esc_html(goldnow_mt_translate_block('value_label', $en_header_language)); ?>: <?php echo number_format($price_24k_usd, 2); ?> USD</small></div>
