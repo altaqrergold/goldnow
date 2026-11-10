@@ -215,12 +215,17 @@ if (!function_exists('goldnow_render_seo_article')) {
             $base = trailingslashit($base);
             $labels = array(
                 '24k'=>array('ar'=>'عيار 24','en'=>'24K gold','fr'=>'Or 24 carats','de'=>'24-Karat-Gold','es'=>'Oro de 24 quilates','it'=>'Oro 24 carati','pt'=>'Ouro 24 quilates','ru'=>'Золото 24 карата','hi'=>'24 कैरेट सोना','tr'=>'24 ayar altın'),
+                '22k'=>array('ar'=>'عيار 22','en'=>'22K gold','fr'=>'Or 22 carats','de'=>'22-Karat-Gold','es'=>'Oro de 22 quilates','it'=>'Oro 22 carati','pt'=>'Ouro 22 quilates','ru'=>'Золото 22 карата','hi'=>'22 कैरेट सोना','tr'=>'22 ayar altın'),
                 '21k'=>array('ar'=>'عيار 21','en'=>'21K gold','fr'=>'Or 21 carats','de'=>'21-Karat-Gold','es'=>'Oro de 21 quilates','it'=>'Oro 21 carati','pt'=>'Ouro 21 quilates','ru'=>'Золото 21 карат','hi'=>'21 कैरेट सोना','tr'=>'21 ayar altın'),
+                '18k'=>array('ar'=>'عيار 18','en'=>'18K gold','fr'=>'Or 18 carats','de'=>'18-Karat-Gold','es'=>'Oro de 18 quilates','it'=>'Oro 18 carati','pt'=>'Ouro 18 quilates','ru'=>'Золото 18 карат','hi'=>'18 कैरेट सोना','tr'=>'18 ayar altın'),
+                '14k'=>array('ar'=>'عيار 14','en'=>'14K gold','fr'=>'Or 14 carats','de'=>'14-Karat-Gold','es'=>'Oro de 14 quilates','it'=>'Oro 14 carati','pt'=>'Ouro 14 quilates','ru'=>'Золото 14 карат','hi'=>'14 कैरेट सोना','tr'=>'14 ayar altın'),
                 'ounce'=>array('ar'=>'الأونصة العالمية','en'=>'global gold ounce','fr'=>'once mondiale','de'=>'weltweite Goldunze','es'=>'onza mundial de oro','it'=>'oncia mondiale','pt'=>'onça mundial','ru'=>'мировая унция золота','hi'=>'वैश्विक सोने का औंस','tr'=>'küresel altın onsu'),
+                'coin'=>array('ar'=>'العملة الذهبية','en'=>'gold coin','fr'=>'pièce d’or','de'=>'Goldmünze','es'=>'moneda de oro','it'=>'moneta d’oro','pt'=>'moeda de ouro','ru'=>'золотая монета','hi'=>'सोने का सिक्का','tr'=>'altın sikke'),
                 'gold-bars'=>array('ar'=>'سبائك الذهب','en'=>'gold bars','fr'=>'lingots d’or','de'=>'Goldbarren','es'=>'lingotes de oro','it'=>'lingotti d’oro','pt'=>'barras de ouro','ru'=>'золотые слитки','hi'=>'सोने की छड़ें','tr'=>'altın külçeleri'),
-                'gold-index'=>array('ar'=>'مؤشر الذهب','en'=>'gold market index','fr'=>'indice du marché de l’or','de'=>'Goldmarktindex','es'=>'índice del mercado del oro','it'=>'indice del mercato dell’oro','pt'=>'índice do mercado do ouro','ru'=>'индекс рынка золота','hi'=>'सोना बाजार सूचकांक','tr'=>'altın piyasa endeksi')
+                'gold-index'=>array('ar'=>'مؤشر الذهب','en'=>'gold market index','fr'=>'indice du marché de l’or','de'=>'Goldmarktindex','es'=>'índice del mercado del oro','it'=>'indice del mercato dell’oro','pt'=>'índice do mercado do ouro','ru'=>'индекс рынка золота','hi'=>'सोना बाजार सूचकांक','tr'=>'altın piyasa endeksi'),
+                'usd'=>array('ar'=>'أسعار صرف الدولار','en'=>'USD exchange rates','fr'=>'taux de change USD','de'=>'USD-Wechselkurse','es'=>'tipos de cambio USD','it'=>'tassi di cambio USD','pt'=>'taxas de câmbio USD','ru'=>'курсы USD','hi'=>'USD विनिमय दर','tr'=>'USD döviz kurları')
             );
-            foreach (array('24k','21k','ounce','gold-bars','gold-index') as $key) {
+            foreach (array('24k','22k','21k','18k','14k','ounce','coin','gold-bars','gold-index','usd') as $key) {
                 $label = isset($labels[$key][$language]) ? $labels[$key][$language] : $labels[$key]['en'];
                 $links[] = '<a href="' . esc_url($base . $key . '/') . '">' . esc_html($label) . '</a>';
             }
@@ -252,7 +257,6 @@ if (!function_exists('goldnow_render_seo_article')) {
         );
         $market = isset($paragraph_market[$language]) ? $paragraph_market[$language] : $paragraph_market['en'];
         $note = isset($disclaimer[$language]) ? $disclaimer[$language] : $disclaimer['en'];
-        $country_text = ($country !== '') ? ' ' . esc_html($country) : '';
         $related_label = array('ar'=>'تابع الأقسام المرتبطة:','en'=>'Related sections:','fr'=>'Rubriques associées :','de'=>'Verwandte Bereiche:','es'=>'Secciones relacionadas:','it'=>'Sezioni correlate:','pt'=>'Seções relacionadas:','ru'=>'Связанные разделы:','hi'=>'संबंधित अनुभाग:','tr'=>'İlgili bölümler:');
         $date_label = array('ar'=>'تاريخ البيانات','en'=>'Data date','fr'=>'Date des données','de'=>'Datenstand','es'=>'Fecha de los datos','it'=>'Data dei dati','pt'=>'Data dos dados','ru'=>'Дата данных','hi'=>'डेटा की तारीख','tr'=>'Veri tarihi');
 
@@ -263,7 +267,7 @@ if (!function_exists('goldnow_render_seo_article')) {
         }
         $html .= '</header>';
         $html .= '<section><h3>' . esc_html($topic[1]) . '</h3>';
-        $html .= '<p>' . esc_html($topic[2] . $country_text) . '</p>';
+        $html .= '<p>' . esc_html($topic[2]) . '</p>';
         $html .= $price_sentence;
         $html .= '<p>' . esc_html($market) . '</p>';
         if ($section === 'ounce') {
