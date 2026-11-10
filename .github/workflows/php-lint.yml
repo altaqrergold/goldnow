@@ -25,6 +25,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+      - name: Inspect current plugin archive layout
+        run: unzip -l goldnow-language-manager.zip
       - name: Lint changed PHP source files
         run: |
           php -l goldnow-multilingual-routes.php
