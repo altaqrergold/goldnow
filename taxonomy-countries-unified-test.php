@@ -189,14 +189,14 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
       <a href="<?php echo esc_url($en_header_country_url); ?>">Gold Prices</a>
       <a href="<?php echo esc_url($en_header_country_url . 'gold-bars/'); ?>">Gold Bars</a>
       <a href="<?php echo esc_url($en_header_country_url . 'gold-index/'); ?>">Gold Index</a>
-      <a href="<?php echo esc_url($en_header_country_url . 'usd/'); ?>">USD Rates</a>
+      <a href="<?php echo esc_url($en_header_country_url . 'usd/'); ?>">USD Exchange Rates</a>
       <div class="en-country-wrap">
         <button class="en-country-toggle" type="button" aria-expanded="false" aria-controls="en-country-menu">Countries ▾</button>
         <div class="en-country-menu" id="en-country-menu">
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : home_url('/en/country/eg/'))); ?>">Egypt</a>
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : home_url('/en/country/sa/'))); ?>">Saudi Arabia</a>
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : home_url('/en/country/ae/'))); ?>">United Arab Emirates</a>
-          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : home_url('/en/country/kw/'))); ?>">Kuwait</a>
+          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : home_url('/en/country/eg/')))); ?>">Egypt</a>
+          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : home_url('/en/country/sa/')))); ?>">Saudi Arabia</a>
+          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : home_url('/en/country/ae/')))); ?>">United Arab Emirates</a>
+          <a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : (function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : home_url('/en/country/kw/')))); ?>">Kuwait</a>
           <a href="<?php echo esc_url($en_header_home_url); ?>">All Countries</a>
         </div>
       </div>
@@ -276,6 +276,12 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         }
     }
     $display_country_name = $english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country');
+    if ($en_header_language !== 'en' && $country_code !== '' && class_exists('Locale')) {
+        $locale_country = Locale::getDisplayRegion('en_' . strtoupper($country_code), $en_header_language);
+        if (is_string($locale_country) && $locale_country !== '' && $locale_country !== strtoupper($country_code)) {
+            $display_country_name = $locale_country;
+        }
+    }
     $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
 
     // Complete English currency labels for the currencies used by the site's country map.
