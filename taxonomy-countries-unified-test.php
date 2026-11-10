@@ -116,6 +116,9 @@ html[dir="rtl"] .en-main-nav, html[dir="rtl"] .en-site-header-inner { direction:
 html[dir="rtl"] .en-main-nav { justify-content:flex-start; }
 html[dir="rtl"] .en-country-menu { left:auto; right:0; }
 html[dir="rtl"] .en-country-menu a { text-align:right; }
+html[dir="rtl"] body, html[dir="rtl"] .en-gold-template, html[dir="rtl"] .container.home { direction:rtl !important; text-align:right !important; }
+html[dir="rtl"] .en-gold-template [style*="direction:ltr"], html[dir="rtl"] .en-gold-template [style*="text-align:left"] { direction:rtl !important; text-align:right !important; }
+html[dir="rtl"] .en-gold-template .en-site-footer-inner { direction:rtl; text-align:right; }
 body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; position:relative; font-family:Inter,Arial,sans-serif; }
 .en-site-header { position:relative; z-index:1000; background:#1a1a1a; border-bottom:4px solid <?php echo esc_attr($en_header_accent); ?>; color:#fff; }
 .en-site-header-inner { max-width:1200px; width:95%; margin:0 auto; min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:10px 0; }
@@ -1027,7 +1030,8 @@ if (!empty($gold_view) && function_exists('goldnow_render_seo_article')) :
         '14k' => $price_14k_local,
         'ounce_usd' => $ounce_price_usd,
         'coin' => $gold_pound_currency,
-        'usd_rate' => $local_currency_per_usd
+        'usd_rate' => $local_currency_per_usd,
+        'usd' => $local_currency_per_usd
     );
     echo goldnow_render_seo_article($en_header_language, $gold_view, array(
         'country' => $display_country_name,
