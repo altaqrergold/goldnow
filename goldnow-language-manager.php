@@ -14,6 +14,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Load the dedicated multilingual SEO article renderer shipped with this plugin.
+$goldnow_seo_content_file = __DIR__ . '/goldnow-seo-content.php';
+if (is_readable($goldnow_seo_content_file)) {
+    require_once $goldnow_seo_content_file;
+}
+
 if (!class_exists('GoldNow_Language_Manager')) {
     final class GoldNow_Language_Manager {
         const VERSION = '1.1.1';
