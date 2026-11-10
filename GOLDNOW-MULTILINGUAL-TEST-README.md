@@ -51,4 +51,4 @@ Do not enable the template switch on the live site before the staging checks pas
 
 ## Validation status
 
-The GitHub-side static checks confirm that the default dictionary JSON parses, all dictionary entries include all ten language fields, all 56 default block entries include all ten language fields, and the PHP source delimiters are balanced. A live WordPress runtime/PHP lint test has not been run from this repository session; perform the staging procedure before treating this as production-ready.
+The GitHub-side static checks confirm that the default dictionary JSON parses, all dictionary entries include all ten language fields, all 69 default block entries include all ten language fields, and the PHP source delimiters are balanced. A live WordPress runtime/PHP lint test has not been run from this repository session; perform the staging procedure before treating this as production-ready.
