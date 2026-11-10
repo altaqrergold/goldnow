@@ -409,6 +409,24 @@ if (!function_exists('goldnow_render_seo_article')) {
             $faq_two_q = array('ar'=>'ما الوزن المستخدم في حساب العملة الذهبية؟','en'=>'What weight is used for the gold coin calculation?','fr'=>'Quel poids est utilisé pour le calcul de la pièce d’or ?','de'=>'Welches Gewicht wird für die Goldmünzenberechnung verwendet?','es'=>'¿Qué peso se utiliza para calcular la moneda de oro?','it'=>'Quale peso viene usato per il calcolo della moneta d’oro?','pt'=>'Qual peso é usado no cálculo da moeda de ouro?','ru'=>'Какой вес используется для расчета золотой монеты?','hi'=>'सोने के सिक्के की गणना में कौन सा वजन उपयोग होता है?','tr'=>'Altın sikke hesabında hangi ağırlık kullanılır?');
             $faq_two_a = array('ar'=>'يحتفظ الموقع بوزن مرجعي قدره 8 جرامات في هذا الحساب، ويُضرب سعر الجرام للعيار المحدد في ثمانية.','en'=>'The site retains an 8-gram reference weight for this calculation. The selected karat’s per-gram rate is multiplied by eight.','fr'=>'Le site conserve un poids de référence de 8 grammes. Le cours au gramme du titrage choisi est multiplié par huit.','de'=>'Die Website verwendet dafür ein Referenzgewicht von 8 Gramm. Der Grammpreis der gewählten Legierung wird mit acht multipliziert.','es'=>'El sitio mantiene un peso de referencia de 8 gramos. El precio por gramo del quilate elegido se multiplica por ocho.','it'=>'Il sito mantiene un peso di riferimento di 8 grammi. Il prezzo al grammo della caratura scelta viene moltiplicato per otto.','pt'=>'O site mantém um peso de referência de 8 gramas. O preço por grama do quilate escolhido é multiplicado por oito.','ru'=>'На сайте для этого расчета сохраняется эталонный вес 8 граммов. Цена грамма выбранной пробы умножается на восемь.','hi'=>'इस गणना के लिए साइट 8 ग्राम का संदर्भ वजन रखती है। चुने हुए कैरेट की प्रति ग्राम दर को आठ से गुणा किया जाता है।','tr'=>'Site bu hesaplamada 8 gram referans ağırlığını korur. Seçilen ayarın gram fiyatı sekizle çarpılır.');
         }
+        // Apply optional FAQ edits saved from the SEO administration screen.
+        $faq_overrides = get_option('goldnow_seo_article_overrides', array());
+        $faq_saved = (is_array($faq_overrides) && isset($faq_overrides[$language][$section]) && is_array($faq_overrides[$language][$section]))
+            ? $faq_overrides[$language][$section]
+            : array();
+        $faq_fields = array(
+            'faq1_q' => &$faq_one_q[$language],
+            'faq1_a' => &$faq_one_a[$language],
+            'faq2_q' => &$faq_two_q[$language],
+            'faq2_a' => &$faq_two_a[$language]
+        );
+        foreach ($faq_fields as $field => &$target) {
+            if (isset($faq_saved[$field]) && is_string($faq_saved[$field])) {
+                $target = $faq_saved[$field];
+            }
+        }
+        unset($target, $faq_fields);
+
         $html .= '<section class="goldnow-seo-faq"><h3>' . esc_html($faq_heading[$language]) . '</h3>';
         $html .= '<details><summary>' . esc_html($faq_one_q[$language]) . '</summary><p>' . esc_html($faq_one_a[$language]) . '</p></details>';
         $html .= '<details><summary>' . esc_html($faq_two_q[$language]) . '</summary><p>' . esc_html($faq_two_a[$language]) . '</p></details></section>';
