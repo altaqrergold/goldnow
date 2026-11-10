@@ -438,9 +438,9 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 	  
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
-      <button class="gold-tab-btn active" type="button" data-tab="now">Live Prices</button>
-      <button class="gold-tab-btn" type="button" data-tab="buy-sell">Gold Bars</button>
-      <button class="gold-tab-btn" type="button" data-tab="indicator">Gold Price Chart</button>
+      <button class="gold-tab-btn active" type="button" data-tab="now"><?php echo esc_html(goldnow_mt_translate_text('Live Prices', $en_header_language)); ?></button>
+      <button class="gold-tab-btn" type="button" data-tab="buy-sell"><?php echo esc_html(goldnow_mt_translate_text('Gold Bars', $en_header_language)); ?></button>
+      <button class="gold-tab-btn" type="button" data-tab="indicator"><?php echo esc_html(goldnow_mt_translate_text('Gold Price Chart', $en_header_language)); ?></button>
     </div>
 
     <!-- ✅ Tab Content Container -->
@@ -451,27 +451,22 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="<?php echo esc_attr(goldnow_mt_translate_block('flag_of_country', $en_header_language, 'Flag of {country}', array('country' => $display_country_name))); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
-        if ( $gold_view == '24k' ) { echo '24K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '22k' ) { echo '22K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '21k' ) { echo '21K Gold Price per Gram Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '18k' ) { echo '18K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '14k' ) { echo '14K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'ounce' ) { echo 'Global Gold Ounce Price Today (USD)'; }
-        elseif ( $gold_view == 'coin' ) { echo 'Gold Coin Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'gold-bars' ) { echo 'Gold Bullion Bar Prices Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'gold-index' ) { echo 'Live Gold Market Index Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'usd' ) { echo 'US Dollar and Currency Exchange Rates Today in ' . esc_html($display_country_name); }
-        else { echo 'Gold Prices in ' . esc_html($display_country_name) . ' Today '; }
+        $en_heading_section = in_array($gold_view, array('24k','22k','21k','18k','14k','ounce','coin','gold-bars','gold-index','usd'), true) ? $gold_view : 'overview';
+        $en_heading_data = function_exists('goldnow_seo_article_data') ? goldnow_seo_article_data($en_header_language, $en_heading_section) : array();
+        $en_heading_title = isset($en_heading_data[0]) ? (string) $en_heading_data[0] : 'Gold Prices Today';
+        if ($en_heading_section !== 'ounce') {
+            $en_heading_title .= ' — ' . $display_country_name;
+        }
+        echo esc_html($en_heading_title);
         ?>
         </h2>
         
         <h3 class="col-12 p-0 mt-1" style="opacity: .7; font-size: 15px; text-align: left; direction: ltr;">
-          <?php 
-          if ($gold_view == 'usd') { echo 'Live foreign exchange rates for major international and regional currencies'; }
-          elseif ($gold_view == 'ounce') { echo 'International spot benchmark for one troy ounce of 24K gold, quoted in USD'; }
-          else { echo 'Gold Price in ' . esc_html($display_country_name) . ' — live market price, excluding making charges'; }
+          <?php
+          $en_subtitle = isset($en_heading_data[1]) ? (string) $en_heading_data[1] : '';
+          echo esc_html($en_subtitle);
           ?>
         </h3>
 
@@ -490,7 +485,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
       <div id="tab-buy-sell" class="gold-tab-pane" style="display:none; text-align: left; direction: ltr;">
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align:left !important; direction:ltr !important;">
             <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-            <img alt="Gold Bars and Coins in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; margin-right: 5px;">
+            <img alt="<?php echo esc_html(goldnow_mt_translate_block('gold_bars_and_coins', $en_header_language)); ?> — <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; margin-right: 5px;">
             Gold Bars and Coins in <?php echo esc_html($display_country_name); ?>
         </h2>
         <h3 class="col-12 p-0 mt-1" style="opacity: .7; font-size: 15px; text-align:left !important; direction:ltr !important;">
@@ -607,7 +602,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
-          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="21K Gold Price Movement"]';
+          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="' . esc_attr(goldnow_mt_translate_block('chart_title', $en_header_language)) . '"]';
           echo altaqrer_gold_en_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map);
           ?>
         </div>
