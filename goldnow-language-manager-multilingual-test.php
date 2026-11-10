@@ -94,6 +94,16 @@ if (!class_exists('GoldNow_Multilingual_Test_Manager')) {
             if (get_option(self::OPTION_DEFAULT, false) === false) {
                 add_option(self::OPTION_DEFAULT, 'ar', '', false);
             }
+            $default_blocks = self::default_blocks();
+            $saved_blocks = get_option('goldnow_mt_blocks', false);
+            if ($saved_blocks === false || !is_array($saved_blocks)) {
+                add_option('goldnow_mt_blocks', $default_blocks, '', false);
+            } else {
+                $merged_blocks = array_replace_recursive($default_blocks, $saved_blocks);
+                if ($merged_blocks !== $saved_blocks) {
+                    update_option('goldnow_mt_blocks', $merged_blocks, false);
+                }
+            }
             if (get_option(self::OPTION_TEMPLATE_TEST, false) === false) {
                 add_option(self::OPTION_TEMPLATE_TEST, false, '', false);
             }
@@ -873,6 +883,220 @@ GOLDNOW_DICTIONARY;
             $dictionary = json_decode($json, true);
             return is_array($dictionary) ? $dictionary : array();
         }
+
+        public static function default_blocks() {
+            return array(
+                'live_intro' => array(
+                    'source' => 'The gold tracker monitors the latest gold-price movements in {country} using regional market data and the international benchmark.',
+                    'ar' => 'يتابع مؤشر الذهب أحدث تحركات أسعار الذهب في {country} بالاعتماد على بيانات الأسواق الإقليمية والسعر العالمي المرجعي.',
+                    'en' => 'The gold tracker monitors the latest gold-price movements in {country} using regional market data and the international benchmark.',
+                    'fr' => 'Le suivi de l’or présente les dernières évolutions des prix à {country}, à partir des données régionales et de la référence internationale.',
+                    'de' => 'Der Goldtracker zeigt die neuesten Goldpreisbewegungen in {country} anhand regionaler Marktdaten und des internationalen Referenzpreises.',
+                    'es' => 'El seguimiento del oro muestra los últimos movimientos de precios en {country} mediante datos regionales y la referencia internacional.',
+                    'it' => 'Il monitoraggio dell’oro mostra gli ultimi movimenti dei prezzi in {country} usando dati regionali e il riferimento internazionale.',
+                    'pt' => 'O acompanhamento do ouro mostra os movimentos mais recentes dos preços em {country}, com dados regionais e a referência internacional.',
+                    'ru' => 'Индикатор золота показывает последние изменения цен в регионе {country} на основе местных данных и международного ориентира.',
+                    'hi' => 'गोल्ड ट्रैकर क्षेत्रीय बाजार डेटा और अंतरराष्ट्रीय संदर्भ दर के आधार पर {country} में सोने की कीमतों की नवीनतम गतिविधि दिखाता है।',
+                    'tr' => 'Altın takip aracı, bölgesel piyasa verileri ve uluslararası referans fiyatıyla {country} altın fiyatlarındaki son hareketleri gösterir.'
+                ),
+                'live_categories' => array(
+                    'source' => 'This report covers 21K, 22K, 18K and 14K gold, along with bullion, coins and daily market movements.',
+                    'ar' => 'يعرض هذا التقرير أسعار عيارات 21 و22 و18 و14، إلى جانب السبائك والعملات الذهبية وحركة السوق اليومية.',
+                    'en' => 'This report covers 21K, 22K, 18K and 14K gold, along with bullion, coins and daily market movements.',
+                    'fr' => 'Ce rapport couvre l’or 21, 22, 18 et 14 carats, ainsi que les lingots, les pièces et les mouvements quotidiens du marché.',
+                    'de' => 'Dieser Bericht umfasst 21-, 22-, 18- und 14-karätiges Gold sowie Barren, Münzen und tägliche Marktbewegungen.',
+                    'es' => 'Este informe incluye oro de 21, 22, 18 y 14 quilates, además de lingotes, monedas y movimientos diarios del mercado.',
+                    'it' => 'Questo rapporto include oro a 21, 22, 18 e 14 carati, oltre a lingotti, monete e movimenti giornalieri del mercato.',
+                    'pt' => 'Este relatório abrange ouro de 21, 22, 18 e 14 quilates, além de barras, moedas e movimentos diários do mercado.',
+                    'ru' => 'В отчете представлены цены на золото 21, 22, 18 и 14 проб, а также на слитки и монеты и ежедневные изменения рынка.',
+                    'hi' => 'इस रिपोर्ट में 21K, 22K, 18K और 14K सोना, गोल्ड बार, सिक्के और बाजार की दैनिक गतिविधियां शामिल हैं।',
+                    'tr' => 'Bu rapor 21, 22, 18 ve 14 ayar altının yanı sıra külçeleri, sikkeleri ve günlük piyasa hareketlerini kapsar.'
+                ),
+                'live_24k' => array(
+                    'source' => 'The 24K gold gram reference is {price} {currency}, equivalent to {usd} USD. It is the main purity benchmark for bullion.',
+                    'ar' => 'يبلغ السعر المرجعي لجرام الذهب عيار 24 نحو {price} {currency}، بما يعادل {usd} دولارًا أمريكيًا. وهو المعيار الأساسي لنقاء السبائك.',
+                    'en' => 'The 24K gold gram reference is {price} {currency}, equivalent to {usd} USD. It is the main purity benchmark for bullion.',
+                    'fr' => 'La référence du gramme d’or 24 carats est de {price} {currency}, soit {usd} USD. Elle sert de norme principale pour les lingots.',
+                    'de' => 'Der Referenzpreis für ein Gramm 24-karätiges Gold beträgt {price} {currency}, entsprechend {usd} USD. Er ist der wichtigste Reinheitsmaßstab für Barren.',
+                    'es' => 'El precio de referencia del gramo de oro de 24 quilates es {price} {currency}, equivalente a {usd} USD. Es la referencia principal para los lingotes.',
+                    'it' => 'Il prezzo di riferimento del grammo d’oro 24 carati è {price} {currency}, pari a {usd} USD. È il principale standard di purezza per i lingotti.',
+                    'pt' => 'O preço de referência do grama de ouro de 24 quilates é {price} {currency}, equivalente a {usd} USD. É o padrão principal de pureza para barras.',
+                    'ru' => 'Справочная цена грамма золота 24 карата составляет {price} {currency}, или {usd} USD. Это основной стандарт чистоты для слитков.',
+                    'hi' => '24 कैरेट सोने के एक ग्राम का संदर्भ मूल्य {price} {currency} है, जो {usd} USD के बराबर है। यह गोल्ड बार के लिए मुख्य शुद्धता मानक है।',
+                    'tr' => '24 ayar altının gram referans fiyatı {price} {currency}, yani {usd} USD’dir. Külçeler için temel saflık ölçütüdür.'
+                ),
+                'live_ounce' => array(
+                    'source' => 'The global gold ounce is {price} USD for approximately 31.1 grams of 24K gold. Local prices are converted separately.',
+                    'ar' => 'يبلغ سعر أونصة الذهب العالمية {price} دولارًا أمريكيًا، وهي تعادل نحو 31.1 جرامًا من الذهب عيار 24. وتُحسب الأسعار المحلية بصورة منفصلة.',
+                    'en' => 'The global gold ounce is {price} USD for approximately 31.1 grams of 24K gold. Local prices are converted separately.',
+                    'fr' => 'L’once mondiale d’or vaut {price} USD pour environ 31,1 grammes d’or 24 carats. Les prix locaux sont convertis séparément.',
+                    'de' => 'Die weltweite Goldunze kostet {price} USD für etwa 31,1 Gramm 24-karätiges Gold. Lokale Preise werden separat umgerechnet.',
+                    'es' => 'La onza mundial de oro cuesta {price} USD por unos 31,1 gramos de oro de 24 quilates. Los precios locales se convierten por separado.',
+                    'it' => 'L’oncia mondiale d’oro vale {price} USD per circa 31,1 grammi di oro 24 carati. I prezzi locali vengono convertiti separatamente.',
+                    'pt' => 'A onça mundial de ouro custa {price} USD por cerca de 31,1 gramas de ouro de 24 quilates. Os preços locais são convertidos separadamente.',
+                    'ru' => 'Мировая цена унции золота составляет {price} USD за примерно 31,1 грамма золота 24 карата. Местные цены пересчитываются отдельно.',
+                    'hi' => 'लगभग 31.1 ग्राम 24 कैरेट सोने की वैश्विक कीमत {price} USD है। स्थानीय कीमतों की गणना अलग से की जाती है।',
+                    'tr' => 'Küresel altın onsu, yaklaşık 31,1 gram 24 ayar altın için {price} USD’dir. Yerel fiyatlar ayrı hesaplanır.'
+                ),
+                'live_coin' => array(
+                    'source' => 'The standard gold coin reference uses an 8-gram weight. Its indicative 21K value is {price} {currency}.',
+                    'ar' => 'يعتمد الحساب القياسي للعملة الذهبية على وزن 8 جرامات. وتبلغ قيمتها التقديرية بعيار 21 نحو {price} {currency}.',
+                    'en' => 'The standard gold coin reference uses an 8-gram weight. Its indicative 21K value is {price} {currency}.',
+                    'fr' => 'La référence standard de la pièce d’or utilise un poids de 8 grammes. Sa valeur indicative en 21 carats est de {price} {currency}.',
+                    'de' => 'Die Standardreferenz für die Goldmünze verwendet ein Gewicht von 8 Gramm. Ihr Richtwert bei 21 Karat beträgt {price} {currency}.',
+                    'es' => 'La referencia estándar de la moneda de oro utiliza un peso de 8 gramos. Su valor orientativo de 21 quilates es {price} {currency}.',
+                    'it' => 'Il riferimento standard della moneta d’oro utilizza un peso di 8 grammi. Il valore indicativo a 21 carati è {price} {currency}.',
+                    'pt' => 'A referência padrão da moeda de ouro utiliza um peso de 8 gramas. O seu valor indicativo de 21 quilates é {price} {currency}.',
+                    'ru' => 'В стандартном расчете золотой монеты используется вес 8 граммов. Ее ориентировочная стоимость 21 пробы составляет {price} {currency}.',
+                    'hi' => 'सोने के सिक्के के मानक संदर्भ में 8 ग्राम वजन का उपयोग होता है। 21 कैरेट में इसका अनुमानित मूल्य {price} {currency} है।',
+                    'tr' => 'Standart altın sikke referansı 8 gram ağırlık kullanır. 21 ayar için gösterge niteliğindeki değeri {price} {currency}’dir.'
+                ),
+                'live_index' => array(
+                    'source' => 'The gold market index compares common karat values with the international benchmark. A single snapshot does not establish a future trend.',
+                    'ar' => 'يقارن مؤشر سوق الذهب قيم العيارات الشائعة بالسعر العالمي المرجعي. ولا تكفي قراءة واحدة لإثبات اتجاه مستقبلي للسوق.',
+                    'en' => 'The gold market index compares common karat values with the international benchmark. A single snapshot does not establish a future trend.',
+                    'fr' => 'L’indice du marché de l’or compare les titrages courants à la référence internationale. Une seule observation ne permet pas d’établir une tendance future.',
+                    'de' => 'Der Goldmarktindex vergleicht gängige Karatwerte mit dem internationalen Referenzpreis. Eine einzelne Momentaufnahme belegt keinen zukünftigen Trend.',
+                    'es' => 'El índice del mercado del oro compara quilates habituales con la referencia internacional. Una sola lectura no determina una tendencia futura.',
+                    'it' => 'L’indice del mercato dell’oro confronta le carature comuni con il riferimento internazionale. Una singola rilevazione non stabilisce una tendenza futura.',
+                    'pt' => 'O índice do mercado do ouro compara quilates comuns com a referência internacional. Uma única leitura não determina uma tendência futura.',
+                    'ru' => 'Индекс рынка золота сопоставляет распространенные пробы с международным ориентиром. Одного снимка недостаточно для определения будущего тренда.',
+                    'hi' => 'गोल्ड मार्केट इंडेक्स सामान्य कैरेट कीमतों की तुलना अंतरराष्ट्रीय संदर्भ दर से करता है। एक बार का आंकड़ा भविष्य की प्रवृत्ति तय नहीं करता।',
+                    'tr' => 'Altın piyasa endeksi yaygın ayar değerlerini uluslararası referansla karşılaştırır. Tek bir görünüm gelecekteki eğilimi göstermez.'
+                ),
+                'live_exchange' => array(
+                    'source' => 'The USD exchange-rate reference in {country} is {rate} {currency} per US dollar, based on the latest available market data.',
+                    'ar' => 'يبلغ سعر صرف الدولار المرجعي في {country} نحو {rate} {currency} لكل دولار أمريكي، وفق أحدث بيانات السوق المتاحة.',
+                    'en' => 'The USD exchange-rate reference in {country} is {rate} {currency} per US dollar, based on the latest available market data.',
+                    'fr' => 'Le taux de référence du dollar à {country} est de {rate} {currency} par dollar américain, selon les dernières données disponibles.',
+                    'de' => 'Der USD-Referenzwechselkurs in {country} beträgt {rate} {currency} je US-Dollar, basierend auf den neuesten verfügbaren Marktdaten.',
+                    'es' => 'El tipo de cambio de referencia del USD en {country} es {rate} {currency} por dólar estadounidense, según los últimos datos disponibles.',
+                    'it' => 'Il tasso di cambio di riferimento USD in {country} è {rate} {currency} per dollaro statunitense, secondo gli ultimi dati disponibili.',
+                    'pt' => 'A taxa de câmbio de referência do USD em {country} é {rate} {currency} por dólar americano, segundo os dados mais recentes.',
+                    'ru' => 'Справочный курс USD в регионе {country} составляет {rate} {currency} за доллар США по последним доступным рыночным данным.',
+                    'hi' => '{country} में USD की संदर्भ विनिमय दर प्रति अमेरिकी डॉलर {rate} {currency} है, जो उपलब्ध नवीनतम बाजार डेटा पर आधारित है।',
+                    'tr' => '{country} için USD referans kuru, mevcut en son piyasa verilerine göre ABD doları başına {rate} {currency}’dir.'
+                ),
+                'chart_note' => array(
+                    'source' => 'Charts show indicative market movements. Local prices may differ because of exchange rates, premiums and market conditions.',
+                    'ar' => 'تعرض الرسوم البيانية تحركات السوق الاسترشادية. وقد تختلف الأسعار المحلية بسبب أسعار الصرف والعلاوات وظروف السوق.',
+                    'en' => 'Charts show indicative market movements. Local prices may differ because of exchange rates, premiums and market conditions.',
+                    'fr' => 'Les graphiques montrent les mouvements indicatifs du marché. Les prix locaux peuvent varier selon les taux de change, les primes et les conditions du marché.',
+                    'de' => 'Die Diagramme zeigen indikative Marktbewegungen. Lokale Preise können aufgrund von Wechselkursen, Aufschlägen und Marktbedingungen abweichen.',
+                    'es' => 'Los gráficos muestran movimientos indicativos del mercado. Los precios locales pueden variar por tipos de cambio, primas y condiciones del mercado.',
+                    'it' => 'I grafici mostrano movimenti indicativi del mercato. I prezzi locali possono variare per tassi di cambio, premi e condizioni di mercato.',
+                    'pt' => 'Os gráficos mostram movimentos indicativos do mercado. Os preços locais podem variar devido a taxas de câmbio, prémios e condições do mercado.',
+                    'ru' => 'Графики показывают ориентировочные движения рынка. Местные цены могут отличаться из-за валютных курсов, премий и рыночных условий.',
+                    'hi' => 'चार्ट बाजार की संकेतात्मक गतिविधियां दिखाते हैं। विनिमय दर, प्रीमियम और बाजार की स्थितियों के कारण स्थानीय कीमतें अलग हो सकती हैं।',
+                    'tr' => 'Grafikler gösterge niteliğindeki piyasa hareketlerini gösterir. Yerel fiyatlar döviz kurları, primler ve piyasa koşulları nedeniyle farklı olabilir.'
+                ),
+                'chart_loading' => array(
+                    'source' => 'Loading gold charts...',
+                    'ar' => 'جارٍ تحميل مخططات الذهب...',
+                    'en' => 'Loading gold charts...',
+                    'fr' => 'Chargement des graphiques de l’or...',
+                    'de' => 'Golddiagramme werden geladen...',
+                    'es' => 'Cargando gráficos del oro...',
+                    'it' => 'Caricamento dei grafici dell’oro...',
+                    'pt' => 'A carregar os gráficos do ouro...',
+                    'ru' => 'Загрузка графиков золота...',
+                    'hi' => 'सोने के चार्ट लोड हो रहे हैं...',
+                    'tr' => 'Altın grafikleri yükleniyor...'
+                ),
+                'chart_error' => array(
+                    'source' => 'The chart data could not be loaded. Please try again.',
+                    'ar' => 'تعذر تحميل بيانات الرسم البياني. يُرجى المحاولة مرة أخرى.',
+                    'en' => 'The chart data could not be loaded. Please try again.',
+                    'fr' => 'Impossible de charger les données du graphique. Veuillez réessayer.',
+                    'de' => 'Die Diagrammdaten konnten nicht geladen werden. Bitte versuchen Sie es erneut.',
+                    'es' => 'No se pudieron cargar los datos del gráfico. Inténtalo de nuevo.',
+                    'it' => 'Impossibile caricare i dati del grafico. Riprova.',
+                    'pt' => 'Não foi possível carregar os dados do gráfico. Tente novamente.',
+                    'ru' => 'Не удалось загрузить данные графика. Повторите попытку.',
+                    'hi' => 'चार्ट डेटा लोड नहीं हो सका। कृपया फिर से प्रयास करें।',
+                    'tr' => 'Grafik verileri yüklenemedi. Lütfen tekrar deneyin.'
+                ),
+                'price_local_label' => array(
+                    'source' => 'Price in Local Currency',
+                    'ar' => 'السعر بالعملة المحلية',
+                    'en' => 'Price in Local Currency',
+                    'fr' => 'Prix en monnaie locale',
+                    'de' => 'Preis in Landeswährung',
+                    'es' => 'Precio en moneda local',
+                    'it' => 'Prezzo in valuta locale',
+                    'pt' => 'Preço em moeda local',
+                    'ru' => 'Цена в местной валюте',
+                    'hi' => 'स्थानीय मुद्रा में कीमत',
+                    'tr' => 'Yerel Para Biriminde Fiyat'
+                ),
+                'price_usd_label' => array(
+                    'source' => 'Equivalent in US Dollars',
+                    'ar' => 'ما يعادله بالدولار الأمريكي',
+                    'en' => 'Equivalent in US Dollars',
+                    'fr' => 'Équivalent en dollars américains',
+                    'de' => 'Gegenwert in US-Dollar',
+                    'es' => 'Equivalente en dólares estadounidenses',
+                    'it' => 'Equivalente in dollari statunitensi',
+                    'pt' => 'Equivalente em dólares americanos',
+                    'ru' => 'Эквивалент в долларах США',
+                    'hi' => 'अमेरिकी डॉलर में समतुल्य',
+                    'tr' => 'ABD Doları Karşılığı'
+                ),
+                'currency_usd' => array(
+                    'source' => 'US Dollar',
+                    'ar' => 'الدولار الأمريكي',
+                    'en' => 'US Dollar',
+                    'fr' => 'Dollar américain',
+                    'de' => 'US-Dollar',
+                    'es' => 'Dólar estadounidense',
+                    'it' => 'Dollaro statunitense',
+                    'pt' => 'Dólar americano',
+                    'ru' => 'Доллар США',
+                    'hi' => 'अमेरिकी डॉलर',
+                    'tr' => 'ABD Doları'
+                ),
+                'currency_gbp' => array(
+                    'source' => 'British Pound',
+                    'ar' => 'الجنيه الإسترليني',
+                    'en' => 'British Pound',
+                    'fr' => 'Livre sterling',
+                    'de' => 'Britisches Pfund',
+                    'es' => 'Libra esterlina',
+                    'it' => 'Sterlina britannica',
+                    'pt' => 'Libra esterlina',
+                    'ru' => 'Британский фунт',
+                    'hi' => 'ब्रिटिश पाउंड',
+                    'tr' => 'İngiliz Sterlini'
+                ),
+                'currency_sar' => array(
+                    'source' => 'Saudi Riyal',
+                    'ar' => 'الريال السعودي',
+                    'en' => 'Saudi Riyal',
+                    'fr' => 'Riyal saoudien',
+                    'de' => 'Saudi-Riyal',
+                    'es' => 'Riyal saudí',
+                    'it' => 'Riyal saudita',
+                    'pt' => 'Riyal saudita',
+                    'ru' => 'Саудовский риял',
+                    'hi' => 'सऊदी रियाल',
+                    'tr' => 'Suudi Riyali'
+                ),
+                'currency_eur' => array(
+                    'source' => 'Euro',
+                    'ar' => 'اليورو',
+                    'en' => 'Euro',
+                    'fr' => 'Euro',
+                    'de' => 'Euro',
+                    'es' => 'Euro',
+                    'it' => 'Euro',
+                    'pt' => 'Euro',
+                    'ru' => 'Евро',
+                    'hi' => 'यूरो',
+                    'tr' => 'Euro'
+                )
+            );
+        }
+
         public function enabled_languages() {
             $saved = get_option(self::OPTION_ENABLED, array_keys(self::languages()));
             if (!is_array($saved)) {
