@@ -68,6 +68,13 @@ $GLOBALS['goldnow_test_option_overrides'] = array(
     'en' => array('24k' => array('title' => 'Custom English SEO title', 'intro' => 'Custom intro', 'body' => 'Custom body paragraph.'))
 );
 $override = goldnow_seo_article_data('en', '24k');
+$GLOBALS['goldnow_test_option_overrides']['en']['24k']['faq1_q'] = 'Custom FAQ question';
+$faq_html = goldnow_render_seo_article('en', '24k', array());
+if (strpos($faq_html, 'Custom FAQ question') === false) {
+    fwrite(STDERR, "Saved FAQ overrides were not applied.\\n");
+    exit(1);
+}
+$GLOBALS['goldnow_test_option_overrides'] = array();
 if ($override[0] !== 'Custom English SEO title' || $override[1] !== 'Custom intro' || $override[2] !== 'Custom body paragraph.') {
     fwrite(STDERR, "Saved SEO editorial overrides were not applied.\\n");
     exit(1);
