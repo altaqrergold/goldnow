@@ -851,7 +851,7 @@ if (function_exists('goldnow_render_seo_article_shortcode')) {
 }
 ?>
 
-<?php get_footer(); elseif ($goldnow_mlr_language === 'en') : ?>
+<?php get_footer(); elseif (in_array($goldnow_mlr_language, array('en','de','es','it','pt','ru','hi','tr'), true)) : ?>
 <?php
 /**
  * Standalone English header for the country gold-price template.
@@ -867,14 +867,14 @@ if ($en_header_country_slug === '' && is_object($en_header_term) && !empty($en_h
 if ($en_header_country_slug === '') {
     $en_header_country_slug = 'eg';
 }
-$en_header_country_url = home_url('/en/country/' . rawurlencode($en_header_country_slug) . '/');
-$en_header_home_url = home_url('/en/');
+$en_header_country_url = home_url('/' . $goldnow_mlr_language . '/country/' . rawurlencode($en_header_country_slug) . '/');
+$en_header_home_url = home_url('/' . $goldnow_mlr_language . '/');
 $en_header_accent = get_theme_mod('infi_default_color', '#ffb301');
 $en_header_logo_id = (int) get_theme_mod('custom_logo');
 $en_header_is_app = (isset($_GET['view']) && sanitize_text_field(wp_unslash($_GET['view'])) === 'app');
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="<?php echo esc_attr($goldnow_mlr_language); ?>" dir="ltr">
 <head>
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -994,10 +994,10 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
       <div class="en-country-wrap">
         <button class="en-country-toggle" type="button" aria-expanded="false" aria-controls="en-country-menu">Countries ▾</button>
         <div class="en-country-menu" id="en-country-menu">
-          <a href="<?php echo esc_url(home_url('/en/country/eg/')); ?>">Egypt</a>
-          <a href="<?php echo esc_url(home_url('/en/country/sa/')); ?>">Saudi Arabia</a>
-          <a href="<?php echo esc_url(home_url('/en/country/ae/')); ?>">United Arab Emirates</a>
-          <a href="<?php echo esc_url(home_url('/en/country/kw/')); ?>">Kuwait</a>
+          <a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/eg/')); ?>">Egypt</a>
+          <a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/sa/')); ?>">Saudi Arabia</a>
+          <a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/ae/')); ?>">United Arab Emirates</a>
+          <a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/kw/')); ?>">Kuwait</a>
           <a href="<?php echo esc_url($en_header_home_url); ?>">All Countries</a>
         </div>
       </div>
@@ -1827,7 +1827,7 @@ if (function_exists('goldnow_render_seo_article_shortcode')) {
         'usd_rate' => isset($local_currency_per_usd) ? $local_currency_per_usd : null
     );
     $goldnow_seo_section = !empty($gold_view) ? (string) $gold_view : 'overview';
-    $goldnow_seo_base_url = home_url('/en/country/' . rawurlencode((string) $en_header_country_slug) . '/');
+    $goldnow_seo_base_url = home_url('/' . $goldnow_mlr_language . '/country/' . rawurlencode((string) $en_header_country_slug) . '/');
     echo goldnow_render_seo_article_shortcode($goldnow_mlr_language, $goldnow_seo_section, array(
         'country' => $display_country_name,
         'currency' => $country_currency,
@@ -1858,10 +1858,10 @@ if (function_exists('goldnow_render_seo_article_shortcode')) {
     <section>
       <h3>Regional Gold Prices</h3>
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/en/country/eg/')); ?>">Gold Prices in Egypt</a></li>
-        <li><a href="<?php echo esc_url(home_url('/en/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/en/country/ae/')); ?>">Gold Prices in the UAE</a></li>
-        <li><a href="<?php echo esc_url(home_url('/en/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
+        <li><a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/eg/')); ?>">Gold Prices in Egypt</a></li>
+        <li><a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
+        <li><a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/ae/')); ?>">Gold Prices in the UAE</a></li>
+        <li><a href="<?php echo esc_url(home_url('/' . $goldnow_mlr_language . '/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
       </ul>
       <h3 style="margin-top:16px;">Follow Us</h3>
       <ul>
@@ -1876,7 +1876,7 @@ if (function_exists('goldnow_render_seo_article_shortcode')) {
         'terms-of-use'   => 'Terms of Use',
         'contact-us'     => 'Contact Us'
     ) as $page_slug => $page_label) {
-        $page_object = get_page_by_path('en/' . $page_slug);
+        $page_object = get_page_by_path($goldnow_mlr_language . '/' . $page_slug);
         if (!$page_object) {
             $page_object = get_page_by_path($page_slug);
         }
