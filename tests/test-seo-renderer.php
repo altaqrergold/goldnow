@@ -18,7 +18,7 @@ function trailingslashit($value) {
     return rtrim((string) $value, '/') . '/';
 }
 function number_format_i18n($value, $decimals = 0) {
-    return number_format((float) $value, (int) $decimals, '.', ',');
+    return number_format((float) $value, (int) $decimals, '.', '');
 }
 
 require_once dirname(__DIR__) . '/goldnow-seo-content.php';
