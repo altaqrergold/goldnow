@@ -329,7 +329,13 @@ if (!function_exists('goldnow_render_seo_article')) {
         }
         $html .= '</header>';
         $html .= '<section><h3>' . esc_html($topic[1]) . '</h3>';
-        $html .= '<p>' . esc_html($topic[2]) . '</p>';
+        $body_paragraphs = preg_split('/\\R\\s*\\R/u', trim((string) $topic[2]));
+        foreach ($body_paragraphs as $body_paragraph) {
+            $body_paragraph = trim($body_paragraph);
+            if ($body_paragraph !== '') {
+                $html .= '<p>' . esc_html($body_paragraph) . '</p>';
+            }
+        }
         if ($section === 'overview') {
             $snapshot_title = array('ar'=>'ملخص الأسعار المرجعية الحالية','en'=>'Current reference price snapshot','fr'=>'Résumé des cours de référence actuels','de'=>'Aktuelle Referenzpreise im Überblick','es'=>'Resumen de precios de referencia actuales','it'=>'Riepilogo dei prezzi di riferimento attuali','pt'=>'Resumo dos preços de referência atuais','ru'=>'Текущие справочные цены','hi'=>'वर्तमान संदर्भ कीमतों का सार','tr'=>'Güncel referans fiyat özeti');
             $snapshot_labels = array(
