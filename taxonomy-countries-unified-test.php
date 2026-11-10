@@ -1059,10 +1059,10 @@ endif;
     <section>
       <h3>Regional Gold Prices</h3>
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/en/country/eg/')); ?>">Gold Prices in Egypt</a></li>
-        <li><a href="<?php echo esc_url(home_url('/en/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/en/country/ae/')); ?>">Gold Prices in the UAE</a></li>
-        <li><a href="<?php echo esc_url(home_url('/en/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
+        <li><a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/eg/')) : home_url('/en/country/eg/'))); ?>">Gold Prices in Egypt</a></li>
+        <li><a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/sa/')) : home_url('/en/country/sa/'))); ?>">Gold Prices in Saudi Arabia</a></li>
+        <li><a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/ae/')) : home_url('/en/country/ae/'))); ?>">Gold Prices in the UAE</a></li>
+        <li><a href="<?php echo esc_url((function_exists('goldnow_mt_language_url') ? goldnow_mt_language_url($en_header_language, home_url('/country/kw/')) : home_url('/en/country/kw/'))); ?>">Gold Prices in Kuwait</a></li>
       </ul>
       <h3 style="margin-top:16px;">Follow Us</h3>
       <ul>
