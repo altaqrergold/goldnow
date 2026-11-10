@@ -153,16 +153,20 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
 .usd-cell { font-weight:bold; color:#2c2107; font-size:16px; direction:ltr; }
 .raw-gold-alert { background:#fff8e1; border:1px solid #dfb551; border-left:5px solid #b8860b; color:#5a4a1b; padding:15px; border-radius:4px; font-size:14px; line-height:1.6; box-shadow:0 2px 5px rgba(0,0,0,.05); }
 .alert-icon { font-size:18px; margin-right:5px; }
-.en-seo-article { max-width:900px; width:95%; box-sizing:border-box; margin:28px auto; padding:24px; color:#e5e7eb; background:#1f2126; border:1px solid #343944; border-left:5px solid <?php echo esc_attr($en_header_accent); ?>; border-radius:9px; line-height:1.85; font-size:15px; }
-.en-seo-article h2,.en-seo-article h3 { color:#fff; line-height:1.35; }
-.en-seo-article h2 { font-size:23px; margin:0 0 14px; }
-.en-seo-article h3 { font-size:18px; margin:22px 0 8px; }
-.en-seo-article p { margin:0 0 13px; }
-.en-seo-article a { color:<?php echo esc_attr($en_header_accent); ?>; text-decoration:none; font-weight:700; }
-.en-seo-article a:hover { text-decoration:underline; }
-.en-seo-article details { border-top:1px solid #3a3f4d; padding:11px 0; }
-.en-seo-article summary { cursor:pointer; color:#fff; font-weight:700; }
-.en-seo-article details p { margin:8px 0 0; color:#cbd5e1; }
+.en-seo-article, .goldnow-seo-article { max-width:900px; width:95%; box-sizing:border-box; margin:28px auto; padding:24px; color:#e5e7eb; background:#1f2126; border:1px solid #343944; border-left:5px solid <?php echo esc_attr($en_header_accent); ?>; border-radius:9px; line-height:1.85; font-size:15px; }
+.en-seo-article h2,.en-seo-article h3,.goldnow-seo-article h2,.goldnow-seo-article h3 { color:#fff; line-height:1.35; }
+.en-seo-article h2,.goldnow-seo-article h2 { font-size:23px; margin:0 0 14px; }
+.en-seo-article h3,.goldnow-seo-article h3 { font-size:18px; margin:22px 0 8px; }
+.en-seo-article p,.goldnow-seo-article p { margin:0 0 13px; }
+.en-seo-article a,.goldnow-seo-article a { color:<?php echo esc_attr($en_header_accent); ?>; text-decoration:none; font-weight:700; }
+.en-seo-article a:hover,.goldnow-seo-article a:hover { text-decoration:underline; }
+.en-seo-article details,.goldnow-seo-article details { border-top:1px solid #3a3f4d; padding:11px 0; }
+.en-seo-article summary,.goldnow-seo-article summary { cursor:pointer; color:#fff; font-weight:700; }
+.en-seo-article details p,.goldnow-seo-article details p { margin:8px 0 0; color:#cbd5e1; }
+.goldnow-seo-related { max-width:900px; width:95%; margin:-14px auto 24px; color:#cbd5e1; font-size:13px; line-height:1.8; }
+.goldnow-seo-related a { color:<?php echo esc_attr($en_header_accent); ?>; margin:0 4px; }
+.goldnow-seo-disclaimer { color:#9ca3af; font-size:12px; border-top:1px solid #3a3f4d; padding-top:12px; }
+
 .en-site-footer { margin-top:32px; background:#1a1a1a; color:#eee; border-top:4px solid <?php echo esc_attr($en_header_accent); ?>; }
 .en-site-footer-inner { max-width:1200px; width:95%; margin:0 auto; padding:28px 0 18px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; }
 .en-site-footer h3 { color:#e0b94f; font-size:16px; margin:0 0 12px; }
