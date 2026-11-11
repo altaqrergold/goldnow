@@ -78,14 +78,14 @@ function altaqrer_gold_de_output_translate($html) {
         "Gold Price" => "Goldpreis",
         "Gold Prices" => "Goldpreise",
         "home" => "Startseite",
-        "Gold Bar — 1 Gram" => "Goldbarren — 1 Gramm",
-        "Gold Bar — 2.5 Grams" => "Goldbarren — 2,5 Gramm",
-        "Gold Bar — 5 Grams" => "Goldbarren — 5 Gramm",
-        "Gold Bar — 10 Grams" => "Goldbarren — 10 Gramm",
-        "Gold Bar — 20 Grams" => "Goldbarren — 20 Gramm",
-        "Gold Bar — 50 Grams" => "Goldbarren — 50 Gramm",
-        "Gold Bar — 100 Grams" => "Goldbarren — 100 Gramm",
-        "Troy Ounce (31.1 g)" => "Feinunze (31,1 g)",
+        "Goldbarren — 1 g" => "Goldbarren — 1 Gramm",
+        "Goldbarren — 2,5 g" => "Goldbarren — 2,5 Gramm",
+        "Goldbarren — 5 g" => "Goldbarren — 5 Gramm",
+        "Goldbarren — 10 g" => "Goldbarren — 10 Gramm",
+        "Goldbarren — 20 g" => "Goldbarren — 20 Gramm",
+        "Goldbarren — 50 g" => "Goldbarren — 50 Gramm",
+        "Goldbarren — 100 g" => "Goldbarren — 100 Gramm",
+        "Feinunze (31,1 g)" => "Feinunze (31,1 g)",
         "24K Gold" => "24-karätiges Gold",
         "22K Gold" => "22-karätiges Gold",
         "21K Gold" => "21-karätiges Gold",
@@ -428,8 +428,8 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
 
     // Build a text-only translation dictionary for legacy shortcodes that still use Arabic labels.
     $shortcode_translation_map_de = array(
-        'ذهب عيار 24' => '24K Gold', 'ذهب عيار 22' => '22K Gold', 'ذهب عيار 21' => '21K Gold',
-        'ذهب عيار 18' => '18K Gold', 'ذهب عيار 14' => '14K Gold', 'ذهب عيار 12' => '12K Gold',
+        'ذهب عيار 24' => '24 Karat Gold', 'ذهب عيار 22' => '22 Karat Gold', 'ذهب عيار 21' => '21 Karat Gold',
+        'ذهب عيار 18' => '18 Karat Gold', 'ذهب عيار 14' => '14 Karat Gold', 'ذهب عيار 12' => '12 Karat Gold',
         'عيار 24' => '24K', 'عيار 22' => '22K', 'عيار 21' => '21K', 'عيار 18' => '18K', 'عيار 14' => '14K', 'عيار 12' => '12K',
         'جرام عيار 24' => '24K Gold Gram', 'جرام عيار 22' => '22K Gold Gram', 'جرام عيار 21' => '21K Gold Gram',
         'جرام عيار 18' => '18K Gold Gram', 'جرام عيار 14' => '14K Gold Gram',
@@ -458,7 +458,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
         }
     }
     if (is_array($carat_labels)) {
-        $carat_english = array('24k'=>'24K Gold','22k'=>'22K Gold','21k'=>'21K Gold','18k'=>'18K Gold','14k'=>'14K Gold','12k'=>'12K Gold','24k_oz'=>'Gold Ounce','gold_pound'=>'Goldmünze');
+        $carat_english = array('24k'=>'24 Karat Gold','22k'=>'22 Karat Gold','21k'=>'21 Karat Gold','18k'=>'18 Karat Gold','14k'=>'14 Karat Gold','12k'=>'12 Karat Gold','24k_oz'=>'Gold Ounce','gold_pound'=>'Goldmünze');
         foreach ($carat_labels as $key => $arabic_label) {
             if (isset($carat_english[$key]) && is_string($arabic_label) && $arabic_label !== '') {
                 $shortcode_translation_map_de[$arabic_label] = $carat_english[$key];
@@ -567,18 +567,18 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
       <div id="tab-buy-sell" class="gold-tab-pane" style="display:none; text-align: left; direction: ltr;">
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align:left !important; direction:ltr !important;">
             <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-            <img alt="Gold Bars and Coins in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; margin-right: 5px;">
-            Gold Bars and Coins in <?php echo esc_html($display_country_name); ?>
+            <img alt="Goldbarren und Goldmünzen in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; margin-right: 5px;">
+            Goldbarren und Goldmünzen in <?php echo esc_html($display_country_name); ?>
         </h2>
         <h3 class="col-12 p-0 mt-1" style="opacity: .7; font-size: 15px; text-align:left !important; direction:ltr !important;">
-          Latest gold bar and coin prices (excluding making charges)
+          Aktuelle Preise für Goldbarren und Goldmünzen (ohne Herstellungskosten)
         </h3>
 
         <?php if (function_exists('infi_get_latest_gold_prices')) { ?>
             <!-- A) Gold Bars Price Table -->
             <section id="sabika-price" class="gold-section mt-4">
                 <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
-                    <h4>Gold Bullion Bar Prices in <?php echo esc_html($display_country_name); ?></h4>
+                    <h4>Preise für Goldbarren in <?php echo esc_html($display_country_name); ?></h4>
                     <span class="date-badge" style="background: #262930; padding: 4px 10px; border-radius: 4px; font-size: 13px;"><?php echo esc_html($today); ?></span>
                 </div>
                 <div class="table-responsive">
@@ -587,20 +587,20 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
                             <tr>
                                 <th>Gewicht / Typ</th>
                                 <th>Preis (<?php echo $currency_label; ?>)</th>
-                                <th>Price (USD)</th>
+                                <th>Preis (USD)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $weights = [
-                                ['weight' => 1, 'name' => 'Gold Bar — 1 Gram'],
-                                ['weight' => 2.5, 'name' => 'Gold Bar — 2.5 Grams'],
-                                ['weight' => 5, 'name' => 'Gold Bar — 5 Grams'],
-                                ['weight' => 10, 'name' => 'Gold Bar — 10 Grams'],
-                                ['weight' => 20, 'name' => 'Gold Bar — 20 Grams'],
-                                ['weight' => 31.1, 'name' => 'Troy Ounce (31.1 g)'],
-                                ['weight' => 50, 'name' => 'Gold Bar — 50 Grams'],
-                                ['weight' => 100, 'name' => 'Gold Bar — 100 Grams'],
+                                ['weight' => 1, 'name' => 'Goldbarren — 1 g'],
+                                ['weight' => 2.5, 'name' => 'Goldbarren — 2,5 g'],
+                                ['weight' => 5, 'name' => 'Goldbarren — 5 g'],
+                                ['weight' => 10, 'name' => 'Goldbarren — 10 g'],
+                                ['weight' => 20, 'name' => 'Goldbarren — 20 g'],
+                                ['weight' => 31.1, 'name' => 'Feinunze (31,1 g)'],
+                                ['weight' => 50, 'name' => 'Goldbarren — 50 g'],
+                                ['weight' => 100, 'name' => 'Goldbarren — 100 g'],
                             ];
                             
                             foreach ($weights as $bar) {
@@ -627,7 +627,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
 
             <section id="gold-pounds-price" class="gold-section mt-4">
                 <div class="section-header">
-                    <h4>Gold Coin Prices in <?php echo esc_html($display_country_name); ?></h4>
+                    <h4>Preise für Goldmünzen in <?php echo esc_html($display_country_name); ?></h4>
                 </div>
                 <div class="table-responsive">
                     <table class="gold-table" style="width: 100%; text-align: left; direction: ltr;">
@@ -635,7 +635,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
                             <tr>
                                 <th>Münzfeinheit</th>
                                 <th>Preis (<?php echo $currency_label; ?>)</th>
-                                <th>Price (USD)</th>
+                                <th>Preis (USD)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -653,7 +653,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
                                     $carat_num = str_replace('k', '', $carat);
                                 ?>
                                 <tr>
-                                    <td class="font-bold">8g Gold Coin (<?php echo $carat_num; ?>K)</td>
+                                    <td class="font-bold">8-g-Goldmünze (<?php echo $carat_num; ?> Karat)</td>
                                     <td class="price-cell"><?php echo number_format($pound_price_currency, 2); ?></td>
                                     <td class="usd-cell"><?php echo number_format($pound_price_usd, 2); ?> $</td>
                                 </tr>
@@ -668,7 +668,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
 
             <div class="raw-gold-alert mt-4" style="background: #1f2126; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb301;">
                 <span class="alert-icon">⚠️</span>
-                <strong>Wichtig:</strong> The prices shown above for bars and coins represent <u>gold value only</u>; they exclude making charges, hallmarking fees, and taxes.
+                <strong>Wichtig:</strong> The prices shown above for bars and coins represent Die oben angezeigten Preise für Barren und Münzen entsprechen ausschließlich dem Goldwert; Herstellungskosten, Gebühren für die Punzierung und Steuern sind nicht enthalten.
             </div>
 
         <?php } else { ?>
@@ -701,8 +701,8 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
 function altaqrerTranslateEnglishIndicator(root) {
     if (!root) return;
     const translations = {
-        'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
-        'عيار 18': '18K Gold', 'عيار 14': '14K Gold', 'عيار 12': '12K Gold',
+        'عيار 24': '24 Karat Gold', 'عيار 22': '22 Karat Gold', 'عيار 21': '21 Karat Gold',
+        'عيار 18': '18 Karat Gold', 'عيار 14': '14 Karat Gold', 'عيار 12': '12 Karat Gold',
         'الأونصة العالمية': 'Global Gold Ounce (USD)',
         'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
         'جنيه الذهب': 'Goldmünze', 'سعر الدولار': 'US Dollar Exchange Rate',
@@ -983,14 +983,14 @@ if (!empty($gold_view)) {
                 <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">🪙 Gold Bullion Bar Prices Today in <?php echo esc_html($display_country_name); ?> (Pure 24K Gold):</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 1 Gram:</strong> <span style="color: #ffb301;"><strong><?php echo number_format($price_24k_local * 1, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 1, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 2.5 Grams:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 2.5, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 2.5, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 5 Grams:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 5, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 5, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 10 Grams:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 10, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 10, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 20 Grams:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 20, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 20, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 1 g:</strong> <span style="color: #ffb301;"><strong><?php echo number_format($price_24k_local * 1, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 1, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 2,5 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 2.5, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 2.5, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 5 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 5, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 5, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 10 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 10, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 10, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 20 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 20, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 20, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Troy Ounce (31.1 Grams):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($ounce_price_usd, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 50 Grams:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 50, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 50, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Gold Bar — 100 Grams:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 100, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 100, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 50 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 50, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 50, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>Goldbarren — 100 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 100, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Value: <?php echo number_format($price_24k_usd * 100, 2); ?> USD</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
                     This tracker provides structural tracking of <strong>Gold bar prices today</strong> composed exclusively of 999.9 pure 24K gold. Gold bullion bar accumulation remains a primary hedge for wealth conservation and long-term liquidity protection inside <strong><?php echo esc_html($display_country_name); ?></strong> against macroeconomic inflation.
