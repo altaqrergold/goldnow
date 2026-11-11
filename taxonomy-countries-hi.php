@@ -537,7 +537,7 @@ if (!function_exists('altaqrer_gold_hi_translate_shortcode_html')) {
         <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="<?php echo esc_html($display_country_name); ?> में सोने की मौजूदा कीमतें" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
         if ( $gold_view == '24k' ) { echo esc_html($display_country_name) . ' में आज 24 कैरेट सोने की कीमत'; }
         elseif ( $gold_view == '22k' ) { echo esc_html($display_country_name) . ' में आज 22 कैरेट सोने की कीमत'; }
@@ -697,7 +697,7 @@ if (!function_exists('altaqrer_gold_hi_translate_shortcode_html')) {
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
-        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.</p>
+        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">चार्ट में बाज़ार के अनुमानित उतार-चढ़ाव दिखाए गए हैं। विनिमय दरों, प्रीमियम और बाज़ार की स्थितियों के कारण स्थानीय कीमतें अलग हो सकती हैं।</p>
       </div>
 
     </div>
@@ -758,7 +758,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">सोने के मूल्य चार्ट लोड हो रहे हैं…</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateEnglishIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">चार्ट का डेटा लोड नहीं हो सका। कृपया फिर से प्रयास करें।</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
@@ -857,7 +857,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 के मुकाबले लाइव विनिमय दरें <?php echo esc_html($currency_label); ?> के मुकाबले <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 के मुकाबले लाइव विनिमय दरें <?php echo esc_html($currency_label); ?> के मुकाबले <?php echo esc_html($display_country_name); ?> <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -971,7 +971,7 @@ if (!empty($gold_view)) {
         <div class="altaqrer-dynamic-inner-content">
             
             <?php if ($gold_view == 'gold-index') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 में लाइव गोल्ड मार्केट इंडेक्स <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 में लाइव गोल्ड मार्केट इंडेक्स <?php echo esc_html($display_country_name); ?> <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>शुद्ध 24 कैरेट सोना:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd, 2); ?> USD</small></div>
@@ -1145,23 +1145,23 @@ if (!empty($gold_view)) {
 ?>
     <h2 id="en-seo-title"><?php echo esc_html($hi_karat); ?> आज सोने की कीमत <?php echo esc_html($display_country_name); ?> प्रति ग्राम</h2>
     <p>नवीनतम सोने की कीमत देखें <strong><?php echo esc_html($hi_karat); ?> में आज सोने की कीमत <?php echo esc_html($display_country_name); ?></strong> ऊपर दिखाए गए लाइव संदर्भ के अनुसार। वर्तमान अनुमानित मूल्य है <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> प्रति ग्राम, लगभग बराबर <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. ये आंकड़े नवीनतम उपलब्ध 24K संदर्भ मूल्य और शुद्धता अनुपात के आधार पर गणना किए गए हैं: <?php echo esc_html($hi_karat); ?> सोने और साइट द्वारा उपयोग की गई नवीनतम उपलब्ध मुद्रा विनिमय दर से।</p>
-    <h3>सोने का <?php echo esc_html($hi_karat); ?> क्या अर्थ है?</h3>
+    <h3><?php echo esc_html($hi_karat); ?> सोने का क्या अर्थ है?</h3>
     <p>कैरेट मिश्रधातु में शुद्ध सोने का अनुपात बताता है। 24K को शुद्ध सोने का मानक माना जाता है, जबकि कम कैरेट में अन्य धातुओं का हिस्सा अधिक होता है। <?php echo esc_html($hi_karat); ?> इसलिए आभूषण के खुदरा मूल्य के बजाय उसमें मौजूद सोने का मूल्य दर्शाता है। अंतिम दुकान मूल्य में कारीगरी, विक्रेता का मार्जिन, कर और अन्य स्थानीय शुल्क भी शामिल हो सकते हैं।</p>
     <h3>स्थानीय और USD कीमतों को कैसे समझें</h3>
-    <p>स्थानीय मुद्रा का मूल्य संदर्भ कीमत की तुलना करने में मदद करता है: <?php echo esc_html($display_country_name); ?>,; USD समकक्ष समान सोने की मात्रा की अंतरराष्ट्रीय कीमतों से तुलना आसान बनाता है। वैश्विक सोने की कीमत, विनिमय दर या स्थानीय बाजार की स्थितियों के कारण स्थानीय कीमतें बदल सकती हैं। ये केवल संदर्भ मूल्य हैं, खरीद या बिक्री की गारंटी नहीं।</p>
+    <p>स्थानीय मुद्रा का मूल्य संदर्भ कीमत की तुलना करने में मदद करता है: <?php echo esc_html($display_country_name); ?>; USD समकक्ष समान सोने की मात्रा की अंतरराष्ट्रीय कीमतों से तुलना आसान बनाता है। वैश्विक सोने की कीमत, विनिमय दर या स्थानीय बाजार की स्थितियों के कारण स्थानीय कीमतें बदल सकती हैं। ये केवल संदर्भ मूल्य हैं, खरीद या बिक्री की गारंटी नहीं।</p>
     <h3>संबंधित सोने की कीमतें</h3>
-    <p>इस कीमत की तुलना करें: <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24K सोना</a>, <a href="<?php echo esc_url($hi_seo_base . '21k/'); ?>">21K सोना</a>, <a href="<?php echo esc_url($hi_seo_base . 'gold-bars/'); ?>">सोने की छड़ों की कीमतें</a>, और <a href="<?php echo esc_url($hi_seo_base . 'gold-index/'); ?>">सोने का लाइव बाजार सूचकांक</a> बाजार की व्यापक जानकारी के लिए।</p>
+    <p>इस कीमत की तुलना करें: <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24 कैरेट सोना</a>, <a href="<?php echo esc_url($hi_seo_base . '21k/'); ?>">21 कैरेट सोना</a>, <a href="<?php echo esc_url($hi_seo_base . 'gold-bars/'); ?>">सोने की छड़ों की कीमतें</a>, और <a href="<?php echo esc_url($hi_seo_base . 'gold-index/'); ?>">सोने का लाइव बाजार सूचकांक</a> बाजार की व्यापक जानकारी के लिए।</p>
     <h3>अक्सर पूछे जाने वाले प्रश्न</h3>
-    <details><summary>क्या दिखाई गई <?php echo esc_html($hi_karat); ?> आभूषण की दुकान का अंतिम मूल्य है?</summary><p>नहीं। यह कच्चे सोने का अनुमानित संदर्भ मूल्य है; इसमें कारीगरी, विक्रेता का मार्जिन, कर या अन्य शुल्क शामिल नहीं हैं।</p></details>
+    <details><summary>क्या <?php echo esc_html($hi_karat); ?> सोने के आभूषण की दिखाई गई कीमत दुकान में अंतिम कीमत है?</summary><p>नहीं। यह कच्चे सोने का अनुमानित संदर्भ मूल्य है; इसमें कारीगरी, विक्रेता का मार्जिन, कर या अन्य शुल्क शामिल नहीं हैं।</p></details>
     <details><summary>USD समकक्ष स्थानीय कीमत से अलग क्यों है?</summary><p>दोनों कीमतें अलग-अलग मुद्राओं में दिखाई जाती हैं। स्थानीय मुद्रा में कीमत की गणना साइट पर उपलब्ध नवीनतम विनिमय दर के आधार पर की जाती है, जबकि USD में दिखाई गई राशि उसी सोने की कीमत अमेरिकी डॉलर में दर्शाती है।</p></details>
 <?php elseif ($gold_view === 'ounce') : ?>
     <h2 id="en-seo-title">आज सोने की वैश्विक औंस कीमत USD में</h2>
-    <p>इस पृष्ठ पर सोने की अंतरराष्ट्रीय औंस संदर्भ कीमत है <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> एक ट्रॉय औंस के लिए, जिसमें लगभग 31.1 ग्राम 24K सोना होता है। यह <strong>वैश्विक स्पॉट गोल्ड मानक</strong>, अमेरिकी डॉलर में उद्धृत है। इसे किसी देश की स्थानीय मुद्रा में औंस कीमत के रूप में नहीं दिखाया जाता; स्थानीय ग्राम कीमतें चुने गए देश के लिए अलग से बदली जाती हैं।</p>
+    <p>इस पृष्ठ पर सोने की अंतरराष्ट्रीय औंस संदर्भ कीमत है <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> एक ट्रॉय औंस के लिए, जिसमें लगभग 31.1 ग्राम 24 कैरेट सोना होता है। यह <strong>वैश्विक स्पॉट गोल्ड मानक</strong>, अमेरिकी डॉलर में उद्धृत है। इसे किसी देश की स्थानीय मुद्रा में औंस कीमत के रूप में नहीं दिखाया जाता; स्थानीय ग्राम कीमतें चुने गए देश के लिए अलग से बदली जाती हैं।</p>
     <h3>वैश्विक सोने की औंस कीमत क्यों महत्वपूर्ण है</h3>
     <p>अंतरराष्ट्रीय बाजारों में सोने का भाव आमतौर पर ट्रॉय औंस के आधार पर तय होता है। व्यापारी, रिफाइनरी, वित्तीय सेवाएँ और बुलियन डीलर विभिन्न बाजारों में सोने के मूल्य की तुलना के लिए इस मानक का उपयोग करते हैं। अमेरिकी डॉलर, ब्याज दरों की अपेक्षाएँ, मुद्रास्फीति का अनुमान, केंद्रीय बैंकों की गतिविधियाँ और निवेशकों की मांग अंतरराष्ट्रीय कीमत को प्रभावित कर सकती हैं। ये सामान्य बाजार कारक हैं, आज की चाल का निश्चित कारण नहीं।</p>
     <h3>वैश्विक औंस से स्थानीय ग्राम कीमत तक</h3>
     <p>सरल तुलना के लिए एक ट्रॉय औंस में लगभग 31.1 ग्राम होते हैं। स्थानीय प्रति ग्राम कीमत चुनी गई मुद्रा रूपांतरण दर और स्थानीय बाजार की स्थितियों पर भी निर्भर करती है। ऊपर दी गई वैश्विक औंस कीमत USD में ही रहती है ताकि अंतरराष्ट्रीय भावों से तुलना की जा सके।</p>
-    <p>आगे देखें: <a href="<?php echo esc_url($hi_seo_base); ?>">में सोने की कीमत <?php echo esc_html($display_country_name); ?></a>, देखें <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24K सोना per gram</a>, या खोलें <a href="<?php echo esc_url($hi_seo_base . 'gold-index/'); ?>">गोल्ड मार्केट इंडेक्स</a>.</p>
+    <p>आगे देखें: <a href="<?php echo esc_url($hi_seo_base); ?>">में सोने की कीमत <?php echo esc_html($display_country_name); ?></a>, देखें <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24 कैरेट सोना per gram</a>, या खोलें <a href="<?php echo esc_url($hi_seo_base . 'gold-index/'); ?>">गोल्ड मार्केट इंडेक्स</a>.</p>
     <h3>अक्सर पूछे जाने वाले प्रश्न</h3>
     <details><summary>एक ट्रॉय औंस सोने में कितने ग्राम होते हैं?</summary><p>एक ट्रॉय औंस लगभग 31.1035 ग्राम का होता है। इस पृष्ठ की संदर्भ गणना में 31.1 ग्राम का उपयोग किया गया है।</p></details>
     <details><summary>क्या इस औंस कीमत को स्थानीय मुद्रा में बदला गया है?</summary><p>नहीं। यह पृष्ठ केवल USD में अंतरराष्ट्रीय सोने की औंस कीमत दिखाता है। जहाँ लागू हो, स्थानीय मुद्रा के मूल्य देश की सोने की कीमत तालिकाओं में अलग दिखाए जाते हैं।</p></details>
@@ -1170,7 +1170,7 @@ if (!empty($gold_view)) {
     <p>इसका संदर्भ मूल्य देखें: <strong>8 ग्राम सोने का सिक्का</strong> in <?php echo esc_html($display_country_name); ?>। मौजूदा प्रति ग्राम कीमतों के आधार पर 21K सिक्के का अनुमानित मूल्य <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (about <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). पृष्ठ यह भी तुलना करता है: 22K and 24K values for the same 8-gram weight so that the effect of purity is clear.</p>
     <h3>8 ग्राम सिक्के का मूल्य कैसे निकाला जाता है</h3>
     <p>गणना में संबंधित प्रति ग्राम सोने के मूल्य को 8 ग्राम से गुणा किया जाता है। सामान्य 21K संदर्भ के लिए 21K प्रति ग्राम कीमत को आठ से गुणा किया जाता है। 22K और 24K तुलना में उसी वजन पर उनकी संबंधित प्रति ग्राम कीमतें उपयोग होती हैं। इससे साइट की मौजूदा 8 ग्राम सिक्का गणना बनी रहती है।</p>
-    <p>सिक्के की वास्तविक कीमत ढलाई, स्थिति, डिज़ाइन, दुर्लभता, विक्रेता प्रीमियम और स्थानीय करों के कारण अलग हो सकती है। यहाँ दिया गया मूल्य सोने की मात्रा का संदर्भ है, सुनिश्चित लेन-देन मूल्य नहीं। तुलना करें: <a href="<?php echo esc_url($hi_seo_base . '21k/'); ?>">21K सोना gram price</a>, <a href="<?php echo esc_url($hi_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($hi_seo_base . 'gold-bars/'); ?>">सोने की छड़ों की कीमतें</a>.</p>
+    <p>सिक्के की वास्तविक कीमत ढलाई, स्थिति, डिज़ाइन, दुर्लभता, विक्रेता प्रीमियम और स्थानीय करों के कारण अलग हो सकती है। यहाँ दिया गया मूल्य सोने की मात्रा का संदर्भ है, सुनिश्चित लेन-देन मूल्य नहीं। तुलना करें: <a href="<?php echo esc_url($hi_seo_base . '21k/'); ?>">21 कैरेट सोना gram price</a>, <a href="<?php echo esc_url($hi_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($hi_seo_base . 'gold-bars/'); ?>">सोने की छड़ों की कीमतें</a>.</p>
     <h3>अक्सर पूछे जाने वाले प्रश्न</h3>
     <details><summary>सोने के सिक्के की गणना में कितना वजन लिया जाता है?</summary><p>यह पृष्ठ सोने के सिक्के की तुलना के लिए साइट की मानक 8 ग्राम गणना बनाए रखता है।</p></details>
     <details><summary>क्या दिखाई गई कीमत में विक्रेता का प्रीमियम शामिल है?</summary><p>नहीं। इसमें केवल सोने की मात्रा का अनुमान है; ढलाई लागत, विक्रेता प्रीमियम, कारीगरी या कर शामिल नहीं हैं।</p></details>
@@ -1179,7 +1179,7 @@ if (!empty($gold_view)) {
     <p>सोने की छड़ों का मूल्य आमतौर पर 24K संदर्भ दर से तय होता है। वर्तमान 24K संदर्भ मूल्य <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?> per gram</strong> (approximately <strong><?php echo number_format($price_24k_usd, 2); ?> USD</strong>), a 10-gram bar has an indicative gold-content value of <strong><?php echo number_format($price_24k_local * 10, 2); ?> <?php echo esc_html($currency_label); ?></strong> जबकि 100 ग्राम की छड़ का मूल्य लगभग <strong><?php echo number_format($price_24k_local * 100, 2); ?> <?php echo esc_html($currency_label); ?></strong>। ऊपर दी गई तालिका में त्वरित तुलना के लिए अन्य वजन भी हैं।</p>
     <h3>सोने की छड़ों के वजन की तुलना कैसे करें</h3>
     <p>सरल अनुमान के लिए 24K प्रति ग्राम संदर्भ कीमत को छड़ के वजन से गुणा करें। यह राशि निर्माण प्रीमियम, जांच या प्रमाणन शुल्क, विक्रेता मार्जिन, डिलीवरी लागत और कर से पहले सोने का संदर्भ मूल्य है। इसलिए अंतिम बिक्री मूल्य यहाँ दिखाई गई गणना से अधिक हो सकता है।</p>
-    <p>लेन-देन से पहले छड़ की शुद्धता, सटीक वजन, प्रमाणन, निर्माता और विक्रेता की विश्वसनीयता जाँचें। <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24K सोना price</a> प्रति ग्राम मुख्य संदर्भ दर है, जबकि <a href="<?php echo esc_url($hi_seo_base . 'ounce/'); ?>">global gold ounce</a> USD में अंतरराष्ट्रीय तुलना देता है।</p>
+    <p>लेन-देन से पहले छड़ की शुद्धता, सटीक वजन, प्रमाणन, निर्माता और विक्रेता की विश्वसनीयता जाँचें। <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24 कैरेट सोना price</a> प्रति ग्राम मुख्य संदर्भ दर है, जबकि <a href="<?php echo esc_url($hi_seo_base . 'ounce/'); ?>">global gold ounce</a> USD में अंतरराष्ट्रीय तुलना देता है।</p>
     <h3>अक्सर पूछे जाने वाले प्रश्न</h3>
     <details><summary>क्या सोने की छड़ों की कीमत में निर्माण शुल्क शामिल हैं?</summary><p>नहीं। तालिका केवल सोने का मूल्य बताती है; निर्माण, प्रमाणन, विक्रेता प्रीमियम और कर शामिल नहीं हैं।</p></details>
     <details><summary>एक ही वजन की दो छड़ों की कीमत अलग क्यों हो सकती है?</summary><p>ब्रांड, प्रमाणन, निर्माण लागत, विक्रेता प्रीमियम, उपलब्धता और स्थानीय कर अंतिम कीमत को प्रभावित कर सकते हैं।</p></details>
@@ -1208,7 +1208,7 @@ if (!empty($gold_view)) {
     <p>सोने की कीमतें वैश्विक स्पॉट बाजार, मुद्रा उतार-चढ़ाव, ब्याज दरों की अपेक्षाओं, मुद्रास्फीति की चिंताओं और निवेश मांग में बदलाव से प्रभावित हो सकती हैं। एक समय का मूल्य रुझान नहीं बताता, इसलिए निष्कर्ष निकालने से पहले समय के साथ अपडेट की तुलना करें। देखें: <a href="<?php echo esc_url($hi_seo_base . '21k/'); ?>">21K कीमत पृष्ठ</a>, <a href="<?php echo esc_url($hi_seo_base . '24k/'); ?>">24K कीमत पृष्ठ</a>, and <a href="<?php echo esc_url($hi_seo_base . 'ounce/'); ?>">वैश्विक औंस पृष्ठ</a>.</p>
     <h3>अक्सर पूछे जाने वाले प्रश्न</h3>
     <details><summary>क्या इंडेक्स निश्चित बाजार व्यापार मूल्य दिखाता है?</summary><p>नहीं। यह साइट के नवीनतम उपलब्ध डेटा पर आधारित जानकारीपूर्ण संदर्भ है। वास्तविक लेन-देन कीमतों में स्थानीय प्रीमियम और शुल्क शामिल हो सकते हैं।</p></details>
-    <details><summary>अलग-अलग कैरेट की कीमतें अलग क्यों होती हैं?</summary><p>हर कैरेट में शुद्ध सोने का अनुपात अलग होता है। कम शुद्धता वाली मिश्रधातु का प्रति ग्राम कच्चे सोने का मूल्य 24K से कम होता है, अन्य लागतों से पहले।</p></details>
+    <details><summary>अलग-अलग कैरेट की कीमतें अलग क्यों होती हैं?</summary><p>हर कैरेट में शुद्ध सोने का अनुपात अलग होता है। कम शुद्धता वाली मिश्रधातु का प्रति ग्राम कच्चे सोने का मूल्य 24 कैरेट सोने से कम होता है, अन्य लागतों से पहले।</p></details>
 <?php elseif ($gold_view === 'usd') : ?>
     <h2 id="en-seo-title">USD विनिमय दर और मुद्रा रूपांतरण <?php echo esc_html($display_country_name); ?></h2>
     <p>इस पृष्ठ पर उपयोग की गई नवीनतम संदर्भ दर के अनुसार एक अमेरिकी डॉलर का मूल्य लगभग <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>। सोना खरीदने वालों के लिए विनिमय दरें महत्वपूर्ण हैं, क्योंकि अंतरराष्ट्रीय बुलियन कीमतें आमतौर पर USD में होती हैं। डॉलर के मुकाबले स्थानीय मुद्रा बदलने पर सोने का स्थानीय मूल्य बदल सकता है, भले ही अंतरराष्ट्रीय USD कीमत स्थिर रहे।</p>
