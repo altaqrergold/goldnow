@@ -440,6 +440,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         'عيار 24' => '24K', 'عيار 22' => '22K', 'عيار 21' => '21K', 'عيار 18' => '18K', 'عيار 14' => '14K', 'عيار 12' => '12K',
         'جرام عيار 24' => 'Oro de 24 quilates por gramo', 'جرام عيار 22' => 'Oro de 22 quilates por gramo', 'جرام عيار 21' => 'Oro de 21 quilates por gramo',
         'جرام عيار 18' => 'Oro de 18 quilates por gramo', 'جرام عيار 14' => 'Oro de 14 quilates por gramo',
+        'جرام عيار 12' => 'Oro de 12 quilates por gramo',
         'الأونصة العالمية' => 'Onza mundial de oro', 'أونصة الذهب العالمية' => 'Onza mundial de oro',
         'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
         'جنيه الذهب' => 'Moneda de oro', 'الجنيه الذهب' => 'Moneda de oro', 'سعر الجنيه الذهب' => 'Gold Coin Price',
