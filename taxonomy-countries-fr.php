@@ -1,4 +1,5 @@
 <?php
+/* Template Name: Français — Prix de l’or par pays */
 /**
  * En-tête français autonome du modèle de prix de l’or par pays.
  * L’en-tête et la navigation du thème arabe ne sont pas chargés ici.
@@ -645,7 +646,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
         </section>
 	  </div>
 		
-      <!-- 2. Gold Bullion Bars and Coins Table Pane -->
+      <!-- 2. Tableau des lingots et pièces d’or -->
       <div id="tab-buy-sell" class="gold-tab-pane" style="display:none; text-align: left; direction: ltr;">
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align:left !important; direction:ltr !important;">
             <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
@@ -973,7 +974,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
                     <div><img alt="Drapeau de Qatar" src="https://flagcdn.com/16x12/qa.png" style="vertical-align:middle; margin-right: 5px;"> <strong>Riyal qatari :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($local_currency_per_qar, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></div>
                 <?php endif; ?>
                 <?php if ($country_currency !== 'JPY' && $local_currency_per_jpy > 0) : ?>
-                    <div><img alt="Drapeau de Japan" src="https://flagcdn.com/16x12/jp.png" style="vertical-align:middle; margin-right: 5px;"> <strong>Yen japonais :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($local_currency_per_jpy, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></div>
+                    <div><img alt="Drapeau du Japon" src="https://flagcdn.com/16x12/jp.png" style="vertical-align:middle; margin-right: 5px;"> <strong>Yen japonais :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($local_currency_per_jpy, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></div>
                 <?php endif; ?>
             </div>
         </div>
@@ -1125,7 +1126,7 @@ if (!empty($gold_view)) {
                             <div><img alt="Drapeau de QA" src="https://flagcdn.com/16x12/qa.png" style="vertical-align:middle; margin-right: 5px;"> <strong>Riyal qatari :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($local_currency_per_qar, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></div>
                         <?php endif; ?>
                         <?php if ($country_currency !== 'JPY' && $local_currency_per_jpy > 0) : ?>
-                            <div><img alt="Drapeau de Japan" src="https://flagcdn.com/16x12/jp.png" style="vertical-align:middle; margin-right: 5px;"> <strong>Yen japonais :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($local_currency_per_jpy, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></div>
+                            <div><img alt="Drapeau du Japon" src="https://flagcdn.com/16x12/jp.png" style="vertical-align:middle; margin-right: 5px;"> <strong>Yen japonais :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($local_currency_per_jpy, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
