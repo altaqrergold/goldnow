@@ -1227,7 +1227,7 @@ if (!empty($gold_view)) {
   <div class="it-site-footer-inner">
     <section>
       <h3>Informazioni su AlTaqrer Gold</h3>
-      <p><strong>AlTaqrer Gold</strong> helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes.</p>
+      <p><strong>AlTaqrer Gold</strong> aiuta i lettori a seguire i prezzi dell’oro nei mercati regionali e internazionali. Consulta i prezzi indicativi aggiornati dell’oro a 24, 22, 21, 18 e 14 carati, confronta i valori dei lingotti e delle monete d’oro da 8 grammi e segui la quotazione internazionale dell’oncia d’oro in USD. I prezzi sono forniti a scopo informativo e di confronto; il prezzo finale al dettaglio può includere costi di lavorazione, premi e imposte.</p>
     </section>
     <section>
       <h3>Sezioni dei prezzi dell’oro</h3>
