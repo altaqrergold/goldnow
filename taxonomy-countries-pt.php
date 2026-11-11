@@ -688,7 +688,7 @@ if (!function_exists('altaqrer_gold_pt_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Gold Price Chart in <?php echo esc_html($display_country_name); ?>
+          Gráfico do preço do ouro em <?php echo esc_html($display_country_name); ?>
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
@@ -1141,9 +1141,9 @@ if (!empty($gold_view)) {
 <?php if (isset($pt_seo_price_map[$gold_view])) :
     $en_active_price_local = $pt_seo_price_map[$gold_view][0];
     $en_active_price_usd = $pt_seo_price_map[$gold_view][1];
-    $pt_karat = strtoupper($gold_view);
+    $pt_karat = str_replace(['24K','22K','21K','18K','14K'], ['24 quilates','22 quilates','21 quilates','18 quilates','14 quilates'], strtoupper($gold_view));
 ?>
-    <h2 id="en-seo-title"><?php echo esc_html($pt_karat); ?> Preço do ouro hoje em <?php echo esc_html($display_country_name); ?> por grama</h2>
+    <h2 id="en-seo-title">Preço do ouro de <?php echo esc_html($pt_karat); ?> hoje em <?php echo esc_html($display_country_name); ?> por grama</h2>
     <p>Acompanhe o preço atual do ouro de <strong><?php echo esc_html($pt_karat); ?> preço do ouro hoje em <?php echo esc_html($display_country_name); ?></strong> com a referência em tempo real exibida acima. O valor indicativo atual é <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> por grama, equivalente a aproximadamente <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Esses valores são calculados com base na cotação de referência mais recente do ouro 24K e no fator de pureza de <?php echo esc_html($pt_karat); ?> e a conversão cambial mais recente disponível no site.</p>
     <h3>O que significa ouro <?php echo esc_html($pt_karat); ?>?</h3>
     <p>A quilatagem indica a proporção de ouro puro em uma liga. O 24K é a referência de ouro puro, enquanto quilates menores contêm uma proporção maior de outros metais. O valor do ouro <?php echo esc_html($pt_karat); ?> reflete o teor de ouro, não o preço final de venda de uma joia. O preço na loja também pode incluir mão de obra, margens do vendedor, impostos e outras taxas locais não incluídas no valor bruto exibido aqui.</p>
