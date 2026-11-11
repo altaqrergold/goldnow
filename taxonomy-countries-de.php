@@ -97,6 +97,24 @@ function altaqrer_gold_de_output_translate($html) {
         "Prices" => "Preise",
         "Changes" => "Änderungen",
         "No." => "Nein."
+        "Why the global gold ounce matters" => "Warum der weltweite Goldpreis je Unze wichtig ist",
+        "From the global ounce to a local gram price" => "Vom weltweiten Unzenpreis zum lokalen Grammpreis",
+        "Gold Price Charts" => "Goldpreisdiagramme",
+        "Track the international gold spot price in US dollars (USD) using the global XAU/USD market chart. This is a worldwide benchmark, not a country-specific retail price." => "Verfolgen Sie den internationalen Gold-Spotpreis in US-Dollar (USD) anhand des weltweiten XAU/USD-Marktdiagramms. Dies ist ein globaler Referenzwert und kein landesspezifischer Einzelhandelspreis.",
+        "How many grams are in a gold troy ounce?" => "Wie viele Gramm enthält eine Feinunze Gold?",
+        "Is this ounce price converted to local currency?" => "Wird dieser Unzenpreis in die Landeswährung umgerechnet?",
+        "How to compare gold bullion bar weights" => "So vergleichen Sie die Gewichte von Goldbarren",
+        "What the gold index helps you compare" => "Was Sie mit dem Goldindex vergleichen können",
+        "How currency movements affect local gold prices" => "Wie Währungsbewegungen lokale Goldpreise beeinflussen",
+        "Live Gold Market Index and Karat Prices in " => "Live-Goldmarktindex und Karatpreise in ",
+        "Global Gold Ounce Price Today in USD" => "Weltweiter Goldpreis je Unze heute in USD",
+        "8-Gram Gold Coin Price Today in " => "Preis einer 8-Gramm-Goldmünze heute in ",
+        "Gold Bar Prices Today in " => "Goldbarrenpreise heute in ",
+        "USD Exchange Rate and Currency Conversion in " => "USD-Wechselkurs und Währungsumrechnung in ",
+        "Gold Prices in Egypt" => "Goldpreise in Ägypten",
+        "Gold Prices in Saudi Arabia" => "Goldpreise in Saudi-Arabien",
+        "Gold Prices in the UAE" => "Goldpreise in den Vereinigten Arabischen Emiraten",
+        "Gold Prices in Kuwait" => "Goldpreise in Kuwait",
     );
 
     // Match complete English terms/phrases only; never replace a fragment inside a larger word.
