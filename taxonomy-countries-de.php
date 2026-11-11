@@ -430,7 +430,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
     $shortcode_translation_map_de = array(
         'ذهب عيار 24' => '24 Karat Gold', 'ذهب عيار 22' => '22 Karat Gold', 'ذهب عيار 21' => '21 Karat Gold',
         'ذهب عيار 18' => '18 Karat Gold', 'ذهب عيار 14' => '14 Karat Gold', 'ذهب عيار 12' => '12 Karat Gold',
-        'عيار 24' => '24K', 'عيار 22' => '22K', 'عيار 21' => '21K', 'عيار 18' => '18K', 'عيار 14' => '14K', 'عيار 12' => '12K',
+        'عيار 24' => '24 Karat Gold', 'عيار 22' => '22 Karat Gold', 'عيار 21' => '21 Karat Gold', 'عيار 18' => '18 Karat Gold', 'عيار 14' => '14 Karat Gold', 'عيار 12' => '12 Karat Gold',
         'جرام عيار 24' => '24-karätiges Gold pro Gramm', 'جرام عيار 22' => '22-karätiges Gold pro Gramm', 'جرام عيار 21' => '21-karätiges Gold pro Gramm',
         'جرام عيار 18' => '18-karätiges Gold pro Gramm', 'جرام عيار 14' => '14-karätiges Gold pro Gramm',
         'جرام عيار 12' => '12-karätiges Gold pro Gramm',
