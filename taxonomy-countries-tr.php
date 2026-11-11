@@ -95,7 +95,7 @@ function altaqrer_gold_tr_output_translate($html) {
         "Gold Ounce" => "Altın Ons",
         "Prices" => "Fiyatlar",
         "Changes" => "Değişiklikler",
-        "No." => "Hayır."
+        "No." => "Hayır.",
         "Why the global gold ounce matters" => "Küresel altın ons fiyatı neden önemlidir",
         "From the global ounce to a local gram price" => "Küresel ons fiyatından yerel gram fiyatına",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "Uluslararası piyasalarda altın genellikle troy ons üzerinden fiyatlandırılır. Yatırımcılar, rafineriler, finans kuruluşları ve külçe altın satıcıları bu ölçütü farklı piyasalardaki altın değerlerini karşılaştırmak için kullanır. ABD dolarındaki değişimler, faiz beklentileri, enflasyon görünümü, merkez bankalarının faaliyetleri ve yatırımcı talebi uluslararası altın fiyatını etkileyebilir. Bunlar genel piyasa etkenleridir; bugünkü hareketin tek bir nedenden kaynaklandığı anlamına gelmez.",
