@@ -688,7 +688,7 @@ if (!function_exists('altaqrer_gold_ru_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Gold Price Chart in <?php echo esc_html($display_country_name); ?>
+          График цены золота в <?php echo esc_html($display_country_name); ?>
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
@@ -1141,9 +1141,9 @@ if (!empty($gold_view)) {
 <?php if (isset($ru_seo_price_map[$gold_view])) :
     $en_active_price_local = $ru_seo_price_map[$gold_view][0];
     $en_active_price_usd = $ru_seo_price_map[$gold_view][1];
-    $ru_karat = strtoupper($gold_view);
+    $ru_karat = str_replace(['24K','22K','21K','18K','14K'], ['24 карата','22 карата','21 карат','18 карат','14 карат'], strtoupper($gold_view));
 ?>
-    <h2 id="en-seo-title"><?php echo esc_html($ru_karat); ?> Цена золота сегодня в <?php echo esc_html($display_country_name); ?> за грамм</h2>
+    <h2 id="en-seo-title">Цена золота <?php echo esc_html($ru_karat); ?> сегодня в <?php echo esc_html($display_country_name); ?> за грамм</h2>
     <p>Следите за текущей ценой золота <strong><?php echo esc_html($ru_karat); ?> цена золота сегодня в <?php echo esc_html($display_country_name); ?></strong> по текущему ориентиру, показанному выше. Текущая ориентировочная стоимость составляет <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> за грамм, что примерно равно <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Эти значения рассчитаны на основе последней доступной справочной цены золота 24K и коэффициента чистоты для <?php echo esc_html($ru_karat); ?> золота и последнего доступного курса конвертации валюты, используемого сайтом.</p>
     <h3>Что означает проба <?php echo esc_html($ru_karat); ?> золота?</h3>
     <p>Проба показывает долю чистого золота в сплаве. 24K считается эталоном чистого золота, а сплавы с меньшей пробой содержат больше других металлов. Цена золота <?php echo esc_html($ru_karat); ?> поэтому отражает содержание золота, а не окончательную розничную цену ювелирного изделия. Цена в магазине может также включать работу, наценку продавца, налоги и другие местные сборы, не входящие в указанную рыночную стоимость.</p>
@@ -1156,7 +1156,7 @@ if (!empty($gold_view)) {
     <details><summary>Почему значение в USD отличается от местной цены?</summary><p>Эти значения указаны в разных валютах. Местная сумма рассчитывается по последнему доступному курсу сайта, а значение в USD отражает соответствующую стоимость золота в долларах США.</p></details>
 <?php elseif ($gold_view === 'ounce') : ?>
     <h2 id="en-seo-title">Мировая цена золотой унции сегодня в USD</h2>
-    <p>Международная справочная цена золотой унции на этой странице составляет <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> за одну тройскую унцию весом около 31,1 грамма золота 24K. Это <strong>мировой спотовый ориентир цены золота</strong>, котируется в долларах США. Она намеренно не представлена как местная цена унции в валюте конкретной страны; местные цены за грамм рассчитываются отдельно.</p>
+    <p>Международная справочная цена золотой унции на этой странице составляет <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> за одну тройскую унцию весом около 31,1 грамма золота 24K. Это <strong>мировой спотовый ориентир цены золота</strong>, который котируется в долларах США. Она намеренно не представлена как местная цена унции в валюте конкретной страны; местные цены за грамм рассчитываются отдельно.</p>
     <h3>Почему важна мировая цена золотой унции</h3>
     <p>На международных рынках золото обычно котируется за тройскую унцию. Трейдеры, аффинажные предприятия, финансовые компании и продавцы слитков используют этот ориентир для сравнения стоимости золота на разных рынках. На цену могут влиять курс доллара США, ожидания по процентным ставкам, инфляционные прогнозы, действия центральных банков и спрос инвесторов. Это общие рыночные факторы, а не утверждение о причине сегодняшнего движения.</p>
     <h3>От мировой унции к местной цене за грамм</h3>
