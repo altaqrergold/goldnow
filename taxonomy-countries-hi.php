@@ -95,7 +95,7 @@ function altaqrer_gold_hi_output_translate($html) {
         "Gold Ounce" => "सोने का औंस",
         "Prices" => "कीमतें",
         "Changes" => "बदलाव",
-        "No." => "नहीं।"
+        "No." => "नहीं।",
         "Why the global gold ounce matters" => "वैश्विक सोने का औंस क्यों महत्वपूर्ण है",
         "From the global ounce to a local gram price" => "वैश्विक औंस से स्थानीय प्रति ग्राम कीमत तक",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "अंतरराष्ट्रीय बाज़ारों में सोने का भाव आमतौर पर ट्रॉय औंस के आधार पर दिया जाता है। व्यापारी, रिफाइनरी, वित्तीय सेवाएँ और बुलियन विक्रेता अलग-अलग बाज़ारों में सोने के मूल्य की तुलना के लिए इस मानक का उपयोग करते हैं। अमेरिकी डॉलर में बदलाव, ब्याज दरों की अपेक्षाएँ, महँगाई का अनुमान, केंद्रीय बैंकों की गतिविधियाँ और निवेशकों की माँग अंतरराष्ट्रीय सोने की कीमत को प्रभावित कर सकती हैं। ये सामान्य बाज़ार कारक हैं; इसका अर्थ यह नहीं है कि इनमें से किसी एक ने आज की कीमत में बदलाव किया है।",
