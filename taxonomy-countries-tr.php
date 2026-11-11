@@ -437,7 +437,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
     $shortcode_translation_map_tr = array(
         'ذهب عيار 24' => '24 ayar altın', 'ذهب عيار 22' => '22 ayar altın', 'ذهب عيار 21' => '21 ayar altın',
         'ذهب عيار 18' => '18 ayar altın', 'ذهب عيار 14' => '14 ayar altın', 'ذهب عيار 12' => '12 ayar altın',
-        'عيار 24' => '24K', 'عيار 22' => '22K', 'عيار 21' => '21K', 'عيار 18' => '18K', 'عيار 14' => '14K', 'عيار 12' => '12K',
+        'عيار 24' => '24 ayar altın', 'عيار 22' => '22 ayar altın', 'عيار 21' => '21 ayar altın', 'عيار 18' => '18 ayar altın', 'عيار 14' => '14 ayar altın', 'عيار 12' => '12 ayar altın',
         'جرام عيار 24' => '24 ayar altın gram fiyatı', 'جرام عيار 22' => '22 ayar altın gram fiyatı', 'جرام عيار 21' => '21 ayar altın gram fiyatı',
         'جرام عيار 18' => '18 ayar altın gram fiyatı', 'جرام عيار 14' => '14 ayar altın gram fiyatı',
         'جرام عيار 12' => '12 ayar altın gram fiyatı',
