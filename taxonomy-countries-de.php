@@ -1,4 +1,83 @@
 <?php
+/* Template Name: Deutsch — Gold Country Prices */
+
+/** DE output localization: translate rendered text and accessible labels only. */
+if (!function_exists('altaqrer_gold_de_output_translate')) {
+function altaqrer_gold_de_output_translate($html) {
+    $map = array(
+        "Live foreign exchange rates for major international and regional currencies" => "Aktuelle Wechselkurse für wichtige internationale und regionale Währungen",
+        "International spot benchmark for one troy ounce of 24K gold, quoted in USD" => "Internationaler Spot-Referenzpreis für eine Feinunze 24-karätiges Gold in USD",
+        "What weight is used for the gold coin calculation?" => "Welches Gewicht wird für die Berechnung der Goldmünze verwendet?",
+        "Does the displayed value include a dealer premium?" => "Enthält der angezeigte Wert einen Händleraufschlag?",
+        "Sorry, the market data is currently unavailable." => "Entschuldigung, die Marktdaten sind derzeit nicht verfügbar.",
+        "live market price, excluding making charges" => "aktueller Marktpreis ohne Verarbeitungskosten",
+        "How to read the local and USD prices" => "Lokale Preise und USD-Preise verstehen",
+        "Frequently asked questions" => "Häufig gestellte Fragen",
+        "Gold Bullion Bar Prices in" => "Goldbarrenpreise in",
+        "Gold Price per Gram Today" => "Goldpreis pro Gramm heute",
+        "Join Our Telegram Channel" => "Unserem Telegram-Kanal beitreten",
+        "Excluding Making Charges" => "Ohne Verarbeitungskosten",
+        "Gold Bullion Bar Prices" => "Goldbarrenpreise",
+        "Gold Bars and Coins in" => "Goldbarren und Münzen in",
+        "USD and Currency Rates" => "USD- und Wechselkurse",
+        "Regional Gold Prices" => "Regionale Goldpreise",
+        "Gold Bars and Coins" => "Goldbarren und Münzen",
+        "Gold Price Sections" => "Goldpreisbereiche",
+        "Gold Price Chart in" => "Goldpreisdiagramm in",
+        "About AlTaqrer Gold" => "Über AlTaqrer Gold",
+        "All rights reserved" => "Alle Rechte vorbehalten",
+        "Related gold prices" => "Verwandte Goldpreise",
+        "Gold Coin Prices in" => "Goldmünzenpreise in",
+        "Gold Price Today in" => "Goldpreis heute in",
+        "Global Gold Ounce" => "Weltweite Goldunze",
+        "Gold Coin Prices" => "Goldmünzenpreise",
+        "Gold Price Chart" => "Goldpreisdiagramm",
+        "Gold Price Today" => "Goldpreis heute",
+        "Important Links" => "Wichtige Links",
+        "Reference date:" => "Referenzdatum:",
+        "Live Gold Index" => "Live-Goldindex",
+        "Local Currency" => "Landeswährung",
+        "Privacy Policy" => "Datenschutzerklärung",
+        "Gold Prices in" => "Goldpreise in",
+        "All Countries" => "Alle Länder",
+        "Weight / Type" => "Gewicht / Typ",
+        "Terms of Use" => "Nutzungsbedingungen",
+        "Gold Prices" => "Goldpreise",
+        "Live Prices" => "Live-Preise",
+        "Coin Purity" => "Münzfeinheit",
+        "Gold Price" => "Goldpreis",
+        "Gold Index" => "Goldindex",
+        "Important:" => "Wichtig:",
+        "Contact Us" => "Kontakt",
+        "Gold Bars" => "Goldbarren",
+        "Gold Coin" => "Goldmünze",
+        "Countries" => "Länder",
+        "USD Rates" => "USD-Kurse",
+        "Follow Us" => "Folgen Sie uns",
+        "What does" => "Was bedeutet",
+        "Today in" => "heute in",
+        "per Gram" => "pro Gramm",
+        "Price" => "Preis",
+        "Home" => "Startseite",
+        "Yes." => "Ja.",
+        "No." => "Nein."
+    );
+    $protected = array();
+    $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) {
+        $token = 'ALTQRGOLDDEBLOCK' . count($protected) . 'TOKEN';
+        $protected[$token] = $m[0];
+        return $token;
+    }, $html);
+    $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) {
+        return '>' . strtr($m[1], $map) . '<';
+    }, $html);
+    $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\\\"'])(.*?)\\2~isu", function($m) use ($map) {
+        return $m[1] . '=' . $m[2] . strtr($m[3], $map) . $m[2];
+    }, $html);
+    return !empty($protected) ? strtr($html, $protected) : $html;
+}}
+ob_start('altaqrer_gold_de_output_translate');
+
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
