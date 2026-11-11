@@ -530,7 +530,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
         <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="Aktuelle Goldpreise in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
         if ( $gold_view == '24k' ) { echo 'Goldpreis für 24 Karat heute in ' . esc_html($display_country_name); }
         elseif ( $gold_view == '22k' ) { echo 'Goldpreis für 22 Karat heute in ' . esc_html($display_country_name); }
@@ -690,7 +690,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
-        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.</p>
+        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Die Diagramme zeigen die ungefähre Entwicklung des Marktes. Lokale Preise können aufgrund von Wechselkursen, Aufschlägen und Marktbedingungen abweichen.</p>
       </div>
 
     </div>
@@ -751,7 +751,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Goldpreisdiagramme werden geladen …</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -767,7 +767,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateEnglishIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">Die Diagrammdaten konnten nicht geladen werden. Bitte versuchen Sie es erneut.</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
@@ -850,7 +850,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 Live-Wechselkurse gegenüber <?php echo esc_html($currency_label); ?> in <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 Live-Wechselkurse gegenüber <?php echo esc_html($currency_label); ?> in <?php echo esc_html($display_country_name); ?> <img alt="Flagge von <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -912,11 +912,11 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 
     $tabs = [
         ['key' => '',          'de' => 'Goldpreis'],
-        ['key' => '24k',       'de' => '24K'],
-        ['key' => '22k',       'de' => '22K'],
-        ['key' => '21k',       'de' => '21K'],
-        ['key' => '18k',       'de' => '18K'],
-        ['key' => '14k',       'de' => '14K'],
+        ['key' => '24k',       'de' => '24 Karat'],
+        ['key' => '22k',       'de' => '22 Karat'],
+        ['key' => '21k',       'de' => '21 Karat'],
+        ['key' => '18k',       'de' => '18 Karat'],
+        ['key' => '14k',       'de' => '14 Karat'],
         ['key' => 'ounce',     'de' => 'Goldunze'],
         ['key' => 'coin',      'de' => 'Goldmünze'],
         ['key' => 'gold-bars', 'de' => 'Goldbarren'],
@@ -964,7 +964,7 @@ if (!empty($gold_view)) {
         <div class="altaqrer-dynamic-inner-content">
             
             <?php if ($gold_view == 'gold-index') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Live-Goldmarktindex in <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Live-Goldmarktindex in <?php echo esc_html($display_country_name); ?> <img alt="Flagge von <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>Reines 24K-Gold:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Wert: <?php echo number_format($price_24k_usd, 2); ?> USD</small></div>
@@ -1141,9 +1141,9 @@ if (!empty($gold_view)) {
     <h3>Was bedeutet <?php echo esc_html($de_karat); ?>-Gold?</h3>
     <p>Die Karatzahl gibt den Anteil reinen Goldes in einer Legierung an. 24K gilt als Referenz für reines Gold; niedrigere Karatzahlen enthalten einen höheren Anteil anderer Metalle. Der <?php echo esc_html($de_karat); ?> Preis spiegelt daher den Goldanteil wider, nicht den fertigen Verkaufspreis eines Schmuckstücks. Der Ladenpreis kann zusätzlich Arbeitskosten, Händlermargen, Steuern und weitere lokale Gebühren enthalten, die im hier angezeigten reinen Marktwert nicht berücksichtigt sind.</p>
     <h3>Lokale Preise und USD-Preise verstehen</h3>
-    <p>Der Wert in lokaler Währung erleichtert den Vergleich des Referenzwerts in <?php echo esc_html($display_country_name); ?>,; der USD-Gegenwert erleichtert den Vergleich desselben Goldanteils mit internationalen Notierungen. Lokale Preise können sich durch Änderungen des globalen Goldpreises, der Wechselkurse oder lokaler Marktaufschläge verändern. Die Angaben sind Richtwerte und kein garantiertes Ankaufs- oder Verkaufsangebot.</p>
+    <p>Der Wert in lokaler Währung erleichtert den Vergleich des Referenzwerts in <?php echo esc_html($display_country_name); ?>; der USD-Gegenwert erleichtert den Vergleich desselben Goldanteils mit internationalen Notierungen. Lokale Preise können sich durch Änderungen des globalen Goldpreises, der Wechselkurse oder lokaler Marktaufschläge verändern. Die Angaben sind Richtwerte und kein garantiertes Ankaufs- oder Verkaufsangebot.</p>
     <h3>Verwandte Goldpreise</h3>
-    <p>Vergleichen Sie diesen Preis mit <a href="<?php echo esc_url($de_seo_base . '24k/'); ?>">24K-Gold</a>, <a href="<?php echo esc_url($de_seo_base . '21k/'); ?>">21K-Gold</a>, <a href="<?php echo esc_url($de_seo_base . 'gold-bars/'); ?>">Goldbarrenpreise</a>, sowie den <a href="<?php echo esc_url($de_seo_base . 'gold-index/'); ?>">live Goldmarktindex</a> für einen umfassenderen Marktüberblick.</p>
+    <p>Vergleichen Sie diesen Preis mit <a href="<?php echo esc_url($de_seo_base . '24k/'); ?>">24K-Gold</a>, <a href="<?php echo esc_url($de_seo_base . '21k/'); ?>">21K-Gold</a>, <a href="<?php echo esc_url($de_seo_base . 'gold-bars/'); ?>">Goldbarrenpreise</a>, sowie den <a href="<?php echo esc_url($de_seo_base . 'gold-index/'); ?>">Goldmarktindex in Echtzeit</a> für einen umfassenderen Marktüberblick.</p>
     <h3>Häufig gestellte Fragen</h3>
     <details><summary>Ist der angezeigte <?php echo esc_html($de_karat); ?> der endgültige Ladenpreis für Schmuck?</summary><p>Nein. Es handelt sich um einen Richtwert für den reinen Goldwert ohne Verarbeitung, Händlermargen, Steuern und sonstige Gebühren für ein fertiges Schmuckstück.</p></details>
     <details><summary>Warum unterscheidet sich der USD-Gegenwert vom lokalen Preis?</summary><p>Die beiden Werte verwenden unterschiedliche Währungen. Der lokale Betrag wird mit den neuesten auf der Website verfügbaren Wechselkursdaten umgerechnet; der USD-Betrag zeigt den entsprechenden Goldwert in US-Dollar.</p></details>
