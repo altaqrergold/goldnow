@@ -96,17 +96,42 @@ function altaqrer_gold_de_output_translate($html) {
         "Gold Ounce" => "Goldunze",
         "No." => "Nein."
     );
+
+    // Match complete English terms/phrases only; never replace a fragment inside a larger word.
+    // Longer phrases are tested first so specific labels take precedence over shorter entries.
+    $translation_keys = array_keys($map);
+    usort($translation_keys, function($a, $b) {
+        return strlen($b) - strlen($a);
+    });
+    $translation_patterns = array();
+    foreach ($translation_keys as $translation_key) {
+        $translation_pattern = preg_quote($translation_key, '~');
+        if (preg_match('/^[\\p{L}\\p{N}_]/u', $translation_key)) {
+            $translation_pattern = '(?<![\\p{L}\\p{N}_])' . $translation_pattern;
+        }
+        if (preg_match('/[\\p{L}\\p{N}_]$/u', $translation_key)) {
+            $translation_pattern .= '(?![\\p{L}\\p{N}_])';
+        }
+        $translation_patterns[] = $translation_pattern;
+    }
+    $translation_regex = '~' . implode('|', $translation_patterns) . '~u';
+    $translate_text = function($text) use ($map, $translation_regex) {
+        return preg_replace_callback($translation_regex, function($matches) use ($map) {
+            return $map[$matches[0]];
+        }, $text);
+    };
+
     $protected = array();
     $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) {
         $token = 'ALTQRGOLDDEBLOCK' . count($protected) . 'TOKEN';
         $protected[$token] = $m[0];
         return $token;
     }, $html);
-    $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) {
-        return '>' . strtr($m[1], $map) . '<';
+    $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($translate_text) {
+        return '>' . $translate_text($m[1]) . '<';
     }, $html);
-    $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\\\"'])(.*?)\\2~isu", function($m) use ($map) {
-        return $m[1] . '=' . $m[2] . strtr($m[3], $map) . $m[2];
+    $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\\\"'])(.*?)\\2~isu", function($m) use ($translate_text) {
+        return $m[1] . '=' . $m[2] . $translate_text($m[3]) . $m[2];
     }, $html);
     return !empty($protected) ? strtr($html, $protected) : $html;
 }}
