@@ -94,6 +94,8 @@ function altaqrer_gold_de_output_translate($html) {
         "12K Gold" => "12-karätiges Gold",
         "Gold Gram" => "Goldgramm",
         "Gold Ounce" => "Goldunze",
+        "Prices" => "Preise",
+        "Changes" => "Änderungen",
         "No." => "Nein."
     );
 
