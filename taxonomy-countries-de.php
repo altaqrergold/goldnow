@@ -549,7 +549,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
           <?php 
           if ($gold_view == 'usd') { echo 'Aktuelle Wechselkurse für wichtige internationale und regionale Währungen'; }
           elseif ($gold_view == 'ounce') { echo 'Internationaler Spot-Referenzpreis für eine Feinunze 24-karätiges Gold in USD'; }
-          else { echo 'Gold Price in ' . esc_html($display_country_name) . ' — live market price, excluding making charges'; }
+          else { echo 'Goldpreis in ' . esc_html($display_country_name) . ' —  ohne Herstellungskosten'; }
           ?>
         </h3>
 
@@ -911,13 +911,13 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
     $default_color = '#ffffff';
 
     $tabs = [
-        ['key' => '',          'de' => 'Gold Price'],
+        ['key' => '',          'de' => 'Goldpreis'],
         ['key' => '24k',       'de' => '24K'],
         ['key' => '22k',       'de' => '22K'],
         ['key' => '21k',       'de' => '21K'],
         ['key' => '18k',       'de' => '18K'],
         ['key' => '14k',       'de' => '14K'],
-        ['key' => 'ounce',     'de' => 'Gold Ounce'],
+        ['key' => 'ounce',     'de' => 'Goldunze'],
         ['key' => 'coin',      'de' => 'Goldmünze'],
         ['key' => 'gold-bars', 'de' => 'Goldbarren'],
         ['key' => 'gold-index','de' => 'Goldindex'],
