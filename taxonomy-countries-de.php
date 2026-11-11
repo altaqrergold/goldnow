@@ -96,7 +96,7 @@ function altaqrer_gold_de_output_translate($html) {
         "Gold Ounce" => "Goldunze",
         "Prices" => "Preise",
         "Changes" => "Änderungen",
-        "No." => "Nein."
+        "No." => "Nein.",
         "Why the global gold ounce matters" => "Warum der weltweite Goldpreis je Unze wichtig ist",
         "From the global ounce to a local gram price" => "Vom weltweiten Unzenpreis zum lokalen Grammpreis",
         "Gold Price Charts" => "Goldpreisdiagramme",
