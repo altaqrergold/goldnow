@@ -556,7 +556,7 @@ if (!function_exists('altaqrer_gold_ru_translate_shortcode_html')) {
           <?php 
           if ($gold_view == 'usd') { echo 'Текущие курсы основных международных и региональных валют'; }
           elseif ($gold_view == 'ounce') { echo 'Международный спотовый ориентир для одной тройской унции золота 24 карата в USD'; }
-          else { echo 'Gold Price in ' . esc_html($display_country_name) . ' — live market price, excluding making charges'; }
+          else { echo 'Цена золота в ' . esc_html($display_country_name) . ' —  без учета стоимости изготовления'; }
           ?>
         </h3>
 
@@ -918,13 +918,13 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
     $default_color = '#ffffff';
 
     $tabs = [
-        ['key' => '',          'ru' => 'Gold Price'],
+        ['key' => '',          'ru' => 'Цена золота'],
         ['key' => '24k',       'ru' => '24K'],
         ['key' => '22k',       'ru' => '22K'],
         ['key' => '21k',       'ru' => '21K'],
         ['key' => '18k',       'ru' => '18K'],
         ['key' => '14k',       'ru' => '14K'],
-        ['key' => 'ounce',     'ru' => 'Gold Ounce'],
+        ['key' => 'ounce',     'ru' => 'Унция золота'],
         ['key' => 'coin',      'ru' => 'Золотая монета'],
         ['key' => 'gold-bars', 'ru' => 'Золотые слитки'],
         ['key' => 'gold-index','ru' => 'Индекс золота'],
