@@ -556,7 +556,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
           <?php 
           if ($gold_view == 'usd') { echo 'Başlıca uluslararası ve bölgesel para birimleri için canlı döviz kurları'; }
           elseif ($gold_view == 'ounce') { echo 'USD cinsinden 24 ayar altının bir troy onsu için uluslararası spot referans fiyatı'; }
-          else { echo 'Gold Price in ' . esc_html($display_country_name) . ' — live market price, excluding making charges'; }
+          else { echo 'Altın fiyatı ' . esc_html($display_country_name) . ' —  işçilik ücretleri hariç'; }
           ?>
         </h3>
 
@@ -918,17 +918,17 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
     $default_color = '#ffffff';
 
     $tabs = [
-        ['key' => '',          'tr' => 'Gold Price'],
-        ['key' => '24k',       'tr' => '24K'],
-        ['key' => '22k',       'tr' => '22K'],
-        ['key' => '21k',       'tr' => '21K'],
-        ['key' => '18k',       'tr' => '18K'],
-        ['key' => '14k',       'tr' => '14K'],
-        ['key' => 'ounce',     'tr' => 'Gold Ounce'],
-        ['key' => 'coin',      'tr' => 'Altın Sikke'],
-        ['key' => 'gold-bars', 'tr' => 'Altın Külçeler'],
-        ['key' => 'gold-index','tr' => 'Altın Endeksi'],
-        ['key' => 'usd',       'tr' => 'USD ve Döviz Kurları'],
+        ['key' => '',          'tr' => 'Altın Fiyatı'],
+        ['key' => '24k',       'tr' => '24 ayar'],
+        ['key' => '22k',       'tr' => '22 ayar'],
+        ['key' => '21k',       'tr' => '21 ayar'],
+        ['key' => '18k',       'tr' => '18 ayar'],
+        ['key' => '14k',       'tr' => '14 ayar'],
+        ['key' => 'ounce',     'tr' => 'Altın onsu'],
+        ['key' => 'coin',      'tr' => 'Altın sikke'],
+        ['key' => 'gold-bars', 'tr' => 'Altın külçeler'],
+        ['key' => 'gold-index','tr' => 'Altın endeksi'],
+        ['key' => 'usd',       'tr' => 'USD ve döviz kurları'],
     ];
     ?>
 
