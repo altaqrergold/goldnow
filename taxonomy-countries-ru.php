@@ -1,4 +1,83 @@
 <?php
+/* Template Name: Русский — Gold Country Prices */
+
+/** RU output localization: translate rendered text and accessible labels only. */
+if (!function_exists('altaqrer_gold_ru_output_translate')) {
+function altaqrer_gold_ru_output_translate($html) {
+    $map = array(
+        "Live foreign exchange rates for major international and regional currencies" => "Текущие курсы основных международных и региональных валют",
+        "International spot benchmark for one troy ounce of 24K gold, quoted in USD" => "Международный спотовый ориентир для одной тройской унции золота 24 карата в USD",
+        "What weight is used for the gold coin calculation?" => "Какой вес используется для расчёта золотой монеты?",
+        "Does the displayed value include a dealer premium?" => "Включает ли указанная стоимость наценку продавца?",
+        "Sorry, the market data is currently unavailable." => "Извините, данные рынка в данный момент недоступны.",
+        "live market price, excluding making charges" => "текущая рыночная цена без стоимости изготовления",
+        "How to read the local and USD prices" => "Как читать местные цены и цены в USD",
+        "Frequently asked questions" => "Часто задаваемые вопросы",
+        "Gold Bullion Bar Prices in" => "Цены на золотые слитки в",
+        "Gold Price per Gram Today" => "Цена золота за грамм сегодня",
+        "Join Our Telegram Channel" => "Подпишитесь на наш канал в Telegram",
+        "Excluding Making Charges" => "Без стоимости изготовления",
+        "Gold Bullion Bar Prices" => "Цены на золотые слитки",
+        "Gold Bars and Coins in" => "Золотые слитки и монеты в",
+        "USD and Currency Rates" => "USD и валютные курсы",
+        "Regional Gold Prices" => "Региональные цены на золото",
+        "Gold Bars and Coins" => "Золотые слитки и монеты",
+        "Gold Price Sections" => "Разделы цен на золото",
+        "Gold Price Chart in" => "График цены золота в",
+        "About AlTaqrer Gold" => "О проекте AlTaqrer Gold",
+        "All rights reserved" => "Все права защищены",
+        "Related gold prices" => "Связанные цены на золото",
+        "Gold Coin Prices in" => "Цены на золотые монеты в",
+        "Gold Price Today in" => "Цена золота сегодня в",
+        "Global Gold Ounce" => "Мировая унция золота",
+        "Gold Coin Prices" => "Цены на золотые монеты",
+        "Gold Price Chart" => "График цены золота",
+        "Gold Price Today" => "Цена золота сегодня",
+        "Important Links" => "Важные ссылки",
+        "Reference date:" => "Дата справки:",
+        "Live Gold Index" => "Текущий индекс золота",
+        "Local Currency" => "Местная валюта",
+        "Privacy Policy" => "Политика конфиденциальности",
+        "Gold Prices in" => "Цены на золото в",
+        "All Countries" => "Все страны",
+        "Weight / Type" => "Вес / Тип",
+        "Terms of Use" => "Условия использования",
+        "Gold Prices" => "Цены на золото",
+        "Live Prices" => "Текущие цены",
+        "Coin Purity" => "Проба монеты",
+        "Gold Price" => "Цена золота",
+        "Gold Index" => "Индекс золота",
+        "Important:" => "Важно:",
+        "Contact Us" => "Связаться с нами",
+        "Gold Bars" => "Золотые слитки",
+        "Gold Coin" => "Золотая монета",
+        "Countries" => "Страны",
+        "USD Rates" => "Курс USD",
+        "Follow Us" => "Подписывайтесь на нас",
+        "What does" => "Что означает",
+        "Today in" => "сегодня в",
+        "per Gram" => "за грамм",
+        "Price" => "Цена",
+        "Home" => "Главная",
+        "Yes." => "Да.",
+        "No." => "Нет."
+    );
+    $protected = array();
+    $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) {
+        $token = 'ALTQRGOLDRUBLOCK' . count($protected) . 'TOKEN';
+        $protected[$token] = $m[0];
+        return $token;
+    }, $html);
+    $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) {
+        return '>' . strtr($m[1], $map) . '<';
+    }, $html);
+    $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\\\"'])(.*?)\\2~isu", function($m) use ($map) {
+        return $m[1] . '=' . $m[2] . strtr($m[3], $map) . $m[2];
+    }, $html);
+    return !empty($protected) ? strtr($html, $protected) : $html;
+}}
+ob_start('altaqrer_gold_ru_output_translate');
+
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
