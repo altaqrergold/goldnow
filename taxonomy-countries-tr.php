@@ -790,31 +790,31 @@ document.addEventListener("DOMContentLoaded", function () {
 <?php if (empty($gold_view)) : ?>
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-left: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: ltr; text-align: left; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
     <p style="margin-top: 0; margin-bottom: 15px;">
-        📊 The gold tracker monitors the latest movements in <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong>Gold prices in <?php echo esc_html($display_country_name); ?> in real time</strong></span> today <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> on <strong><?php echo esc_html($today); ?></strong> using regional market data and the international gold stock exchange rate for (<?php echo esc_html($display_country_name); ?>).
+        📊 Altın takip aracı, bugün <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo esc_html($display_country_name); ?> altın fiyatlarındaki son değişimleri gerçek zamanlı olarak</strong></span> gösterir. <img alt="<?php echo esc_html($display_country_name); ?> bayrağı" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> Tarih: <strong><?php echo esc_html($today); ?></strong>. Bilgiler bölgesel piyasa verilerine ve <?php echo esc_html($display_country_name); ?> için uluslararası altın borsası kuruna dayanır.
     </p>
 
     <p style="margin-bottom: 15px;">
-        💡 This report lets you track live gold prices across all categories, including <strong>21K gold price today</strong> — the most widely traded purity — as well as <strong>22K gold</strong>, <strong>18K gold</strong> value options, and <strong>14K gold</strong>. The tracker also covers precious-metal prices, jewellery markets, and daily market movements.
+        💡 Bu rapor, en çok işlem gören saflık olan <strong>21 ayar altın</strong> başta olmak üzere <strong>22, 18 ve 14 ayar altın</strong> dâhil tüm kategorilerdeki güncel altın fiyatlarını takip etmenizi sağlar. Ayrıca diğer değerli metallerin fiyatlarını, mücevher piyasasını ve günlük piyasa hareketlerini kapsar.
     </p>
 
     <p style="margin-bottom: 15px;">
-        ✨ Live market data, excluding making charges, puts the <strong>24K gold price per gram</strong> at approximately <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> (equivalent to <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> US dollars</strong>). This purity is the primary standard for <strong>gold bars</strong> because of its high refinement status.
+        ✨ Güncel piyasa verilerine göre, işçilik ücretleri hariç <strong>24 ayar altının gram fiyatı</strong> yaklaşık <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> ( <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> ABD doları</strong> karşılığı) düzeyindedir. Yüksek saflığı nedeniyle bu değer <strong>külçe altınlar</strong> için temel ölçüttür.
     </p>
 
     <p style="margin-bottom: 15px;">
-        📈 The <strong>global gold ounce price today</strong> (31.1 grams of 24K gold) is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>. This is the international spot benchmark; local gold prices are converted separately using the latest available exchange rate.
+        📈 Bugün <strong>küresel altın ons fiyatı</strong> (24 ayar altının 31,1 gramı) <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> seviyesindedir. Bu, uluslararası spot piyasanın referans fiyatıdır; yerel fiyatlar mevcut en güncel döviz kuruyla ayrıca çevrilir.
     </p>
 
     <p style="margin-bottom: 15px;">
-        🪙 For savers and investors, the <strong>gold coin price today</strong> (an 8-gram coin in the widely traded 21K purity) is approximately <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.
+        🪙 Tasarruf sahipleri ve yatırımcılar için, yaygın olarak işlem gören 21 ayar saflığında 8 gramlık bir <strong>altın sikkenin</strong> yaklaşık referans fiyatı <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong> düzeyindedir.
     </p>
 
     <p style="margin-bottom: 20px;">
-        🛠️ To help preserve the value of your savings, tracking the <strong>live gold market index</strong> and <strong>Prices of gold bars</strong> across weights from 1 gram to 1 kilogram can help you follow market movements when considering a purchase or sale.
+        🛠️ Birikimlerinizin değerini izlemek için <strong>canlı altın piyasa endeksini</strong> ve 1 gramdan 1 kilograma kadar farklı ağırlıklardaki <strong>külçe altın fiyatlarını</strong> takip etmek, alım veya satım öncesinde piyasa hareketlerini değerlendirmenize yardımcı olur.
     </p>
 
     <div style="background: #17191d; padding: 12px; border-radius: 6px; border: 1px dashed #3a3f4d; color: #d1d5db; font-size: 14px; margin-top: 15px;">
-        💵 <strong>Exchange Rate Indicator:</strong> Local gold prices move with exchange rates. The <strong>US dollar exchange rate today in <?php echo esc_html($display_country_name); ?></strong> is <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> per US dollar, based on the latest available market data. Download the <strong>gold prices app</strong> for timely price alerts.
+        💵 <strong>Döviz kuru göstergesi:</strong> Yerel altın fiyatları döviz kurlarından da etkilenir. En güncel piyasa verilerine göre bugün <strong><?php echo esc_html($display_country_name); ?> ABD doları kuru</strong> <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> / ABD dolarıdır. Güncel fiyat bildirimleri için <strong>altın fiyatları uygulamasını</strong> indirin.
     </div>
 </div>
 <?php endif; ?>
