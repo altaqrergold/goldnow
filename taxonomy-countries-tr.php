@@ -1,4 +1,83 @@
 <?php
+/* Template Name: Türkçe — Gold Country Prices */
+
+/** TR output localization: translate rendered text and accessible labels only. */
+if (!function_exists('altaqrer_gold_tr_output_translate')) {
+function altaqrer_gold_tr_output_translate($html) {
+    $map = array(
+        "Live foreign exchange rates for major international and regional currencies" => "Başlıca uluslararası ve bölgesel para birimleri için canlı döviz kurları",
+        "International spot benchmark for one troy ounce of 24K gold, quoted in USD" => "USD cinsinden 24 ayar altının bir troy onsu için uluslararası spot referans fiyatı",
+        "What weight is used for the gold coin calculation?" => "Altın sikke hesabında hangi ağırlık kullanılır?",
+        "Does the displayed value include a dealer premium?" => "Gösterilen değere satıcı primi dahil mi?",
+        "Sorry, the market data is currently unavailable." => "Üzgünüz, piyasa verileri şu anda kullanılamıyor.",
+        "live market price, excluding making charges" => "işçilik ücreti hariç canlı piyasa fiyatı",
+        "How to read the local and USD prices" => "Yerel ve USD fiyatları nasıl okunur",
+        "Frequently asked questions" => "Sıkça Sorulan Sorular",
+        "Gold Bullion Bar Prices in" => "için Külçe Altın Fiyatları",
+        "Gold Price per Gram Today" => "Bugün Gram Altın Fiyatı",
+        "Join Our Telegram Channel" => "Telegram Kanalımıza Katılın",
+        "Excluding Making Charges" => "İşçilik Ücreti Hariç",
+        "Gold Bullion Bar Prices" => "Külçe Altın Fiyatları",
+        "Gold Bars and Coins in" => "için Altın Külçeler ve Sikkeler",
+        "USD and Currency Rates" => "USD ve Döviz Kurları",
+        "Regional Gold Prices" => "Bölgesel Altın Fiyatları",
+        "Gold Bars and Coins" => "Altın Külçeler ve Sikkeler",
+        "Gold Price Sections" => "Altın Fiyatı Bölümleri",
+        "Gold Price Chart in" => "için Altın Fiyat Grafiği",
+        "About AlTaqrer Gold" => "AlTaqrer Gold Hakkında",
+        "All rights reserved" => "Tüm hakları saklıdır",
+        "Related gold prices" => "İlgili altın fiyatları",
+        "Gold Coin Prices in" => "için Altın Sikke Fiyatları",
+        "Gold Price Today in" => "Bugünkü Altın Fiyatı",
+        "Global Gold Ounce" => "Küresel Altın Ons",
+        "Gold Coin Prices" => "Altın Sikke Fiyatları",
+        "Gold Price Chart" => "Altın Fiyat Grafiği",
+        "Gold Price Today" => "Bugünkü Altın Fiyatı",
+        "Important Links" => "Önemli Bağlantılar",
+        "Reference date:" => "Referans tarihi:",
+        "Live Gold Index" => "Canlı Altın Endeksi",
+        "Local Currency" => "Yerel Para Birimi",
+        "Privacy Policy" => "Gizlilik Politikası",
+        "Gold Prices in" => "için Altın Fiyatları",
+        "All Countries" => "Tüm Ülkeler",
+        "Weight / Type" => "Ağırlık / Tür",
+        "Terms of Use" => "Kullanım Koşulları",
+        "Gold Prices" => "Altın Fiyatları",
+        "Live Prices" => "Canlı Fiyatlar",
+        "Coin Purity" => "Sikke Ayarı",
+        "Gold Price" => "Altın Fiyatı",
+        "Gold Index" => "Altın Endeksi",
+        "Important:" => "Önemli:",
+        "Contact Us" => "İletişim",
+        "Gold Bars" => "Altın Külçeler",
+        "Gold Coin" => "Altın Sikke",
+        "Countries" => "Ülkeler",
+        "USD Rates" => "USD Kurları",
+        "Follow Us" => "Bizi Takip Edin",
+        "What does" => "Ne anlama gelir",
+        "Today in" => "bugün",
+        "per Gram" => "gram başına",
+        "Price" => "Fiyat",
+        "Home" => "Ana Sayfa",
+        "Yes." => "Evet.",
+        "No." => "Hayır."
+    );
+    $protected = array();
+    $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) {
+        $token = 'ALTQRGOLDTRBLOCK' . count($protected) . 'TOKEN';
+        $protected[$token] = $m[0];
+        return $token;
+    }, $html);
+    $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) {
+        return '>' . strtr($m[1], $map) . '<';
+    }, $html);
+    $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\\\"'])(.*?)\\2~isu", function($m) use ($map) {
+        return $m[1] . '=' . $m[2] . strtr($m[3], $map) . $m[2];
+    }, $html);
+    return !empty($protected) ? strtr($html, $protected) : $html;
+}}
+ob_start('altaqrer_gold_tr_output_translate');
+
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
