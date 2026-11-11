@@ -2212,6 +2212,53 @@ function altaqrer_ml_register_rewrite_rules() {
 
 
 /* ----------------------------------------------------------
+ * 3A. تحميل قالب الدولة المستقل حسب اللغة
+ * ---------------------------------------------------------- */
+
+add_filter( 'template_include', 'altaqrer_ml_load_language_country_template', 99 );
+
+function altaqrer_ml_load_language_country_template( $template ) {
+
+    if ( ! is_tax( 'countries' ) ) {
+        return $template;
+    }
+
+    $lang = function_exists( 'altaqrer_ml_current_language' )
+        ? altaqrer_ml_current_language()
+        : 'ar';
+
+    $country_templates = array(
+        'ar' => 'taxonomy-countries.php',
+        'en' => 'taxonomy-countries-en.php',
+        'fr' => 'taxonomy-countries-fr.php',
+        'de' => 'taxonomy-countries-de.php',
+        'es' => 'taxonomy-countries-es.php',
+        'it' => 'taxonomy-countries-it.php',
+        'pt' => 'taxonomy-countries-pt.php',
+        'ru' => 'taxonomy-countries-ru.php',
+        'hi' => 'taxonomy-countries-hi.php',
+        'tr' => 'taxonomy-countries-tr.php',
+    );
+
+    if ( ! isset( $country_templates[ $lang ] ) ) {
+        return $template;
+    }
+
+    $language_template = trailingslashit( get_stylesheet_directory() )
+        . $country_templates[ $lang ];
+
+    if ( ! is_readable( $language_template ) ) {
+        $language_template = trailingslashit( get_template_directory() )
+            . $country_templates[ $lang ];
+    }
+
+    return is_readable( $language_template )
+        ? $language_template
+        : $template;
+}
+
+
+/* ----------------------------------------------------------
  * 4. أسماء الدول كاملة حسب اللغة
  * ---------------------------------------------------------- */
 
