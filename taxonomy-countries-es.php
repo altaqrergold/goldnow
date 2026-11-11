@@ -93,6 +93,8 @@ function altaqrer_gold_es_output_translate($html) {
         "12K Gold" => "Oro de 12 quilates",
         "Gold Gram" => "Gramo de oro",
         "Gold Ounce" => "Onza de oro",
+        "Prices" => "Precios",
+        "Changes" => "Cambios",
         "No." => "No."
     );
 
