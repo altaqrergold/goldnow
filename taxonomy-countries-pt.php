@@ -437,7 +437,7 @@ if (!function_exists('altaqrer_gold_pt_translate_shortcode_html')) {
     $shortcode_translation_map_pt = array(
         'ذهب عيار 24' => 'Ouro de 24 quilates', 'ذهب عيار 22' => 'Ouro de 22 quilates', 'ذهب عيار 21' => 'Ouro de 21 quilates',
         'ذهب عيار 18' => 'Ouro de 18 quilates', 'ذهب عيار 14' => 'Ouro de 14 quilates', 'ذهب عيار 12' => 'Ouro de 12 quilates',
-        'عيار 24' => '24K', 'عيار 22' => '22K', 'عيار 21' => '21K', 'عيار 18' => '18K', 'عيار 14' => '14K', 'عيار 12' => '12K',
+        'عيار 24' => 'Ouro de 24 quilates', 'عيار 22' => 'Ouro de 22 quilates', 'عيار 21' => 'Ouro de 21 quilates', 'عيار 18' => 'Ouro de 18 quilates', 'عيار 14' => 'Ouro de 14 quilates', 'عيار 12' => 'Ouro de 12 quilates',
         'جرام عيار 24' => 'Ouro de 24 quilates por grama', 'جرام عيار 22' => 'Ouro de 22 quilates por grama', 'جرام عيار 21' => 'Ouro de 21 quilates por grama',
         'جرام عيار 18' => 'Ouro de 18 quilates por grama', 'جرام عيار 14' => 'Ouro de 14 quilates por grama',
         'جرام عيار 12' => 'Ouro de 12 quilates por grama',
