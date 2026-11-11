@@ -1227,7 +1227,7 @@ if (!empty($gold_view)) {
   <div class="tr-site-footer-inner">
     <section>
       <h3>AlTaqrer Gold Hakkında</h3>
-      <p><strong>AlTaqrer Gold</strong> helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes.</p>
+      <p><strong>AlTaqrer Gold</strong>, okuyucuların bölgesel ve uluslararası piyasalardaki altın fiyatlarını takip etmelerine yardımcı olur. 24, 22, 21, 18 ve 14 ayar altının güncel referans fiyatlarını inceleyin, külçe altın ile 8 gramlık altın sikkenin değerlerini karşılaştırın ve altının küresel ons fiyatını USD cinsinden takip edin. Fiyatlar bilgilendirme ve karşılaştırma amacıyla sunulur; nihai perakende fiyatına işçilik, prim ve vergiler eklenebilir.</p>
     </section>
     <section>
       <h3>Altın Fiyatı Bölümleri</h3>
