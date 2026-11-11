@@ -790,31 +790,31 @@ document.addEventListener("DOMContentLoaded", function () {
 <?php if (empty($gold_view)) : ?>
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-left: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: ltr; text-align: left; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
     <p style="margin-top: 0; margin-bottom: 15px;">
-        📊 The gold tracker monitors the latest movements in <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong>Gold prices in <?php echo esc_html($display_country_name); ?> in real time</strong></span> today <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> on <strong><?php echo esc_html($today); ?></strong> using regional market data and the international gold stock exchange rate for (<?php echo esc_html($display_country_name); ?>).
+        📊 Il monitoraggio dell’oro mostra gli ultimi movimenti dei prezzi in <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo esc_html($display_country_name); ?> in tempo reale</strong></span>. <img alt="Bandiera di <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> Data: <strong><?php echo esc_html($today); ?></strong>. I dati si basano sui mercati regionali e sulla quotazione internazionale dell’oro per <?php echo esc_html($display_country_name); ?>.
     </p>
 
     <p style="margin-bottom: 15px;">
-        💡 This report lets you track live gold prices across all categories, including <strong>21K gold price today</strong> — the most widely traded purity — as well as <strong>22K gold</strong>, <strong>18K gold</strong> value options, and <strong>14K gold</strong>. The tracker also covers precious-metal prices, jewellery markets, and daily market movements.
+        💡 Questo rapporto presenta i prezzi aggiornati di tutte le principali categorie: include l’<strong>oro a 21 carati</strong> — la purezza più scambiata — e anche l’<strong>oro a 22, 18 e 14 carati</strong>. Comprende inoltre altri metalli preziosi, il mercato della gioielleria e i movimenti quotidiani del mercato.
     </p>
 
     <p style="margin-bottom: 15px;">
-        ✨ Live market data, excluding making charges, puts the <strong>24K gold price per gram</strong> at approximately <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> (equivalent to <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> US dollars</strong>). This purity is the primary standard for <strong>gold bars</strong> because of its high refinement status.
+        ✨ Secondo i dati di mercato aggiornati, il prezzo indicativo al grammo dell’<strong>oro a 24 carati</strong>, esclusi i costi di lavorazione, è di <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> (pari a <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> dollari statunitensi</strong>). L’elevata purezza lo rende il riferimento principale per i <strong>lingotti d’oro</strong>.
     </p>
 
     <p style="margin-bottom: 15px;">
-        📈 The <strong>global gold ounce price today</strong> (31.1 grams of 24K gold) is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>. This is the international spot benchmark; local gold prices are converted separately using the latest available exchange rate.
+        📈 Il <strong>prezzo mondiale dell’oncia d’oro</strong> (31,1 grammi di oro a 24 carati) è oggi pari a <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>. È il riferimento internazionale del mercato spot; i prezzi locali vengono convertiti separatamente usando il tasso di cambio più recente disponibile.
     </p>
 
     <p style="margin-bottom: 15px;">
-        🪙 For savers and investors, the <strong>gold coin price today</strong> (an 8-gram coin in the widely traded 21K purity) is approximately <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.
+        🪙 Per risparmiatori e investitori, il prezzo indicativo attuale di una <strong>moneta d’oro</strong> da 8 grammi a 21 carati è di circa <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.
     </p>
 
     <p style="margin-bottom: 20px;">
-        🛠️ To help preserve the value of your savings, tracking the <strong>live gold market index</strong> and <strong>Prices of gold bars</strong> across weights from 1 gram to 1 kilogram can help you follow market movements when considering a purchase or sale.
+        🛠️ Per seguire il valore dei risparmi, consultare l’<strong>indice in tempo reale del mercato dell’oro</strong> e i <strong>prezzi dei lingotti</strong> da 1 grammo a 1 chilogrammo aiuta a valutare l’andamento del mercato prima di acquistare o vendere.
     </p>
 
     <div style="background: #17191d; padding: 12px; border-radius: 6px; border: 1px dashed #3a3f4d; color: #d1d5db; font-size: 14px; margin-top: 15px;">
-        💵 <strong>Exchange Rate Indicator:</strong> Local gold prices move with exchange rates. The <strong>US dollar exchange rate today in <?php echo esc_html($display_country_name); ?></strong> is <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> per US dollar, based on the latest available market data. Download the <strong>gold prices app</strong> for timely price alerts.
+        💵 <strong>Indicatore del tasso di cambio:</strong> I prezzi locali dell’oro dipendono anche dai tassi di cambio. Secondo gli ultimi dati disponibili, oggi il tasso del <strong>dollaro statunitense in <?php echo esc_html($display_country_name); ?></strong> è di <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> per dollaro. Scarica l’<strong>app dei prezzi dell’oro</strong> per ricevere avvisi aggiornati.
     </div>
 </div>
 <?php endif; ?>
