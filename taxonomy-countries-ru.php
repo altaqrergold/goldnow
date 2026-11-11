@@ -93,6 +93,8 @@ function altaqrer_gold_ru_output_translate($html) {
         "12K Gold" => "Золото 12 карат",
         "Gold Gram" => "Грамм золота",
         "Gold Ounce" => "Унция золота",
+        "Prices" => "Цены",
+        "Changes" => "Изменения",
         "No." => "Нет."
     );
 
