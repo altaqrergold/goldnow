@@ -537,7 +537,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="Precios actuales del oro en <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
         if ( $gold_view == '24k' ) { echo 'Precio del oro de 24 quilates hoy en ' . esc_html($display_country_name); }
         elseif ( $gold_view == '22k' ) { echo 'Precio del oro de 22 quilates hoy en ' . esc_html($display_country_name); }
@@ -697,7 +697,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
-        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.</p>
+        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Los gráficos muestran la evolución orientativa del mercado. Los precios locales pueden variar debido a los tipos de cambio, las primas y las condiciones del mercado.</p>
       </div>
 
     </div>
@@ -758,7 +758,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Cargando los gráficos del oro…</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateEnglishIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">No se han podido cargar los datos del gráfico. Inténtalo de nuevo.</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
@@ -857,7 +857,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 Tipos de cambio en tiempo real frente a <?php echo esc_html($currency_label); ?> en <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 Tipos de cambio en tiempo real frente a <?php echo esc_html($currency_label); ?> en <?php echo esc_html($display_country_name); ?> <img alt="Bandera de <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -919,11 +919,11 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 
     $tabs = [
         ['key' => '',          'es' => 'Precio del oro'],
-        ['key' => '24k',       'es' => '24K'],
-        ['key' => '22k',       'es' => '22K'],
-        ['key' => '21k',       'es' => '21K'],
-        ['key' => '18k',       'es' => '18K'],
-        ['key' => '14k',       'es' => '14K'],
+        ['key' => '24k',       'es' => '24 quilates'],
+        ['key' => '22k',       'es' => '22 quilates'],
+        ['key' => '21k',       'es' => '21 quilates'],
+        ['key' => '18k',       'es' => '18 quilates'],
+        ['key' => '14k',       'es' => '14 quilates'],
         ['key' => 'ounce',     'es' => 'Onza de oro'],
         ['key' => 'coin',      'es' => 'Moneda de oro'],
         ['key' => 'gold-bars', 'es' => 'Lingotes de oro'],
@@ -971,7 +971,7 @@ if (!empty($gold_view)) {
         <div class="altaqrer-dynamic-inner-content">
             
             <?php if ($gold_view == 'gold-index') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Índice del mercado del oro en vivo en <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Índice del mercado del oro en vivo en <?php echo esc_html($display_country_name); ?> <img alt="Bandera de <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>Oro puro de 24K:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Valor: <?php echo number_format($price_24k_usd, 2); ?> USD</small></div>
@@ -1146,13 +1146,13 @@ if (!empty($gold_view)) {
     <h2 id="en-seo-title"><?php echo esc_html($es_karat); ?> Precio del oro hoy en <?php echo esc_html($display_country_name); ?> por gramo</h2>
     <p>Consulta el último precio del oro de <strong><?php echo esc_html($es_karat); ?> precio del oro hoy en <?php echo esc_html($display_country_name); ?></strong> con la referencia en tiempo real mostrada arriba. El valor indicativo actual es <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> por gramo, equivalente a aproximadamente <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Estas cifras se calculan con el último precio de referencia disponible del oro de 24K y el factor de pureza de <?php echo esc_html($es_karat); ?> y la conversión de divisas más reciente utilizada por el sitio.</p>
     <h3>¿Qué significa el oro <?php echo esc_html($es_karat); ?>?</h3>
-    <p>El quilataje indica la proporción de oro puro en una aleación. El 24K se considera la referencia de oro puro, mientras que los quilates inferiores contienen una mayor proporción de otros metales. El <?php echo esc_html($es_karat); ?> precio refleja el contenido de oro y no el precio final de venta de una joya. El precio en tienda también puede incluir mano de obra, márgenes del vendedor, impuestos y otros cargos locales que no forman parte del valor bruto mostrado aquí.</p>
+    <p>El quilataje indica la proporción de oro puro en una aleación. El 24K se considera la referencia de oro puro, mientras que los quilates inferiores contienen una mayor proporción de otros metales. El precio del oro de <?php echo esc_html($es_karat); ?> refleja el contenido de oro y no el precio final de venta de una joya. El precio en tienda también puede incluir mano de obra, márgenes del vendedor, impuestos y otros cargos locales que no forman parte del valor bruto mostrado aquí.</p>
     <h3>Cómo leer los precios locales y en USD</h3>
-    <p>El importe en moneda local permite comparar el valor de referencia en <?php echo esc_html($display_country_name); ?>,; el equivalente en USD facilita comparar el mismo contenido de oro con las cotizaciones internacionales. Los precios locales pueden variar por cambios en la referencia mundial del oro, los tipos de cambio o las condiciones del mercado local. Las cifras son valores orientativos, no una oferta garantizada de compra o venta.</p>
+    <p>El importe en moneda local permite comparar el valor de referencia en <?php echo esc_html($display_country_name); ?>; el equivalente en USD facilita comparar el mismo contenido de oro con las cotizaciones internacionales. Los precios locales pueden variar por cambios en la referencia mundial del oro, los tipos de cambio o las condiciones del mercado local. Las cifras son valores orientativos, no una oferta garantizada de compra o venta.</p>
     <h3>Precios del oro relacionados</h3>
-    <p>Compara este precio con <a href="<?php echo esc_url($es_seo_base . '24k/'); ?>">oro de 24K</a>, <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">oro de 21K</a>, <a href="<?php echo esc_url($es_seo_base . 'gold-bars/'); ?>">precios de los lingotes de oro</a>, y el <a href="<?php echo esc_url($es_seo_base . 'gold-index/'); ?>">live índice del mercado del oro</a> para obtener una visión más amplia del mercado.</p>
+    <p>Compara este precio con <a href="<?php echo esc_url($es_seo_base . '24k/'); ?>">oro de 24K</a>, <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">oro de 21K</a>, <a href="<?php echo esc_url($es_seo_base . 'gold-bars/'); ?>">precios de los lingotes de oro</a>, y el <a href="<?php echo esc_url($es_seo_base . 'gold-index/'); ?>">índice del mercado del oro en tiempo real</a> para obtener una visión más amplia del mercado.</p>
     <h3>Preguntas frecuentes</h3>
-    <details><summary>¿El precio mostrado de <?php echo esc_html($es_karat); ?> el precio final de una joya en tienda?</summary><p>No. Es un valor orientativo del oro sin elaborar y no incluye mano de obra, márgenes del vendedor, impuestos ni otros cargos aplicables a una pieza terminada.</p></details>
+    <details><summary>¿El precio mostrado del oro de <?php echo esc_html($es_karat); ?> es el precio final de una joya en una tienda?</summary><p>No. Es un valor orientativo del oro sin elaborar y no incluye mano de obra, márgenes del vendedor, impuestos ni otros cargos aplicables a una pieza terminada.</p></details>
     <details><summary>¿Por qué el equivalente en USD es distinto del precio local?</summary><p>Los dos valores usan monedas distintas. El importe local se convierte con el último tipo de cambio disponible utilizado por el sitio; el importe en USD representa el valor equivalente del oro en dólares estadounidenses.</p></details>
 <?php elseif ($gold_view === 'ounce') : ?>
     <h2 id="en-seo-title">Precio mundial de la onza de oro hoy en USD</h2>
