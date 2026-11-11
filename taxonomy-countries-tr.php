@@ -688,7 +688,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Gold Price Chart in <?php echo esc_html($display_country_name); ?>
+          <?php echo esc_html($display_country_name); ?> için altın fiyat grafiği
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
@@ -1141,9 +1141,9 @@ if (!empty($gold_view)) {
 <?php if (isset($tr_seo_price_map[$gold_view])) :
     $en_active_price_local = $tr_seo_price_map[$gold_view][0];
     $en_active_price_usd = $tr_seo_price_map[$gold_view][1];
-    $tr_karat = strtoupper($gold_view);
+    $tr_karat = str_replace(['24K','22K','21K','18K','14K'], ['24 ayar','22 ayar','21 ayar','18 ayar','14 ayar'], strtoupper($gold_view));
 ?>
-    <h2 id="en-seo-title"><?php echo esc_html($tr_karat); ?> Bugünün altın fiyatı <?php echo esc_html($display_country_name); ?> gram başına</h2>
+    <h2 id="en-seo-title"><?php echo esc_html($tr_karat); ?> altın fiyatı bugün <?php echo esc_html($display_country_name); ?> gram başına</h2>
     <p>Güncel altın fiyatını takip edin: <strong><?php echo esc_html($tr_karat); ?> bölgesindeki bugünün altın fiyatı <?php echo esc_html($display_country_name); ?></strong> yukarıdaki canlı referansı izleyin. Güncel gösterge değer <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> gram başına, yaklaşık olarak <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Bu değerler, mevcut en güncel 24 ayar referans fiyatı ve saflık oranı kullanılarak hesaplanır: <?php echo esc_html($tr_karat); ?> altın ve sitenin kullandığı en güncel döviz kuru.</p>
     <h3><?php echo esc_html($tr_karat); ?> altın ne anlama gelir?</h3>
     <p>Ayar, alaşımdaki saf altın oranını gösterir. 24 ayar saf altın referansıdır; daha düşük ayarlar daha fazla başka metal içerir. <?php echo esc_html($tr_karat); ?> bu nedenle takının nihai satış fiyatını değil, altın içeriğini yansıtır. Mağaza fiyatına işçilik, satıcı primi, vergiler ve burada gösterilen ham piyasa değerine dahil olmayan yerel ücretler eklenebilir.</p>
@@ -1156,7 +1156,7 @@ if (!empty($gold_view)) {
     <details><summary>USD karşılığı neden yerel fiyattan farklı?</summary><p>İki değer farklı para birimlerini kullanır. Yerel tutar sitenin en güncel döviz kuruyla hesaplanır; USD tutarı altının ABD doları karşılığını gösterir.</p></details>
 <?php elseif ($gold_view === 'ounce') : ?>
     <h2 id="en-seo-title">Bugün küresel altın ons fiyatı (USD)</h2>
-    <p>Bu sayfadaki uluslararası altın ons referansı <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> yaklaşık 31,1 gram 24 ayar altın içeren bir troy ons içindir. Bu, <strong>küresel spot altın göstergesidir</strong>, ABD doları üzerinden kote edilir. Ülkeye özgü yerel para birimi ons fiyatı olarak sunulmaz; yerel gram fiyatları seçilen ülke için ayrıca dönüştürülür.</p>
+    <p>Bu sayfadaki uluslararası altın ons referansı <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> yaklaşık 31,1 gram 24 ayar altın içeren bir troy ons içindir. Bu, <strong>küresel spot altın göstergesidir</strong> ve ABD doları üzerinden fiyatlandırılır. Ülkeye özgü yerel para birimi ons fiyatı olarak sunulmaz; yerel gram fiyatları seçilen ülke için ayrıca dönüştürülür.</p>
     <h3>Küresel altın ons fiyatı neden önemlidir</h3>
     <p>Uluslararası piyasalarda altın genellikle troy ons üzerinden fiyatlanır. İşlemciler, rafineriler, finans kuruluşları ve külçe altın satıcıları bu göstergeyi piyasalar arasında karşılaştırma yapmak için kullanır. ABD doları, faiz beklentileri, enflasyon görünümü, merkez bankalarının faaliyetleri ve yatırımcı talebi uluslararası fiyatı etkileyebilir. Bunlar genel piyasa etkenleridir; bugünkü hareketin tek bir nedeni olduğu iddiası değildir.</p>
     <h3>Küresel ons fiyatından yerel gram fiyatına</h3>
