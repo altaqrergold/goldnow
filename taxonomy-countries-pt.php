@@ -556,7 +556,7 @@ if (!function_exists('altaqrer_gold_pt_translate_shortcode_html')) {
           <?php 
           if ($gold_view == 'usd') { echo 'Taxas de câmbio em tempo real das principais moedas internacionais e regionais'; }
           elseif ($gold_view == 'ounce') { echo 'Referência internacional à vista para uma onça troy de ouro 24 quilates, cotada em USD'; }
-          else { echo 'Gold Price in ' . esc_html($display_country_name) . ' — live market price, excluding making charges'; }
+          else { echo 'Preço do ouro em ' . esc_html($display_country_name) . ' —  sem custos de fabricação'; }
           ?>
         </h3>
 
@@ -918,13 +918,13 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
     $default_color = '#ffffff';
 
     $tabs = [
-        ['key' => '',          'pt' => 'Gold Price'],
+        ['key' => '',          'pt' => 'Preço do ouro'],
         ['key' => '24k',       'pt' => '24K'],
         ['key' => '22k',       'pt' => '22K'],
         ['key' => '21k',       'pt' => '21K'],
         ['key' => '18k',       'pt' => '18K'],
         ['key' => '14k',       'pt' => '14K'],
-        ['key' => 'ounce',     'pt' => 'Gold Ounce'],
+        ['key' => 'ounce',     'pt' => 'Onça de ouro'],
         ['key' => 'coin',      'pt' => 'Moeda de ouro'],
         ['key' => 'gold-bars', 'pt' => 'Barras de ouro'],
         ['key' => 'gold-index','pt' => 'Índice do ouro'],
