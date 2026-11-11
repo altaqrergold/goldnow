@@ -440,6 +440,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         'عيار 24' => '24K', 'عيار 22' => '22K', 'عيار 21' => '21K', 'عيار 18' => '18K', 'عيار 14' => '14K', 'عيار 12' => '12K',
         'جرام عيار 24' => '24 ayar altın gram fiyatı', 'جرام عيار 22' => '22 ayar altın gram fiyatı', 'جرام عيار 21' => '21 ayar altın gram fiyatı',
         'جرام عيار 18' => '18 ayar altın gram fiyatı', 'جرام عيار 14' => '14 ayar altın gram fiyatı',
+        'جرام عيار 12' => '12 ayar altın gram fiyatı',
         'الأونصة العالمية' => 'Küresel Altın Ons', 'أونصة الذهب العالمية' => 'Küresel Altın Ons',
         'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
         'جنيه الذهب' => 'Altın Sikke', 'الجنيه الذهب' => 'Altın Sikke', 'سعر الجنيه الذهب' => 'Gold Coin Price',
