@@ -790,31 +790,31 @@ document.addEventListener("DOMContentLoaded", function () {
 <?php if (empty($gold_view)) : ?>
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-left: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: ltr; text-align: left; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
     <p style="margin-top: 0; margin-bottom: 15px;">
-        📊 The gold tracker monitors the latest movements in <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong>Gold prices in <?php echo esc_html($display_country_name); ?> in real time</strong></span> today <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> on <strong><?php echo esc_html($today); ?></strong> using regional market data and the international gold stock exchange rate for (<?php echo esc_html($display_country_name); ?>).
+        📊 यह गोल्ड ट्रैकर आज <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo esc_html($display_country_name); ?> में सोने की कीमतों के ताज़ा बदलाव रियल टाइम में</strong></span> दिखाता है। <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> तारीख: <strong><?php echo esc_html($today); ?></strong>। जानकारी क्षेत्रीय बाज़ार आँकड़ों और <?php echo esc_html($display_country_name); ?> के लिए अंतरराष्ट्रीय सोना एक्सचेंज दर पर आधारित है।
     </p>
 
     <p style="margin-bottom: 15px;">
-        💡 This report lets you track live gold prices across all categories, including <strong>21K gold price today</strong> — the most widely traded purity — as well as <strong>22K gold</strong>, <strong>18K gold</strong> value options, and <strong>14K gold</strong>. The tracker also covers precious-metal prices, jewellery markets, and daily market movements.
+        💡 इस रिपोर्ट में सोने की सभी प्रमुख शुद्धताओं के ताज़ा भाव शामिल हैं: <strong>21 कैरेट सोना</strong> — जो सबसे अधिक कारोबार वाली शुद्धता है — साथ ही <strong>22, 18 और 14 कैरेट सोना</strong>। इसमें अन्य कीमती धातुओं की कीमतें, आभूषण बाज़ार और रोज़ाना के बाज़ार बदलाव भी शामिल हैं।
     </p>
 
     <p style="margin-bottom: 15px;">
-        ✨ Live market data, excluding making charges, puts the <strong>24K gold price per gram</strong> at approximately <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> (equivalent to <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> US dollars</strong>). This purity is the primary standard for <strong>gold bars</strong> because of its high refinement status.
+        ✨ नवीनतम बाज़ार आँकड़ों के अनुसार, निर्माण शुल्क को छोड़कर <strong>24 कैरेट सोने</strong> का अनुमानित प्रति ग्राम भाव <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($gram_24k_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> है ( <strong><?php echo number_format($gram_24k_price_usd_converted, 2); ?> अमेरिकी डॉलर</strong> के बराबर)। उच्च शुद्धता के कारण यह <strong>सोने की छड़ों</strong> का मुख्य मानक है।
     </p>
 
     <p style="margin-bottom: 15px;">
-        📈 The <strong>global gold ounce price today</strong> (31.1 grams of 24K gold) is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>. This is the international spot benchmark; local gold prices are converted separately using the latest available exchange rate.
+        📈 आज <strong>सोने की वैश्विक प्रति औंस कीमत</strong> (24 कैरेट सोने के 31.1 ग्राम) <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> है। यह अंतरराष्ट्रीय स्पॉट बाज़ार का मानक भाव है; स्थानीय कीमतों को नवीनतम उपलब्ध विनिमय दर से अलग से बदला जाता है।
     </p>
 
     <p style="margin-bottom: 15px;">
-        🪙 For savers and investors, the <strong>gold coin price today</strong> (an 8-gram coin in the widely traded 21K purity) is approximately <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.
+        🪙 बचतकर्ताओं और निवेशकों के लिए, आम तौर पर कारोबार होने वाली 21 कैरेट शुद्धता के 8 ग्राम के <strong>सोने के सिक्के</strong> का अनुमानित भाव <strong><?php echo number_format($gold_pound_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong> है।
     </p>
 
     <p style="margin-bottom: 20px;">
-        🛠️ To help preserve the value of your savings, tracking the <strong>live gold market index</strong> and <strong>Prices of gold bars</strong> across weights from 1 gram to 1 kilogram can help you follow market movements when considering a purchase or sale.
+        🛠️ अपनी बचत का मूल्य समझने के लिए <strong>लाइव गोल्ड मार्केट इंडेक्स</strong> और 1 ग्राम से 1 किलोग्राम तक के <strong>सोने के बार की कीमतें</strong> देखना उपयोगी है। इससे खरीद या बिक्री से पहले बाज़ार के बदलावों को समझने में मदद मिलती है।
     </p>
 
     <div style="background: #17191d; padding: 12px; border-radius: 6px; border: 1px dashed #3a3f4d; color: #d1d5db; font-size: 14px; margin-top: 15px;">
-        💵 <strong>Exchange Rate Indicator:</strong> Local gold prices move with exchange rates. The <strong>US dollar exchange rate today in <?php echo esc_html($display_country_name); ?></strong> is <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> per US dollar, based on the latest available market data. Download the <strong>gold prices app</strong> for timely price alerts.
+        💵 <strong>विनिमय दर संकेतक:</strong> स्थानीय सोने की कीमतें मुद्रा विनिमय दरों से भी प्रभावित होती हैं। नवीनतम उपलब्ध आँकड़ों के अनुसार, आज <strong><?php echo esc_html($display_country_name); ?> में अमेरिकी डॉलर की विनिमय दर</strong> <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong></span> प्रति अमेरिकी डॉलर है। समय पर मूल्य अलर्ट पाने के लिए <strong>सोने की कीमतों वाला ऐप</strong> डाउनलोड करें।
     </div>
 </div>
 <?php endif; ?>
