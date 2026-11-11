@@ -95,7 +95,7 @@ function altaqrer_gold_pt_output_translate($html) {
         "Gold Ounce" => "Onça de ouro",
         "Prices" => "Preços",
         "Changes" => "Alterações",
-        "No." => "Não."
+        "No." => "Não.",
         "Why the global gold ounce matters" => "Por que a onça global do ouro é importante",
         "From the global ounce to a local gram price" => "Da onça global ao preço local por grama",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "Nos mercados internacionais, o ouro é normalmente cotado por onça troy. Operadores, refinarias, serviços financeiros e comerciantes de metais preciosos utilizam esta referência para comparar o valor do ouro entre mercados. As alterações do dólar dos Estados Unidos, as expectativas sobre as taxas de juro, as perspetivas de inflação, a atividade dos bancos centrais e a procura dos investidores podem influenciar o preço internacional do ouro. Estes são fatores gerais do mercado, não uma afirmação de que algum deles tenha causado a variação de hoje.",
