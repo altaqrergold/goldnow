@@ -23,7 +23,7 @@ function altaqrer_gold_es_output_translate($html) {
         "Regional Gold Prices" => "Precios regionales del oro",
         "Gold Bars and Coins" => "Lingotes y monedas de oro",
         "Gold Price Sections" => "Secciones de precios del oro",
-        "Gold Price Chart in" => "Gráfico del precio del oro en",
+        "Gráfico del precio del oro en" => "Gráfico del precio del oro en",
         "About AlTaqrer Gold" => "Acerca de AlTaqrer Gold",
         "All rights reserved" => "Todos los derechos reservados",
         "Related gold prices" => "Precios del oro relacionados",
