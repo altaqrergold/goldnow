@@ -289,6 +289,9 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
     $term_id = (is_object($current_term) && isset($current_term->term_id)) ? (int) $current_term->term_id : 0;
 
     $english_name = $term_id ? (string) get_term_meta($term_id, 'country_english_name', true) : '';
+    $localized_country_name = (is_object($current_term) && function_exists('altaqrer_ml_country_name'))
+        ? (string) altaqrer_ml_country_name($current_term, 'de')
+        : '';
     $country_code = $term_id ? (string) get_term_meta($term_id, 'country_code', true) : '';
     $country_flag = $term_id ? (string) get_term_meta($term_id, 'country_flag', true) : '';
     $country_currency = $term_id ? strtoupper((string) get_term_meta($term_id, 'country_currency', true)) : '';
@@ -301,7 +304,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
             $country_fallback = '';
         }
     }
-    $display_country_name = $english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country');
+    $display_country_name = $localized_country_name !== '' ? $localized_country_name : ($english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country'));
     $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
 
     // Complete English currency labels for the currencies used by the site's country map.
@@ -1212,6 +1215,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <?php wp_footer(); ?>
-<?php ob_start('altaqrer_gold_de_output_translate'); ?>
 </body>
 </html>
