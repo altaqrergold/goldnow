@@ -155,7 +155,7 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
 
 <?php
 /**
- * Place the existing Customizer advertisement immediately below the English
+ * Place the existing Customizer advertisement immédiatement sous
  * title/logo and navigation. Do not duplicate the AdSenseHeaderManager output.
  */
 if (!$fr_header_is_app && function_exists('goldnow_display_ad')) :
@@ -167,7 +167,7 @@ if (!$fr_header_is_app && function_exists('goldnow_display_ad')) :
 
 <?php
 /**
- * English-only text adapter for shortcode HTML.
+ * Adaptateur de traduction française pour le HTML des codes courts.
  * It translates visible text and accessibility labels only; URLs, HTML structure,
  * CSS and JavaScript are deliberately left untouched.
  */
@@ -205,7 +205,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
 <main class="p-0 font-2">
   <div class="container home px-2">
     <?php
-    // 1) Resolve the current country safely and use its English taxonomy metadata.
+    // 1) Resolve the current country safely and use its métadonnées de taxonomie françaises.
     $current_term = get_queried_object();
     $arabic_country_name = (is_object($current_term) && isset($current_term->name)) ? (string) $current_term->name : '';
     $term_id = (is_object($current_term) && isset($current_term->term_id)) ? (int) $current_term->term_id : 0;
@@ -225,7 +225,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
         }
     }
     $french_country_names = array(
-        'eg'=>'Égypte','sa'=>'Arabie saoudite','ae'=>'Émirats arabes unis','kw'=>'Koweït','qa'=>'Qatar','bh'=>'Bahreïn','om'=>'Oman','jo'=>'Jordanie','iq'=>'Irak','ma'=>'Maroc','tn'=>'Tunisie','dz'=>'Algérie','ly'=>'Libye','sd'=>'Soudan','lb'=>'Liban','sy'=>'Syrie','ye'=>'Yémen','us'=>'États-Unis','gb'=>'Royaume-Uni','fr'=>'France','de'=>'Allemagne','it'=>'Italie','es'=>'Espagne','ca'=>'Canada','au'=>'Australie','tr'=>'Turquie','in'=>'Inde','pk'=>'Pakistan','cn'=>'Chine','jp'=>'Japon','ru'=>'Russie','za'=>'Afrique du Sud','ng'=>'Nigeria','ke'=>'Kenya'
+        'eg'=>'Égypte','sa'=>'Arabie saoudite','ae'=>'Émirats arabes unis','kw'=>'Koweït','qa'=>'Qatar','bh'=>'Bahreïn','om'=>'Oman','jo'=>'Jordanie','iq'=>'Irak','ma'=>'Maroc','tn'=>'Tunisie','dz'=>'Algérie','ly'=>'Libye','sd'=>'Soudan','lb'=>'Liban','sy'=>'Syrie','ye'=>'Yémen','us'=>'États-Unis','gb'=>'Royaume-Uni','fr'=>'France','de'=>'Allemagne','it'=>'Italie','es'=>'Espagne','ca'=>'Canada','au'=>'Australie','tr'=>'Turquie','in'=>'Inde','pk'=>'Pakistan','cn'=>'Chine','jp'=>'Japon','ru'=>'Russie','za'=>'Afrique du Sud','ng'=>'Nigeria','ke'=>'Kenya','mk'=>'Macédoine du Nord'
     );
     $display_country_name = $french_name !== '' ? $french_name : (isset($french_country_names[$country_code]) ? $french_country_names[$country_code] : ($country_fallback !== '' ? $country_fallback : 'Pays'));
     $country_name = $display_country_name; // Les variables AJAX et héritées doivent également recevoir le nom français.
@@ -350,7 +350,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
         : ($gram_24k_price_usd_converted * 31.1);
     $ounce_price_currency = $ounce_price_usd * $local_currency_per_usd;
 
-    // Preserve the site's established 8g, 21K gold-coin calculation.
+    // Preserve the site's established 8g, or 21 carats-coin calculation.
     $gold_pound_currency = $gram_24k_price_currency * 8 * 0.875;
 ?>
 
@@ -370,10 +370,10 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
       
       <!-- 1. Prix en direct Pane -->
       <div id="tab-now" class="gold-tab-pane" style="display:block;">
-        <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
+        <!-- 📊 SEO Heading: Fully programmatically structured in mise en page française -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prixs of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="Cours de l’or en direct en <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
         if ( $gold_view == '24k' ) { echo 'Prix de l’or 24 carats aujourd’hui en ' . esc_html($display_country_name); }
         elseif ( $gold_view == '22k' ) { echo 'Prix de l’or 22 carats aujourd’hui en ' . esc_html($display_country_name); }
@@ -412,8 +412,8 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
       <div id="tab-buy-sell" class="gold-tab-pane" style="display:none; text-align: left; direction: ltr;">
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align:left !important; direction:ltr !important;">
             <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-            <img alt="Lingots et pièces d’or in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; margin-right: 5px;">
-            Lingots et pièces d’or in <?php echo esc_html($display_country_name); ?>
+            <img alt="Lingots et pièces d’or en <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; margin-right: 5px;">
+            Lingots et pièces d’or en <?php echo esc_html($display_country_name); ?>
         </h2>
         <h3 class="col-12 p-0 mt-1" style="opacity: .7; font-size: 15px; text-align:left !important; direction:ltr !important;">
           Derniers prix des lingots et pièces d’or (hors frais de fabrication)
@@ -423,7 +423,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
             <!-- A) Lingots d’or Prix Table -->
             <section id="sabika-price" class="gold-section mt-4">
                 <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
-                    <h4>Prix des lingots d’or in <?php echo esc_html($display_country_name); ?></h4>
+                    <h4>Prix des lingots d’or en <?php echo esc_html($display_country_name); ?></h4>
                     <span class="date-badge" style="background: #262930; padding: 4px 10px; border-radius: 4px; font-size: 13px;"><?php echo esc_html($today); ?></span>
                 </div>
                 <div class="table-responsive">
@@ -472,7 +472,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
 
             <section id="gold-pounds-price" class="gold-section mt-4">
                 <div class="section-header">
-                    <h4>Prix des pièces d’or in <?php echo esc_html($display_country_name); ?></h4>
+                    <h4>Prix des pièces d’or en <?php echo esc_html($display_country_name); ?></h4>
                 </div>
                 <div class="table-responsive">
                     <table class="gold-table" style="width: 100%; text-align: left; direction: ltr;">
@@ -517,7 +517,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
             </div>
 
         <?php } else { ?>
-            <p style="text-align:center; padding:20px;">Sorry, the market data is currently unavailable.</p>
+            <p style="text-align:center; padding:20px;">Désolé, les données du marché sont actuellement indisponibles.</p>
         <?php } ?>
       </div>
 
@@ -525,7 +525,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Graphique du cours de l’or in <?php echo esc_html($display_country_name); ?>
+          Graphique du cours de l’or en <?php echo esc_html($display_country_name); ?>
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
@@ -694,7 +694,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 Taux de change en direct par rapport à <?php echo esc_html($currency_label); ?> in <?php echo esc_html($display_country_name); ?> <img alt="Drapeau de <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 Taux de change en direct par rapport à <?php echo esc_html($currency_label); ?> en <?php echo esc_html($display_country_name); ?> <img alt="Drapeau de <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -845,16 +845,16 @@ if (!empty($gold_view)) {
                 <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">🪙 Prix de la pièce d’or aujourd’hui en <?php echo esc_html($display_country_name); ?> (poids standard de 8 grammes) :</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
-                    <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>Pièce d’or 21 carats (8g):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($price_21k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">Valeur : <?php echo number_format($price_21k_usd * 8, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>22K Pièce d’or (8g):</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_22k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">Valeur : <?php echo number_format($price_22k_usd * 8, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>24K Pièce d’or (8g):</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">Valeur : <?php echo number_format($price_24k_usd * 8, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>Pièce d’or 21 carats (8 g) :</strong> <span style="color: #ffb301;"><strong><?php echo number_format($price_21k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">Valeur : <?php echo number_format($price_21k_usd * 8, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>Pièce d’or 22 carats (8 g) :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_22k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">Valeur : <?php echo number_format($price_22k_usd * 8, 2); ?> USD</small></div>
+                    <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>Pièce d’or 24 carats (8 g) :</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">Valeur : <?php echo number_format($price_24k_usd * 8, 2); ?> USD</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    Suivez en direct le <strong>prix actuel de la pièce d’or</strong> en the investment markets of <strong><?php echo esc_html($display_country_name); ?></strong>. Sovereign pièce d’ors weighing exactly 8 grams are widely monitored as safe haven physical assets.
+                    Suivez en direct le <strong>prix actuel de la pièce d’or</strong> sur les marchés d’investissement de <strong><?php echo esc_html($display_country_name); ?></strong>. Les pièces souveraines en or de 8 grammes sont suivies comme des actifs physiques pouvant jouer un rôle de valeur refuge.
                 </p>
 
             <?php elseif ($gold_view == 'usd') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">💵 Taux de change en direct par rapport à <?php echo esc_html($currency_label); ?> in <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">💵 Taux de change en direct par rapport à <?php echo esc_html($currency_label); ?> en <?php echo esc_html($display_country_name); ?>:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; text-align: left; direction: ltr; margin-bottom: 20px;">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -980,14 +980,14 @@ if (!empty($gold_view)) {
     $en_active_price_usd = $en_seo_price_map[$gold_view][1];
     $en_karat = strtoupper($gold_view);
 ?>
-    <h2 id="fr-seo-title"><?php echo esc_html($en_karat); ?> Prix de l’or aujourd’hui en <?php echo esc_html($display_country_name); ?> per Gram</h2>
+    <h2 id="fr-seo-title">Prix de l’or <?php echo esc_html($en_karat); ?> aujourd’hui en <?php echo esc_html($display_country_name); ?> par gramme</h2>
     <p>Suivez le dernier cours de <strong><?php echo esc_html($en_karat); ?> aujourd’hui en <?php echo esc_html($display_country_name); ?></strong> grâce au cours de référence en direct affiché ci-dessus. La valeur indicative actuelle est de <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> par gramme, soit environ <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Ces montants sont calculés à partir du dernier cours de référence disponible pour l’or 24 carats, du coefficient de pureté de l’or <?php echo esc_html($en_karat); ?> et du dernier taux de conversion monétaire disponible sur le site.</p>
     <h3>Que signifie l’or <?php echo esc_html($en_karat); ?> ?</h3>
     <p>Le carat indique la proportion d’or pur dans un alliage. L’or 24 carats sert de référence pour l’or pur, tandis que les titrages inférieurs contiennent une part plus importante d’autres métaux. Le cours de l’or <?php echo esc_html($en_karat); ?> reflète donc sa teneur en or et non le prix de vente final d’un bijou. Le prix en boutique peut également inclure la main-d’œuvre, les marges du détaillant, les taxes et d’autres frais locaux qui ne sont pas compris dans la valeur brute affichée ici.</p>
     <h3>Comment lire les prix en monnaie locale et en USD</h3>
     <p>Le montant en monnaie locale permet de comparer la valeur de référence en <?php echo esc_html($display_country_name); ?>, tandis que l’équivalent en USD facilite la comparaison de la même teneur en or avec les cotations internationales. Les prix locaux peuvent évoluer en fonction du cours mondial de l’or, des taux de change ou des conditions du marché local. Les montants affichés sur cette page sont des valeurs indicatives et ne constituent pas une offre ferme de rachat ou de vente.</p>
     <h3>Cours de l’or associés</h3>
-    <p>Comparez ce cours avec <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gold</a>, <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K gold</a>, <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">prix des lingots d’or</a>, and the <a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">live indice du marché de l’or</a> afin d’obtenir une vue plus complète du marché.</p>
+    <p>Comparez ce cours avec <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">or 24 carats</a>, <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">prix des lingots d’or</a>, et l’<a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">indice du marché de l’or en direct</a> afin d’obtenir une vue plus complète du marché.</p>
     <h3>Questions fréquentes</h3>
     <details><summary>Le cours affiché de <?php echo esc_html($en_karat); ?> correspond-il au prix final en bijouterie ?</summary><p>Non. Il s’agit d’une référence indicative de la valeur de l’or brut, hors main-d’œuvre, marges des détaillants, taxes et autres frais éventuels liés au produit fini.</p></details>
     <details><summary>Pourquoi l’équivalent en USD diffère-t-il du prix local ?</summary><p>Les deux montants sont exprimés dans des devises différentes. Le montant local est converti à partir des derniers taux de change disponibles utilisés par le site ; le montant en USD représente la valeur correspondante de l’or en dollars américains.</p></details>
@@ -1007,12 +1007,12 @@ if (!empty($gold_view)) {
     <p>Suivez la valeur de référence d’une <strong>pièce d’or de 8 grammes</strong> en <?php echo esc_html($display_country_name); ?>. Sur la base des cours actuels au gramme, la valeur indicative d’une pièce de 21 carats est de <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (soit environ <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). La page compare également les valeurs en 22 et 24 carats pour le même poids de 8 grammes afin de montrer l’effet du titrage.</p>
     <h3>Comment est calculée la valeur de la pièce de 8 grammes</h3>
     <p>Le calcul multiplie le cours correspondant au gramme par un poids de 8 grammes. Pour la référence courante en 21 carats, l’estimation affichée correspond au prix du gramme 21 carats multiplié par huit. Les valeurs comparatives en 22 et 24 carats utilisent leurs cours respectifs pour le même poids. Le calcul standard de la pièce de 8 grammes utilisé par le site est ainsi conservé.</p>
-    <p>Le prix réel d’une pièce peut varier selon sa frappe, son état, son design, sa rareté, les marges du vendeur et les taxes locales. Les valeurs présentées ici correspondent à la teneur en or et ne constituent pas une offre de transaction garantie. Comparez le <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">prix du gramme d’or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . '22k/'); ?>">prix de l’or 22 carats</a>, and <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">prix des lingots d’or</a>.</p>
+    <p>Le prix réel d’une pièce peut varier selon sa frappe, son état, son design, sa rareté, les marges du vendeur et les taxes locales. Les valeurs présentées ici correspondent à la teneur en or et ne constituent pas une offre de transaction garantie. Comparez le <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">prix du gramme d’or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . '22k/'); ?>">prix de l’or 22 carats</a> et <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">prix des lingots d’or</a>.</p>
     <h3>Questions fréquentes</h3>
     <details><summary>Quel poids est utilisé pour le calcul de la pièce d’or ?</summary><p>Cette page conserve le calcul standard de 8 grammes du site pour la comparaison des pièces d’or.</p></details>
     <details><summary>La valeur affichée inclut-elle une marge du vendeur ?</summary><p>Non. Elle estime uniquement la teneur en or et n’inclut pas les frais de frappe, les marges du vendeur, la main-d’œuvre ou les taxes.</p></details>
 <?php elseif ($gold_view === 'gold-bars') : ?>
-    <h2 id="fr-seo-title">Prix des lingots d’or aujourd’hui in <?php echo esc_html($display_country_name); ?></h2>
+    <h2 id="fr-seo-title">Prix des lingots d’or aujourd’hui en <?php echo esc_html($display_country_name); ?></h2>
     <p>Les lingots d’or sont généralement évalués à partir du cours de référence de l’or 24 carats. Sur la base du cours actuel de <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?> par gramme</strong> (soit environ <strong><?php echo number_format($price_24k_usd, 2); ?> USD</strong>), un lingot de 10 grammes présente une valeur indicative en or de <strong><?php echo number_format($price_24k_local * 10, 2); ?> <?php echo esc_html($currency_label); ?></strong>, tandis qu’un lingot de 100 grammes vaut environ <strong><?php echo number_format($price_24k_local * 100, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Le tableau ci-dessus présente d’autres poids pour faciliter la comparaison.</p>
     <h3>Comment comparer les poids des lingots d’or</h3>
     <p>Pour obtenir une estimation simple, multipliez le cours de référence du gramme 24 carats par le poids du lingot. Le résultat représente la valeur indicative de l’or contenu avant toute prime de fabrication, frais d’analyse ou de poinçonnage, marge du vendeur, coût de livraison ou taxe. Le prix de vente final d’un lingot peut donc être supérieur au calcul brut présenté sur cette page.</p>
@@ -1042,7 +1042,7 @@ if (!empty($gold_view)) {
     <p>Cette présentation du marché de l’or rassemble les dernières valeurs de référence disponibles pour plusieurs titrages. Le cours de référence actuel de l’or 24 carats est de <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> par gramme, tandis que le 22 carats est d’environ <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> et le 21 carats est d’environ <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> . Le cours de l’once troy mondiale est de <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> et son équivalent en monnaie locale est de <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
     <h3>Ce que l’indice de l’or permet de comparer</h3>
     <p>L’indice offre un aperçu pratique des valeurs de l’or selon les titrages et les devises courants. Il permet de comparer la référence de l’or 24 carats aux titrages inférieurs utilisés en bijouterie. Les valeurs locales sont calculées à partir du cours de référence de l’or et des taux de change disponibles ; les montants en USD facilitent la comparaison avec le marché international.</p>
-    <p>Les cours de l’or peuvent réagir à l’activité du marché international, aux variations des devises, aux anticipations de taux d’intérêt, aux inquiétudes liées à l’inflation et à l’évolution de la demande d’investissement. Une seule observation ne suffit pas à établir une tendance ; il est donc préférable de comparer les mises à jour dans le temps. Consultez la page <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">page du cours de l’or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">page du cours de l’or 24 carats</a>, and <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">page de l’once mondiale</a>.</p>
+    <p>Les cours de l’or peuvent réagir à l’activité du marché international, aux variations des devises, aux anticipations de taux d’intérêt, aux inquiétudes liées à l’inflation et à l’évolution de la demande d’investissement. Une seule observation ne suffit pas à établir une tendance ; il est donc préférable de comparer les mises à jour dans le temps. Consultez la page <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">page du cours de l’or 21 carats</a>, <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">page du cours de l’or 24 carats</a> et <a href="<?php echo esc_url($en_seo_base . 'ounce/'); ?>">page de l’once mondiale</a>.</p>
     <h3>Questions fréquentes</h3>
     <details><summary>L’indice indique-t-il un prix de marché garanti ?</summary><p>Non. Il s’agit d’une référence informative fondée sur les dernières données disponibles utilisées par le site. Les prix des transactions réelles peuvent inclure des primes et des frais locaux.</p></details>
     <details><summary>Pourquoi les différents carats ont-ils des prix différents ?</summary><p>Chaque titrage contient une proportion différente d’or pur. À poids égal, les alliages moins purs ont une valeur d’or brut inférieure à celle de l’or 24 carats, avant prise en compte des autres frais.</p></details>
