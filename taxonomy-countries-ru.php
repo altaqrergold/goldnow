@@ -537,7 +537,7 @@ if (!function_exists('altaqrer_gold_ru_translate_shortcode_html')) {
         <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="Текущие цены на золото в <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
         if ( $gold_view == '24k' ) { echo 'Цена золота 24 карата сегодня в ' . esc_html($display_country_name); }
         elseif ( $gold_view == '22k' ) { echo 'Цена золота 22 карата сегодня в ' . esc_html($display_country_name); }
@@ -697,7 +697,7 @@ if (!function_exists('altaqrer_gold_ru_translate_shortcode_html')) {
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
-        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.</p>
+        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Графики показывают ориентировочную динамику рынка. Местные цены могут отличаться из-за валютных курсов, наценок и рыночных условий.</p>
       </div>
 
     </div>
@@ -758,7 +758,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Загрузка графиков цен на золото…</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateEnglishIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">Не удалось загрузить данные графика. Попробуйте ещё раз.</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
@@ -857,7 +857,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 Текущие курсы обмена относительно <?php echo esc_html($currency_label); ?> в <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 Текущие курсы обмена относительно <?php echo esc_html($currency_label); ?> в <?php echo esc_html($display_country_name); ?> <img alt="Флаг страны: <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -919,11 +919,11 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 
     $tabs = [
         ['key' => '',          'ru' => 'Цена золота'],
-        ['key' => '24k',       'ru' => '24K'],
-        ['key' => '22k',       'ru' => '22K'],
-        ['key' => '21k',       'ru' => '21K'],
-        ['key' => '18k',       'ru' => '18K'],
-        ['key' => '14k',       'ru' => '14K'],
+        ['key' => '24k',       'ru' => '24 карата'],
+        ['key' => '22k',       'ru' => '22 карата'],
+        ['key' => '21k',       'ru' => '21 карат'],
+        ['key' => '18k',       'ru' => '18 карат'],
+        ['key' => '14k',       'ru' => '14 карат'],
         ['key' => 'ounce',     'ru' => 'Унция золота'],
         ['key' => 'coin',      'ru' => 'Золотая монета'],
         ['key' => 'gold-bars', 'ru' => 'Золотые слитки'],
@@ -971,7 +971,7 @@ if (!empty($gold_view)) {
         <div class="altaqrer-dynamic-inner-content">
             
             <?php if ($gold_view == 'gold-index') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Текущий индекс рынка золота в <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Текущий индекс рынка золота в <?php echo esc_html($display_country_name); ?> <img alt="Флаг страны: <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>Чистое золото 24K:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Стоимость: <?php echo number_format($price_24k_usd, 2); ?> USD</small></div>
@@ -1148,9 +1148,9 @@ if (!empty($gold_view)) {
     <h3>Что означает проба <?php echo esc_html($ru_karat); ?> золота?</h3>
     <p>Проба показывает долю чистого золота в сплаве. 24K считается эталоном чистого золота, а сплавы с меньшей пробой содержат больше других металлов. Цена золота <?php echo esc_html($ru_karat); ?> поэтому отражает содержание золота, а не окончательную розничную цену ювелирного изделия. Цена в магазине может также включать работу, наценку продавца, налоги и другие местные сборы, не входящие в указанную рыночную стоимость.</p>
     <h3>Как читать местные цены и цены в USD</h3>
-    <p>Значение в местной валюте позволяет сравнить справочную стоимость в <?php echo esc_html($display_country_name); ?>,; эквивалент в USD позволяет сравнивать такое же содержание золота с международными котировками. Местные цены меняются вслед за мировым ориентиром, курсами валют и местными рыночными надбавками. Это справочные значения, а не гарантированное предложение покупки или продажи.</p>
+    <p>Значение в местной валюте позволяет сравнить справочную стоимость в <?php echo esc_html($display_country_name); ?>; эквивалент в USD позволяет сравнивать такое же содержание золота с международными котировками. Местные цены меняются вслед за мировым ориентиром, курсами валют и местными рыночными надбавками. Это справочные значения, а не гарантированное предложение покупки или продажи.</p>
     <h3>Связанные цены на золото</h3>
-    <p>Сравните эту цену с <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">золото 24K</a>, <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">золото 21K</a>, <a href="<?php echo esc_url($ru_seo_base . 'gold-bars/'); ?>">цены на золотые слитки</a>, и <a href="<?php echo esc_url($ru_seo_base . 'gold-index/'); ?>">live индекс рынка золота</a> для более полного понимания рынка.</p>
+    <p>Сравните эту цену с <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">золото 24K</a>, <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">золото 21K</a>, <a href="<?php echo esc_url($ru_seo_base . 'gold-bars/'); ?>">цены на золотые слитки</a>, и <a href="<?php echo esc_url($ru_seo_base . 'gold-index/'); ?>">индекс рынка золота в реальном времени</a> для более полного понимания рынка.</p>
     <h3>Часто задаваемые вопросы</h3>
     <details><summary>Является ли указанная цена <?php echo esc_html($ru_karat); ?> окончательной ценой ювелирного изделия в магазине?</summary><p>Нет. Это справочная стоимость чистого золота без учета работы, наценки продавца, налогов и других расходов на готовое изделие.</p></details>
     <details><summary>Почему значение в USD отличается от местной цены?</summary><p>Эти значения указаны в разных валютах. Местная сумма рассчитывается по последнему доступному курсу сайта, а значение в USD отражает соответствующую стоимость золота в долларах США.</p></details>
