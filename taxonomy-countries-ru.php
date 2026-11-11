@@ -95,7 +95,7 @@ function altaqrer_gold_ru_output_translate($html) {
         "Gold Ounce" => "Унция золота",
         "Prices" => "Цены",
         "Changes" => "Изменения",
-        "No." => "Нет."
+        "No." => "Нет.",
         "Why the global gold ounce matters" => "Почему важна мировая цена золота за унцию",
         "From the global ounce to a local gram price" => "От мировой цены за унцию к местной цене за грамм",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "На международных рынках золото обычно котируется за тройскую унцию. Трейдеры, аффинажные предприятия, финансовые компании и продавцы драгоценных металлов используют этот ориентир для сравнения стоимости золота на разных рынках. На международную цену могут влиять курс доллара США, ожидания по процентным ставкам, инфляционные прогнозы, действия центральных банков и спрос инвесторов. Это общие рыночные факторы, а не утверждение, что какой-либо из них вызвал сегодняшнее движение цены.",
