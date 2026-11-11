@@ -513,18 +513,17 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
           <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
-        if ( $gold_view == '24k' ) { echo '24K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '22k' ) { echo '22K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '21k' ) { echo '21K Gold Price per Gram Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '18k' ) { echo '18K Gold Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == '14k' ) { echo '14K Gold Price Today in ' . esc_html($display_country_name); }
+        if ( $gold_view == '24k' ) { echo 'Goldpreis für 24 Karat heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == '22k' ) { echo 'Goldpreis für 22 Karat heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == '21k' ) { echo 'Goldpreis für 21 Karat pro Gramm heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == '18k' ) { echo 'Goldpreis für 18 Karat heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == '14k' ) { echo 'Goldpreis für 14 Karat heute in ' . esc_html($display_country_name); }
         elseif ( $gold_view == 'ounce' ) { echo 'Weltweiter Goldunzenpreis heute (USD)'; }
-        elseif ( $gold_view == 'coin' ) { echo 'Gold Coin Price Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'gold-bars' ) { echo 'Gold Bullion Bar Prices Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'gold-index' ) { echo 'Live Gold Market Index Today in ' . esc_html($display_country_name); }
-        elseif ( $gold_view == 'usd' ) { echo 'US Dollar and Currency Exchange Rates Today in ' . esc_html($display_country_name); }
-        else { echo 'Gold Prices in ' . esc_html($display_country_name) . ' Today '; }
-        ?>
+        elseif ( $gold_view == 'coin' ) { echo 'Preis der Goldmünze heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == 'gold-bars' ) { echo 'Goldbarrenpreise heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == 'gold-index' ) { echo 'Goldmarktindex in Echtzeit heute in ' . esc_html($display_country_name); }
+        elseif ( $gold_view == 'usd' ) { echo 'US-Dollar-Wechselkurse und Währungsumrechnung heute in ' . esc_html($display_country_name); }
+        else { echo 'Goldpreise in ' . esc_html($display_country_name) . ' heute'; }?>
         </h2>
         
         <h3 class="col-12 p-0 mt-1" style="opacity: .7; font-size: 15px; text-align: left; direction: ltr;">
