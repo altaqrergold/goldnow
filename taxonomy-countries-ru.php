@@ -1227,7 +1227,7 @@ if (!empty($gold_view)) {
   <div class="ru-site-footer-inner">
     <section>
       <h3>О проекте AlTaqrer Gold</h3>
-      <p><strong>AlTaqrer Gold</strong> helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes.</p>
+      <p><strong>AlTaqrer Gold</strong> помогает читателям следить за ценами на золото на региональных и международных рынках. Здесь можно узнать актуальные справочные цены на золото 24, 22, 21, 18 и 14 карат, сравнить стоимость золотых слитков и монет весом 8 граммов, а также отслеживать мировую цену тройской унции золота в USD. Цены приводятся для ознакомления и сравнения; в окончательную розничную стоимость могут входить расходы на изготовление, надбавки и налоги.</p>
     </section>
     <section>
       <h3>Разделы цен на золото</h3>
