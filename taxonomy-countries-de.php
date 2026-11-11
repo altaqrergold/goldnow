@@ -681,7 +681,7 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Gold Price Chart in <?php echo esc_html($display_country_name); ?>
+          Goldpreisdiagramm in <?php echo esc_html($display_country_name); ?>
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
@@ -1134,18 +1134,18 @@ if (!empty($gold_view)) {
 <?php if (isset($de_seo_price_map[$gold_view])) :
     $en_active_price_local = $de_seo_price_map[$gold_view][0];
     $en_active_price_usd = $de_seo_price_map[$gold_view][1];
-    $de_karat = strtoupper($gold_view);
+    $de_karat = str_replace(['24K','22K','21K','18K','14K'], ['24 Karat','22 Karat','21 Karat','18 Karat','14 Karat'], strtoupper($gold_view));
 ?>
-    <h2 id="en-seo-title"><?php echo esc_html($de_karat); ?> Goldpreis heute in <?php echo esc_html($display_country_name); ?> pro Gramm</h2>
-    <p>Verfolgen Sie den aktuellen <strong><?php echo esc_html($de_karat); ?> Goldpreis heute in <?php echo esc_html($display_country_name); ?></strong> anhand des oben angezeigten Live-Referenzwerts. Der aktuelle Richtwert beträgt <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> pro Gramm, entsprechend etwa <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Diese Werte werden anhand des neuesten verfügbaren 24K-Referenzpreises und des Reinheitsfaktors für <?php echo esc_html($de_karat); ?> Gold sowie der neuesten auf der Website verfügbaren Währungsumrechnung.</p>
-    <h3>Was bedeutet <?php echo esc_html($de_karat); ?>-Gold?</h3>
-    <p>Die Karatzahl gibt den Anteil reinen Goldes in einer Legierung an. 24K gilt als Referenz für reines Gold; niedrigere Karatzahlen enthalten einen höheren Anteil anderer Metalle. Der <?php echo esc_html($de_karat); ?> Preis spiegelt daher den Goldanteil wider, nicht den fertigen Verkaufspreis eines Schmuckstücks. Der Ladenpreis kann zusätzlich Arbeitskosten, Händlermargen, Steuern und weitere lokale Gebühren enthalten, die im hier angezeigten reinen Marktwert nicht berücksichtigt sind.</p>
+    <h2 id="en-seo-title">Goldpreis für <?php echo esc_html($de_karat); ?> heute in <?php echo esc_html($display_country_name); ?> pro Gramm</h2>
+    <p>Verfolgen Sie den aktuellen <strong>Goldpreis für <?php echo esc_html($de_karat); ?> heute in <?php echo esc_html($display_country_name); ?></strong> anhand des oben angezeigten Live-Referenzwerts. Der aktuelle Richtwert beträgt <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> pro Gramm, entsprechend etwa <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Diese Werte werden anhand des neuesten verfügbaren 24K-Referenzpreises und des Reinheitsfaktors für <?php echo esc_html($de_karat); ?> Gold sowie der neuesten auf der Website verfügbaren Währungsumrechnung.</p>
+    <h3>Was bedeutet Gold mit <?php echo esc_html($de_karat); ?>?</h3>
+    <p>Die Karatzahl gibt den Anteil reinen Goldes in einer Legierung an. 24K gilt als Referenz für reines Gold; niedrigere Karatzahlen enthalten einen höheren Anteil anderer Metalle. Der Goldpreis für <?php echo esc_html($de_karat); ?> spiegelt daher den Goldanteil wider, nicht den fertigen Verkaufspreis eines Schmuckstücks. Der Ladenpreis kann zusätzlich Arbeitskosten, Händlermargen, Steuern und weitere lokale Gebühren enthalten, die im hier angezeigten reinen Marktwert nicht berücksichtigt sind.</p>
     <h3>Lokale Preise und USD-Preise verstehen</h3>
     <p>Der Wert in lokaler Währung erleichtert den Vergleich des Referenzwerts in <?php echo esc_html($display_country_name); ?>; der USD-Gegenwert erleichtert den Vergleich desselben Goldanteils mit internationalen Notierungen. Lokale Preise können sich durch Änderungen des globalen Goldpreises, der Wechselkurse oder lokaler Marktaufschläge verändern. Die Angaben sind Richtwerte und kein garantiertes Ankaufs- oder Verkaufsangebot.</p>
     <h3>Verwandte Goldpreise</h3>
     <p>Vergleichen Sie diesen Preis mit <a href="<?php echo esc_url($de_seo_base . '24k/'); ?>">24K-Gold</a>, <a href="<?php echo esc_url($de_seo_base . '21k/'); ?>">21K-Gold</a>, <a href="<?php echo esc_url($de_seo_base . 'gold-bars/'); ?>">Goldbarrenpreise</a>, sowie den <a href="<?php echo esc_url($de_seo_base . 'gold-index/'); ?>">Goldmarktindex in Echtzeit</a> für einen umfassenderen Marktüberblick.</p>
     <h3>Häufig gestellte Fragen</h3>
-    <details><summary>Ist der angezeigte <?php echo esc_html($de_karat); ?> der endgültige Ladenpreis für Schmuck?</summary><p>Nein. Es handelt sich um einen Richtwert für den reinen Goldwert ohne Verarbeitung, Händlermargen, Steuern und sonstige Gebühren für ein fertiges Schmuckstück.</p></details>
+    <details><summary>Ist der angezeigte Goldpreis für <?php echo esc_html($de_karat); ?> der endgültige Ladenpreis für Schmuck?</summary><p>Nein. Es handelt sich um einen Richtwert für den reinen Goldwert ohne Verarbeitung, Händlermargen, Steuern und sonstige Gebühren für ein fertiges Schmuckstück.</p></details>
     <details><summary>Warum unterscheidet sich der USD-Gegenwert vom lokalen Preis?</summary><p>Die beiden Werte verwenden unterschiedliche Währungen. Der lokale Betrag wird mit den neuesten auf der Website verfügbaren Wechselkursdaten umgerechnet; der USD-Betrag zeigt den entsprechenden Goldwert in US-Dollar.</p></details>
 <?php elseif ($gold_view === 'ounce') : ?>
     <h2 id="en-seo-title">Globaler Gold-Unzenpreis heute in USD</h2>
