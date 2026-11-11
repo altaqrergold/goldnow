@@ -1017,7 +1017,7 @@ if (!empty($gold_view)) {
                 </p>
 
             <?php elseif ($gold_view == 'usd') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">💵 Live Exchange Rates against <?php echo esc_html($currency_label); ?> in <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">💵 Canlı döviz kurları <?php echo esc_html($currency_label); ?> karşısında <?php echo esc_html($display_country_name); ?>:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; text-align: left; direction: ltr; margin-bottom: 20px;">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
