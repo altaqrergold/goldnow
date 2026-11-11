@@ -1227,7 +1227,7 @@ if (!empty($gold_view)) {
   <div class="hi-site-footer-inner">
     <section>
       <h3>AlTaqrer Gold के बारे में</h3>
-      <p><strong>AlTaqrer Gold</strong> helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes.</p>
+      <p><strong>AlTaqrer Gold</strong> पाठकों को क्षेत्रीय और अंतरराष्ट्रीय बाज़ारों में सोने की कीमतों पर नज़र रखने में मदद करता है। यहाँ 24, 22, 21, 18 और 14 कैरेट सोने के नवीनतम संदर्भ मूल्य देखें, सोने की छड़ों और 8 ग्राम के सोने के सिक्कों की कीमतों की तुलना करें, और USD में सोने के वैश्विक औंस का भाव जानें। ये कीमतें केवल जानकारी और तुलना के उद्देश्य से दी जाती हैं; अंतिम खुदरा कीमत में निर्माण शुल्क, अतिरिक्त प्रीमियम और कर शामिल हो सकते हैं।</p>
     </section>
     <section>
       <h3>सोने की कीमत के अनुभाग</h3>
