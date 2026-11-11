@@ -93,6 +93,8 @@ function altaqrer_gold_tr_output_translate($html) {
         "12K Gold" => "12 Ayar Altın",
         "Gold Gram" => "Gram Altın",
         "Gold Ounce" => "Altın Ons",
+        "Prices" => "Fiyatlar",
+        "Changes" => "Değişiklikler",
         "No." => "Hayır."
     );
 
