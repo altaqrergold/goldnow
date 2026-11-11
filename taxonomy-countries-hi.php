@@ -1,4 +1,83 @@
 <?php
+/* Template Name: हिन्दी — Gold Country Prices */
+
+/** HI output localization: translate rendered text and accessible labels only. */
+if (!function_exists('altaqrer_gold_hi_output_translate')) {
+function altaqrer_gold_hi_output_translate($html) {
+    $map = array(
+        "Live foreign exchange rates for major international and regional currencies" => "प्रमुख अंतरराष्ट्रीय और क्षेत्रीय मुद्राओं की लाइव विनिमय दरें",
+        "International spot benchmark for one troy ounce of 24K gold, quoted in USD" => "24 कैरेट सोने के एक ट्रॉय औंस का अंतरराष्ट्रीय स्पॉट मानक, USD में",
+        "What weight is used for the gold coin calculation?" => "सोने के सिक्के की गणना के लिए कौन सा वज़न उपयोग किया जाता है?",
+        "Does the displayed value include a dealer premium?" => "क्या दिखाई गई कीमत में विक्रेता का प्रीमियम शामिल है?",
+        "Sorry, the market data is currently unavailable." => "क्षमा करें, बाज़ार का डेटा अभी उपलब्ध नहीं है।",
+        "live market price, excluding making charges" => "मेकिंग चार्ज के बिना लाइव बाज़ार कीमत",
+        "How to read the local and USD prices" => "स्थानीय और USD कीमतों को कैसे समझें",
+        "Frequently asked questions" => "अक्सर पूछे जाने वाले प्रश्न",
+        "Gold Bullion Bar Prices in" => "में सोने की छड़ों की कीमतें",
+        "Gold Price per Gram Today" => "आज प्रति ग्राम सोने की कीमत",
+        "Join Our Telegram Channel" => "हमारे टेलीग्राम चैनल से जुड़ें",
+        "Excluding Making Charges" => "मेकिंग चार्ज के बिना",
+        "Gold Bullion Bar Prices" => "सोने की छड़ों की कीमतें",
+        "Gold Bars and Coins in" => "में सोने की छड़ें और सिक्के",
+        "USD and Currency Rates" => "USD और मुद्रा दरें",
+        "Regional Gold Prices" => "क्षेत्रीय सोने की कीमतें",
+        "Gold Bars and Coins" => "सोने की छड़ें और सिक्के",
+        "Gold Price Sections" => "सोने की कीमत के अनुभाग",
+        "Gold Price Chart in" => "में सोने की कीमत का चार्ट",
+        "About AlTaqrer Gold" => "AlTaqrer Gold के बारे में",
+        "All rights reserved" => "सर्वाधिकार सुरक्षित",
+        "Related gold prices" => "संबंधित सोने की कीमतें",
+        "Gold Coin Prices in" => "में सोने के सिक्कों की कीमतें",
+        "Gold Price Today in" => "में आज सोने की कीमत",
+        "Global Gold Ounce" => "वैश्विक सोने का औंस",
+        "Gold Coin Prices" => "सोने के सिक्कों की कीमतें",
+        "Gold Price Chart" => "सोने की कीमत का चार्ट",
+        "Gold Price Today" => "आज सोने की कीमत",
+        "Important Links" => "महत्वपूर्ण लिंक",
+        "Reference date:" => "संदर्भ तिथि:",
+        "Live Gold Index" => "लाइव सोना सूचकांक",
+        "Local Currency" => "स्थानीय मुद्रा",
+        "Privacy Policy" => "गोपनीयता नीति",
+        "Gold Prices in" => "में सोने की कीमतें",
+        "All Countries" => "सभी देश",
+        "Weight / Type" => "वज़न / प्रकार",
+        "Terms of Use" => "उपयोग की शर्तें",
+        "Gold Prices" => "सोने की कीमतें",
+        "Live Prices" => "लाइव कीमतें",
+        "Coin Purity" => "सिक्के की शुद्धता",
+        "Gold Price" => "सोने की कीमत",
+        "Gold Index" => "सोना सूचकांक",
+        "Important:" => "महत्वपूर्ण:",
+        "Contact Us" => "संपर्क करें",
+        "Gold Bars" => "सोने की छड़ें",
+        "Gold Coin" => "सोने का सिक्का",
+        "Countries" => "देश",
+        "USD Rates" => "USD विनिमय दरें",
+        "Follow Us" => "हमें फ़ॉलो करें",
+        "What does" => "का क्या अर्थ है",
+        "Today in" => "आज",
+        "per Gram" => "प्रति ग्राम",
+        "Price" => "कीमत",
+        "Home" => "होम",
+        "Yes." => "हाँ।",
+        "No." => "नहीं।"
+    );
+    $protected = array();
+    $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) {
+        $token = 'ALTQRGOLDHIBLOCK' . count($protected) . 'TOKEN';
+        $protected[$token] = $m[0];
+        return $token;
+    }, $html);
+    $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) {
+        return '>' . strtr($m[1], $map) . '<';
+    }, $html);
+    $html = preg_replace_callback("~\\b(alt|title|aria-label|placeholder)\\s*=\\s*([\\\"'])(.*?)\\2~isu", function($m) use ($map) {
+        return $m[1] . '=' . $m[2] . strtr($m[3], $map) . $m[2];
+    }, $html);
+    return !empty($protected) ? strtr($html, $protected) : $html;
+}}
+ob_start('altaqrer_gold_hi_output_translate');
+
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
