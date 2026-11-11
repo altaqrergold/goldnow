@@ -688,7 +688,7 @@ if (!function_exists('altaqrer_gold_it_translate_shortcode_html')) {
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
-          Gold Price Chart in <?php echo esc_html($display_country_name); ?>
+          Grafico del prezzo dell’oro a <?php echo esc_html($display_country_name); ?>
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
@@ -1141,9 +1141,9 @@ if (!empty($gold_view)) {
 <?php if (isset($it_seo_price_map[$gold_view])) :
     $en_active_price_local = $it_seo_price_map[$gold_view][0];
     $en_active_price_usd = $it_seo_price_map[$gold_view][1];
-    $it_karat = strtoupper($gold_view);
+    $it_karat = str_replace(['24K','22K','21K','18K','14K'], ['24 carati','22 carati','21 carati','18 carati','14 carati'], strtoupper($gold_view));
 ?>
-    <h2 id="en-seo-title"><?php echo esc_html($it_karat); ?> Prezzo dell’oro oggi in <?php echo esc_html($display_country_name); ?> al grammo</h2>
+    <h2 id="en-seo-title">Prezzo dell’oro <?php echo esc_html($it_karat); ?> oggi a <?php echo esc_html($display_country_name); ?> al grammo</h2>
     <p>Segui l’ultimo prezzo dell’oro <strong><?php echo esc_html($it_karat); ?> prezzo dell’oro oggi in <?php echo esc_html($display_country_name); ?></strong> con il riferimento in tempo reale mostrato sopra. Il valore indicativo attuale è <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> al grammo, pari a circa <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Questi valori sono calcolati usando l’ultimo prezzo di riferimento disponibile dell’oro 24K e il fattore di purezza di <?php echo esc_html($it_karat); ?> e l’ultimo tasso di cambio disponibile utilizzato dal sito.</p>
     <h3>Che cosa significa oro <?php echo esc_html($it_karat); ?>?</h3>
     <p>La caratura indica la percentuale di oro puro in una lega. Il 24K è il riferimento dell’oro puro, mentre le carature inferiori contengono una quota maggiore di altri metalli. Il prezzo dell’oro <?php echo esc_html($it_karat); ?> riflette quindi il contenuto d’oro e non il prezzo finale al dettaglio di un gioiello. Il prezzo in negozio può includere anche lavorazione, margini del rivenditore, imposte e altri costi locali non compresi nel valore di mercato mostrato.</p>
