@@ -93,6 +93,8 @@ function altaqrer_gold_hi_output_translate($html) {
         "12K Gold" => "12 कैरेट सोना",
         "Gold Gram" => "सोने का ग्राम",
         "Gold Ounce" => "सोने का औंस",
+        "Prices" => "कीमतें",
+        "Changes" => "बदलाव",
         "No." => "नहीं।"
     );
 
