@@ -537,7 +537,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
-          <img alt="Prices of gold live in <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
+          <img alt="<?php echo esc_html($display_country_name); ?> güncel altın fiyatları" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
         <?php
         if ( $gold_view == '24k' ) { echo esc_html($display_country_name) . ' için bugün 24 ayar altın fiyatı'; }
         elseif ( $gold_view == '22k' ) { echo esc_html($display_country_name) . ' için bugün 22 ayar altın fiyatı'; }
@@ -697,7 +697,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
           ?>
         </div>
         <div id="ajax-indicator-frames" class="gold-frame-box" style="direction:ltr; text-align:left;"></div>
-        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Charts show indicative market movements. Local prices may differ due to exchange rates, premiums and market conditions.</p>
+        <p style="color:#94a3b8; text-align:left; font-size:13px; margin:10px 4px 18px;">Grafikler, piyasadaki gösterge niteliğindeki hareketleri gösterir. Yerel fiyatlar döviz kurları, primler ve piyasa koşulları nedeniyle farklılık gösterebilir.</p>
       </div>
 
     </div>
@@ -758,7 +758,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Altın fiyat grafikleri yükleniyor…</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateEnglishIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">Grafik verileri yüklenemedi. Lütfen tekrar deneyin.</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
@@ -857,7 +857,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 Şu para birimine karşı canlı döviz kurları: <?php echo esc_html($currency_label); ?> karşısında <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 Şu para birimine karşı canlı döviz kurları: <?php echo esc_html($currency_label); ?> karşısında <?php echo esc_html($display_country_name); ?> <img alt="<?php echo esc_html($display_country_name); ?> ülkesinin bayrağı" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -971,7 +971,7 @@ if (!empty($gold_view)) {
         <div class="altaqrer-dynamic-inner-content">
             
             <?php if ($gold_view == 'gold-index') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Canlı altın piyasası endeksi: <?php echo esc_html($display_country_name); ?> <img alt="Flag of <?php echo esc_html($display_country_name); ?>" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">📈 Canlı altın piyasası endeksi: <?php echo esc_html($display_country_name); ?> <img alt="<?php echo esc_html($display_country_name); ?> ülkesinin bayrağı" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>Saf 24 ayar altın:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">Değer: <?php echo number_format($price_24k_usd, 2); ?> USD</small></div>
@@ -1145,12 +1145,12 @@ if (!empty($gold_view)) {
 ?>
     <h2 id="en-seo-title"><?php echo esc_html($tr_karat); ?> Bugünün altın fiyatı <?php echo esc_html($display_country_name); ?> gram başına</h2>
     <p>Güncel altın fiyatını takip edin: <strong><?php echo esc_html($tr_karat); ?> bölgesindeki bugünün altın fiyatı <?php echo esc_html($display_country_name); ?></strong> yukarıdaki canlı referansı izleyin. Güncel gösterge değer <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> gram başına, yaklaşık olarak <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Bu değerler, mevcut en güncel 24 ayar referans fiyatı ve saflık oranı kullanılarak hesaplanır: <?php echo esc_html($tr_karat); ?> altın ve sitenin kullandığı en güncel döviz kuru.</p>
-    <h3> altın ne anlama gelir?<?php echo esc_html($tr_karat); ?></h3>
+    <h3><?php echo esc_html($tr_karat); ?> altın ne anlama gelir?</h3>
     <p>Ayar, alaşımdaki saf altın oranını gösterir. 24 ayar saf altın referansıdır; daha düşük ayarlar daha fazla başka metal içerir. <?php echo esc_html($tr_karat); ?> bu nedenle takının nihai satış fiyatını değil, altın içeriğini yansıtır. Mağaza fiyatına işçilik, satıcı primi, vergiler ve burada gösterilen ham piyasa değerine dahil olmayan yerel ücretler eklenebilir.</p>
     <h3>Yerel ve USD fiyatları nasıl okunur</h3>
-    <p>Yerel para birimindeki tutar, <?php echo esc_html($display_country_name); ?>,; USD karşılığı aynı altın içeriğini uluslararası fiyatlarla karşılaştırmayı kolaylaştırır. Yerel fiyatlar küresel altın göstergesi, döviz kurları veya yerel piyasa koşullarına göre değişebilir. Bunlar gösterge niteliğindedir; garantili alış ya da satış teklifi değildir.</p>
+    <p>Yerel para birimindeki tutar, <?php echo esc_html($display_country_name); ?>; USD karşılığı aynı altın içeriğini uluslararası fiyatlarla karşılaştırmayı kolaylaştırır. Yerel fiyatlar küresel altın göstergesi, döviz kurları veya yerel piyasa koşullarına göre değişebilir. Bunlar gösterge niteliğindedir; garantili alış ya da satış teklifi değildir.</p>
     <h3>İlgili altın fiyatları</h3>
-    <p>Bu fiyatı şu değerlerle karşılaştırın: <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'gold-index/'); ?>">live altın piyasası endeksi</a> piyasayı daha geniş değerlendirmek için.</p>
+    <p>Bu fiyatı şu değerlerle karşılaştırın: <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'gold-index/'); ?>">gerçek zamanlı altın piyasası endeksi</a> piyasayı daha geniş değerlendirmek için.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Gösterilen <?php echo esc_html($tr_karat); ?> kuyumcu nihai satış fiyatı mı?</summary><p>Hayır. Bu, işçilik, satıcı primi, vergiler ve bitmiş ürüne uygulanabilecek diğer ücretleri içermeyen gösterge niteliğinde ham altın değeridir.</p></details>
     <details><summary>USD karşılığı neden yerel fiyattan farklı?</summary><p>İki değer farklı para birimlerini kullanır. Yerel tutar sitenin en güncel döviz kuruyla hesaplanır; USD tutarı altının ABD doları karşılığını gösterir.</p></details>
