@@ -212,6 +212,7 @@ final class GNMM_Images {
         $name = GNMM_Gold_Manager::localized_country_name($term, $language);
         $url = GNMM_Gold_Manager::country_url($term, $language);
         $alt = $language === 'ar' ? 'أسعار الذهب اليوم في ' . $name : 'Gold prices today in ' . $name;
+        do_action('gnmm_image_printed');
         return '<figure class="gnmm-country-image"><a href="' . esc_url($url) . '"><img src="' . esc_url($asset->current_url) . '" alt="' . esc_attr($alt) . '" loading="lazy" decoding="async" style="display:block;max-width:100%;height:auto;margin:24px auto"></a></figure>';
     }
 
