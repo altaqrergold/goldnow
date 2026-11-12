@@ -76,7 +76,8 @@ final class GNMM_Articles {
             $config = isset($settings['languages'][$language]) ? $settings['languages'][$language] : array();
             if (empty($config['enabled']) || empty($config['articles'])) { continue; }
             foreach ($countries as $code => $term) {
-                if (array_key_exists($code, $settings['countries']) && empty($settings['countries'][$code])) { continue; }
+                $country_config = isset($settings['countries'][$code]) && is_array($settings['countries'][$code]) ? $settings['countries'][$code] : array();
+                if (empty($country_config['articles'])) { continue; }
                 $result = self::publish_daily_article($term, $language, $settings, $snapshot);
                 if (is_wp_error($result)) {
                     GNMM_Storage::log('error', 'articles', $result->get_error_message(), $code, $language);
@@ -107,7 +108,11 @@ final class GNMM_Articles {
             'post_status' => $status,
             'post_title' => $article['title'],
             'post_content' => $article['content'],
-            'post_excerpt' => wp_strip_all_tags($article['content']),
+            'post_excerpt' => wp_trim_words(wp_strip_all_tags($article['content']), 45),
+            'post_category' => !empty($settings['article_category']) ? array(absint($settings['article_category'])) : array(),
+            'post_author' => !empty($settings['article_author']) ? absint($settings['article_author']) : get_current_user_id(),
+            'comment_status' => isset($settings['article_comments']) ? $settings['article_comments'] : 'closed',
+            'ping_status' => isset($settings['article_pingbacks']) ? $settings['article_pingbacks'] : 'closed',
         ), true);
         if (is_wp_error($post_id)) { return $post_id; }
         update_post_meta($post_id, $key, $date . '|' . $code . '|' . $language);
