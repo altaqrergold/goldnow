@@ -1,0 +1,31 @@
+name: GoldNow Multilingual Manager checks
+
+on:
+  push:
+    branches:
+      - feature/goldnow-multilingual-manager
+    paths:
+      - 'goldnow-multilingual-manager/**'
+      - '.github/workflows/gnmm-check.yml'
+  workflow_dispatch:
+
+jobs:
+  php-lint-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: PHP syntax check
+        run: |
+          find goldnow-multilingual-manager -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Build plugin ZIP
+        run: |
+          cd goldnow-multilingual-manager
+          zip -r ../goldnow-multilingual-manager-0.1.0.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: goldnow-multilingual-manager-0.1.0
+          path: goldnow-multilingual-manager-0.1.0.zip
+          if-no-files-found: error
