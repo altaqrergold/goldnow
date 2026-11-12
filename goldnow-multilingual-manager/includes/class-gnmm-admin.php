@@ -46,6 +46,22 @@ final class GNMM_Admin {
         exit;
     }
 
+    public static function run_now() {
+        if (!current_user_can('manage_options')) { wp_die('Not allowed.', 403); }
+        check_admin_referer('gnmm_run_now');
+        $module = isset($_POST['module']) ? sanitize_key(wp_unslash($_POST['module'])) : '';
+        $settings = GNMM_Core::settings();
+        if ($module === 'images') {
+            do_action('gnmm_run_image_module', $settings);
+        } elseif ($module === 'articles') {
+            do_action('gnmm_run_article_module', $settings);
+        } else {
+            wp_die('Invalid module.', 400);
+        }
+        wp_safe_redirect(add_query_arg(array('page'=>'goldnow-multilingual-manager','queued'=>$module), admin_url('admin.php')));
+        exit;
+    }
+
     public static function render() {
         if (!current_user_can('manage_options')) { return; }
         $settings = GNMM_Core::settings();
@@ -56,6 +72,7 @@ final class GNMM_Admin {
         <div class="wrap">
             <h1>GoldNow Multilingual Manager</h1>
             <?php if (!empty($_GET['saved'])) : ?><div class="notice notice-success is-dismissible"><p>Settings saved.</p></div><?php endif; ?>
+            <?php if (!empty($_GET['queued'])) : ?><div class="notice notice-success is-dismissible"><p><?php echo esc_html(ucfirst(sanitize_key(wp_unslash($_GET['queued'])))); ?> module was started.</p></div><?php endif; ?>
             <p>Central controls for country images and localized article publishing. Gold Manager remains the only source of gold prices and exchange rates.</p>
             <div class="notice <?php echo GNMM_Gold_Manager::ready() && !is_wp_error($snapshot) ? 'notice-success' : 'notice-error'; ?>">
                 <p><strong>Gold Manager connection:</strong>
@@ -124,6 +141,29 @@ final class GNMM_Admin {
                 <?php submit_button('Save settings'); ?>
             </form>
             <hr>
+            <hr>
+            <h2>Manual processing</h2>
+            <p>Run enabled country/language pairs. Image generation uses small batches; article creation follows the selected draft/publish mode.</p>
+            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="display:inline-block;margin-right:10px">
+                <input type="hidden" name="action" value="gnmm_run_now">
+                <input type="hidden" name="module" value="images">
+                <?php wp_nonce_field('gnmm_run_now'); ?>
+                <?php submit_button('Generate enabled images now', 'secondary', 'submit', false); ?>
+            </form>
+            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="display:inline-block">
+                <input type="hidden" name="action" value="gnmm_run_now">
+                <input type="hidden" name="module" value="articles">
+                <?php wp_nonce_field('gnmm_run_now'); ?>
+                <?php submit_button('Create enabled articles now', 'secondary', 'submit', false); ?>
+            </form>
+            <h2>Recent activity</h2>
+            <?php global $wpdb; $log_table = GNMM_Storage::tables()['logs']; $logs = $wpdb->get_results("SELECT level,module,country_code,language,message,created_at FROM {$log_table} ORDER BY id DESC LIMIT 20"); ?>
+            <table class="widefat striped"><thead><tr><th>Time (UTC)</th><th>Level</th><th>Module</th><th>Country</th><th>Language</th><th>Message</th></tr></thead><tbody>
+            <?php if ($logs) : foreach ($logs as $log) : ?>
+                <tr><td><?php echo esc_html($log->created_at); ?></td><td><?php echo esc_html($log->level); ?></td><td><?php echo esc_html($log->module); ?></td><td><?php echo esc_html($log->country_code); ?></td><td><?php echo esc_html($log->language); ?></td><td><?php echo esc_html($log->message); ?></td></tr>
+            <?php endforeach; else : ?><tr><td colspan="6">No activity recorded yet.</td></tr><?php endif; ?>
+            </tbody></table>
+
             <h2>Implementation status</h2>
             <p>Configuration, country discovery and Gold Manager read-only connection are in place. Image rendering and article publishing are separate modules and will only run for explicitly enabled language/country pairs.</p>
             <p><strong>Countries discovered:</strong> <?php echo esc_html((string) count($countries)); ?></p>
