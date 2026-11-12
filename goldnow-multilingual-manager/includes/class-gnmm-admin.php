@@ -28,12 +28,10 @@ final class GNMM_Admin {
             );
         }
 
+        // Explicitly persist every discovered country, including unchecked ones.
         $raw_countries = isset($_POST['countries']) ? (array) wp_unslash($_POST['countries']) : array();
-        foreach ($raw_countries as $code => $value) {
-            $code = sanitize_key($code);
-            if (preg_match('/^[a-z]{2,3}$/', $code)) {
-                $settings['countries'][$code] = !empty($value);
-            }
+        foreach (GNMM_Gold_Manager::countries() as $code => $term) {
+            $settings['countries'][$code] = !empty($raw_countries[$code]);
         }
 
         $position = isset($_POST['image_position']) ? sanitize_key(wp_unslash($_POST['image_position'])) : 'shortcode';
