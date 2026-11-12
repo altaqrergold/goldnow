@@ -111,6 +111,9 @@ final class GNMM_Articles {
         ), true);
         if (is_wp_error($post_id)) { return $post_id; }
         update_post_meta($post_id, $key, $date . '|' . $code . '|' . $language);
+        if (taxonomy_exists('countries')) {
+            wp_set_object_terms($post_id, array((int) $term->term_id), 'countries', false);
+        }
         update_post_meta($post_id, '_gnmm_country_code', $code);
         update_post_meta($post_id, '_gnmm_language', $language);
         update_post_meta($post_id, '_gnmm_country_url', $article['country_url']);
