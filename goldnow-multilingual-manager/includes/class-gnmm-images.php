@@ -216,7 +216,8 @@ final class GNMM_Images {
     }
 
     public static function start_page_buffer() {
-        if (!is_tax('countries')) { return; }
+        $settings = GNMM_Core::settings();
+        if (!is_tax('countries') || empty($settings['image_position']) || $settings['image_position'] !== 'shortcode') { return; }
         ob_start(array(__CLASS__, 'inject_before_tabs_content'));
     }
 
