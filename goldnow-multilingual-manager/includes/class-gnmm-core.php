@@ -30,6 +30,10 @@ final class GNMM_Core {
             'countries' => array(),
             'image_position' => 'shortcode',
             'article_status' => 'draft',
+            'article_category' => 0,
+            'article_author' => get_current_user_id(),
+            'article_comments' => 'closed',
+            'article_pingbacks' => 'closed',
             'article_sections' => array('overview'),
             'daily_enabled' => false,
         );
@@ -37,13 +41,32 @@ final class GNMM_Core {
 
     public static function settings() {
         $saved = get_option(self::OPTION, array());
-        return wp_parse_args(is_array($saved) ? $saved : array(), self::defaults());
+        $settings = wp_parse_args(is_array($saved) ? $saved : array(), self::defaults());
+        $defaults = self::defaults();
+        $settings['languages'] = isset($settings['languages']) && is_array($settings['languages']) ? $settings['languages'] : array();
+        foreach (self::languages() as $code => $meta) {
+            $row = isset($settings['languages'][$code]) && is_array($settings['languages'][$code]) ? $settings['languages'][$code] : array();
+            $settings['languages'][$code] = wp_parse_args($row, $defaults['languages'][$code]);
+        }
+        $settings['countries'] = isset($settings['countries']) && is_array($settings['countries']) ? $settings['countries'] : array();
+        foreach (GNMM_Gold_Manager::countries() as $code => $term) {
+            $row = isset($settings['countries'][$code]) ? $settings['countries'][$code] : array();
+            // Migrate the previous single country switch without enabling new countries.
+            if (!is_array($row)) {
+                $enabled = (bool) $row;
+                $row = array('images' => $enabled, 'articles' => $enabled);
+            }
+            $settings['countries'][$code] = wp_parse_args($row, array('images' => false, 'articles' => false));
+        }
+        return $settings;
     }
 
     public static function init() {
         add_action('admin_menu', array('GNMM_Admin', 'menu'));
         add_action('admin_post_gnmm_save_settings', array('GNMM_Admin', 'save'));
-        add_action(self::DAILY_HOOK, array('GNMM_Core', 'run_daily'));
+        // The missing handler caused admin-post.php to return an empty page on manual runs.
+        add_action('admin_post_gnmm_run_now', array('GNMM_Admin', 'run_now'));
+        add_action(self::DAILY_HOOK, array(__CLASS__, 'run_daily'));
         if (!wp_next_scheduled(self::DAILY_HOOK)) {
             wp_schedule_event(time() + 600, 'daily', self::DAILY_HOOK);
         }
@@ -61,7 +84,7 @@ final class GNMM_Core {
 
     public static function deactivate() {
         wp_clear_scheduled_hook(self::DAILY_HOOK);
-        wp_clear_scheduled_hook('gnmm_process_image_queue');
+        wp_clear_scheduled_hook('gnmm_process_image_batch');
         wp_clear_scheduled_hook('gnmm_process_article_queue');
     }
 
