@@ -53,6 +53,8 @@ final class GNMM_Images {
             if (empty($countries[$code]) || !isset(GNMM_Core::languages()[$language])) { continue; }
             $settings = GNMM_Core::settings();
             if (empty($settings['languages'][$language]['enabled']) || empty($settings['languages'][$language]['images'])) { continue; }
+            $country_config = isset($settings['countries'][$code]) && is_array($settings['countries'][$code]) ? $settings['countries'][$code] : array();
+            if (empty($country_config['images'])) { continue; }
             $result = self::generate($countries[$code], $language, $queue['snapshot']);
             if (is_wp_error($result)) {
                 GNMM_Storage::log('error', 'images', $result->get_error_message(), $code, $language);
@@ -203,6 +205,8 @@ final class GNMM_Images {
         $code = GNMM_Gold_Manager::country_code($term);
         $settings = GNMM_Core::settings();
         if (empty($settings['languages'][$language]['enabled']) || empty($settings['languages'][$language]['images'])) { return ''; }
+        $country_config = isset($settings['countries'][$code]) && is_array($settings['countries'][$code]) ? $settings['countries'][$code] : array();
+        if (empty($country_config['images'])) { return ''; }
         global $wpdb;
         $tables = GNMM_Storage::tables();
         $asset = $wpdb->get_row($wpdb->prepare(
