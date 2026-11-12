@@ -40,7 +40,35 @@ final class GNMM_Articles {
         return $html;
     }
 
+    private static function ensure_article_dictionary() {
+        if (function_exists('goldnow_seo_article_data')) { return true; }
+
+        $candidates = array();
+        if (defined('WP_PLUGIN_DIR')) {
+            $candidates[] = WP_PLUGIN_DIR . '/goldnow-language-manager/goldnow-seo-content.php';
+            $active_plugins = get_option('active_plugins', array());
+            if (is_array($active_plugins)) {
+                foreach ($active_plugins as $plugin_file) {
+                    if (basename($plugin_file) === 'goldnow-language-manager.php') {
+                        $candidates[] = dirname(WP_PLUGIN_DIR . '/' . $plugin_file) . '/goldnow-seo-content.php';
+                    }
+                }
+            }
+        }
+        $candidates[] = dirname(GNMM_FILE) . '/../goldnow-seo-content.php';
+
+        foreach (array_unique($candidates) as $file) {
+            $file = wp_normalize_path($file);
+            if (is_readable($file)) {
+                require_once $file;
+                if (function_exists('goldnow_seo_article_data')) { return true; }
+            }
+        }
+        return function_exists('goldnow_seo_article_data');
+    }
+
     public static function article_content($language, $section, $term, $snapshot) {
+        self::ensure_article_dictionary();
         if (!function_exists('goldnow_seo_article_data')) {
             return new WP_Error('gnmm_article_dictionary_missing', 'The localized GoldNow SEO article dictionary is not loaded.');
         }
