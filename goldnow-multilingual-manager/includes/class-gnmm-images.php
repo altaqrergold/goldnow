@@ -30,7 +30,8 @@ final class GNMM_Images {
             $config = isset($settings['languages'][$language]) ? $settings['languages'][$language] : array();
             if (empty($config['enabled']) || empty($config['images'])) { continue; }
             foreach (GNMM_Gold_Manager::countries() as $code => $term) {
-                if (array_key_exists($code, $settings['countries']) && empty($settings['countries'][$code])) { continue; }
+                $country_config = isset($settings['countries'][$code]) && is_array($settings['countries'][$code]) ? $settings['countries'][$code] : array();
+                if (empty($country_config['images'])) { continue; }
                 $queue[] = array('country_code' => $code, 'language' => $language);
             }
         }
