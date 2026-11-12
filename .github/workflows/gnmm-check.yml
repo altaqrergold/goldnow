@@ -20,12 +20,8 @@ jobs:
       - name: PHP syntax check
         run: |
           find goldnow-multilingual-manager -name '*.php' -print0 | xargs -0 -n1 php -l
-      - name: Build plugin ZIP
-        run: |
-          cd goldnow-multilingual-manager
-          zip -r ../goldnow-multilingual-manager-0.1.0.zip .
       - uses: actions/upload-artifact@v4
         with:
           name: goldnow-multilingual-manager-0.1.0
-          path: goldnow-multilingual-manager-0.1.0.zip
+          path: goldnow-multilingual-manager/
           if-no-files-found: error
