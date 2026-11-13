@@ -1,5 +1,5 @@
 <?php
-/* Template Name: हिन्दी — Gold Country Prices */
+/* Template Name: हिन्दी — Gold Country Prices (SEO Test) */
 
 /** HI output localization: translate rendered text and accessible labels only. */
 if (!function_exists('altaqrer_gold_hi_output_translate')) {
