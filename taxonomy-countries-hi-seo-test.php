@@ -1353,6 +1353,9 @@ if (!empty($gold_view)) {
         'contact-us'     => 'संपर्क करें'
     ) as $page_slug => $page_label) {
         $page_object = get_page_by_path('hi/' . $page_slug);
+        if (!$page_object) {
+            $page_object = get_page_by_path($page_slug);
+        }
         if ($page_object && $page_object->post_status === 'publish') {
             $en_footer_pages[] = array('url' => get_permalink($page_object), 'label' => $page_label);
         }
