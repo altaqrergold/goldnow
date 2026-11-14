@@ -42,15 +42,15 @@ jobs:
           set -euo pipefail
           mkdir -p dist
           cd goldnow-multilingual-manager
-          zip -qr ../dist/goldnow-multilingual-manager-0.1.4.zip .
+          zip -qr ../dist/goldnow-multilingual-manager-0.1.5.zip .
 
       - name: Verify ZIP archive
-        run: unzip -t dist/goldnow-multilingual-manager-0.1.4.zip
+        run: unzip -t dist/goldnow-multilingual-manager-0.1.5.zip
 
       - name: Upload installable plugin ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: goldnow-multilingual-manager-0.1.4
-          path: dist/goldnow-multilingual-manager-0.1.4.zip
+          name: goldnow-multilingual-manager-0.1.5
+          path: dist/goldnow-multilingual-manager-0.1.5.zip
           if-no-files-found: error
           retention-days: 14
