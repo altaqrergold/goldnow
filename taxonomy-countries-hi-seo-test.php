@@ -767,7 +767,7 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
-          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="21K Gold Price Movement"]';
+          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="21 कैरेट सोने की कीमत में बदलाव"]';
           echo altaqrer_gold_hi_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map_hi);
           ?>
         </div>
