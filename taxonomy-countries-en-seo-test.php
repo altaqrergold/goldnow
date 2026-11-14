@@ -63,7 +63,7 @@ if ($en_meta_country === '') {
 }
 $en_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $en_meta_titles = array(
-    '' => 'Gold prices today and live market overview in $en_meta_country',
+    '' => 'Gold prices today and live market overview in ' . $en_meta_country,
     '24k' => '24K gold price today in ' . $en_meta_country,
     '22k' => '22K gold price today in ' . $en_meta_country,
     '21k' => '21K gold price today in ' . $en_meta_country,
@@ -76,7 +76,7 @@ $en_meta_titles = array(
     'usd' => 'USD exchange rate in ' . $en_meta_country,
 );
 $en_meta_descriptions = array(
-    '' => 'Explore live gold prices across all karats, the global ounce in USD, 8-gram gold coin, gold bars and currency rates in $en_meta_country. Compare key market indicators in one overview.',
+    '' => 'Explore live gold prices across all karats, the global ounce in USD, 8-gram gold coin, gold bars and currency rates in ' . $en_meta_country . '.',
     '24k' => 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.',
     '22k' => 'See today's 22K gold price per gram, compare it with 24K gold and understand purity, local-currency value and USD conversion.',
     '21k' => 'Follow today's 21K gold price per gram with local and USD reference values, plus information about the site's 8-gram gold coin calculation.',
@@ -403,7 +403,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
 <?php
 // EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $en_seo_titles = array(
-    '' => 'Live Gold Prices and Market Overview in $display_country_name',
+    '' => 'Live Gold Prices and Market Overview in ' . $display_country_name,
     '24k' => '24K Gold Price Today in ' . $display_country_name,
     '22k' => '22K Gold Price Today in ' . $display_country_name,
     '21k' => '21K Gold Price Today in ' . $display_country_name,
@@ -416,7 +416,7 @@ $en_seo_titles = array(
     'usd' => 'USD Exchange Rate in ' . $display_country_name,
 );
 $en_seo_intros = array(
-    '' => 'Explore the complete gold market overview for $display_country_name: compare 24K, 22K, 21K, 18K and 14K reference prices per gram, the global gold ounce in USD, the 8-gram gold coin, gold bars and currency rates. This overview brings the main indicators together; choose a section below for its dedicated price details.',
+    '' => 'Explore the complete gold market overview for ' . $display_country_name . ' compare 24K, 22K, 21K, 18K and 14K reference prices per gram, the global gold ounce in USD, the 8-gram gold coin, gold bars and currency rates. This overview brings the main indicators together; choose a section below for its dedicated price details.',
     '24k' => 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.',
     '22k' => 'Track the 22K gold price per gram in ' . $display_country_name . ' and compare it with 24K gold. 22K contains 22 parts gold out of 24; the remaining metals affect purity, properties and the reference value.',
     '21k' => 'Check the 21K gold price per gram in ' . $display_country_name . ', including local-currency and USD reference values. 21K contains 21 parts gold out of 24; jewellery workmanship, seller premiums and taxes may affect the final retail price.',
