@@ -1,27 +1,27 @@
 <?php
 /* Template Name: Türkçe — Gold Country Prices */
 
-/** TR output localization: translate rendered text ve accessible labels only. */
+/** TR output localization: translate rendered text and accessible labels only. */
 if (!function_exists('altaqrer_gold_tr_output_translate')) {
 function altaqrer_gold_tr_output_translate($html) {
     $map = array(
-        "Live foreign exchange rates for major international ve regional currencies" => "Başlıca uluslararası ve bölgesel para birimleri için canlı döviz kurları",
-        "International spot benchmark for one troy ounce of 24K gold, quoted USD" => "USD cinsinden 24 ayar altının bir troy onsu için uluslararası spot referans fiyatı",
-        "What weight is used for gold coin calculation?" => "Altın sikke hesabında hangi ağırlık kullanılır?",
-        "Does displayed value include a dealer premium?" => "Gösterilen değere satıcı primi dahil mi?",
-        "Sorry, market data is currently unavailable." => "Üzgünüz, piyasa verileri şu anda kullanılamıyor.",
+        "Live foreign exchange rates for major international and regional currencies" => "Başlıca uluslararası ve bölgesel para birimleri için canlı döviz kurları",
+        "International spot benchmark for one troy ounce of 24K gold, quoted in USD" => "USD cinsinden 24 ayar altının bir troy onsu için uluslararası spot referans fiyatı",
+        "What weight is used for the gold coin calculation?" => "Altın sikke hesabında hangi ağırlık kullanılır?",
+        "Does the displayed value include a dealer premium?" => "Gösterilen değere satıcı primi dahil mi?",
+        "Sorry, the market data is currently unavailable." => "Üzgünüz, piyasa verileri şu anda kullanılamıyor.",
         "live market price, excluding making charges" => "işçilik ücreti hariç canlı piyasa fiyatı",
-        "How to read local ve USD prices" => "Yerel ve USD fiyatları nasıl okunur",
+        "How to read the local and USD prices" => "Yerel ve USD fiyatları nasıl okunur",
         "Frequently asked questions" => "Sıkça Sorulan Sorular",
         "Gold Bullion Bar Prices in" => "için Külçe Altın Fiyatları",
         "Gold Price per Gram Today" => "Bugün Gram Altın Fiyatı",
         "Join Our Telegram Channel" => "Telegram Kanalımıza Katılın",
         "Excluding Making Charges" => "İşçilik Ücreti Hariç",
         "Gold Bullion Bar Prices" => "Külçe Altın Fiyatları",
-        "Gold Bars ve Coins in" => "için Altın Külçeler ve Sikkeler",
-        "USD ve Currency Rates" => "USD ve Döviz Kurları",
+        "Gold Bars and Coins in" => "için Altın Külçeler ve Sikkeler",
+        "USD and Currency Rates" => "USD ve Döviz Kurları",
         "Regional Gold Prices" => "Bölgesel Altın Fiyatları",
-        "Gold Bars ve Coins" => "Altın Külçeler ve Sikkeler",
+        "Gold Bars and Coins" => "Altın Külçeler ve Sikkeler",
         "Gold Price Sections" => "Altın Fiyatı Bölümleri",
         "Gold Price Chart in" => "için Altın Fiyat Grafiği",
         "About AlTaqrer Gold" => "AlTaqrer Gold Hakkında",
@@ -66,12 +66,12 @@ function altaqrer_gold_tr_output_translate($html) {
         "Lowest Price" => "En Düşük Fiyat",
         "Change" => "Değişim",
         "Live Update" => "Canlı Güncelleme",
-        "Price USD" => "USD Cinsinden Fiyat",
-        "Gold Ounce Local Currency" => "Yerel Para Biriminde Altın Ons",
+        "Price in USD" => "USD Cinsinden Fiyat",
+        "Gold Ounce in Local Currency" => "Yerel Para Biriminde Altın Ons",
         "Gold Coin Price" => "Altın Sikke Fiyatı",
         "US Dollar Rate" => "ABD Doları Kuru",
         "US Dollar Rate Today" => "Bugünkü ABD Doları Kuru",
-        "Gold Price USD" => "USD Cinsinden Altın Fiyatı",
+        "Gold Price in USD" => "USD Cinsinden Altın Fiyatı",
         "Egyptian Pound" => "Mısır Lirası",
         "US Dollar" => "ABD Doları",
         "Most Traded" => "En Çok İşlem Gören",
@@ -96,32 +96,32 @@ function altaqrer_gold_tr_output_translate($html) {
         "Prices" => "Fiyatlar",
         "Changes" => "Değişiklikler",
         "No." => "Hayır.",
-        "Why küresel altın ons fiyatı matters" => "Küresel altın ons fiyatı neden önemlidir",
-        "From global ounce to a local gram price" => "Küresel ons fiyatından yerel gram fiyatına",
-        "Gold is commonly quoted international markets by troy ounce. Traders, refiners, financial services, ve bullion dealers use this benchmark to compare value of gold across markets. Changes US dollar, interest-rate expectations, inflation outlook, central-bank activity, ve investor demve can all influence international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "Uluslararası piyasalarda altın genellikle troy ons üzerinden fiyatlandırılır. Yatırımcılar, rafineriler, finans kuruluşları ve külçe altın satıcıları bu ölçütü farklı piyasalardaki altın değerlerini karşılaştırmak için kullanır. ABD dolarındaki değişimler, faiz beklentileri, enflasyon görünümü, merkez bankalarının faaliyetleri ve yatırımcı talebi uluslararası altın fiyatını etkileyebilir. Bunlar genel piyasa etkenleridir; bugünkü hareketin tek bir nedenden kaynaklandığı anlamına gelmez.",
-        "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price gram başına also depends on selected currency conversion ve local market conditions. The global ounce figure above remains USD so that it can be compared consistently with international quotations." => "Karşılaştırma amacıyla bir troy ons yaklaşık 31,1 gramdır. Gram başına yerel fiyat, seçilen para birimine dönüşüme ve yerel piyasa koşullarına da bağlıdır. Yukarıdaki küresel ons değeri, uluslararası fiyatlarla tutarlı biçimde karşılaştırılabilmesi için USD olarak gösterilir.",
+        "Why the küresel altın ons fiyatı matters" => "Küresel altın ons fiyatı neden önemlidir",
+        "From the global ounce to a local gram price" => "Küresel ons fiyatından yerel gram fiyatına",
+        "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "Uluslararası piyasalarda altın genellikle troy ons üzerinden fiyatlandırılır. Yatırımcılar, rafineriler, finans kuruluşları ve külçe altın satıcıları bu ölçütü farklı piyasalardaki altın değerlerini karşılaştırmak için kullanır. ABD dolarındaki değişimler, faiz beklentileri, enflasyon görünümü, merkez bankalarının faaliyetleri ve yatırımcı talebi uluslararası altın fiyatını etkileyebilir. Bunlar genel piyasa etkenleridir; bugünkü hareketin tek bir nedenden kaynaklandığı anlamına gelmez.",
+        "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price gram başına also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "Karşılaştırma amacıyla bir troy ons yaklaşık 31,1 gramdır. Gram başına yerel fiyat, seçilen para birimine dönüşüme ve yerel piyasa koşullarına da bağlıdır. Yukarıdaki küresel ons değeri, uluslararası fiyatlarla tutarlı biçimde karşılaştırılabilmesi için USD olarak gösterilir.",
         "One troy ounce is approximately 31.1035 grams. The page uses 31.1 grams for its displayed reference calculation." => "Bir troy ons yaklaşık 31,1035 gramdır. Bu sayfadaki referans hesaplamasında 31,1 gram kullanılır.",
-        "No. This page shows international gold ounce benchmark USD only. Local-currency values are shown separately country gold-price tables where applicable." => "Hayır. Bu sayfada uluslararası altın ons referans fiyatı yalnızca USD olarak gösterilir. Uygun olduğunda yerel para birimindeki değerler ülkenin altın fiyatı tablolarında ayrıca sunulur.",
-        "The calculation multiplies relevant per-gram gold value by 8 grams. For common 21K reference, displayed estimate uses 21K gram price multiplied by eight. The 22K ve 24K comparison values use their respective gram prices at same weight. This preserves site's established 8-gram coin calculation." => "Hesaplamada ilgili gram altın değeri 8 gram ile çarpılır. Yaygın 21 ayar referansında gösterilen tahmin, 21 ayar gram fiyatının sekizle çarpılmasıyla elde edilir. 22 ve 24 ayar karşılaştırma değerlerinde aynı ağırlık için ilgili gram fiyatları kullanılır. Böylece sitenin yerleşik 8 gramlık sikke hesaplaması korunur.",
-        "Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, ve local taxes. The values here represent gold-content reference ve should not be treated as a guaranteed transaction quote." => "Sikkenin gerçek fiyatı basım, kondisyon, tasarım, nadirlik, satıcı primi ve yerel vergilere göre değişebilir. Buradaki değerler yalnızca altın içeriğinin referans değeridir; kesin bir alım satım teklifi olarak değerlendirilmemelidir.",
-        "Gold bars are commonly valued using 24K gold benchmark." => "Altın külçeler genellikle 24 ayar altın referans fiyatı üzerinden değerlendirilir.",
-        "For a straightforward estimate, multiply 24K gram benchmark by bar's weight. The resulting figure represents reference value of gold content before any fabrication premium, assay or hallmarking fee, dealer margin, delivery cost, or tax. A bar's final selling price can therefore be higher than raw calculation shown on this page." => "Basit bir tahmin için 24 ayar gram altın referans fiyatını külçenin ağırlığıyla çarpın. Elde edilen tutar; üretim, analiz veya damgalama ücreti, satıcı marjı, teslimat bedeli ve vergiler eklenmeden önceki altın içeriğinin referans değeridir. Bu nedenle külçenin nihai satış fiyatı bu sayfadaki ham hesaplamadan daha yüksek olabilir.",
-        "Brand, certification, manufacturing costs, dealer premiums, availability, ve local taxes can affect final selling price." => "Marka, sertifika, üretim maliyetleri, satıcı primi, bulunabilirlik ve yerel vergiler nihai satış fiyatını etkileyebilir.",
-        "The index is a convenient snapshot of gold values across common purities ve currencies. It helps readers compare 24K bullion benchmark with lower-karat values commonly used for jewellery. Local values are derived from reference gold price ve available exchange-rate data; USD figures allow comparison with international market." => "Endeks, yaygın saflık dereceleri ve para birimlerindeki altın değerlerinin genel bir görünümünü sunar. Okuyucuların 24 ayar külçe altın referansını mücevherlerde sık kullanılan daha düşük ayarlarla karşılaştırmasına yardımcı olur. Yerel değerler referans altın fiyatı ve mevcut döviz kuru verilerinden hesaplanır; USD tutarları uluslararası piyasa karşılaştırması sağlar.",
+        "No. This page shows the international gold ounce benchmark in USD only. Local-currency values are shown separately in the country gold-price tables where applicable." => "Hayır. Bu sayfada uluslararası altın ons referans fiyatı yalnızca USD olarak gösterilir. Uygun olduğunda yerel para birimindeki değerler ülkenin altın fiyatı tablolarında ayrıca sunulur.",
+        "The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site's established 8-gram coin calculation." => "Hesaplamada ilgili gram altın değeri 8 gram ile çarpılır. Yaygın 21 ayar referansında gösterilen tahmin, 21 ayar gram fiyatının sekizle çarpılmasıyla elde edilir. 22 ve 24 ayar karşılaştırma değerlerinde aynı ağırlık için ilgili gram fiyatları kullanılır. Böylece sitenin yerleşik 8 gramlık sikke hesaplaması korunur.",
+        "Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, and local taxes. The values here represent the gold-content reference and should not be treated as a guaranteed transaction quote." => "Sikkenin gerçek fiyatı basım, kondisyon, tasarım, nadirlik, satıcı primi ve yerel vergilere göre değişebilir. Buradaki değerler yalnızca altın içeriğinin referans değeridir; kesin bir alım satım teklifi olarak değerlendirilmemelidir.",
+        "Gold bars are commonly valued using the 24K gold benchmark." => "Altın külçeler genellikle 24 ayar altın referans fiyatı üzerinden değerlendirilir.",
+        "For a straightforward estimate, multiply the 24K gram benchmark by the bar's weight. The resulting figure represents the reference value of the gold content before any fabrication premium, assay or hallmarking fee, dealer margin, delivery cost, or tax. A bar's final selling price can therefore be higher than the raw calculation shown on this page." => "Basit bir tahmin için 24 ayar gram altın referans fiyatını külçenin ağırlığıyla çarpın. Elde edilen tutar; üretim, analiz veya damgalama ücreti, satıcı marjı, teslimat bedeli ve vergiler eklenmeden önceki altın içeriğinin referans değeridir. Bu nedenle külçenin nihai satış fiyatı bu sayfadaki ham hesaplamadan daha yüksek olabilir.",
+        "Brand, certification, manufacturing costs, dealer premiums, availability, and local taxes can affect the final selling price." => "Marka, sertifika, üretim maliyetleri, satıcı primi, bulunabilirlik ve yerel vergiler nihai satış fiyatını etkileyebilir.",
+        "The index is a convenient snapshot of gold values across common purities and currencies. It helps readers compare the 24K bullion benchmark with the lower-karat values commonly used for jewellery. Local values are derived from the reference gold price and the available exchange-rate data; the USD figures allow comparison with the international market." => "Endeks, yaygın saflık dereceleri ve para birimlerindeki altın değerlerinin genel bir görünümünü sunar. Okuyucuların 24 ayar külçe altın referansını mücevherlerde sık kullanılan daha düşük ayarlarla karşılaştırmasına yardımcı olur. Yerel değerler referans altın fiyatı ve mevcut döviz kuru verilerinden hesaplanır; USD tutarları uluslararası piyasa karşılaştırması sağlar.",
         "Each karat contains a different proportion of pure gold. Lower-purity alloys have a lower raw-gold value gram başına than 24K gold, before other costs are considered." => "Her ayar farklı oranda saf altın içerir. Diğer maliyetler hesaba katılmadan önce düşük ayarlı alaşımların gram başına ham altın değeri 24 ayar altından daha düşüktür.",
-        "A local gold-price estimate combines an international gold benchmark with a currency conversion and, real retail markets, any applicable local premiums, taxes, or costs. This page lists selected currency comparisons to help readers understve conversion context. Rates are informational ve may differ from bank, cash-market, card, or remittance rates available to an individual customer." => "Yerel altın fiyatı tahmini, uluslararası altın referansını döviz dönüşümüyle birleştirir; gerçek perakende piyasasında geçerli yerel primler, vergiler ve masraflar da etkili olabilir. Bu sayfa dönüşüm bağlamını açıklamak için seçilmiş para birimi karşılaştırmaları sunar. Kurlar bilgilendirme amaçlıdır ve bankaların, nakit piyasasının, kartların veya para transferi hizmetlerinin kurlarından farklı olabilir.",
-        "No. It is latest available reference used by site. Banks ve exchange providers may apply different buy ve sell rates, spreads, or fees." => "Hayır. Bu, sitenin kullandığı en güncel referans kurdur. Bankalar ve döviz sağlayıcıları farklı alış ve satış kurları, makaslar veya ücretler uygulayabilir.",
-        "Because international gold is commonly quoted US dollars, converting that benchmark into local currency is one of factors used to estimate local gold values." => "Uluslararası altın genellikle ABD doları üzerinden fiyatlandırıldığından, bu referansın yerel para birimine çevrilmesi yerel altın değerini tahmin etmede kullanılan faktörlerden biridir.",
+        "A local gold-price estimate combines an international gold benchmark with a currency conversion and, in real retail markets, any applicable local premiums, taxes, or costs. This page lists selected currency comparisons to help readers understand the conversion context. Rates are informational and may differ from bank, cash-market, card, or remittance rates available to an individual customer." => "Yerel altın fiyatı tahmini, uluslararası altın referansını döviz dönüşümüyle birleştirir; gerçek perakende piyasasında geçerli yerel primler, vergiler ve masraflar da etkili olabilir. Bu sayfa dönüşüm bağlamını açıklamak için seçilmiş para birimi karşılaştırmaları sunar. Kurlar bilgilendirme amaçlıdır ve bankaların, nakit piyasasının, kartların veya para transferi hizmetlerinin kurlarından farklı olabilir.",
+        "No. It is the latest available reference used by the site. Banks and exchange providers may apply different buy and sell rates, spreads, or fees." => "Hayır. Bu, sitenin kullandığı en güncel referans kurdur. Bankalar ve döviz sağlayıcıları farklı alış ve satış kurları, makaslar veya ücretler uygulayabilir.",
+        "Because international gold is commonly quoted in US dollars, converting that benchmark into local currency is one of the factors used to estimate local gold values." => "Uluslararası altın genellikle ABD doları üzerinden fiyatlandırıldığından, bu referansın yerel para birimine çevrilmesi yerel altın değerini tahmin etmede kullanılan faktörlerden biridir.",
         "Gold Price Charts" => "Altın Fiyat Grafikleri",
-        "Track international gold spot price US dollars (USD) using global XAU/USD market chart. This is a worldwide benchmark, not a country-specific retail price." => "Küresel XAU/USD piyasa grafiğini kullanarak uluslararası spot altın fiyatını ABD doları (USD) cinsinden takip edin. Bu dünya çapında bir referanstır; belirli bir ülkenin perakende fiyatı değildir.",
-        "How many grams are a gold troy ounce?" => "Bir troy ons altın kaç gramdır?",
+        "Track the international gold spot price in US dollars (USD) using the global XAU/USD market chart. This is a worldwide benchmark, not a country-specific retail price." => "Küresel XAU/USD piyasa grafiğini kullanarak uluslararası spot altın fiyatını ABD doları (USD) cinsinden takip edin. Bu dünya çapında bir referanstır; belirli bir ülkenin perakende fiyatı değildir.",
+        "How many grams are in a gold troy ounce?" => "Bir troy ons altın kaç gramdır?",
         "Is this ounce price converted to local currency?" => "Bu ons fiyatı yerel para birimine çevriliyor mu?",
-        "Does index show a guaranteed market trading price?" => "Endeks garantili bir piyasa işlem fiyatı mı gösteriyor?",
-        "Does displayed value include a dealer premium?" => "Gösterilen değere satıcı primi dahil mi?",
-        "Gold Prices Egypt" => "Mısır Altın Fiyatları",
-        "Gold Prices Saudi Arabia" => "Suudi Arabistan Altın Fiyatları",
-        "Gold Prices UAE" => "Birleşik Arap Emirlikleri Altın Fiyatları",
-        "Gold Prices Kuwait" => "Kuveyt Altın Fiyatları",
+        "Does the index show a guaranteed market trading price?" => "Endeks garantili bir piyasa işlem fiyatı mı gösteriyor?",
+        "Does the displayed value include a dealer premium?" => "Gösterilen değere satıcı primi dahil mi?",
+        "Gold Prices in Egypt" => "Mısır Altın Fiyatları",
+        "Gold Prices in Saudi Arabia" => "Suudi Arabistan Altın Fiyatları",
+        "Gold Prices in the UAE" => "Birleşik Arap Emirlikleri Altın Fiyatları",
+        "Gold Prices in Kuwait" => "Kuveyt Altın Fiyatları",
     );
 
     // Match complete English terms/phrases only; never replace a fragment inside a larger word.
@@ -165,8 +165,8 @@ function altaqrer_gold_tr_output_translate($html) {
 ob_start('altaqrer_gold_tr_output_translate');
 
 /**
- * Standalone English header for country gold-price template.
- * The Arabic theme header ve navigation are not loaded here.
+ * Standalone English header for the country gold-price template.
+ * The Arabic theme header and navigation are not loaded here.
  */
 $tr_header_term = get_queried_object();
 $tr_header_country_slug = (is_object($tr_header_term) && !empty($tr_header_term->slug))
@@ -204,7 +204,7 @@ $tr_header_is_app = (isset($_GET['view']) && sanitize_text_field(wp_unslash($_GE
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet';">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 <?php
-// Preserve original working AdSense header output ve app-view condition.
+// Preserve the original working AdSense header output and app-view condition.
 $ad_options = get_option('adsense_header_settings');
 $ad_code    = isset($ad_options['adsense_code']) ? $ad_options['adsense_code'] : '';
 $is_enabled = isset($ad_options['enable_adsense']) ? $ad_options['enable_adsense'] : 0;
@@ -275,8 +275,8 @@ html, body { direction:ltr; text-align:left; }
 body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; position:relative; font-family:Inter,Arial,sans-serif; }
 .tr-site-header { position:relative; z-index:1000; background:#1a1a1a; border-bottom:4px solid <?php echo esc_attr($tr_header_accent); ?>; color:#fff; }
 .tr-site-header-inner { max-width:1200px; width:95%; margin:0 auto; min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:10px 0; }
-.en-brve { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; font-size:20px; white-space:nowrap; }
-.en-brve img { max-width:54px; max-height:54px; width:auto; height:auto; object-fit:contain; }
+.en-brand { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; font-size:20px; white-space:nowrap; }
+.en-brand img { max-width:54px; max-height:54px; width:auto; height:auto; object-fit:contain; }
 .tr-main-nav { display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
 .tr-main-nav a, .tr-country-toggle { color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.15); background:transparent; border-radius:6px; padding:9px 12px; font:600 13px Inter,Arial,sans-serif; cursor:pointer; }
 .tr-main-nav a:hover, .tr-country-toggle:hover { color:#1a1a1a; background:<?php echo esc_attr($tr_header_accent); ?>; }
@@ -363,8 +363,8 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
 
 <?php
 /**
- * Place existing Customizer advertisement immediately below English
- * title/logo ve navigation. Do not duplicate AdSenseHeaderManager output.
+ * Place the existing Customizer advertisement immediately below the English
+ * title/logo and navigation. Do not duplicate the AdSenseHeaderManager output.
  */
 if (!$tr_header_is_app && function_exists('goldnow_display_ad')) :
 ?>
@@ -376,8 +376,8 @@ if (!$tr_header_is_app && function_exists('goldnow_display_ad')) :
 <?php
 /**
  * English-only text adapter for shortcode HTML.
- * It translates visible text ve accessibility labels only; URLs, HTML structure,
- * CSS ve JavaScript are deliberately left untouched.
+ * It translates visible text and accessibility labels only; URLs, HTML structure,
+ * CSS and JavaScript are deliberately left untouched.
  */
 if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
     function altaqrer_gold_tr_translate_shortcode_html($html, $translations = array()) {
@@ -413,7 +413,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
 <main class="p-0 font-2">
   <div class="container home px-2">
     <?php
-    // 1) Resolve current country safely ve use its English taxonomy metadata.
+    // 1) Resolve the current country safely and use its English taxonomy metadata.
     $current_term = get_queried_object();
     $arabic_country_name = (is_object($current_term) && isset($current_term->name)) ? (string) $current_term->name : '';
     $term_id = (is_object($current_term) && isset($current_term->term_id)) ? (int) $current_term->term_id : 0;
@@ -437,12 +437,12 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
     $display_country_name = $localized_country_name !== '' ? $localized_country_name : ($english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country'));
     $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
 
-    // Complete English currency labels for currencies used by site's country map.
+    // Complete English currency labels for the currencies used by the site's country map.
     $currency_labels_tr = array(
         'USD'=>'ABD Doları','EUR'=>'Euro','GBP'=>'İngiliz Sterlini','EGP'=>'Mısır Lirası','SAR'=>'Suudi Arabistan Riyali','AED'=>'BAE Dirhemi',
         'KWD'=>'Kuveyt Dinarı','QAR'=>'Katar Riyali','BHD'=>'Bahreyn Dinarı','OMR'=>'Umman Riyali','JOD'=>'Jordanian Dinar',
         'IQD'=>'Iraqi Dinar','MAD'=>'Moroccan Dirham','TND'=>'Tunisian Dinar','DZD'=>'Algerian Dinar','TRY'=>'Turkish Lira',
-        'JPY'=>'Japon Yeni','CHF'=>'Swiss Franc','CAD'=>'Canadian Dollar','AUD'=>'Australian Dollar','NZD'=>'New Zealve Dollar',
+        'JPY'=>'Japon Yeni','CHF'=>'Swiss Franc','CAD'=>'Canadian Dollar','AUD'=>'Australian Dollar','NZD'=>'New Zealand Dollar',
         'CNY'=>'Chinese Yuan','INR'=>'Indian Rupee','PKR'=>'Pakistani Rupee','RUB'=>'Russian Ruble','ZAR'=>'South African Rand',
         'BRL'=>'Brazilian Real','MXN'=>'Mexican Peso','SGD'=>'Singapore Dollar','HKD'=>'Hong Kong Dollar','SEK'=>'Swedish Krona',
         'NOK'=>'Norwegian Krone','DKK'=>'Danish Krone','PLN'=>'Polish Zloty','CZK'=>'Czech Koruna','HUF'=>'Hungarian Forint',
@@ -456,13 +456,13 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         'BWP'=>'Botswana Pula','NAD'=>'Namibian Dollar','RWF'=>'Rwandan Franc','BIF'=>'Burundian Franc','SSP'=>'South Sudanese Pound',
         'ERN'=>'Eritrean Nakfa','SZL'=>'Swazi Lilangeni','LSL'=>'Lesotho Loti','GMD'=>'Gambian Dalasi','GNF'=>'Guinean Franc',
         'LRD'=>'Liberian Dollar','CVE'=>'Cape Verdean Escudo','SCR'=>'Seychellois Rupee','SLE'=>'Sierra Leonean Leone',
-        'STN'=>'São Tomé ve Príncipe Dobra','ARS'=>'Argentine Peso','BOB'=>'Bolivian Boliviano','CLP'=>'Chilean Peso',
+        'STN'=>'São Tomé and Príncipe Dobra','ARS'=>'Argentine Peso','BOB'=>'Bolivian Boliviano','CLP'=>'Chilean Peso',
         'COP'=>'Colombian Peso','GYD'=>'Guyanese Dollar','PYG'=>'Paraguayan Guarani','PEN'=>'Peruvian Sol',
-        'SRD'=>'Surinamese Dollar','UYU'=>'Uruguayan Peso','VES'=>'Venezuelan Bolívar','FKP'=>'Falklve Islands Pound',
+        'SRD'=>'Surinamese Dollar','UYU'=>'Uruguayan Peso','VES'=>'Venezuelan Bolívar','FKP'=>'Falkland Islands Pound',
         'BMD'=>'Bermudian Dollar','KYD'=>'Cayman Islands Dollar','CRC'=>'Costa Rican Colón','CUP'=>'Cuban Peso',
         'DOP'=>'Dominican Peso','GTQ'=>'Guatemalan Quetzal','HNL'=>'Honduran Lempira','NIO'=>'Nicaraguan Córdoba',
         'PAB'=>'Panamanian Balboa','BSD'=>'Bahamian Dollar','BBD'=>'Barbadian Dollar','BZD'=>'Belize Dollar',
-        'JMD'=>'Jamaican Dollar','TTD'=>'Trinidad ve Tobago Dollar','XCD'=>'East Caribbean Dollar','HTG'=>'Haitian Gourde',
+        'JMD'=>'Jamaican Dollar','TTD'=>'Trinidad and Tobago Dollar','XCD'=>'East Caribbean Dollar','HTG'=>'Haitian Gourde',
         'RON'=>'Romanian Leu','BGN'=>'Bulgarian Lev','RSD'=>'Serbian Dinar','UAH'=>'Ukrainian Hryvnia','BYN'=>'Belarusian Ruble',
         'MDL'=>'Moldovan Leu','ALL'=>'Albanian Lek','BAM'=>'Bosnia-Herzegovina Convertible Mark','MKD'=>'Macedonian Denar',
         'GEL'=>'Georgian Lari','ISK'=>'Icelandic Krona','GIP'=>'Gibraltar Pound','HRK'=>'Croatian Kuna',
@@ -486,10 +486,10 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         'جرام عيار 18' => '18 ayar altın gram fiyatı', 'جرام عيار 14' => '14 ayar altın gram fiyatı',
         'جرام عيار 12' => '12 ayar altın gram fiyatı',
         'الأونصة العالمية' => 'Küresel Altın Ons', 'أونصة الذهب العالمية' => 'Küresel Altın Ons',
-        'الأونصة بالعملة المحلية' => 'Gold Ounce Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce Local Currency',
+        'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
         'جنيه الذهب' => 'Altın Sikke', 'الجنيه الذهب' => 'Altın Sikke', 'سعر الجنيه الذهب' => 'Gold Coin Price',
-        'السعر بالدولار' => 'Price USD', 'سعر الدولار' => 'US Dollar Rate', 'سعر الدولار اليوم' => 'US Dollar Rate Today',
-        'السعر بالعملة المحلية' => 'Price Local Currency', 'سعر الذهب بالدولار' => 'Gold Price USD',
+        'السعر بالدولار' => 'Price in USD', 'سعر الدولار' => 'US Dollar Rate', 'سعر الدولار اليوم' => 'US Dollar Rate Today',
+        'السعر بالعملة المحلية' => 'Price in Local Currency', 'سعر الذهب بالدولار' => 'Gold Price in USD',
         'جنيه مصري' => 'Egyptian Pound', 'الدولار الأمريكي' => 'US Dollar', 'دولار أمريكي' => 'US Dollar',
         'الأكثر تداولاً' => 'En Çok İşlem Gören',
         'الأكثر تداولا' => 'En Çok İşlem Gören',
@@ -500,7 +500,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         'سعر الذهب' => 'Gold Price', 'أسعار الذهب' => 'Altın Fiyatları', 'العملة المحلية' => 'Yerel Para Birimi'
     );
 
-    // Reuse existing functions.php dictionaries where possible without modifying Arabic globals.
+    // Reuse the existing functions.php dictionaries where possible without modifying Arabic globals.
     global $currency_names, $carat_labels;
     if (is_array($currency_names)) {
         foreach ($currency_names as $code => $arabic_label) {
@@ -532,8 +532,8 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
 
     $gold_view = sanitize_key((string) get_query_var('gold_view'));
 
-    // Read 24K gram benchmark once. All karat ve weight calculations below
-    // continue to use this same USD source ve existing local-currency rate.
+    // Read the 24K gram benchmark once. All karat and weight calculations below
+    // continue to use this same USD source and the existing local-currency rate.
     $gram_24k_price_usd_raw = 0;
     $gram_24k_price_currency = 0;
     $gram_24k_price_usd_converted = 0;
@@ -547,9 +547,9 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         $gram_24k_price_usd_converted = $gram_24k_price_usd_raw;
     }
 
-    // Use provider's dedicated global-ounce quote when available; otherwise
-    // fall back to established 31.1g calculation. Local ve global values
-    // are two conversions of same international ounce benchmark.
+    // Use the provider's dedicated global-ounce quote when available; otherwise
+    // fall back to the established 31.1g calculation. Local and global values
+    // are two conversions of the same international ounce benchmark.
     $latest_global_ounce = function_exists('infi_get_latest_gold_prices')
         ? infi_get_latest_gold_prices('24k_oz')
         : array();
@@ -558,7 +558,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         : ($gram_24k_price_usd_converted * 31.1);
     $ounce_price_currency = $ounce_price_usd * $local_currency_per_usd;
 
-    // Preserve site's established 8g, 21K gold-coin calculation.
+    // Preserve the site's established 8g, 21K gold-coin calculation.
     $gold_pound_currency = $gram_24k_price_currency * 8 * 0.875;
 ?>
 
@@ -578,7 +578,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
       
       <!-- 1. Live Prices Pane -->
       <div id="tab-now" class="gold-tab-pane" style="display:block;">
-        <!-- 📊 SEO Heading: Fully programmatically structured English layout -->
+        <!-- 📊 SEO Heading: Fully programmatically structured in English layout -->
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align: left; direction: ltr;">
           <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
           <img alt="<?php echo esc_html($display_country_name); ?> güncel altın fiyatları" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align: middle; margin-right: 5px;">
@@ -615,7 +615,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         </section>
 	  </div>
 		
-      <!-- 2. Gold Bullion Bars ve Coins Table Pane -->
+      <!-- 2. Gold Bullion Bars and Coins Table Pane -->
       <div id="tab-buy-sell" class="gold-tab-pane" style="display:none; text-align: left; direction: ltr;">
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align:left !important; direction:ltr !important;">
             <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
@@ -720,7 +720,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
 
             <div class="raw-gold-alert mt-4" style="background: #1f2126; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb301;">
                 <span class="alert-icon">⚠️</span>
-                <strong>Önemli:</strong> The prices shown above for bars ve coins represent Yukarıda gösterilen külçe ve sikke fiyatları yalnızca altının değerini ifade eder; işçilik ücretleri, damgalama masrafları ve vergiler dahil değildir.
+                <strong>Önemli:</strong> The prices shown above for bars and coins represent Yukarıda gösterilen külçe ve sikke fiyatları yalnızca altının değerini ifade eder; işçilik ücretleri, damgalama masrafları ve vergiler dahil değildir.
             </div>
 
         <?php } else { ?>
@@ -728,7 +728,7 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
         <?php } ?>
       </div>
 
-      <!-- 3. Gold Price Chart: restored to match Arabic template structure. -->
+      <!-- 3. Gold Price Chart: restored to match the Arabic template structure. -->
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
@@ -749,14 +749,14 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
 </main>
 
 <script>
-// Translate legacy Arabic labels returned by existing indicator AJAX action.
+// Translate legacy Arabic labels returned by the existing indicator AJAX action.
 function altaqrerTranslateEnglishIndicator(root) {
     if (!root) return;
     const translations = {
         'عيار 24': '24 ayar altın', 'عيار 22': '22 ayar altın', 'عيار 21': '21 ayar altın',
         'عيار 18': '18 ayar altın', 'عيار 14': '14 ayar altın', 'عيار 12': '12 ayar altın',
         'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce Local Currency',
+        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
         'جنيه الذهب': 'Altın Sikke', 'سعر الدولار': 'US Dollar Exchange Rate',
         'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
         'انضم إلى قناتنا على تيليجرام': 'Telegram Kanalımıza Katılın',
@@ -799,7 +799,7 @@ document.addEventListener("DOMContentLoaded", function () {
             targetPane.style.display = "block";
             button.classList.add("active");
 
-            // Load same indicator frames used by Arabic template once only.
+            // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
                 framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Altın fiyat grafikleri yükleniyor…</p>';
@@ -880,7 +880,7 @@ if (!function_exists('altaqrer_get_currency_live_rate')) {
                 : 0;
         }
 
-        // Same rate direction ve conversion formula used by Arabic template.
+        // Same rate direction and conversion formula used by the Arabic template.
         return $rate_cache[$target_currency] > 0
             ? (float) $local_currency_per_usd / $rate_cache[$target_currency]
             : 0;
@@ -953,7 +953,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 
 <div class="altaqrer-silo-links" style="margin: 25px auto; padding: 15px; background: #17191d; border: 1px solid #3a3f4d; border-radius: 6px; text-align: center; max-width: 800px; width: 95%; box-sizing: border-box; clear: both; direction: ltr;">
     <?php
-    // Reuse already-resolved English country URL for every tab link.
+    // Reuse the already-resolved English country URL for every tab link.
     $base_country_url = $tr_header_country_url;
 
     $active_bg = get_theme_mod('infi_default_color', '#ffb301');
@@ -1171,7 +1171,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php if (!empty($gold_view)) :
-    // The live values below use same price snapshot ve conversions as tables above.
+    // The live values below use the same price snapshot and conversions as the tables above.
     $tr_seo_base = home_url('/tr/country/' . rawurlencode($tr_header_country_slug) . '/');
     $tr_seo_price_map = array(
         '24k' => array($price_24k_local, $price_24k_usd),
@@ -1211,10 +1211,10 @@ if (!empty($gold_view)) {
     <details><summary>Bu ons fiyatı yerel para birimine çevriliyor mu?</summary><p>Hayır. Bu sayfa yalnızca USD cinsinden uluslararası altın ons göstergesini gösterir. Yerel para birimi değerleri ilgili ülke fiyat tablolarında ayrıca sunulur.</p></details>
 <?php elseif ($gold_view === 'coin') : ?>
     <h2 id="tr-seo-title">Bugün 8 gram altın sikke fiyatı <?php echo esc_html($display_country_name); ?></h2>
-    <p>Referans değerini takip edin: <strong>8 gram altın sikke</strong> <?php echo esc_html($display_country_name); ?>. Güncel gram fiyatlarına göre 21 ayar sikkenin gösterge değeri <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (yaklaşık <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). Sayfa ayrıca şunları karşılaştırır: aynı 8 gram ağırlık için 22 ve 24 ayar değerlerini karşılaştırarak saflığın etkisini görebilirsiniz.</p>
+    <p>Referans değerini takip edin: <strong>8 gram altın sikke</strong> in <?php echo esc_html($display_country_name); ?>. Güncel gram fiyatlarına göre 21 ayar sikkenin gösterge değeri <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (yaklaşık <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). Sayfa ayrıca şunları karşılaştırır: aynı 8 gram ağırlık için 22 ve 24 ayar değerlerini karşılaştırarak saflığın etkisini görebilirsiniz.</p>
     <h3>8 gram sikkenin değeri nasıl hesaplanır</h3>
     <p>Hesaplamada ilgili gram altın değeri 8 gramla çarpılır. Standart 21 ayar referansı için 21 ayar gram fiyatı sekizle çarpılır. 22 ve 24 ayar karşılaştırmaları aynı ağırlıkta kendi gram fiyatlarını kullanır. Böylece sitenin mevcut 8 gram sikke hesaplaması korunur.</p>
-    <p>Sikkenin gerçek fiyatı basım, kondisyon, tasarım, nadirlik, satıcı primi ve yerel vergilere göre değişebilir. Buradaki değer altın içeriği referansıdır; garantili işlem fiyatı değildir. Şunlarla karşılaştırın: <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altın gram price</a>, <a href="<?php echo esc_url($tr_seo_base . '22k/'); ?>">22K gold price</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a>.</p>
+    <p>Sikkenin gerçek fiyatı basım, kondisyon, tasarım, nadirlik, satıcı primi ve yerel vergilere göre değişebilir. Buradaki değer altın içeriği referansıdır; garantili işlem fiyatı değildir. Şunlarla karşılaştırın: <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altın gram price</a>, <a href="<?php echo esc_url($tr_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a>.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Altın sikke hesabında hangi ağırlık kullanılır?</summary><p>Bu sayfa altın sikke karşılaştırması için sitenin standart 8 gram hesaplamasını korur.</p></details>
     <details><summary>Gösterilen değere satıcı primi dahil mi?</summary><p>Hayır. Yalnızca altın içeriğini tahmin eder; basım maliyeti, satıcı primi, işçilik veya vergiler dahil değildir.</p></details>
@@ -1228,7 +1228,7 @@ if (!empty($gold_view)) {
     <details><summary>Altın külçe fiyatlarına işçilik dahil mi?</summary><p>Hayır. Tablo yalnızca altın değerini tahmin eder; üretim, sertifikasyon, satıcı primi ve vergileri içermez.</p></details>
     <details><summary>Aynı ağırlıktaki iki külçenin fiyatı neden farklı olabilir?</summary><p>Marka, sertifika, üretim maliyetleri, satıcı primi, bulunabilirlik ve yerel vergiler nihai fiyatı etkileyebilir.</p></details>
 <?php elseif ($gold_view === 'gold-index') : ?>
-    <!-- Global XAU/USD chart added specifically to Gold Index SEO section. -->
+    <!-- Global XAU/USD chart added specifically to the Gold Index SEO section. -->
     <section class="tr-gold-index-chart" aria-labelledby="tr-gold-index-chart-title" style="background:#17191d;border:1px solid #323742;border-radius:8px;padding:12px;margin:0 0 22px;direction:ltr;text-align:left;">
         <h3 id="tr-gold-index-chart-title" style="color:#f0f1f5;text-align:left;margin:5px 5px 12px;font-size:20px;">Altın fiyat grafikleri</h3>
         <div style="position:relative;width:100%;height:520px;overflow:hidden;border-radius:6px;">
@@ -1246,10 +1246,10 @@ if (!empty($gold_view)) {
         <p style="color:#94a3b8;text-align:left;font-size:13px;margin:10px 4px 2px;">Küresel XAU/USD grafiğiyle uluslararası spot altın fiyatını ABD doları (USD) cinsinden takip edin. Bu dünya çapında bir göstergedir, ülkeye özgü perakende fiyatı değildir.</p>
     </section>
     <h2 id="tr-seo-title">Canlı altın piyasası endeksi ve ayar fiyatları: <?php echo esc_html($display_country_name); ?></h2>
-    <p>Bu altın piyasası özeti farklı saflıklar için en güncel referans değerlerini bir araya getirir. Güncel 24 ayar göstergesi <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> gram başına; 22 ayar yaklaşık <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> ve 21 ayar yaklaşık <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Küresel troy ons fiyatı <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> ve yerel para birimi karşılığı <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
+    <p>Bu altın piyasası özeti farklı saflıklar için en güncel referans değerlerini bir araya getirir. Güncel 24 ayar göstergesi <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> gram başına; 22 ayar yaklaşık <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> ve 21 ayar yaklaşık <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Küresel troy ons fiyatı <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>ve yerel para birimi karşılığı <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
     <h3>Altın endeksi neleri karşılaştırmanıza yardımcı olur</h3>
     <p>Endeks, yaygın saflık ve para birimlerindeki altın değerlerinin pratik bir anlık görüntüsünü sunar. 24 ayar külçe göstergesini mücevherlerde kullanılan daha düşük ayarlarla karşılaştırmaya yardımcı olur. Yerel değerler referans altın fiyatı ve mevcut döviz kurlarından hesaplanır; USD değerleri uluslararası piyasa karşılaştırmasını sağlar.</p>
-    <p>Altın fiyatları küresel spot piyasa hareketlerinden, döviz değişimlerinden, faiz beklentilerinden, enflasyon kaygılarından ve yatırım talebindeki değişikliklerden etkilenebilir. Tek bir anlık görüntü trend göstermez; sonuç çıkarmadan önce güncellemeleri zaman içinde karşılaştırın. Şu sayfaları ziyaret edin: <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar fiyat sayfası</a>, <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar fiyat sayfası</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'ounce/'); ?>">küresel ons sayfası</a>.</p>
+    <p>Altın fiyatları küresel spot piyasa hareketlerinden, döviz değişimlerinden, faiz beklentilerinden, enflasyon kaygılarından ve yatırım talebindeki değişikliklerden etkilenebilir. Tek bir anlık görüntü trend göstermez; sonuç çıkarmadan önce güncellemeleri zaman içinde karşılaştırın. Şu sayfaları ziyaret edin: <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar fiyat sayfası</a>, <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar fiyat sayfası</a>, and <a href="<?php echo esc_url($tr_seo_base . 'ounce/'); ?>">küresel ons sayfası</a>.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Endeks garantili bir piyasa işlem fiyatı mı gösterir?</summary><p>Hayır. Sitenin mevcut en güncel verilerine dayanan bilgilendirici bir referanstır. Gerçek işlem fiyatlarına yerel primler ve ücretler eklenebilir.</p></details>
     <details><summary>Farklı ayarlar neden farklı fiyatlandırılır?</summary><p>Her ayar farklı oranda saf altın içerir. Daha düşük saflıktaki alaşımların gram başına ham altın değeri, diğer maliyetler hariç, 24 ayardan düşüktür.</p></details>
@@ -1258,7 +1258,7 @@ if (!empty($gold_view)) {
     <p>Bu sayfada kullanılan en güncel referansa göre bir ABD doları yaklaşık <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Döviz kurları altın alıcıları için önemlidir; uluslararası külçe fiyatları genellikle USD üzerinden kote edilir. Yerel para dolar karşısında değiştiğinde, uluslararası USD altın fiyatı sabit kalsa bile altının yerel değeri değişebilir.</p>
     <h3>Döviz hareketleri yerel altın fiyatlarını nasıl etkiler</h3>
     <p>Yerel altın fiyatı tahmini, uluslararası altın göstergesini döviz dönüşümüyle ve perakende piyasadaki yerel prim, vergi veya maliyetlerle birleştirir. Bu sayfa dönüşüm bağlamını açıklamak için seçili para birimi karşılaştırmaları sunar. Kurlar bilgilendirme amaçlıdır; banka, nakit, kart veya havale kurlarından farklı olabilir.</p>
-    <p>Altın karşılaştırması için şu sayfaları inceleyin: <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar gram fiyatı</a>, <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar gram fiyatı</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'ounce/'); ?>">USD cinsinden uluslararası altın onsu</a>.</p>
+    <p>Altın karşılaştırması için şu sayfaları inceleyin: <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar gram fiyatı</a>, the <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar gram fiyatı</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'ounce/'); ?>">USD cinsinden uluslararası altın onsu</a>.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Bu döviz kuru tüm bankaların sunduğu kur mudur?</summary><p>Hayır. Bu, sitenin kullandığı en güncel referans kurdur. Bankalar ve döviz sağlayıcıları farklı alış-satış kurları, makas veya ücret uygulayabilir.</p></details>
     <details><summary>Dolar kuru altın için neden önemlidir?</summary><p>Altın uluslararası piyasalarda genellikle ABD dolarıyla fiyatlandığından, bu göstergenin yerel para birimine çevrilmesi yerel altın değerini tahmin etmenin unsurlarından biridir.</p></details>
@@ -1277,7 +1277,7 @@ if (!empty($gold_view)) {
     <section>
       <h3>Altın Fiyatı Bölümleri</h3>
       <ul>
-        <li><a href="<?php echo esc_url($tr_header_country_url); ?>">Gold Prices <?php echo esc_html(isset($display_country_name) ? $display_country_name : ''); ?></a></li>
+        <li><a href="<?php echo esc_url($tr_header_country_url); ?>">Gold Prices in <?php echo esc_html(isset($display_country_name) ? $display_country_name : ''); ?></a></li>
         <li><a href="<?php echo esc_url($tr_header_country_url . 'gold-bars/'); ?>">Altın Külçeler ve Sikke</a></li>
         <li><a href="<?php echo esc_url($tr_header_country_url . 'gold-index/'); ?>">Canlı Altın Endeksi</a></li>
         <li><a href="<?php echo esc_url($tr_header_country_url . 'usd/'); ?>">USD ve Döviz Kurları</a></li>
@@ -1286,10 +1286,10 @@ if (!empty($gold_view)) {
     <section>
       <h3>Bölgesel Altın Fiyatları</h3>
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/tr/country/eg/')); ?>">Gold Prices Egypt</a></li>
-        <li><a href="<?php echo esc_url(home_url('/tr/country/sa/')); ?>">Gold Prices Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/tr/country/ae/')); ?>">Gold Prices UAE</a></li>
-        <li><a href="<?php echo esc_url(home_url('/tr/country/kw/')); ?>">Gold Prices Kuwait</a></li>
+        <li><a href="<?php echo esc_url(home_url('/tr/country/eg/')); ?>">Gold Prices in Egypt</a></li>
+        <li><a href="<?php echo esc_url(home_url('/tr/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
+        <li><a href="<?php echo esc_url(home_url('/tr/country/ae/')); ?>">Gold Prices in the UAE</a></li>
+        <li><a href="<?php echo esc_url(home_url('/tr/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
       </ul>
       <h3 style="margin-top:16px;">Bizi Takip Edin</h3>
       <ul>
