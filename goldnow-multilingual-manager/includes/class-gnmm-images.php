@@ -188,15 +188,13 @@ final class GNMM_Images {
 
         $logo = '';
         $logo_id = (int) get_theme_mod('custom_logo');
-        if ($logo_id) {
-            $logo_data = wp_get_attachment_image_src($logo_id, 'full');
-            if (is_array($logo_data) && !empty($logo_data[0])) {
-                $logo_url = esc_url($logo_data[0]);
-                $logo_x = $rtl ? 890 : 80;
-                $site_x = $rtl ? 865 : 215;
-                $site_anchor = $rtl ? 'end' : 'start';
-                $logo = '<image href="' . $logo_url . '" x="' . $logo_x . '" y="55" width="105" height="70" preserveAspectRatio="xMidYMid meet"/>';
-            }
+        $logo_data = $logo_id ? wp_get_attachment_image_src($logo_id, 'full') : false;
+        $logo_url = (is_array($logo_data) && !empty($logo_data[0])) ? $logo_data[0] : get_site_icon_url(128);
+        if ($logo_url) {
+            $logo_x = $rtl ? 890 : 80;
+            $site_x = $rtl ? 865 : 215;
+            $site_anchor = $rtl ? 'end' : 'start';
+            $logo = '<image href="' . $esc($logo_url) . '" x="' . $logo_x . '" y="55" width="105" height="70" preserveAspectRatio="xMidYMid meet"/>';
         } else {
             $site_x = 540;
             $site_anchor = 'middle';
