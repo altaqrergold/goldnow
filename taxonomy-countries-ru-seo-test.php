@@ -566,6 +566,41 @@ if (!function_exists('altaqrer_gold_ru_translate_shortcode_html')) {
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
+<?php
+// RU section-specific SEO H1 titles and introductions, following the Hindi/German layout.
+$ru_seo_titles = array(
+    '24k' => 'Цена золота 24 карата сегодня в ' . $display_country_name,
+    '22k' => 'Цена золота 22 карата сегодня в ' . $display_country_name,
+    '21k' => 'Цена золота 21 карата сегодня в ' . $display_country_name,
+    '18k' => 'Цена золота 18 каратов сегодня в ' . $display_country_name,
+    '14k' => 'Цена золота 14 каратов сегодня в ' . $display_country_name,
+    'ounce' => 'Мировая спотовая цена унции золота сегодня в USD',
+    'coin' => 'Цена золотой монеты весом 8 граммов сегодня в ' . $display_country_name,
+    'gold-bars' => 'Цены на золотые слитки сегодня в ' . $display_country_name,
+    'gold-index' => 'Индекс цен на золото в реальном времени в ' . $display_country_name,
+    'usd' => 'Курс доллара США сегодня в ' . $display_country_name,
+);
+$ru_seo_intros = array(
+    '24k' => 'Посмотрите справочную цену золота 24 карата за грамм в ' . $display_country_name . '. Сравните значение в местной валюте с эквивалентом в USD. Золото 24 карата служит эталоном чистоты для слитков и инвестиционного золота.',
+    '22k' => 'Следите за ценой золота 22 карата за грамм в ' . $display_country_name . ' и сравнивайте её с золотом 24 карата. Сплав 22 карата содержит 22 части золота из 24; остальные металлы влияют на свойства и стоимость.',
+    '21k' => 'Посмотрите цену золота 21 карата за грамм в ' . $display_country_name . ', включая справочные значения в местной валюте и USD. Работа ювелира, наценки продавцов и налоги могут изменить конечную цену.',
+    '18k' => 'Узнайте справочную цену золота 18 каратов за грамм в ' . $display_country_name . '. Такой сплав содержит 18 частей золота из 24; стоимость металла не обязательно равна розничной цене готового украшения.',
+    '14k' => 'Сравните цену золота 14 каратов за грамм в ' . $display_country_name . ' с золотом 18, 21, 22 и 24 карата. Справочная стоимость зависит от доли чистого золота — 14 частей из 24.',
+    'ounce' => 'Посмотрите мировую спотовую цену одной тройской унции золота в USD. Тройская унция составляет примерно 31,1035 грамма. Это международный ориентир, а не местная цена унции в национальной валюте.' . $display_country_name . '',
+    'coin' => 'Посмотрите справочную стоимость золотой монеты весом 8 граммов в ' . $display_country_name . '. Расчёт сайта использует вес 8 граммов и сравнивает золото 21, 22 и 24 карата; чеканка, состояние, наценки и налоги влияют на фактическую цену.',
+    'gold-bars' => 'Сравните справочную стоимость золотых слитков разного веса в ' . $display_country_name . ' на основе цены золота 24 карата за грамм. Сертификация, бренд, изготовление, доставка и налоги могут повлиять на итоговую стоимость.',
+    'gold-index' => 'Сравните цены золота по пробе и валюте в ' . $display_country_name . '. Индекс объединяет местные справочные значения и мировую цену тройской унции в USD, помогая оценить рыночную картину.',
+    'usd' => 'Посмотрите последний доступный справочный курс USD для ' . $display_country_name . '. Изменения валютного курса могут влиять на местные цены золота, поскольку на международном рынке золото обычно котируется в долларах США.',
+);
+$ru_seo_h1 = isset($ru_seo_titles[$gold_view]) ? $ru_seo_titles[$gold_view] : 'Цена золота 24 карата сегодня в ' . $display_country_name;
+$ru_seo_intro = isset($ru_seo_intros[$gold_view]) ? $ru_seo_intros[$gold_view] : 'Посмотрите справочную цену золота 24 карата за грамм в ' . $display_country_name . '. Сравните значение в местной валюте с эквивалентом в USD. Золото 24 карата служит эталоном чистоты для слитков и инвестиционного золота.';
+?>
+<section class="ru-seo-intro" aria-labelledby="ru-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
+    <h1 id="ru-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($ru_seo_h1); ?></h1>
+    <p style="margin:0;"><?php echo esc_html($ru_seo_intro); ?></p>
+    <p style="margin:10px 0 0;color:#aeb7c4;font-size:13px;">Обновлено: <?php echo esc_html($today); ?> · Цены являются ориентировочными и могут меняться вместе с рынком.</p>
+</section>
+
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
       <button class="gold-tab-btn active" type="button" data-tab="now">Текущие цены</button>
