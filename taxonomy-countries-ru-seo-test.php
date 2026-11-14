@@ -486,8 +486,8 @@ if (!function_exists('altaqrer_gold_ru_translate_shortcode_html')) {
         'جرام عيار 18' => 'Золото 18 карат за грамм', 'جرام عيار 14' => 'Золото 14 карат за грамм',
         'جرام عيار 12' => 'Золото 12 карат за грамм',
         'الأونصة العالمية' => 'Мировая унция золота', 'أونصة الذهب العالمية' => 'Мировая унция золота',
-        'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
-        'جنيه الذهب' => 'Золотая монета', 'الجنيه الذهب' => 'Золотая монета', 'سعر الجنيه الذهب' => 'Gold Coin Price',
+        'الأونصة بالعملة المحلية' => 'Унция золота в местной валюте', 'أونصة الذهب بالعملة المحلية' => 'Унция золота в местной валюте',
+        'جنيه الذهب' => 'Золотая монета', 'الجنيه الذهب' => 'Золотая монета', 'سعر الجنيه الذهب' => 'Цена золотой монеты',
         'السعر بالدولار' => 'Price in USD', 'سعر الدولار' => 'US Dollar Rate', 'سعر الدولار اليوم' => 'US Dollar Rate Today',
         'السعر بالعملة المحلية' => 'Price in Local Currency', 'سعر الذهب بالدولار' => 'Gold Price in USD',
         'جنيه مصري' => 'Egyptian Pound', 'الدولار الأمريكي' => 'US Dollar', 'دولار أمريكي' => 'US Dollar',
@@ -771,7 +771,7 @@ $ru_seo_intro = isset($ru_seo_intros[$gold_view]) ? $ru_seo_intros[$gold_view] :
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
-          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="21K Gold Price Movement"]';
+          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="Динамика цены золота 21 карата"]';
           echo altaqrer_gold_ru_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map_ru);
           ?>
         </div>
@@ -791,7 +791,7 @@ function altaqrerTranslateEnglishIndicator(root) {
         'عيار 24': 'Золото 24 карата', 'عيار 22': 'Золото 22 карата', 'عيار 21': 'Золото 21 карата',
         'عيار 18': 'Золото 18 карат', 'عيار 14': 'Золото 14 карат', 'عيار 12': 'Золото 12 карат',
         'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
+        'الأونصة بالعملة المحلية': 'Унция золота в местной валюте',
         'جنيه الذهب': 'Золотая монета', 'سعر الدولار': 'US Dollar Exchange Rate',
         'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
         'انضم إلى قناتنا على تيليجرام': 'Подпишитесь на наш канал в Telegram',
