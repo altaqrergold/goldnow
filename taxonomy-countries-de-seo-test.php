@@ -490,8 +490,8 @@ if (!function_exists('altaqrer_gold_de_translate_shortcode_html')) {
         'جرام عيار 18' => '18-karätiges Gold pro Gramm', 'جرام عيار 14' => '14-karätiges Gold pro Gramm',
         'جرام عيار 12' => '12-karätiges Gold pro Gramm',
         'الأونصة العالمية' => 'Weltweite Goldunze', 'أونصة الذهب العالمية' => 'Weltweite Goldunze',
-        'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
-        'جنيه الذهب' => 'Goldmünze', 'الجنيه الذهب' => 'Goldmünze', 'سعر الجنيه الذهب' => 'Gold Coin Price',
+        'الأونصة بالعملة المحلية' => 'Goldunze in Landeswährung', 'أونصة الذهب بالعملة المحلية' => 'Goldunze in Landeswährung',
+        'جنيه الذهب' => 'Goldmünze', 'الجنيه الذهب' => 'Goldmünze', 'سعر الجنيه الذهب' => 'Goldmünzenpreis',
         'السعر بالدولار' => 'Price in USD', 'سعر الدولار' => 'US Dollar Rate', 'سعر الدولار اليوم' => 'US Dollar Rate Today',
         'السعر بالعملة المحلية' => 'Price in Local Currency', 'سعر الذهب بالدولار' => 'Gold Price in USD',
         'جنيه مصري' => 'Egyptian Pound', 'الدولار الأمريكي' => 'US Dollar', 'دولار أمريكي' => 'US Dollar',
@@ -774,7 +774,7 @@ $de_seo_intro = isset($de_seo_intros[$gold_view]) ? $de_seo_intros[$gold_view] :
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
-          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="21K Gold Price Movement"]';
+          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="Kursentwicklung des Goldpreises für 21 Karat"]';
           echo altaqrer_gold_de_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map_de);
           ?>
         </div>
@@ -794,7 +794,7 @@ function altaqrerTranslateEnglishIndicator(root) {
         'عيار 24': '24 Karat Gold', 'عيار 22': '22 Karat Gold', 'عيار 21': '21 Karat Gold',
         'عيار 18': '18 Karat Gold', 'عيار 14': '14 Karat Gold', 'عيار 12': '12 Karat Gold',
         'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
+        'الأونصة بالعملة المحلية': 'Goldunze in Landeswährung',
         'جنيه الذهب': 'Goldmünze', 'سعر الدولار': 'US Dollar Exchange Rate',
         'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
         'انضم إلى قناتنا على تيليجرام': 'Unserem Telegram-Kanal beitreten',
