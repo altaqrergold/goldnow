@@ -687,9 +687,8 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
                             
                             foreach ($weights as $bar) {
                                 if ((float) $bar['weight'] === 31.1) {
-                                    // The global troy-ounce benchmark is USD-only, never converted to local currency.
                                     $bar_price_usd = $ounce_price_usd;
-                                    $bar_price_currency = null;
+                                    $bar_price_currency = $ounce_price_currency;
                                 } else {
                                     $bar_price_currency = $gram_24k_price_currency * $bar['weight'];
                                     $bar_price_usd = $gram_24k_price_usd_converted * $bar['weight'];
@@ -697,7 +696,7 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
                                 ?>
                                 <tr>
                                     <td class="font-bold"><?php echo $bar['name']; ?></td>
-                                    <td class="price-cell"><?php echo $bar_price_currency === null ? '—' : number_format($bar_price_currency, 2); ?></td>
+                                    <td class="price-cell"><?php echo number_format($bar_price_currency, 2); ?></td>
                                     <td class="usd-cell"><?php echo number_format($bar_price_usd, 2); ?> $</td>
                                 </tr>
                                 <?php
@@ -1054,10 +1053,10 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;">लोकप्रिय 21 कैरेट सोना:</strong> <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo number_format($price_21k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_21k_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>मानक 18 कैरेट सोना:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_18k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_18k_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>14 कैरेट सोना:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_14k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_14k_usd, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>वैश्विक सोने का औंस (31.1 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong></span><br><small style="color:#94a3b8;">USD में अंतरराष्ट्रीय स्पॉट कीमत</small></div>
+                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>वैश्विक सोने का औंस (31.1 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">अंतरराष्ट्रीय कीमत: <?php echo number_format($ounce_price_usd, 2); ?> USD</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    यह इंडेक्स में सोने की प्रमुख शुद्धताओं की तुलना करता है <?php echo esc_html($display_country_name); ?>और अंतरराष्ट्रीय स्पॉट संदर्भ से तुलना करता है। वैश्विक ट्रॉय औंस का भाव केवल USD में दिखाया जाता है। स्थानीय मुद्रा में सोने की प्रति ग्राम कीमत विनिमय दर के आधार पर अलग से निकाली जाती है। इसमें आभूषण बनाने का शुल्क और विक्रेता का प्रीमियम शामिल नहीं है।
+                    यह इंडेक्स में सोने की प्रमुख शुद्धताओं की तुलना करता है <?php echo esc_html($display_country_name); ?>और अंतरराष्ट्रीय स्पॉट संदर्भ से तुलना करता है। वैश्विक ट्रॉय औंस का भाव USD में अंतरराष्ट्रीय संदर्भ के रूप में दिखाया जाता है, साथ ही उसका समकक्ष मूल्य स्थानीय मुद्रा में भी दिया जाता है। इसमें आभूषण बनाने का शुल्क और विक्रेता का प्रीमियम शामिल नहीं है।
                 </p>
 
 
@@ -1070,7 +1069,7 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 5 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 5, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 5, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 10 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 10, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 10, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 20 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 20, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 20, 2); ?> USD</small></div>
-                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>वैश्विक ट्रॉय औंस (31.1 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong></span><br><small style="color:#94a3b8;">अंतरराष्ट्रीय स्पॉट कीमत, केवल USD में</small></div>
+                    <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>वैश्विक ट्रॉय औंस (31.1 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">अंतरराष्ट्रीय स्पॉट कीमत: <?php echo number_format($ounce_price_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 50 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 50, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 50, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 100 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 100, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 100, 2); ?> USD</small></div>
                 </div>
