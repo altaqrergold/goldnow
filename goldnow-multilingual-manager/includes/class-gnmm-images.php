@@ -288,7 +288,7 @@ final class GNMM_Images {
         $image = self::shortcode(array('lang'=>$language));
         if ($image === '') { return $html; }
         // Insert after the opening content wrapper, below its top border/divider.
-        if (!preg_match('/<(div|section)\\b[^>]*class=["\\'][^"\\']*gold-tabs-content[^"\\']*["\\'][^>]*>/i', $html, $match, PREG_OFFSET_CAPTURE)) {
+        if (!preg_match('/<(div|section)\\b[^>]*class="[^"]*gold-tabs-content[^"]*"[^>]*>/i', $html, $match, PREG_OFFSET_CAPTURE)) {
             return $html;
         }
         $insert_at = $match[0][1] + strlen($match[0][0]);
