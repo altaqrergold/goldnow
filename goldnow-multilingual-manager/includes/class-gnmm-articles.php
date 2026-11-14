@@ -355,13 +355,13 @@ final class GNMM_Articles {
             )
         );
 
+        $slug_prefixes = array('ar'=>'asaar-al-dhahab','en'=>'gold-prices','fr'=>'prix-or','de'=>'goldpreise','es'=>'precio-oro','it'=>'prezzo-oro','pt'=>'preco-ouro','ru'=>'cena-zolota','hi'=>'sone-ka-bhav','tr'=>'altin-fiyatlari');
+        $postarr['post_name'] = sanitize_title((isset($slug_prefixes[$language]) ? $slug_prefixes[$language] : 'gold-prices') . '-' . $code . '-' . $date);
         if ($existing) {
             $postarr['ID'] = $existing;
             $post_id = wp_update_post($postarr,true);
             $result = 'updated';
         } else {
-            $slug_prefixes = array('ar'=>'asaar-al-dhahab','en'=>'gold-prices','fr'=>'prix-or','de'=>'goldpreise','es'=>'precio-oro','it'=>'prezzo-oro','pt'=>'preco-ouro','ru'=>'cena-zolota','hi'=>'sone-ka-bhav','tr'=>'altin-fiyatlari');
-            $postarr['post_name'] = sanitize_title((isset($slug_prefixes[$language]) ? $slug_prefixes[$language] : 'gold-prices') . '-' . $code . '-' . $date);
             $postarr['post_status'] = $status;
             $postarr['post_author'] = !empty($settings['article_author']) ? absint($settings['article_author']) : get_current_user_id();
             $postarr['comment_status'] = isset($settings['article_comments']) ? $settings['article_comments'] : 'closed';
