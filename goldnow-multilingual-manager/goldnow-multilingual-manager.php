@@ -2,14 +2,14 @@
 /**
  * Plugin Name: GoldNow Multilingual Manager
  * Description: Central manager for localized GoldNow country images and articles, using Gold Manager as the price source.
- * Version: 0.1.4
+ * Version: 0.1.5
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Text Domain: goldnow-multilingual-manager
  */
 if (!defined('ABSPATH')) { exit; }
 
-define('GNMM_VERSION', '0.1.4');
+define('GNMM_VERSION', '0.1.5');
 define('GNMM_FILE', __FILE__);
 define('GNMM_DIR', plugin_dir_path(__FILE__));
 define('GNMM_URL', plugin_dir_url(__FILE__));
