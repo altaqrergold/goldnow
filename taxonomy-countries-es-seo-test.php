@@ -99,7 +99,7 @@ function altaqrer_gold_es_output_translate($html) {
         "Why the onza mundial de oro matters" => "Por qué es importante la onza mundial de oro",
         "From the global ounce to a local gram price" => "De la onza mundial al precio local por gramo",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "En los mercados internacionales, el oro suele cotizarse por onza troy. Los operadores, las refinerías, los servicios financieros y los comerciantes de lingotes utilizan esta referencia para comparar el valor del oro entre mercados. Los cambios del dólar estadounidense, las expectativas sobre los tipos de interés, las perspectivas de inflación, la actividad de los bancos centrales y la demanda de los inversores pueden influir en el precio internacional del oro. Son factores generales del mercado; no significa que uno de ellos haya causado el movimiento de hoy.",
-        "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price por gramo also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "Como referencia, una onza troy contiene aproximadamente 31,1 gramos. El precio local por gramo también depende de la conversión a la moneda seleccionada y de las condiciones del mercado local. El valor mundial por onza que aparece arriba se mantiene en USD para poder compararlo de forma coherente con las cotizaciones internacionales.",
+        "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price per gram also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "Como referencia, una onza troy contiene aproximadamente 31,1 gramos. El precio local por gramo también depende de la conversión a la moneda seleccionada y de las condiciones del mercado local. El valor mundial por onza que aparece arriba se mantiene en USD para poder compararlo de forma coherente con las cotizaciones internacionales.",
         "One troy ounce is aproximadamente 31.1035 grams. The page uses 31.1 grams for its displayed reference calculation." => "Una onza troy equivale aproximadamente a 31,1035 gramos. Esta página utiliza 31,1 gramos para el cálculo de referencia mostrado.",
         "No. This page shows the international gold ounce benchmark in USD only. Local-currency values are shown separately in the country gold-price tables where applicable." => "No. Esta página muestra únicamente la referencia internacional de la onza de oro en USD. Cuando corresponde, los valores en moneda local aparecen por separado en las tablas de precios del oro del país.",
         "The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site's established 8-gram coin calculation." => "El cálculo multiplica el valor correspondiente del oro por gramo por 8 gramos. Para la referencia habitual de 21 quilates, la estimación mostrada utiliza el precio por gramo de 21K multiplicado por ocho. Los valores comparativos de 22K y 24K utilizan sus respectivos precios por gramo para el mismo peso. Así se mantiene el cálculo de 8 gramos de la moneda utilizado por el sitio.",
@@ -486,8 +486,8 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         'جرام عيار 18' => 'Oro de 18 quilates por gramo', 'جرام عيار 14' => 'Oro de 14 quilates por gramo',
         'جرام عيار 12' => 'Oro de 12 quilates por gramo',
         'الأونصة العالمية' => 'Onza mundial de oro', 'أونصة الذهب العالمية' => 'Onza mundial de oro',
-        'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
-        'جنيه الذهب' => 'Moneda de oro', 'الجنيه الذهب' => 'Moneda de oro', 'سعر الجنيه الذهب' => 'Gold Coin Price',
+        'الأونصة بالعملة المحلية' => 'Onza de oro en moneda local', 'أونصة الذهب بالعملة المحلية' => 'Onza de oro en moneda local',
+        'جنيه الذهب' => 'Moneda de oro', 'الجنيه الذهب' => 'Moneda de oro', 'سعر الجنيه الذهب' => 'Precio de la moneda de oro',
         'السعر بالدولار' => 'Price in USD', 'سعر الدولار' => 'US Dollar Rate', 'سعر الدولار اليوم' => 'US Dollar Rate Today',
         'السعر بالعملة المحلية' => 'Price in Local Currency', 'سعر الذهب بالدولار' => 'Gold Price in USD',
         'جنيه مصري' => 'Egyptian Pound', 'الدولار الأمريكي' => 'US Dollar', 'دولار أمريكي' => 'US Dollar',
@@ -771,7 +771,7 @@ $es_seo_intro = isset($es_seo_intros[$gold_view]) ? $es_seo_intros[$gold_view] :
         </h2>
         <div class="gold-frame-box mb-4" style="direction:ltr; text-align:left;">
           <?php
-          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="21K Gold Price Movement"]';
+          $en_chart_shortcode = '[infi_gold_chart carat="21k" currency="' . esc_attr($country_currency) . '" title="Evolución del precio del oro de 21 quilates"]';
           echo altaqrer_gold_es_translate_shortcode_html(do_shortcode($en_chart_shortcode), $shortcode_translation_map_es);
           ?>
         </div>
@@ -791,7 +791,7 @@ function altaqrerTranslateEnglishIndicator(root) {
         'عيار 24': 'Oro de 24 quilates', 'عيار 22': 'Oro de 22 quilates', 'عيار 21': 'Oro de 21 quilates',
         'عيار 18': 'Oro de 18 quilates', 'عيار 14': 'Oro de 14 quilates', 'عيار 12': 'Oro de 12 quilates',
         'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
+        'الأونصة بالعملة المحلية': 'Onza de oro en moneda local',
         'جنيه الذهب': 'Moneda de oro', 'سعر الدولار': 'US Dollar Exchange Rate',
         'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
         'انضم إلى قناتنا على تيليجرام': 'Únete a nuestro canal de Telegram',
