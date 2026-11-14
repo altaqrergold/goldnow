@@ -78,10 +78,10 @@ $en_meta_titles = array(
 $en_meta_descriptions = array(
     '' => 'Explore live gold prices across all karats, the global ounce in USD, 8-gram gold coin, gold bars and currency rates in ' . $en_meta_country . '.',
     '24k' => 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.',
-    '22k' => 'See today's 22K gold price per gram, compare it with 24K gold and understand purity, local-currency value and USD conversion.',
-    '21k' => 'Follow today's 21K gold price per gram with local and USD reference values, plus information about the site’s 8-gram gold coin calculation.',
-    '18k' => 'Check today's 18K gold price per gram, gold purity, local-currency reference value and the difference between raw gold and retail jewellery prices.',
-    '14k' => 'View today's 14K gold price per gram and compare its purity and reference value with 18K, 21K, 22K and 24K gold.',
+    '22k' => 'See today’s 22K gold price per gram, compare it with 24K gold and understand purity, local-currency value and USD conversion.',
+    '21k' => 'Follow today’s 21K gold price per gram with local and USD reference values, plus information about the site’s 8-gram gold coin calculation.',
+    '18k' => 'Check today’s 18K gold price per gram, gold purity, local-currency reference value and the difference between raw gold and retail jewellery prices.',
+    '14k' => 'View today’s 14K gold price per gram and compare its purity and reference value with 18K, 21K, 22K and 24K gold.',
     'ounce' => 'View the global gold spot price per troy ounce in USD. Learn the troy-ounce weight and how the international benchmark differs from local gram prices.',
     'coin' => 'Check the reference value of an 8-gram gold coin and compare 21K, 22K and 24K gold values, excluding additional dealer charges.',
     'gold-bars' => 'Compare gold bar reference values by weight using the 24K price per gram. Understand purity, certification and possible additional costs.',
@@ -272,7 +272,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
     $display_country_name = $english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country');
     $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
 
-    // Complete English currency labels for the currencies used by the site's country map.
+    // Complete English currency labels for the currencies used by the site’s country map.
     $currency_labels_en = array(
         'USD'=>'US Dollar','EUR'=>'Euro','GBP'=>'British Pound','EGP'=>'Egyptian Pound','SAR'=>'Saudi Riyal','AED'=>'UAE Dirham',
         'KWD'=>'Kuwaiti Dinar','QAR'=>'Qatari Riyal','BHD'=>'Bahraini Dinar','OMR'=>'Omani Rial','JOD'=>'Jordanian Dinar',
@@ -392,7 +392,7 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
         : ($gram_24k_price_usd_converted * 31.1);
     $ounce_price_currency = $ounce_price_usd * $local_currency_per_usd;
 
-    // Preserve the site's established 8g, 21K gold-coin calculation.
+    // Preserve the site’s established 8g, 21K gold-coin calculation.
     $gold_pound_currency = $gram_24k_price_currency * 8 * 0.875;
 ?>
 
@@ -1074,7 +1074,7 @@ if (!empty($gold_view)) {
     <h2 id="en-seo-title">Global Gold Ounce Price Today in USD</h2>
     <p>The international gold ounce reference on this page is <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> for one troy ounce of approximately 31.1 grams of 24K gold. This is the <strong>global gold spot benchmark</strong>, quoted in US dollars. It is deliberately not presented as a country-specific local-currency ounce price; local gram prices are converted separately for the selected country.</p>
     <h3>Why the global gold ounce matters</h3>
-    <p>Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement.</p>
+    <p>Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today’s movement.</p>
     <h3>From the global ounce to a local gram price</h3>
     <p>For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price per gram also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations.</p>
     <p>Continue to the <a href="<?php echo esc_url($en_seo_base); ?>">gold price in <?php echo esc_html($display_country_name); ?></a>, review <a href="<?php echo esc_url($en_seo_base . '24k/'); ?>">24K gold per gram</a>, or open the <a href="<?php echo esc_url($en_seo_base . 'gold-index/'); ?>">gold market index</a>.</p>
@@ -1085,10 +1085,10 @@ if (!empty($gold_view)) {
     <h2 id="en-seo-title">8-Gram Gold Coin Price Today in <?php echo esc_html($display_country_name); ?></h2>
     <p>Track the reference value of an <strong>8-gram gold coin</strong> in <?php echo esc_html($display_country_name); ?>. Using the current gram prices, the indicative 21K coin value is <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (about <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). The page also compares 22K and 24K values for the same 8-gram weight so that the effect of purity is clear.</p>
     <h3>How the 8-gram coin value is calculated</h3>
-    <p>The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site's established 8-gram coin calculation.</p>
+    <p>The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site’s established 8-gram coin calculation.</p>
     <p>Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, and local taxes. The values here represent the gold-content reference and should not be treated as a guaranteed transaction quote. Compare the <a href="<?php echo esc_url($en_seo_base . '21k/'); ?>">21K gold gram price</a>, <a href="<?php echo esc_url($en_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($en_seo_base . 'gold-bars/'); ?>">gold bar prices</a>.</p>
     <h3>Frequently asked questions</h3>
-    <details><summary>What weight is used for the gold coin calculation?</summary><p>This page retains the site's standard 8-gram calculation for the gold coin comparison.</p></details>
+    <details><summary>What weight is used for the gold coin calculation?</summary><p>This page retains the site’s standard 8-gram calculation for the gold coin comparison.</p></details>
     <details><summary>Does the displayed value include a dealer premium?</summary><p>No. It estimates the gold content only and does not include minting costs, dealer premiums, workmanship, or taxes.</p></details>
 <?php elseif ($gold_view === 'gold-bars') : ?>
     <h2 id="en-seo-title">Gold Bar Prices Today in <?php echo esc_html($display_country_name); ?></h2>
