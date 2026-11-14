@@ -55,7 +55,7 @@ if ($is_enabled && !empty($ad_code) && !(isset($_GET['view']) && sanitize_text_f
 $en_meta_term = get_queried_object();
 $en_meta_term_id = (is_object($en_meta_term) && isset($en_meta_term->term_id)) ? (int) $en_meta_term->term_id : 0;
 $en_meta_country = '';
-$en_meta_country = $en_meta_term_id ? (string) get_term_meta($en_meta_term_id, 'country_en_name', true) : '';
+$en_meta_country = $en_meta_term_id ? (string) get_term_meta($en_meta_term_id, 'country_english_name', true) : '';
 
 if ($en_meta_country === '') {
     $en_meta_country = 'your country';
