@@ -63,16 +63,16 @@ if ($fr_meta_country === '') {
 }
 $fr_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $fr_meta_titles = array(
-    '24k' => 'Prix de l’or 24 carats aujourd’hui ' . $fr_meta_country',
-    '22k' => 'Prix de l’or 22 carats aujourd’hui ' . $fr_meta_country',
-    '21k' => 'Prix de l’or 21 carats aujourd’hui ' . $fr_meta_country',
-    '18k' => 'Prix de l’or 18 carats aujourd’hui ' . $fr_meta_country',
-    '14k' => 'Prix de l’or 14 carats aujourd’hui ' . $fr_meta_country',
-    'ounce' => 'Cours mondial de l’once d’or en USD ' . $fr_meta_country',
-    'coin' => 'Prix d’une pièce d’or de 8 grammes ' . $fr_meta_country',
-    'gold-bars' => 'Prix des lingots d’or aujourd’hui ' . $fr_meta_country',
-    'gold-index' => 'Indice du cours de l’or en direct ' . $fr_meta_country',
-    'usd' => 'Taux de change du dollar américain ' . $fr_meta_country',
+    '24k' => 'Prix de l’or 24 carats aujourd’hui ' . $fr_meta_country,
+    '22k' => 'Prix de l’or 22 carats aujourd’hui ' . $fr_meta_country,
+    '21k' => 'Prix de l’or 21 carats aujourd’hui ' . $fr_meta_country,
+    '18k' => 'Prix de l’or 18 carats aujourd’hui ' . $fr_meta_country,
+    '14k' => 'Prix de l’or 14 carats aujourd’hui ' . $fr_meta_country,
+    'ounce' => 'Cours mondial de l’once d’or en USD ' . $fr_meta_country,
+    'coin' => 'Prix d’une pièce d’or de 8 grammes ' . $fr_meta_country,
+    'gold-bars' => 'Prix des lingots d’or aujourd’hui ' . $fr_meta_country,
+    'gold-index' => 'Indice du cours de l’or en direct ' . $fr_meta_country,
+    'usd' => 'Taux de change du dollar américain ' . $fr_meta_country,
 );
 $fr_meta_descriptions = array(
     '24k' => 'Consultez le cours de l’or 24 carats au gramme aujourd’hui. Comparez les valeurs indicatives en monnaie locale et en USD et comprenez la pureté.',
