@@ -503,7 +503,7 @@ if (!function_exists('altaqrer_gold_hi_translate_shortcode_html')) {
         }
     }
     if (is_array($carat_labels)) {
-        $carat_english = array('24k'=>'24 कैरेट सोना','22k'=>'22 कैरेट सोना','21k'=>'21 कैरेट सोना','18k'=>'18 कैरेट सोना','14k'=>'14 कैरेट सोना','12k'=>'12 कैरेट सोना','24k_oz'=>'Gold Ounce','gold_pound'=>'सोने का सिक्का');
+        $carat_english = array('24k'=>'24 कैरेट सोना','22k'=>'22 कैरेट सोना','21k'=>'21 कैरेट सोना','18k'=>'18 कैरेट सोना','14k'=>'14 कैरेट सोना','12k'=>'12 कैरेट सोना','24k_oz'=>'सोने का औंस','gold_pound'=>'सोने का सिक्का');
         foreach ($carat_labels as $key => $arabic_label) {
             if (isset($carat_english[$key]) && is_string($arabic_label) && $arabic_label !== '') {
                 $shortcode_translation_map_hi[$arabic_label] = $carat_english[$key];
@@ -1335,7 +1335,7 @@ if (!empty($gold_view)) {
       <ul>
         <li><a href="<?php echo esc_url(home_url('/hi/country/eg/')); ?>">मिस्र में सोने की कीमतें</a></li>
         <li><a href="<?php echo esc_url(home_url('/hi/country/sa/')); ?>">सऊदी अरब में सोने की कीमतें</a></li>
-        <li><a href="<?php echo esc_url(home_url('/hi/country/ae/')); ?>">संयुक्त अरब अमارات में सोने की कीमतें</a></li>
+        <li><a href="<?php echo esc_url(home_url('/hi/country/ae/')); ?>">संयुक्त अरब अमीरात में सोने की कीमतें</a></li>
         <li><a href="<?php echo esc_url(home_url('/hi/country/kw/')); ?>">कुवैत में सोने की कीमतें</a></li>
       </ul>
       <h3 style="margin-top:16px;">हमें फ़ॉलो करें</h3>
