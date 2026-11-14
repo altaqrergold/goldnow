@@ -147,15 +147,20 @@ final class GNMM_Images {
         }
         $url = $base_url . rawurlencode($language) . '/' . rawurlencode($code) . '.svg';
         $archive_url = $archive_path ? $base_url . 'archive/' . rawurlencode($language) . '/' . rawurlencode($code) . '/' . rawurlencode(basename($archive_path)) : '';
+        clearstatcache(true, $current_path);
+        $file_mtime = filemtime($current_path);
+        $file_size = filesize($current_path);
+        if ($file_mtime === false || $file_size === false || $file_size <= 0) {
+            return new WP_Error('gnmm_image_verify', 'The generated SVG could not be verified after replacement.');
+        }
         GNMM_Storage::upsert_asset(array(
             'asset_type' => 'image', 'country_code' => $code, 'language' => $language,
             'current_url' => $url, 'archive_url' => $archive_url,
             'source_updated_at' => $snapshot['source_updated_at'],
-            'meta' => array('currency'=>$currency,'prices'=>$local,'file_mtime'=>filemtime($current_path),'file_size'=>filesize($current_path))
+            'meta' => array('currency'=>$currency,'prices'=>$local,'file_mtime'=>$file_mtime,'file_size'=>$file_size)
         ));
-        clearstatcache(true, $current_path);
         self::purge_country_page_cache($term, $language);
-        $version = filemtime($current_path);
+        $version = $file_mtime;
         return array('url'=>add_query_arg('gnmm_v', $version, $url), 'canonical_url'=>$url, 'archive_url'=>$archive_url, 'currency'=>$currency, 'version'=>$version);
     }
 
