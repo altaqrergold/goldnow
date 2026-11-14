@@ -1,10 +1,9 @@
 <?php
-
-<?php
-// Indonesian visible-text localization layer. HTML structure, URLs, scripts and styles remain unchanged.
+/* Template Name: Indonesian — Gold Country Prices (SEO Test) */
+// Localize selected visible strings without changing markup, calculations, URLs, scripts or styles.
 if (!function_exists('altaqrer_gold_id_localize_output')) {
  function altaqrer_gold_id_localize_output($html) {
-  $map = {"Live Gold Prices and Market Overview":"Harga Emas Hari Ini dan Tinjauan Pasar","24K Gold Price Today":"Harga Emas 24K Hari Ini","22K Gold Price Today":"Harga Emas 22K Hari Ini","21K Gold Price Today":"Harga Emas 21K Hari Ini","18K Gold Price Today":"Harga Emas 18K Hari Ini","14K Gold Price Today":"Harga Emas 14K Hari Ini","Global Gold Ounce Price Today in USD":"Harga Emas Global per Troy Ounce Hari Ini (USD)","8-Gram Gold Coin Price Today":"Harga Koin Emas 8 Gram Hari Ini","Gold Bar Prices Today":"Harga Batangan Emas Hari Ini","Live Gold Price Index":"Indeks Harga Emas Langsung","USD Exchange Rate":"Kurs Dolar AS","Updated:":"Diperbarui:","Frequently asked questions":"Pertanyaan yang sering diajukan","Related gold prices":"Harga emas terkait","Important Links":"Tautan Penting","Privacy Policy":"Kebijakan Privasi","Terms of Use":"Ketentuan Penggunaan","Contact Us":"Hubungi Kami","Follow Us":"Ikuti Kami","Join Our Telegram Channel":"Bergabung dengan Kanal Telegram Kami","Gold Price Charts":"Grafik Harga Emas","Gold Bar Prices":"Harga Batangan Emas","Gold Price Today":"Harga Emas Hari Ini","per Gram":"per Gram","How to read the local and USD prices":"Cara membaca harga dalam mata uang lokal dan USD","How the 8-gram coin value is calculated":"Cara menghitung nilai koin emas 8 gram","How to compare gold bullion bar weights":"Cara membandingkan berat batangan emas","How currency movements affect local gold prices":"Bagaimana perubahan nilai tukar memengaruhi harga emas lokal","Reference date:":"Tanggal acuan:","All rights reserved":"Hak cipta dilindungi"};
+  $map = json_decode('{"Live Gold Prices and Market Overview":"Harga Emas Hari Ini dan Tinjauan Pasar","24K Gold Price Today":"Harga Emas 24K Hari Ini","22K Gold Price Today":"Harga Emas 22K Hari Ini","21K Gold Price Today":"Harga Emas 21K Hari Ini","18K Gold Price Today":"Harga Emas 18K Hari Ini","14K Gold Price Today":"Harga Emas 14K Hari Ini","Global Gold Ounce Price Today in USD":"Harga Emas Global per Troy Ounce Hari Ini (USD)","8-Gram Gold Coin Price Today":"Harga Koin Emas 8 Gram Hari Ini","Gold Bar Prices Today":"Harga Batangan Emas Hari Ini","Live Gold Price Index":"Indeks Harga Emas Langsung","USD Exchange Rate":"Kurs Dolar AS","Updated:":"Diperbarui:","Frequently asked questions":"Pertanyaan yang sering diajukan","Related gold prices":"Harga emas terkait","Important Links":"Tautan Penting","Privacy Policy":"Kebijakan Privasi","Terms of Use":"Ketentuan Penggunaan","Contact Us":"Hubungi Kami","Follow Us":"Ikuti Kami","Join Our Telegram Channel":"Bergabung dengan Kanal Telegram Kami","Gold Price Charts":"Grafik Harga Emas","Gold Bar Prices":"Harga Batangan Emas","Gold Price Today":"Harga Emas Hari Ini","per Gram":"per Gram","How to read the local and USD prices":"Cara membaca harga dalam mata uang lokal dan USD","How the 8-gram coin value is calculated":"Cara menghitung nilai koin emas 8 gram","How to compare gold bullion bar weights":"Cara membandingkan berat batangan emas","How currency movements affect local gold prices":"Bagaimana perubahan nilai tukar memengaruhi harga emas lokal","Reference date:":"Tanggal acuan:","All rights reserved":"Hak cipta dilindungi"}', true);
   $protected = array();
   $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) { $k='LANGBLOCK'.count($protected).'TOKEN'; $protected[$k]=$m[0]; return $k; }, $html);
   $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) { return '>'.strtr($m[1], $map).'<'; }, $html);
@@ -13,8 +12,6 @@ if (!function_exists('altaqrer_gold_id_localize_output')) {
  }
 }
 ob_start('altaqrer_gold_id_localize_output');
-?>
-/* Template Name: Indonesian — Gold Country Prices (SEO Test) */
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
