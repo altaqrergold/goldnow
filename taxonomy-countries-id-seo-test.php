@@ -69,39 +69,40 @@ $id_meta_term = get_queried_object();
 $id_meta_term_id = (is_object($id_meta_term) && isset($id_meta_term->term_id)) ? (int) $id_meta_term->term_id : 0;
 $id_meta_country = '';
 $id_meta_country = $id_meta_term_id ? (string) get_term_meta($id_meta_term_id, 'country_english_name', true) : '';
+if ($id_meta_country === '') { $id_meta_country = 'negara Anda'; }
 
 if ($id_meta_country === '') {
     $id_meta_country = 'your country';
 }
 $id_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $id_meta_titles = array(
-    '' => 'Lihat gambaran pasar emas di ',
-    '24k' => 'Pantau harga acuan emas 24K per gram di ' . $display_country_name,
-    '22k' => 'Pantau harga emas 22K per gram di ' . $display_country_name,
-    '21k' => 'Periksa harga emas 21K per gram di ' . $display_country_name,
-    '18k' => 'Lihat harga acuan emas 18K per gram di ' . $display_country_name,
-    '14k' => 'Bandingkan harga emas 14K dengan kadar lainnya di ' . $display_country_name,
-    'ounce' => 'Pantau harga spot internasional untuk satu troy ounce emas dalam USD. Satu troy ounce sekitar 31,1035 gram. Ini merupakan acuan global, bukan harga ounce dalam mata uang lokal negara tertentu.',
-    'coin' => 'Lihat nilai acuan koin emas seberat 8 gram di ' . $display_country_name,
-    'gold-bars' => 'Bandingkan nilai batangan emas berdasarkan berat menggunakan acuan harga emas 24K per gram di ' . $display_country_name,
-    'gold-index' => 'Bandingkan harga emas berdasarkan kadar dan mata uang di ' . $display_country_name,
-    'usd' => 'Lihat acuan kurs USD terbaru yang digunakan di ' . $display_country_name,
+    '' => 'Harga Emas Hari Ini dan Tinjauan Pasar di ' . $display_country_name,
+    '24k' => 'Harga Emas 24K Hari Ini di ' . $display_country_name,
+    '22k' => 'Harga Emas 22K Hari Ini di ' . $display_country_name,
+    '21k' => 'Harga Emas 21K Hari Ini di ' . $display_country_name,
+    '18k' => 'Harga Emas 18K Hari Ini di ' . $display_country_name,
+    '14k' => 'Harga Emas 14K Hari Ini di ' . $display_country_name,
+    'ounce' => 'Harga Emas Global per Troy Ounce Hari Ini (USD)',
+    'coin' => 'Harga Koin Emas 8 Gram Hari Ini di ' . $display_country_name,
+    'gold-bars' => 'Harga Batangan Emas Hari Ini di ' . $display_country_name,
+    'gold-index' => 'Indeks Harga Emas Hari Ini di ' . $display_country_name,
+    'usd' => 'Kurs USD Hari Ini di ' . $display_country_name,
 );
 $id_meta_descriptions = array(
-    '' => 'Lihat gambaran pasar emas di ',
-    '24k' => 'Pantau harga acuan emas 24K per gram di ' . $display_country_name,
-    '22k' => 'Pantau harga emas 22K per gram di ' . $display_country_name,
-    '21k' => 'Periksa harga emas 21K per gram di ' . $display_country_name,
+    '' => 'Bandingkan harga per gram emas 24K, 22K, 21K, 18K, dan 14K, serta harga emas dunia per troy ounce dalam USD, koin emas 8 gram, batangan emas, dan kurs di ' . $display_country_name,
+    '24k' => 'Pantau harga acuan emas 24K per gram dan bandingkan dengan kadar lainnya di ' . $display_country_name,
+    '22k' => 'Lihat harga emas 22K per gram dan selisihnya dibandingkan emas 24K di ' . $display_country_name,
+    '21k' => 'Periksa harga acuan emas 21K per gram di ' . $display_country_name,
     '18k' => 'Lihat harga acuan emas 18K per gram di ' . $display_country_name,
-    '14k' => 'Bandingkan harga emas 14K dengan kadar lainnya di ' . $display_country_name,
-    'ounce' => 'Pantau harga spot internasional untuk satu troy ounce emas dalam USD. Satu troy ounce sekitar 31,1035 gram. Ini merupakan acuan global, bukan harga ounce dalam mata uang lokal negara tertentu.',
+    '14k' => 'Bandingkan harga emas 14K dengan tingkat kemurnian lainnya di ' . $display_country_name,
+    'ounce' => 'Harga spot internasional untuk satu troy ounce emas dalam USD. Satu troy ounce setara sekitar 31,1035 gram. Ini adalah harga acuan global, bukan harga ounce dalam mata uang lokal negara tertentu.',
     'coin' => 'Lihat nilai acuan koin emas seberat 8 gram di ' . $display_country_name,
-    'gold-bars' => 'Bandingkan nilai batangan emas berdasarkan berat menggunakan acuan harga emas 24K per gram di ' . $display_country_name,
+    'gold-bars' => 'Bandingkan harga batangan emas berdasarkan berat dengan acuan harga emas 24K per gram di ' . $display_country_name,
     'gold-index' => 'Bandingkan harga emas berdasarkan kadar dan mata uang di ' . $display_country_name,
-    'usd' => 'Lihat acuan kurs USD terbaru yang digunakan di ' . $display_country_name,
+    'usd' => 'Periksa kurs USD acuan yang digunakan di ' . $display_country_name,
 );
-$id_meta_title = isset($id_meta_titles[$id_meta_view]) ? $id_meta_titles[$id_meta_view] : '24K gold price today ' . $id_meta_country;
-$id_meta_description = isset($id_meta_descriptions[$id_meta_view]) ? $id_meta_descriptions[$id_meta_view] : 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.';
+$id_meta_title = isset($id_meta_titles[$id_meta_view]) ? $id_meta_titles[$id_meta_view] : 'Harga Emas 24K Hari Ini di ' . $id_meta_country;
+$id_meta_description = isset($id_meta_descriptions[$id_meta_view]) ? $id_meta_descriptions[$id_meta_view] : 'Pantau harga acuan emas 24K per gram dan bandingkan dengan kadar lainnya di ' . $id_meta_country;
 add_filter('rank_math/frontend/title', function ($title) use ($id_meta_title) {
     return $id_meta_title . ' | AlTaqrer Gold';
 }, 99);
@@ -415,33 +416,33 @@ if (!function_exists('altaqrer_gold_id_translate_shortcode_html')) {
 <?php
 // EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $id_seo_titles = array(
-    '' => 'Lihat gambaran pasar emas di ',
-    '24k' => 'Pantau harga acuan emas 24K per gram di ' . $display_country_name,
-    '22k' => 'Pantau harga emas 22K per gram di ' . $display_country_name,
-    '21k' => 'Periksa harga emas 21K per gram di ' . $display_country_name,
-    '18k' => 'Lihat harga acuan emas 18K per gram di ' . $display_country_name,
-    '14k' => 'Bandingkan harga emas 14K dengan kadar lainnya di ' . $display_country_name,
-    'ounce' => 'Pantau harga spot internasional untuk satu troy ounce emas dalam USD. Satu troy ounce sekitar 31,1035 gram. Ini merupakan acuan global, bukan harga ounce dalam mata uang lokal negara tertentu.',
-    'coin' => 'Lihat nilai acuan koin emas seberat 8 gram di ' . $display_country_name,
-    'gold-bars' => 'Bandingkan nilai batangan emas berdasarkan berat menggunakan acuan harga emas 24K per gram di ' . $display_country_name,
-    'gold-index' => 'Bandingkan harga emas berdasarkan kadar dan mata uang di ' . $display_country_name,
-    'usd' => 'Lihat acuan kurs USD terbaru yang digunakan di ' . $display_country_name,
+    '' => 'Harga Emas Hari Ini dan Tinjauan Pasar di ' . $display_country_name,
+    '24k' => 'Harga Emas 24K Hari Ini di ' . $display_country_name,
+    '22k' => 'Harga Emas 22K Hari Ini di ' . $display_country_name,
+    '21k' => 'Harga Emas 21K Hari Ini di ' . $display_country_name,
+    '18k' => 'Harga Emas 18K Hari Ini di ' . $display_country_name,
+    '14k' => 'Harga Emas 14K Hari Ini di ' . $display_country_name,
+    'ounce' => 'Harga Emas Global per Troy Ounce Hari Ini (USD)',
+    'coin' => 'Harga Koin Emas 8 Gram Hari Ini di ' . $display_country_name,
+    'gold-bars' => 'Harga Batangan Emas Hari Ini di ' . $display_country_name,
+    'gold-index' => 'Indeks Harga Emas Hari Ini di ' . $display_country_name,
+    'usd' => 'Kurs USD Hari Ini di ' . $display_country_name,
 );
 $id_seo_intros = array(
-    '' => 'Lihat gambaran pasar emas di ',
-    '24k' => 'Pantau harga acuan emas 24K per gram di ' . $display_country_name,
-    '22k' => 'Pantau harga emas 22K per gram di ' . $display_country_name,
-    '21k' => 'Periksa harga emas 21K per gram di ' . $display_country_name,
+    '' => 'Bandingkan harga per gram emas 24K, 22K, 21K, 18K, dan 14K, serta harga emas dunia per troy ounce dalam USD, koin emas 8 gram, batangan emas, dan kurs di ' . $display_country_name,
+    '24k' => 'Pantau harga acuan emas 24K per gram dan bandingkan dengan kadar lainnya di ' . $display_country_name,
+    '22k' => 'Lihat harga emas 22K per gram dan selisihnya dibandingkan emas 24K di ' . $display_country_name,
+    '21k' => 'Periksa harga acuan emas 21K per gram di ' . $display_country_name,
     '18k' => 'Lihat harga acuan emas 18K per gram di ' . $display_country_name,
-    '14k' => 'Bandingkan harga emas 14K dengan kadar lainnya di ' . $display_country_name,
-    'ounce' => 'Pantau harga spot internasional untuk satu troy ounce emas dalam USD. Satu troy ounce sekitar 31,1035 gram. Ini merupakan acuan global, bukan harga ounce dalam mata uang lokal negara tertentu.',
+    '14k' => 'Bandingkan harga emas 14K dengan tingkat kemurnian lainnya di ' . $display_country_name,
+    'ounce' => 'Harga spot internasional untuk satu troy ounce emas dalam USD. Satu troy ounce setara sekitar 31,1035 gram. Ini adalah harga acuan global, bukan harga ounce dalam mata uang lokal negara tertentu.',
     'coin' => 'Lihat nilai acuan koin emas seberat 8 gram di ' . $display_country_name,
-    'gold-bars' => 'Bandingkan nilai batangan emas berdasarkan berat menggunakan acuan harga emas 24K per gram di ' . $display_country_name,
+    'gold-bars' => 'Bandingkan harga batangan emas berdasarkan berat dengan acuan harga emas 24K per gram di ' . $display_country_name,
     'gold-index' => 'Bandingkan harga emas berdasarkan kadar dan mata uang di ' . $display_country_name,
-    'usd' => 'Lihat acuan kurs USD terbaru yang digunakan di ' . $display_country_name,
+    'usd' => 'Periksa kurs USD acuan yang digunakan di ' . $display_country_name,
 );
-$id_seo_h1 = isset($id_seo_titles[$gold_view]) ? $id_seo_titles[$gold_view] : '24K Gold Price Today in ' . $display_country_name;
-$id_seo_intro = isset($id_seo_intros[$gold_view]) ? $id_seo_intros[$gold_view] : 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.';
+$id_seo_h1 = isset($id_seo_titles[$gold_view]) ? $id_seo_titles[$gold_view] : 'Harga Emas 24K Hari Ini di ' . $display_country_name;
+$id_seo_intro = isset($id_seo_intros[$gold_view]) ? $id_seo_intros[$gold_view] : 'Pantau harga acuan emas 24K per gram dan bandingkan dengan kadar lainnya di ' . $display_country_name;
 ?>
 <section class="id-seo-intro" aria-labelledby="id-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
     <h1 id="id-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($id_seo_h1); ?></h1>
