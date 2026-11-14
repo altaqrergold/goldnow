@@ -63,7 +63,7 @@ if ($fr_meta_country === '') {
 }
 $fr_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $fr_meta_titles = array(
-    '' => 'Cours de l’or aujourd’hui et aperçu du marché en $fr_meta_country',
+    '' => 'Cours de l’or aujourd’hui et aperçu du marché en ' . $fr_meta_country,
     '24k' => 'Prix de l’or 24 carats aujourd’hui ' . $fr_meta_country,
     '22k' => 'Prix de l’or 22 carats aujourd’hui ' . $fr_meta_country,
     '21k' => 'Prix de l’or 21 carats aujourd’hui ' . $fr_meta_country,
@@ -76,7 +76,7 @@ $fr_meta_titles = array(
     'usd' => 'Taux de change du dollar américain ' . $fr_meta_country,
 );
 $fr_meta_descriptions = array(
-    '' => 'Consultez les cours de l’or par carat, l’once mondiale en USD, la pièce de 8 grammes, les lingots et les taux de change en $fr_meta_country. Retrouvez les principaux indicateurs dans une seule vue d’ensemble.',
+    '' => 'Consultez les cours de l’or par carat, l’once mondiale en USD, la pièce de 8 grammes, les lingots et les taux de change en ' . $fr_meta_country . '.',
     '24k' => 'Consultez le cours de l’or 24 carats au gramme aujourd’hui. Comparez les valeurs indicatives en monnaie locale et en USD et comprenez la pureté.',
     '22k' => 'Consultez le prix du gramme d’or 22 carats et comparez-le au 24 carats, avec des repères en monnaie locale et en USD.',
     '21k' => 'Suivez le cours du gramme d’or 21 carats, comparez les valeurs en monnaie locale et en USD et découvrez le calcul de la pièce de 8 grammes.',
@@ -645,7 +645,7 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
 <?php
 // FR section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $fr_seo_titles = array(
-    '' => 'Cours de l’or en direct et aperçu du marché en $display_country_name',
+    '' => 'Cours de l’or en direct et aperçu du marché en ' . $display_country_name,
     '24k' => 'Prix de l’or 24 carats aujourd’hui en ' . $display_country_name,
     '22k' => 'Prix de l’or 22 carats aujourd’hui en ' . $display_country_name,
     '21k' => 'Prix de l’or 21 carats aujourd’hui en ' . $display_country_name,
@@ -658,7 +658,7 @@ $fr_seo_titles = array(
     'usd' => 'Taux de change USD en ' . $display_country_name,
 );
 $fr_seo_intros = array(
-    '' => 'Consultez une vue d’ensemble du marché de l’or en $display_country_name: comparez les cours indicatifs des 24, 22, 21, 18 et 14 carats au gramme, l’once mondiale en USD, la pièce de 8 grammes, les lingots et les taux de change. Cette page rassemble les principaux indicateurs ; chaque rubrique ci-dessous présente ses propres détails.',
+    '' => 'Consultez une vue d’ensemble du marché de l’or en ' . $display_country_name . ' comparez les cours indicatifs des 24, 22, 21, 18 et 14 carats au gramme, l’once mondiale en USD, la pièce de 8 grammes, les lingots et les taux de change. Cette page rassemble les principaux indicateurs ; chaque rubrique ci-dessous présente ses propres détails.',
     '24k' => 'Consultez le cours indicatif de l’or 24 carats au gramme en ' . $display_country_name . '. Comparez la valeur en monnaie locale et son équivalent en USD. Le 24 carats sert de référence de pureté pour l’or d’investissement et les lingots.',
     '22k' => 'Suivez le prix de l’or 22 carats au gramme en ' . $display_country_name . ' et comparez-le au 24 carats. L’or 22 carats contient 22 parts d’or sur 24 ; les autres métaux influencent sa pureté et ses propriétés.',
     '21k' => 'Consultez le prix de l’or 21 carats au gramme en ' . $display_country_name . ', avec les valeurs indicatives en monnaie locale et en USD. La fabrication des bijoux, les marges et les taxes peuvent modifier le prix final.',
