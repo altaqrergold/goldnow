@@ -640,6 +640,41 @@ if (!function_exists('altaqrer_gold_fr_translate_shortcode_html')) {
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
+<?php
+// FR section-specific SEO H1 titles and introductions, following the Hindi/German layout.
+$fr_seo_titles = array(
+    '24k' => 'Prix de l’or 24 carats aujourd’hui en ' . $display_country_name,
+    '22k' => 'Prix de l’or 22 carats aujourd’hui en ' . $display_country_name,
+    '21k' => 'Prix de l’or 21 carats aujourd’hui en ' . $display_country_name,
+    '18k' => 'Prix de l’or 18 carats aujourd’hui en ' . $display_country_name,
+    '14k' => 'Prix de l’or 14 carats aujourd’hui en ' . $display_country_name,
+    'ounce' => 'Cours mondial de l’once d’or aujourd’hui en USD',
+    'coin' => 'Prix d’une pièce d’or de 8 grammes aujourd’hui en ' . $display_country_name,
+    'gold-bars' => 'Prix des lingots d’or aujourd’hui en ' . $display_country_name,
+    'gold-index' => 'Indice du cours de l’or en direct en ' . $display_country_name,
+    'usd' => 'Taux de change USD en ' . $display_country_name,
+);
+$fr_seo_intros = array(
+    '24k' => 'Consultez le cours indicatif de l’or 24 carats au gramme en ' . $display_country_name . '. Comparez la valeur en monnaie locale et son équivalent en USD. Le 24 carats sert de référence de pureté pour l’or d’investissement et les lingots.',
+    '22k' => 'Suivez le prix de l’or 22 carats au gramme en ' . $display_country_name . ' et comparez-le au 24 carats. L’or 22 carats contient 22 parts d’or sur 24 ; les autres métaux influencent sa pureté et ses propriétés.',
+    '21k' => 'Consultez le prix de l’or 21 carats au gramme en ' . $display_country_name . ', avec les valeurs indicatives en monnaie locale et en USD. La fabrication des bijoux, les marges et les taxes peuvent modifier le prix final.',
+    '18k' => 'Découvrez le cours indicatif de l’or 18 carats au gramme en ' . $display_country_name . '. Il contient 18 parts d’or sur 24 ; la valeur du métal affichée ne correspond pas nécessairement au prix final d’un bijou.',
+    '14k' => 'Comparez le prix de l’or 14 carats au gramme en ' . $display_country_name . ' avec les titres 18, 21, 22 et 24 carats. Sa valeur indicative dépend de sa proportion d’or pur, soit 14 parts sur 24.',
+    'ounce' => 'Consultez le cours mondial au comptant d’une once troy d’or en USD. Une once troy représente environ 31,1035 grammes. Il s’agit du repère international, et non d’un prix local par once.' . $display_country_name . '',
+    'coin' => 'Consultez la valeur indicative d’une pièce d’or de 8 grammes en ' . $display_country_name . '. Le calcul du site utilise un poids de 8 grammes et compare les teneurs 21, 22 et 24 carats ; les primes et taxes peuvent modifier le prix réel.',
+    'gold-bars' => 'Comparez les valeurs indicatives des lingots selon leur poids en ' . $display_country_name . ', sur la base du cours de l’or 24 carats au gramme. Certification, marque, fabrication, livraison et taxes peuvent modifier le prix final.',
+    'gold-index' => 'Comparez les cours de l’or selon le titre et la devise en ' . $display_country_name . '. L’indice rassemble les valeurs locales et le cours mondial de l’once troy en USD pour mieux situer le marché.',
+    'usd' => 'Consultez le dernier taux de référence USD disponible pour ' . $display_country_name . '. Les variations de change peuvent influencer les prix locaux, car l’or est généralement coté en dollars sur les marchés internationaux.',
+);
+$fr_seo_h1 = isset($fr_seo_titles[$gold_view]) ? $fr_seo_titles[$gold_view] : 'Prix de l’or 24 carats aujourd’hui en ' . $display_country_name;
+$fr_seo_intro = isset($fr_seo_intros[$gold_view]) ? $fr_seo_intros[$gold_view] : 'Consultez le cours indicatif de l’or 24 carats au gramme en ' . $display_country_name . '. Comparez la valeur en monnaie locale et son équivalent en USD. Le 24 carats sert de référence de pureté pour l’or d’investissement et les lingots.';
+?>
+<section class="fr-seo-intro" aria-labelledby="fr-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
+    <h1 id="fr-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($fr_seo_h1); ?></h1>
+    <p style="margin:0;"><?php echo esc_html($fr_seo_intro); ?></p>
+    <p style="margin:10px 0 0;color:#aeb7c4;font-size:13px;">Mis à jour : <?php echo esc_html($today); ?> · Les prix sont indicatifs et peuvent évoluer avec le marché.</p>
+</section>
+
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
       <button class="gold-tab-btn active" type="button" data-tab="now">Prix en direct</button>
