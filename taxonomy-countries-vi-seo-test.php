@@ -69,39 +69,40 @@ $vi_meta_term = get_queried_object();
 $vi_meta_term_id = (is_object($vi_meta_term) && isset($vi_meta_term->term_id)) ? (int) $vi_meta_term->term_id : 0;
 $vi_meta_country = '';
 $vi_meta_country = $vi_meta_term_id ? (string) get_term_meta($vi_meta_term_id, 'country_english_name', true) : '';
+if ($vi_meta_country === '') { $vi_meta_country = 'quốc gia của bạn'; }
 
 if ($vi_meta_country === '') {
     $vi_meta_country = 'your country';
 }
 $vi_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $vi_meta_titles = array(
-    '' => 'Khám phá toàn cảnh thị trường vàng tại ',
-    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram tại ' . $display_country_name,
-    '22k' => 'Theo dõi giá vàng 22K mỗi gram tại ' . $display_country_name,
-    '21k' => 'Kiểm tra giá vàng 21K mỗi gram tại ' . $display_country_name,
-    '18k' => 'Xem giá tham chiếu vàng 18K mỗi gram tại ' . $display_country_name,
-    '14k' => 'So sánh giá vàng 14K với các độ tuổi vàng khác tại ' . $display_country_name,
-    'ounce' => 'Theo dõi giá vàng giao ngay quốc tế cho một ounce troy bằng USD. Một ounce troy tương đương khoảng 31,1035 gram. Đây là mức giá tham chiếu toàn cầu, không phải giá ounce quy đổi riêng theo nội tệ quốc gia.',
-    'coin' => 'Xem giá trị tham chiếu của đồng vàng nặng 8 gram tại ' . $display_country_name,
-    'gold-bars' => 'So sánh giá trị vàng miếng theo trọng lượng tại ' . $display_country_name,
-    'gold-index' => 'Theo dõi giá vàng theo tuổi vàng và tiền tệ tại ' . $display_country_name,
-    'usd' => 'Xem tỷ giá USD tham chiếu mới nhất được sử dụng tại ' . $display_country_name,
+    '' => 'Giá vàng hôm nay và tổng quan thị trường tại ' . $display_country_name,
+    '24k' => 'Giá vàng 24K hôm nay tại ' . $display_country_name,
+    '22k' => 'Giá vàng 22K hôm nay tại ' . $display_country_name,
+    '21k' => 'Giá vàng 21K hôm nay tại ' . $display_country_name,
+    '18k' => 'Giá vàng 18K hôm nay tại ' . $display_country_name,
+    '14k' => 'Giá vàng 14K hôm nay tại ' . $display_country_name,
+    'ounce' => 'Giá vàng thế giới mỗi ounce troy hôm nay (USD)',
+    'coin' => 'Giá đồng vàng 8 gram hôm nay tại ' . $display_country_name,
+    'gold-bars' => 'Giá vàng miếng hôm nay tại ' . $display_country_name,
+    'gold-index' => 'Chỉ số giá vàng hôm nay tại ' . $display_country_name,
+    'usd' => 'Tỷ giá USD hôm nay tại ' . $display_country_name,
 );
 $vi_meta_descriptions = array(
-    '' => 'Khám phá toàn cảnh thị trường vàng tại ',
-    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram tại ' . $display_country_name,
-    '22k' => 'Theo dõi giá vàng 22K mỗi gram tại ' . $display_country_name,
-    '21k' => 'Kiểm tra giá vàng 21K mỗi gram tại ' . $display_country_name,
+    '' => 'So sánh giá mỗi gram của vàng 24K, 22K, 21K, 18K và 14K, cùng giá vàng thế giới theo ounce troy bằng USD, đồng vàng 8 gram, vàng miếng và tỷ giá tại ' . $display_country_name,
+    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram và so sánh với các tuổi vàng khác tại ' . $display_country_name,
+    '22k' => 'Xem giá vàng 22K mỗi gram và mức chênh lệch so với vàng 24K tại ' . $display_country_name,
+    '21k' => 'Kiểm tra giá tham chiếu vàng 21K mỗi gram tại ' . $display_country_name,
     '18k' => 'Xem giá tham chiếu vàng 18K mỗi gram tại ' . $display_country_name,
-    '14k' => 'So sánh giá vàng 14K với các độ tuổi vàng khác tại ' . $display_country_name,
-    'ounce' => 'Theo dõi giá vàng giao ngay quốc tế cho một ounce troy bằng USD. Một ounce troy tương đương khoảng 31,1035 gram. Đây là mức giá tham chiếu toàn cầu, không phải giá ounce quy đổi riêng theo nội tệ quốc gia.',
+    '14k' => 'So sánh giá vàng 14K với các độ tinh khiết khác tại ' . $display_country_name,
+    'ounce' => 'Giá vàng giao ngay quốc tế cho một ounce troy được niêm yết bằng USD. Một ounce troy tương đương khoảng 31,1035 gram. Đây là giá tham chiếu toàn cầu, không phải giá ounce quy đổi theo nội tệ của từng quốc gia.',
     'coin' => 'Xem giá trị tham chiếu của đồng vàng nặng 8 gram tại ' . $display_country_name,
-    'gold-bars' => 'So sánh giá trị vàng miếng theo trọng lượng tại ' . $display_country_name,
-    'gold-index' => 'Theo dõi giá vàng theo tuổi vàng và tiền tệ tại ' . $display_country_name,
-    'usd' => 'Xem tỷ giá USD tham chiếu mới nhất được sử dụng tại ' . $display_country_name,
+    'gold-bars' => 'So sánh giá vàng miếng theo trọng lượng, dựa trên giá vàng 24K mỗi gram tại ' . $display_country_name,
+    'gold-index' => 'So sánh giá vàng theo tuổi vàng và đơn vị tiền tệ tại ' . $display_country_name,
+    'usd' => 'Kiểm tra tỷ giá USD tham chiếu được sử dụng tại ' . $display_country_name,
 );
-$vi_meta_title = isset($vi_meta_titles[$vi_meta_view]) ? $vi_meta_titles[$vi_meta_view] : '24K gold price today ' . $vi_meta_country;
-$vi_meta_description = isset($vi_meta_descriptions[$vi_meta_view]) ? $vi_meta_descriptions[$vi_meta_view] : 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.';
+$vi_meta_title = isset($vi_meta_titles[$vi_meta_view]) ? $vi_meta_titles[$vi_meta_view] : 'Giá vàng 24K hôm nay tại ' . $vi_meta_country;
+$vi_meta_description = isset($vi_meta_descriptions[$vi_meta_view]) ? $vi_meta_descriptions[$vi_meta_view] : 'Theo dõi giá tham chiếu vàng 24K mỗi gram và so sánh với các tuổi vàng khác tại ' . $vi_meta_country;
 add_filter('rank_math/frontend/title', function ($title) use ($vi_meta_title) {
     return $vi_meta_title . ' | AlTaqrer Gold';
 }, 99);
@@ -415,33 +416,33 @@ if (!function_exists('altaqrer_gold_vi_translate_shortcode_html')) {
 <?php
 // EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $vi_seo_titles = array(
-    '' => 'Khám phá toàn cảnh thị trường vàng tại ',
-    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram tại ' . $display_country_name,
-    '22k' => 'Theo dõi giá vàng 22K mỗi gram tại ' . $display_country_name,
-    '21k' => 'Kiểm tra giá vàng 21K mỗi gram tại ' . $display_country_name,
-    '18k' => 'Xem giá tham chiếu vàng 18K mỗi gram tại ' . $display_country_name,
-    '14k' => 'So sánh giá vàng 14K với các độ tuổi vàng khác tại ' . $display_country_name,
-    'ounce' => 'Theo dõi giá vàng giao ngay quốc tế cho một ounce troy bằng USD. Một ounce troy tương đương khoảng 31,1035 gram. Đây là mức giá tham chiếu toàn cầu, không phải giá ounce quy đổi riêng theo nội tệ quốc gia.',
-    'coin' => 'Xem giá trị tham chiếu của đồng vàng nặng 8 gram tại ' . $display_country_name,
-    'gold-bars' => 'So sánh giá trị vàng miếng theo trọng lượng tại ' . $display_country_name,
-    'gold-index' => 'Theo dõi giá vàng theo tuổi vàng và tiền tệ tại ' . $display_country_name,
-    'usd' => 'Xem tỷ giá USD tham chiếu mới nhất được sử dụng tại ' . $display_country_name,
+    '' => 'Giá vàng hôm nay và tổng quan thị trường tại ' . $display_country_name,
+    '24k' => 'Giá vàng 24K hôm nay tại ' . $display_country_name,
+    '22k' => 'Giá vàng 22K hôm nay tại ' . $display_country_name,
+    '21k' => 'Giá vàng 21K hôm nay tại ' . $display_country_name,
+    '18k' => 'Giá vàng 18K hôm nay tại ' . $display_country_name,
+    '14k' => 'Giá vàng 14K hôm nay tại ' . $display_country_name,
+    'ounce' => 'Giá vàng thế giới mỗi ounce troy hôm nay (USD)',
+    'coin' => 'Giá đồng vàng 8 gram hôm nay tại ' . $display_country_name,
+    'gold-bars' => 'Giá vàng miếng hôm nay tại ' . $display_country_name,
+    'gold-index' => 'Chỉ số giá vàng hôm nay tại ' . $display_country_name,
+    'usd' => 'Tỷ giá USD hôm nay tại ' . $display_country_name,
 );
 $vi_seo_intros = array(
-    '' => 'Khám phá toàn cảnh thị trường vàng tại ',
-    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram tại ' . $display_country_name,
-    '22k' => 'Theo dõi giá vàng 22K mỗi gram tại ' . $display_country_name,
-    '21k' => 'Kiểm tra giá vàng 21K mỗi gram tại ' . $display_country_name,
+    '' => 'So sánh giá mỗi gram của vàng 24K, 22K, 21K, 18K và 14K, cùng giá vàng thế giới theo ounce troy bằng USD, đồng vàng 8 gram, vàng miếng và tỷ giá tại ' . $display_country_name,
+    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram và so sánh với các tuổi vàng khác tại ' . $display_country_name,
+    '22k' => 'Xem giá vàng 22K mỗi gram và mức chênh lệch so với vàng 24K tại ' . $display_country_name,
+    '21k' => 'Kiểm tra giá tham chiếu vàng 21K mỗi gram tại ' . $display_country_name,
     '18k' => 'Xem giá tham chiếu vàng 18K mỗi gram tại ' . $display_country_name,
-    '14k' => 'So sánh giá vàng 14K với các độ tuổi vàng khác tại ' . $display_country_name,
-    'ounce' => 'Theo dõi giá vàng giao ngay quốc tế cho một ounce troy bằng USD. Một ounce troy tương đương khoảng 31,1035 gram. Đây là mức giá tham chiếu toàn cầu, không phải giá ounce quy đổi riêng theo nội tệ quốc gia.',
+    '14k' => 'So sánh giá vàng 14K với các độ tinh khiết khác tại ' . $display_country_name,
+    'ounce' => 'Giá vàng giao ngay quốc tế cho một ounce troy được niêm yết bằng USD. Một ounce troy tương đương khoảng 31,1035 gram. Đây là giá tham chiếu toàn cầu, không phải giá ounce quy đổi theo nội tệ của từng quốc gia.',
     'coin' => 'Xem giá trị tham chiếu của đồng vàng nặng 8 gram tại ' . $display_country_name,
-    'gold-bars' => 'So sánh giá trị vàng miếng theo trọng lượng tại ' . $display_country_name,
-    'gold-index' => 'Theo dõi giá vàng theo tuổi vàng và tiền tệ tại ' . $display_country_name,
-    'usd' => 'Xem tỷ giá USD tham chiếu mới nhất được sử dụng tại ' . $display_country_name,
+    'gold-bars' => 'So sánh giá vàng miếng theo trọng lượng, dựa trên giá vàng 24K mỗi gram tại ' . $display_country_name,
+    'gold-index' => 'So sánh giá vàng theo tuổi vàng và đơn vị tiền tệ tại ' . $display_country_name,
+    'usd' => 'Kiểm tra tỷ giá USD tham chiếu được sử dụng tại ' . $display_country_name,
 );
-$vi_seo_h1 = isset($vi_seo_titles[$gold_view]) ? $vi_seo_titles[$gold_view] : '24K Gold Price Today in ' . $display_country_name;
-$vi_seo_intro = isset($vi_seo_intros[$gold_view]) ? $vi_seo_intros[$gold_view] : 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.';
+$vi_seo_h1 = isset($vi_seo_titles[$gold_view]) ? $vi_seo_titles[$gold_view] : 'Giá vàng 24K hôm nay tại ' . $display_country_name;
+$vi_seo_intro = isset($vi_seo_intros[$gold_view]) ? $vi_seo_intros[$gold_view] : 'Theo dõi giá tham chiếu vàng 24K mỗi gram và so sánh với các tuổi vàng khác tại ' . $display_country_name;
 ?>
 <section class="vi-seo-intro" aria-labelledby="vi-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
     <h1 id="vi-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($vi_seo_h1); ?></h1>
