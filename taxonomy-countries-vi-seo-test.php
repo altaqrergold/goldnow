@@ -1,10 +1,9 @@
 <?php
-
-<?php
-// Vietnamese visible-text localization layer. HTML structure, URLs, scripts and styles remain unchanged.
+/* Template Name: Vietnamese — Gold Country Prices (SEO Test) */
+// Localize selected visible strings without changing markup, calculations, URLs, scripts or styles.
 if (!function_exists('altaqrer_gold_vi_localize_output')) {
  function altaqrer_gold_vi_localize_output($html) {
-  $map = {"Live Gold Prices and Market Overview":"Giá vàng hôm nay và tổng quan thị trường","24K Gold Price Today":"Giá vàng 24K hôm nay","22K Gold Price Today":"Giá vàng 22K hôm nay","21K Gold Price Today":"Giá vàng 21K hôm nay","18K Gold Price Today":"Giá vàng 18K hôm nay","14K Gold Price Today":"Giá vàng 14K hôm nay","Global Gold Ounce Price Today in USD":"Giá vàng thế giới mỗi ounce troy hôm nay (USD)","8-Gram Gold Coin Price Today":"Giá đồng vàng 8 gram hôm nay","Gold Bar Prices Today":"Giá vàng miếng hôm nay","Live Gold Price Index":"Chỉ số giá vàng trực tuyến","USD Exchange Rate":"Tỷ giá đô la Mỹ","Updated:":"Cập nhật:","Frequently asked questions":"Câu hỏi thường gặp","Related gold prices":"Giá vàng liên quan","Important Links":"Liên kết quan trọng","Privacy Policy":"Chính sách quyền riêng tư","Terms of Use":"Điều khoản sử dụng","Contact Us":"Liên hệ","Follow Us":"Theo dõi chúng tôi","Join Our Telegram Channel":"Tham gia kênh Telegram của chúng tôi","Gold Price Charts":"Biểu đồ giá vàng","Gold Bar Prices":"Giá vàng miếng","Gold Price Today":"Giá vàng hôm nay","per Gram":"mỗi gram","How to read the local and USD prices":"Cách đọc giá bằng nội tệ và USD","How the 8-gram coin value is calculated":"Cách tính giá trị đồng vàng 8 gram","How to compare gold bullion bar weights":"Cách so sánh trọng lượng vàng miếng","How currency movements affect local gold prices":"Biến động tiền tệ ảnh hưởng đến giá vàng trong nước như thế nào","Reference date:":"Ngày tham chiếu:","All rights reserved":"Bảo lưu mọi quyền"};
+  $map = json_decode('{"Live Gold Prices and Market Overview":"Giá vàng hôm nay và tổng quan thị trường","24K Gold Price Today":"Giá vàng 24K hôm nay","22K Gold Price Today":"Giá vàng 22K hôm nay","21K Gold Price Today":"Giá vàng 21K hôm nay","18K Gold Price Today":"Giá vàng 18K hôm nay","14K Gold Price Today":"Giá vàng 14K hôm nay","Global Gold Ounce Price Today in USD":"Giá vàng thế giới mỗi ounce troy hôm nay (USD)","8-Gram Gold Coin Price Today":"Giá đồng vàng 8 gram hôm nay","Gold Bar Prices Today":"Giá vàng miếng hôm nay","Live Gold Price Index":"Chỉ số giá vàng trực tuyến","USD Exchange Rate":"Tỷ giá đô la Mỹ","Updated:":"Cập nhật:","Frequently asked questions":"Câu hỏi thường gặp","Related gold prices":"Giá vàng liên quan","Important Links":"Liên kết quan trọng","Privacy Policy":"Chính sách quyền riêng tư","Terms of Use":"Điều khoản sử dụng","Contact Us":"Liên hệ","Follow Us":"Theo dõi chúng tôi","Join Our Telegram Channel":"Tham gia kênh Telegram của chúng tôi","Gold Price Charts":"Biểu đồ giá vàng","Gold Bar Prices":"Giá vàng miếng","Gold Price Today":"Giá vàng hôm nay","per Gram":"mỗi gram","How to read the local and USD prices":"Cách đọc giá bằng nội tệ và USD","How the 8-gram coin value is calculated":"Cách tính giá trị đồng vàng 8 gram","How to compare gold bullion bar weights":"Cách so sánh trọng lượng vàng miếng","How currency movements affect local gold prices":"Biến động tiền tệ ảnh hưởng đến giá vàng trong nước như thế nào","Reference date:":"Ngày tham chiếu:","All rights reserved":"Bảo lưu mọi quyền"}', true);
   $protected = array();
   $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) { $k='LANGBLOCK'.count($protected).'TOKEN'; $protected[$k]=$m[0]; return $k; }, $html);
   $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) { return '>'.strtr($m[1], $map).'<'; }, $html);
@@ -13,8 +12,6 @@ if (!function_exists('altaqrer_gold_vi_localize_output')) {
  }
 }
 ob_start('altaqrer_gold_vi_localize_output');
-?>
-/* Template Name: Vietnamese — Gold Country Prices (SEO Test) */
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
