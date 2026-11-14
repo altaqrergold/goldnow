@@ -69,39 +69,40 @@ $ko_meta_term = get_queried_object();
 $ko_meta_term_id = (is_object($ko_meta_term) && isset($ko_meta_term->term_id)) ? (int) $ko_meta_term->term_id : 0;
 $ko_meta_country = '';
 $ko_meta_country = $ko_meta_term_id ? (string) get_term_meta($ko_meta_term_id, 'country_english_name', true) : '';
+if ($ko_meta_country === '') { $ko_meta_country = '각 국가'; }
 
 if ($ko_meta_country === '') {
     $ko_meta_country = 'your country';
 }
 $ko_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $ko_meta_titles = array(
-    '' => '의 금 시장 전체를 살펴보세요. 24K, 22K, 21K, 18K, 14K의 그램당 기준 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 자세한 내용은 아래 항목을 선택하세요.',
-    '24k' => '의 24K 금 그램당 기준 가격을 확인하세요.' . $display_country_name,
-    '22k' => '의 22K 금 그램당 가격을 24K 금과 비교하세요.' . $display_country_name,
-    '21k' => '의 21K 금 그램당 가격을 확인하세요.' . $display_country_name,
-    '18k' => '의 18K 금 기준 가격을 확인하세요.' . $display_country_name,
-    '14k' => '의 14K 금 가격을 다른 순도와 비교하세요.' . $display_country_name,
-    'ounce' => '국제 현물 시장의 금 1트로이온스 기준 가격을 USD로 확인할 수 있습니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
-    'coin' => '의 8그램 금화 기준 가치를 확인하세요.' . $display_country_name,
-    'gold-bars' => '의 24K 금 그램당 가격을 기준으로 중량별 골드바 가격을 비교하세요.' . $display_country_name,
-    'gold-index' => '의 순도 및 통화별 금 가격을 비교하세요.' . $display_country_name,
-    'usd' => '에서 사용하는 최신 USD 환율 기준값을 확인하세요.' . $display_country_name,
+    '' => '오늘의 금 시세 및 시장 개요 (' . $display_country_name,
+    '24k' => '오늘의 24K 금 시세 (' . $display_country_name,
+    '22k' => '오늘의 22K 금 시세 (' . $display_country_name,
+    '21k' => '오늘의 21K 금 시세 (' . $display_country_name,
+    '18k' => '오늘의 18K 금 시세 (' . $display_country_name,
+    '14k' => '오늘의 14K 금 시세 (' . $display_country_name,
+    'ounce' => '오늘의 국제 금 트로이온스 가격 (USD)',
+    'coin' => '오늘의 8그램 금화 가격 (' . $display_country_name,
+    'gold-bars' => '오늘의 골드바 가격 (' . $display_country_name,
+    'gold-index' => '오늘의 금 가격 지수 (' . $display_country_name,
+    'usd' => '오늘의 USD 환율 (' . $display_country_name,
 );
 $ko_meta_descriptions = array(
-    '' => '의 금 시장 전체를 살펴보세요. 24K, 22K, 21K, 18K, 14K의 그램당 기준 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 자세한 내용은 아래 항목을 선택하세요.',
-    '24k' => '의 24K 금 그램당 기준 가격을 확인하세요.' . $display_country_name,
-    '22k' => '의 22K 금 그램당 가격을 24K 금과 비교하세요.' . $display_country_name,
+    '' => '24K, 22K, 21K, 18K, 14K의 그램당 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 대상 지역:' . $display_country_name,
+    '24k' => '의 24K 금 그램당 기준 가격을 확인하고 다른 순도와 비교하세요.' . $display_country_name,
+    '22k' => '의 22K 금 가격과 24K 금의 차이를 확인하세요.' . $display_country_name,
     '21k' => '의 21K 금 그램당 가격을 확인하세요.' . $display_country_name,
     '18k' => '의 18K 금 기준 가격을 확인하세요.' . $display_country_name,
     '14k' => '의 14K 금 가격을 다른 순도와 비교하세요.' . $display_country_name,
-    'ounce' => '국제 현물 시장의 금 1트로이온스 기준 가격을 USD로 확인할 수 있습니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
+    'ounce' => '국제 현물 시장의 금 1트로이온스 가격을 USD로 표시합니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
     'coin' => '의 8그램 금화 기준 가치를 확인하세요.' . $display_country_name,
     'gold-bars' => '의 24K 금 그램당 가격을 기준으로 중량별 골드바 가격을 비교하세요.' . $display_country_name,
     'gold-index' => '의 순도 및 통화별 금 가격을 비교하세요.' . $display_country_name,
-    'usd' => '에서 사용하는 최신 USD 환율 기준값을 확인하세요.' . $display_country_name,
+    'usd' => '에서 사용하는 USD 환율 기준값을 확인하세요.' . $display_country_name,
 );
-$ko_meta_title = isset($ko_meta_titles[$ko_meta_view]) ? $ko_meta_titles[$ko_meta_view] : '24K gold price today ' . $ko_meta_country;
-$ko_meta_description = isset($ko_meta_descriptions[$ko_meta_view]) ? $ko_meta_descriptions[$ko_meta_view] : 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.';
+$ko_meta_title = isset($ko_meta_titles[$ko_meta_view]) ? $ko_meta_titles[$ko_meta_view] : '오늘의 24K 금 시세 (' . $ko_meta_country;
+$ko_meta_description = isset($ko_meta_descriptions[$ko_meta_view]) ? $ko_meta_descriptions[$ko_meta_view] : '의 24K 금 그램당 기준 가격을 확인하고 다른 순도와 비교하세요.' . $ko_meta_country;
 add_filter('rank_math/frontend/title', function ($title) use ($ko_meta_title) {
     return $ko_meta_title . ' | AlTaqrer Gold';
 }, 99);
@@ -415,33 +416,33 @@ if (!function_exists('altaqrer_gold_ko_translate_shortcode_html')) {
 <?php
 // EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $ko_seo_titles = array(
-    '' => '의 금 시장 전체를 살펴보세요. 24K, 22K, 21K, 18K, 14K의 그램당 기준 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 자세한 내용은 아래 항목을 선택하세요.',
-    '24k' => '의 24K 금 그램당 기준 가격을 확인하세요.' . $display_country_name,
-    '22k' => '의 22K 금 그램당 가격을 24K 금과 비교하세요.' . $display_country_name,
-    '21k' => '의 21K 금 그램당 가격을 확인하세요.' . $display_country_name,
-    '18k' => '의 18K 금 기준 가격을 확인하세요.' . $display_country_name,
-    '14k' => '의 14K 금 가격을 다른 순도와 비교하세요.' . $display_country_name,
-    'ounce' => '국제 현물 시장의 금 1트로이온스 기준 가격을 USD로 확인할 수 있습니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
-    'coin' => '의 8그램 금화 기준 가치를 확인하세요.' . $display_country_name,
-    'gold-bars' => '의 24K 금 그램당 가격을 기준으로 중량별 골드바 가격을 비교하세요.' . $display_country_name,
-    'gold-index' => '의 순도 및 통화별 금 가격을 비교하세요.' . $display_country_name,
-    'usd' => '에서 사용하는 최신 USD 환율 기준값을 확인하세요.' . $display_country_name,
+    '' => '오늘의 금 시세 및 시장 개요 (' . $display_country_name,
+    '24k' => '오늘의 24K 금 시세 (' . $display_country_name,
+    '22k' => '오늘의 22K 금 시세 (' . $display_country_name,
+    '21k' => '오늘의 21K 금 시세 (' . $display_country_name,
+    '18k' => '오늘의 18K 금 시세 (' . $display_country_name,
+    '14k' => '오늘의 14K 금 시세 (' . $display_country_name,
+    'ounce' => '오늘의 국제 금 트로이온스 가격 (USD)',
+    'coin' => '오늘의 8그램 금화 가격 (' . $display_country_name,
+    'gold-bars' => '오늘의 골드바 가격 (' . $display_country_name,
+    'gold-index' => '오늘의 금 가격 지수 (' . $display_country_name,
+    'usd' => '오늘의 USD 환율 (' . $display_country_name,
 );
 $ko_seo_intros = array(
-    '' => '의 금 시장 전체를 살펴보세요. 24K, 22K, 21K, 18K, 14K의 그램당 기준 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 자세한 내용은 아래 항목을 선택하세요.',
-    '24k' => '의 24K 금 그램당 기준 가격을 확인하세요.' . $display_country_name,
-    '22k' => '의 22K 금 그램당 가격을 24K 금과 비교하세요.' . $display_country_name,
+    '' => '24K, 22K, 21K, 18K, 14K의 그램당 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 대상 지역:' . $display_country_name,
+    '24k' => '의 24K 금 그램당 기준 가격을 확인하고 다른 순도와 비교하세요.' . $display_country_name,
+    '22k' => '의 22K 금 가격과 24K 금의 차이를 확인하세요.' . $display_country_name,
     '21k' => '의 21K 금 그램당 가격을 확인하세요.' . $display_country_name,
     '18k' => '의 18K 금 기준 가격을 확인하세요.' . $display_country_name,
     '14k' => '의 14K 금 가격을 다른 순도와 비교하세요.' . $display_country_name,
-    'ounce' => '국제 현물 시장의 금 1트로이온스 기준 가격을 USD로 확인할 수 있습니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
+    'ounce' => '국제 현물 시장의 금 1트로이온스 가격을 USD로 표시합니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
     'coin' => '의 8그램 금화 기준 가치를 확인하세요.' . $display_country_name,
     'gold-bars' => '의 24K 금 그램당 가격을 기준으로 중량별 골드바 가격을 비교하세요.' . $display_country_name,
     'gold-index' => '의 순도 및 통화별 금 가격을 비교하세요.' . $display_country_name,
-    'usd' => '에서 사용하는 최신 USD 환율 기준값을 확인하세요.' . $display_country_name,
+    'usd' => '에서 사용하는 USD 환율 기준값을 확인하세요.' . $display_country_name,
 );
-$ko_seo_h1 = isset($ko_seo_titles[$gold_view]) ? $ko_seo_titles[$gold_view] : '24K Gold Price Today in ' . $display_country_name;
-$ko_seo_intro = isset($ko_seo_intros[$gold_view]) ? $ko_seo_intros[$gold_view] : 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.';
+$ko_seo_h1 = isset($ko_seo_titles[$gold_view]) ? $ko_seo_titles[$gold_view] : '오늘의 24K 금 시세 (' . $display_country_name;
+$ko_seo_intro = isset($ko_seo_intros[$gold_view]) ? $ko_seo_intros[$gold_view] : '의 24K 금 그램당 기준 가격을 확인하고 다른 순도와 비교하세요.' . $display_country_name;
 ?>
 <section class="ko-seo-intro" aria-labelledby="ko-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
     <h1 id="ko-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($ko_seo_h1); ?></h1>
