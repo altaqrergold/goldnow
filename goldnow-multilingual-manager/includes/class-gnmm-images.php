@@ -150,9 +150,13 @@ final class GNMM_Images {
         GNMM_Storage::upsert_asset(array(
             'asset_type' => 'image', 'country_code' => $code, 'language' => $language,
             'current_url' => $url, 'archive_url' => $archive_url,
-            'source_updated_at' => $snapshot['source_updated_at'], 'meta' => array('currency'=>$currency,'prices'=>$local)
+            'source_updated_at' => $snapshot['source_updated_at'],
+            'meta' => array('currency'=>$currency,'prices'=>$local,'file_mtime'=>filemtime($current_path),'file_size'=>filesize($current_path))
         ));
-        return array('url'=>$url, 'archive_url'=>$archive_url, 'currency'=>$currency);
+        clearstatcache(true, $current_path);
+        self::purge_country_page_cache($term, $language);
+        $version = filemtime($current_path);
+        return array('url'=>add_query_arg('gnmm_v', $version, $url), 'canonical_url'=>$url, 'archive_url'=>$archive_url, 'currency'=>$currency, 'version'=>$version);
     }
 
     private static function build_svg($country, $currency, $local, $usd, $labels, $language, $snapshot) {
@@ -190,6 +194,27 @@ final class GNMM_Images {
         return $svg;
     }
 
+    /**
+     * Invalidate common page caches after the image URL's current content changes.
+     * Cache integrations are optional; the image remains usable without them.
+     */
+    private static function purge_country_page_cache($term, $language) {
+        clean_term_cache((int) $term->term_id, 'countries');
+        $page_url = GNMM_Gold_Manager::country_url($term, $language);
+        if (!$page_url) { return; }
+
+        if (function_exists('rocket_clean_files')) {
+            rocket_clean_files(array($page_url));
+        }
+        if (function_exists('w3tc_flush_url')) {
+            w3tc_flush_url($page_url);
+        }
+        if (has_action('litespeed_purge_url')) {
+            do_action('litespeed_purge_url', $page_url);
+        }
+        do_action('gnmm_image_updated', $page_url, $term, $language);
+    }
+
     public static function shortcode($atts = array()) {
         $atts = shortcode_atts(array('lang' => '', 'country' => ''), $atts, 'goldnow_multilingual_image');
         $language = sanitize_key($atts['lang'] ? $atts['lang'] : (function_exists('altaqrer_ml_current_language') ? altaqrer_ml_current_language() : 'ar'));
@@ -210,15 +235,20 @@ final class GNMM_Images {
         global $wpdb;
         $tables = GNMM_Storage::tables();
         $asset = $wpdb->get_row($wpdb->prepare(
-            "SELECT current_url FROM {$tables['assets']} WHERE asset_type='image' AND country_code=%s AND language=%s ORDER BY id DESC LIMIT 1",
+            "SELECT current_url, generated_at FROM {$tables['assets']} WHERE asset_type='image' AND country_code=%s AND language=%s ORDER BY id DESC LIMIT 1",
             $code, $language
         ));
         if (!$asset || empty($asset->current_url)) { return ''; }
+        $version = !empty($asset->generated_at) ? strtotime($asset->generated_at . ' UTC') : 0;
+        if (!$version) { $version = time(); }
+        // The SVG filename stays stable; a generation version prevents browsers/CDNs
+        // from reusing a previously cached response for the old bytes.
+        $image_url = add_query_arg('gnmm_v', $version, $asset->current_url);
         $name = GNMM_Gold_Manager::localized_country_name($term, $language);
         $url = GNMM_Gold_Manager::country_url($term, $language);
         $alt = $language === 'ar' ? 'أسعار الذهب اليوم في ' . $name : 'Gold prices today in ' . $name;
         do_action('gnmm_image_printed');
-        return '<figure class="gnmm-country-image"><a href="' . esc_url($url) . '"><img src="' . esc_url($asset->current_url) . '" alt="' . esc_attr($alt) . '" loading="lazy" decoding="async" style="display:block;max-width:100%;height:auto;margin:24px auto"></a></figure>';
+        return '<figure class="gnmm-country-image"><a href="' . esc_url($url) . '"><img src="' . esc_url($image_url) . '" alt="' . esc_attr($alt) . '" loading="lazy" decoding="async" style="display:block;max-width:100%;height:auto;margin:24px auto"></a></figure>';
     }
 
     public static function start_page_buffer() {
