@@ -1,27 +1,27 @@
 <?php
 /* Template Name: Español — Gold Country Prices */
 
-/** ES output localization: translate rendered text y accessible labels only. */
+/** ES output localization: translate rendered text and accessible labels only. */
 if (!function_exists('altaqrer_gold_es_output_translate')) {
 function altaqrer_gold_es_output_translate($html) {
     $map = array(
-        "Live foreign exchange rates for major international y regional currencies" => "Tipos de cambio en vivo de las principales monedas internacionales y regionales",
+        "Live foreign exchange rates for major international and regional currencies" => "Tipos de cambio en vivo de las principales monedas internacionales y regionales",
         "International spot benchmark for one troy ounce of 24K gold, quoted in USD" => "Referencia internacional al contado de una onza troy de oro de 24 quilates, cotizada en USD",
-        "What weight is used for el gold coin calculation?" => "¿Qué peso se utiliza para calcular el valor de la moneda de oro?",
-        "Does el displayed value include a dealer premium?" => "¿El valor mostrado incluye la prima del distribuidor?",
-        "Sorry, el market data is currently unavailable." => "Lo sentimos, los datos del mercado no están disponibles actualmente.",
+        "What weight is used for the gold coin calculation?" => "¿Qué peso se utiliza para calcular el valor de la moneda de oro?",
+        "Does the displayed value include a dealer premium?" => "¿El valor mostrado incluye la prima del distribuidor?",
+        "Sorry, the market data is currently unavailable." => "Lo sentimos, los datos del mercado no están disponibles actualmente.",
         "live market price, excluding making charges" => "precio de mercado en vivo, sin cargos de fabricación",
-        "How to read el local y USD prices" => "Cómo leer los precios locales y en USD",
+        "How to read the local and USD prices" => "Cómo leer los precios locales y en USD",
         "Frequently asked questions" => "Preguntas frecuentes",
         "Gold Bullion Bar Prices in" => "Precios de lingotes de oro en",
         "Gold Price per Gram Today" => "Precio del oro por gramo hoy",
         "Join Our Telegram Channel" => "Únete a nuestro canal de Telegram",
         "Excluding Making Charges" => "Sin cargos de fabricación",
         "Gold Bullion Bar Prices" => "Precios de lingotes de oro",
-        "Gold Bars y Coins in" => "Lingotes y monedas de oro en",
-        "USD y Currency Rates" => "USD y tipos de cambio",
+        "Gold Bars and Coins in" => "Lingotes y monedas de oro en",
+        "USD and Currency Rates" => "USD y tipos de cambio",
         "Regional Gold Prices" => "Precios regionales del oro",
-        "Gold Bars y Coins" => "Lingotes y monedas de oro",
+        "Gold Bars and Coins" => "Lingotes y monedas de oro",
         "Gold Price Sections" => "Secciones de precios del oro",
         "Gráfico del precio del oro en" => "Gráfico del precio del oro en",
         "About AlTaqrer Gold" => "Acerca de AlTaqrer Gold",
@@ -96,31 +96,31 @@ function altaqrer_gold_es_output_translate($html) {
         "Prices" => "Precios",
         "Changes" => "Cambios",
         "No." => "No.",
-        "Why el onza mundial de oro matters" => "Por qué es importante la onza mundial de oro",
-        "From el global ounce to a local gram price" => "De la onza mundial al precio local por gramo",
-        "Gold is commonly quoted in international markets by el troy ounce. Traders, refiners, financial services, y bullion dealers use this benchmark to compare el value of gold across markets. Changes in el US dollar, interest-rate expectations, inflation outlook, central-bank activity, y investor demy can all influence el international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "En los mercados internacionales, el oro suele cotizarse por onza troy. Los operadores, las refinerías, los servicios financieros y los comerciantes de lingotes utilizan esta referencia para comparar el valor del oro entre mercados. Los cambios del dólar estadounidense, las expectativas sobre los tipos de interés, las perspectivas de inflación, la actividad de los bancos centrales y la demanda de los inversores pueden influir en el precio internacional del oro. Son factores generales del mercado; no significa que uno de ellos haya causado el movimiento de hoy.",
-        "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price per gram also depends on el selected currency conversion y local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "Como referencia, una onza troy contiene aproximadamente 31,1 gramos. El precio local por gramo también depende de la conversión a la moneda seleccionada y de las condiciones del mercado local. El valor mundial por onza que aparece arriba se mantiene en USD para poder compararlo de forma coherente con las cotizaciones internacionales.",
+        "Why the onza mundial de oro matters" => "Por qué es importante la onza mundial de oro",
+        "From the global ounce to a local gram price" => "De la onza mundial al precio local por gramo",
+        "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "En los mercados internacionales, el oro suele cotizarse por onza troy. Los operadores, las refinerías, los servicios financieros y los comerciantes de lingotes utilizan esta referencia para comparar el valor del oro entre mercados. Los cambios del dólar estadounidense, las expectativas sobre los tipos de interés, las perspectivas de inflación, la actividad de los bancos centrales y la demanda de los inversores pueden influir en el precio internacional del oro. Son factores generales del mercado; no significa que uno de ellos haya causado el movimiento de hoy.",
+        "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price per gram also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "Como referencia, una onza troy contiene aproximadamente 31,1 gramos. El precio local por gramo también depende de la conversión a la moneda seleccionada y de las condiciones del mercado local. El valor mundial por onza que aparece arriba se mantiene en USD para poder compararlo de forma coherente con las cotizaciones internacionales.",
         "One troy ounce is approximately 31.1035 grams. The page uses 31.1 grams for its displayed reference calculation." => "Una onza troy equivale aproximadamente a 31,1035 gramos. Esta página utiliza 31,1 gramos para el cálculo de referencia mostrado.",
-        "No. This page shows el international gold ounce benchmark in USD only. Local-currency values are shown separately in el country gold-price tables where applicable." => "No. Esta página muestra únicamente la referencia internacional de la onza de oro en USD. Cuando corresponde, los valores en moneda local aparecen por separado en las tablas de precios del oro del país.",
-        "The calculation multiplies el relevant per-gram gold value by 8 grams. For el common 21K reference, el displayed estimate uses el 21K gram price multiplied by eight. The 22K y 24K comparison values use their respective gram prices at el same weight. This preserves el site's established 8-gram coin calculation." => "El cálculo multiplica el valor correspondiente del oro por gramo por 8 gramos. Para la referencia habitual de 21 quilates, la estimación mostrada utiliza el precio por gramo de 21K multiplicado por ocho. Los valores comparativos de 22K y 24K utilizan sus respectivos precios por gramo para el mismo peso. Así se mantiene el cálculo de 8 gramos de la moneda utilizado por el sitio.",
-        "Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, y local taxes. The values here represent el gold-content reference y should not be treated as a guaranteed transaction quote." => "El precio real de una moneda puede variar según la acuñación, el estado, el diseño, la disponibilidad, los márgenes del vendedor y los impuestos locales. Los valores mostrados representan una referencia del contenido de oro y no deben considerarse una oferta de compraventa garantizada.",
-        "Gold bars are commonly valued using el 24K gold benchmark." => "Los lingotes de oro suelen valorarse utilizando la referencia del oro de 24 quilates.",
-        "For a straightforward estimate, multiply el 24K gram benchmark by el bar's weight. The resulting figure represents el reference value of el gold content before any fabrication premium, assay or hallmarking fee, dealer margin, delivery cost, or tax. A bar's final selling price can therefore be higher than el raw calculation shown on this page." => "Para obtener una estimación sencilla, multiplique la referencia por gramo del oro de 24 quilates por el peso del lingote. El resultado representa el valor de referencia del contenido de oro antes de añadir costes de fabricación, análisis o certificación, margen del vendedor, entrega o impuestos. Por ello, el precio final de venta puede ser superior al cálculo del oro sin costes que aparece en esta página.",
-        "Brand, certification, manufacturing costs, dealer premiums, availability, y local taxes can affect el final selling price." => "La marca, la certificación, los costes de fabricación, los márgenes del vendedor, la disponibilidad y los impuestos locales pueden afectar al precio final de venta.",
-        "The index is a convenient snapshot of gold values across common purities y currencies. It helps readers compare el 24K bullion benchmark with el lower-karat values commonly used for jewellery. Local values are derived from el reference gold price y el available exchange-rate data; el USD figures allow comparison with el international market." => "El índice ofrece una visión rápida de los valores del oro en las purezas y monedas más habituales. Permite comparar la referencia del oro de inversión de 24 quilates con los valores de menor quilataje utilizados habitualmente en joyería. Los valores locales se calculan a partir del precio de referencia del oro y de los datos de cambio disponibles; las cifras en USD permiten compararlos con el mercado internacional.",
+        "No. This page shows the international gold ounce benchmark in USD only. Local-currency values are shown separately in the country gold-price tables where applicable." => "No. Esta página muestra únicamente la referencia internacional de la onza de oro en USD. Cuando corresponde, los valores en moneda local aparecen por separado en las tablas de precios del oro del país.",
+        "The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site's established 8-gram coin calculation." => "El cálculo multiplica el valor correspondiente del oro por gramo por 8 gramos. Para la referencia habitual de 21 quilates, la estimación mostrada utiliza el precio por gramo de 21K multiplicado por ocho. Los valores comparativos de 22K y 24K utilizan sus respectivos precios por gramo para el mismo peso. Así se mantiene el cálculo de 8 gramos de la moneda utilizado por el sitio.",
+        "Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, and local taxes. The values here represent the gold-content reference and should not be treated as a guaranteed transaction quote." => "El precio real de una moneda puede variar según la acuñación, el estado, el diseño, la disponibilidad, los márgenes del vendedor y los impuestos locales. Los valores mostrados representan una referencia del contenido de oro y no deben considerarse una oferta de compraventa garantizada.",
+        "Gold bars are commonly valued using the 24K gold benchmark." => "Los lingotes de oro suelen valorarse utilizando la referencia del oro de 24 quilates.",
+        "For a straightforward estimate, multiply the 24K gram benchmark by the bar's weight. The resulting figure represents the reference value of the gold content before any fabrication premium, assay or hallmarking fee, dealer margin, delivery cost, or tax. A bar's final selling price can therefore be higher than the raw calculation shown on this page." => "Para obtener una estimación sencilla, multiplique la referencia por gramo del oro de 24 quilates por el peso del lingote. El resultado representa el valor de referencia del contenido de oro antes de añadir costes de fabricación, análisis o certificación, margen del vendedor, entrega o impuestos. Por ello, el precio final de venta puede ser superior al cálculo del oro sin costes que aparece en esta página.",
+        "Brand, certification, manufacturing costs, dealer premiums, availability, and local taxes can affect the final selling price." => "La marca, la certificación, los costes de fabricación, los márgenes del vendedor, la disponibilidad y los impuestos locales pueden afectar al precio final de venta.",
+        "The index is a convenient snapshot of gold values across common purities and currencies. It helps readers compare the 24K bullion benchmark with the lower-karat values commonly used for jewellery. Local values are derived from the reference gold price and the available exchange-rate data; the USD figures allow comparison with the international market." => "El índice ofrece una visión rápida de los valores del oro en las purezas y monedas más habituales. Permite comparar la referencia del oro de inversión de 24 quilates con los valores de menor quilataje utilizados habitualmente en joyería. Los valores locales se calculan a partir del precio de referencia del oro y de los datos de cambio disponibles; las cifras en USD permiten compararlos con el mercado internacional.",
         "Each karat contains a different proportion of pure gold. Lower-purity alloys have a lower raw-gold value per gram than 24K gold, before other costs are considered." => "Cada quilataje contiene una proporción distinta de oro puro. Antes de considerar otros costes, las aleaciones de menor pureza tienen un valor de oro por gramo inferior al del oro de 24 quilates.",
-        "A local gold-price estimate combines an international gold benchmark with a currency conversion and, in real retail markets, any applicable local premiums, taxes, or costs. This page lists selected currency comparisons to help readers understy el conversion context. Rates are informational y may differ from bank, cash-market, card, or remittance rates available to an individual customer." => "Una estimación local del precio del oro combina una referencia internacional del oro con la conversión de divisas y, en el comercio minorista real, los posibles márgenes, impuestos o costes locales. Esta página presenta algunas comparaciones de divisas para explicar el contexto de la conversión. Los tipos son informativos y pueden diferir de los aplicados por bancos, casas de cambio, tarjetas o servicios de envío de dinero.",
-        "No. It is el latest available reference used by el site. Banks y exchange providers may apply different buy y sell rates, spreads, or fees." => "No. Es la última referencia disponible utilizada por el sitio. Los bancos y proveedores de cambio pueden aplicar distintos tipos de compra y venta, diferenciales o comisiones.",
-        "Because international gold is commonly quoted in US dollars, converting that benchmark into local currency is one of el factors used to estimate local gold values." => "Como el oro internacional suele cotizarse en dólares estadounidenses, convertir esa referencia a la moneda local es uno de los factores utilizados para estimar el valor local del oro.",
+        "A local gold-price estimate combines an international gold benchmark with a currency conversion and, in real retail markets, any applicable local premiums, taxes, or costs. This page lists selected currency comparisons to help readers understand the conversion context. Rates are informational and may differ from bank, cash-market, card, or remittance rates available to an individual customer." => "Una estimación local del precio del oro combina una referencia internacional del oro con la conversión de divisas y, en el comercio minorista real, los posibles márgenes, impuestos o costes locales. Esta página presenta algunas comparaciones de divisas para explicar el contexto de la conversión. Los tipos son informativos y pueden diferir de los aplicados por bancos, casas de cambio, tarjetas o servicios de envío de dinero.",
+        "No. It is the latest available reference used by the site. Banks and exchange providers may apply different buy and sell rates, spreads, or fees." => "No. Es la última referencia disponible utilizada por el sitio. Los bancos y proveedores de cambio pueden aplicar distintos tipos de compra y venta, diferenciales o comisiones.",
+        "Because international gold is commonly quoted in US dollars, converting that benchmark into local currency is one of the factors used to estimate local gold values." => "Como el oro internacional suele cotizarse en dólares estadounidenses, convertir esa referencia a la moneda local es uno de los factores utilizados para estimar el valor local del oro.",
         "Gold Price Charts" => "Gráficos del precio del oro",
-        "Track el international gold spot price in US dollars (USD) using el global XAU/USD market chart. This is a worldwide benchmark, not a country-specific retail price." => "Siga el precio internacional al contado del oro en dólares estadounidenses (USD) mediante el gráfico mundial XAU/USD. Es una referencia global, no un precio minorista específico de un país.",
+        "Track the international gold spot price in US dollars (USD) using the global XAU/USD market chart. This is a worldwide benchmark, not a country-specific retail price." => "Siga el precio internacional al contado del oro en dólares estadounidenses (USD) mediante el gráfico mundial XAU/USD. Es una referencia global, no un precio minorista específico de un país.",
         "How many grams are in a gold troy ounce?" => "¿Cuántos gramos tiene una onza troy de oro?",
         "Is this ounce price converted to local currency?" => "¿Este precio por onza se convierte a la moneda local?",
-        "Does el index show a guaranteed market trading price?" => "¿El índice muestra un precio de mercado garantizado?",
-        "Does el displayed value include a dealer premium?" => "¿El valor mostrado incluye el margen del vendedor?",
+        "Does the index show a guaranteed market trading price?" => "¿El índice muestra un precio de mercado garantizado?",
+        "Does the displayed value include a dealer premium?" => "¿El valor mostrado incluye el margen del vendedor?",
         "Gold Prices in Egypt" => "Precio del oro en Egipto",
         "Gold Prices in Saudi Arabia" => "Precio del oro en Arabia Saudí",
-        "Gold Prices in el UAE" => "Precio del oro en los EAU",
+        "Gold Prices in the UAE" => "Precio del oro en los EAU",
         "Gold Prices in Kuwait" => "Precio del oro en Kuwait",
     );
 
@@ -165,8 +165,8 @@ function altaqrer_gold_es_output_translate($html) {
 ob_start('altaqrer_gold_es_output_translate');
 
 /**
- * Standalone English header for el country gold-price template.
- * The Arabic theme header y navigation are not loaded here.
+ * Standalone English header for the country gold-price template.
+ * The Arabic theme header and navigation are not loaded here.
  */
 $es_header_term = get_queried_object();
 $es_header_country_slug = (is_object($es_header_term) && !empty($es_header_term->slug))
@@ -204,7 +204,7 @@ $es_header_is_app = (isset($_GET['view']) && sanitize_text_field(wp_unslash($_GE
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet';">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 <?php
-// Preserve el original working AdSense header output y app-view condition.
+// Preserve the original working AdSense header output and app-view condition.
 $ad_options = get_option('adsense_header_settings');
 $ad_code    = isset($ad_options['adsense_code']) ? $ad_options['adsense_code'] : '';
 $is_enabled = isset($ad_options['enable_adsense']) ? $ad_options['enable_adsense'] : 0;
@@ -275,8 +275,8 @@ html, body { direction:ltr; text-align:left; }
 body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; position:relative; font-family:Inter,Arial,sans-serif; }
 .es-site-header { position:relative; z-index:1000; background:#1a1a1a; border-bottom:4px solid <?php echo esc_attr($es_header_accent); ?>; color:#fff; }
 .es-site-header-inner { max-width:1200px; width:95%; margin:0 auto; min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:10px 0; }
-.en-bry { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; font-size:20px; white-space:nowrap; }
-.en-bry img { max-width:54px; max-height:54px; width:auto; height:auto; object-fit:contain; }
+.en-brand { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; font-size:20px; white-space:nowrap; }
+.en-brand img { max-width:54px; max-height:54px; width:auto; height:auto; object-fit:contain; }
 .es-main-nav { display:flex; align-items:center; justify-content:flex-end; gap:8px; flex-wrap:wrap; }
 .es-main-nav a, .es-country-toggle { color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.15); background:transparent; border-radius:6px; padding:9px 12px; font:600 13px Inter,Arial,sans-serif; cursor:pointer; }
 .es-main-nav a:hover, .es-country-toggle:hover { color:#1a1a1a; background:<?php echo esc_attr($es_header_accent); ?>; }
@@ -363,8 +363,8 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
 
 <?php
 /**
- * Place el existing Customizer advertisement immediately below el English
- * title/logo y navigation. Do not duplicate el AdSenseHeaderManager output.
+ * Place the existing Customizer advertisement immediately below the English
+ * title/logo and navigation. Do not duplicate the AdSenseHeaderManager output.
  */
 if (!$es_header_is_app && function_exists('goldnow_display_ad')) :
 ?>
@@ -376,8 +376,8 @@ if (!$es_header_is_app && function_exists('goldnow_display_ad')) :
 <?php
 /**
  * English-only text adapter for shortcode HTML.
- * It translates visible text y accessibility labels only; URLs, HTML structure,
- * CSS y JavaScript are deliberately left untouched.
+ * It translates visible text and accessibility labels only; URLs, HTML structure,
+ * CSS and JavaScript are deliberately left untouched.
  */
 if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
     function altaqrer_gold_es_translate_shortcode_html($html, $translations = array()) {
@@ -413,7 +413,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
 <main class="p-0 font-2">
   <div class="container home px-2">
     <?php
-    // 1) Resolve el current country safely y use its English taxonomy metadata.
+    // 1) Resolve the current country safely and use its English taxonomy metadata.
     $current_term = get_queried_object();
     $arabic_country_name = (is_object($current_term) && isset($current_term->name)) ? (string) $current_term->name : '';
     $term_id = (is_object($current_term) && isset($current_term->term_id)) ? (int) $current_term->term_id : 0;
@@ -437,12 +437,12 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
     $display_country_name = $localized_country_name !== '' ? $localized_country_name : ($english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country'));
     $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
 
-    // Complete English currency labels for el currencies used by el site's country map.
+    // Complete English currency labels for the currencies used by the site's country map.
     $currency_labels_es = array(
         'USD'=>'Dólar estadounidense','EUR'=>'Euro','GBP'=>'Libra esterlina','EGP'=>'Libra egipcia','SAR'=>'Riyal saudí','AED'=>'Dírham de los EAU',
         'KWD'=>'Dinar kuwaití','QAR'=>'Riyal catarí','BHD'=>'Dinar bareiní','OMR'=>'Rial omaní','JOD'=>'Jordanian Dinar',
         'IQD'=>'Iraqi Dinar','MAD'=>'Moroccan Dirham','TND'=>'Tunisian Dinar','DZD'=>'Algerian Dinar','TRY'=>'Turkish Lira',
-        'JPY'=>'Yen japonés','CHF'=>'Swiss Franc','CAD'=>'Canadian Dollar','AUD'=>'Australian Dollar','NZD'=>'New Zealy Dollar',
+        'JPY'=>'Yen japonés','CHF'=>'Swiss Franc','CAD'=>'Canadian Dollar','AUD'=>'Australian Dollar','NZD'=>'New Zealand Dollar',
         'CNY'=>'Chinese Yuan','INR'=>'Indian Rupee','PKR'=>'Pakistani Rupee','RUB'=>'Russian Ruble','ZAR'=>'South African Rand',
         'BRL'=>'Brazilian Real','MXN'=>'Mexican Peso','SGD'=>'Singapore Dollar','HKD'=>'Hong Kong Dollar','SEK'=>'Swedish Krona',
         'NOK'=>'Norwegian Krone','DKK'=>'Danish Krone','PLN'=>'Polish Zloty','CZK'=>'Czech Koruna','HUF'=>'Hungarian Forint',
@@ -456,13 +456,13 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         'BWP'=>'Botswana Pula','NAD'=>'Namibian Dollar','RWF'=>'Rwandan Franc','BIF'=>'Burundian Franc','SSP'=>'South Sudanese Pound',
         'ERN'=>'Eritrean Nakfa','SZL'=>'Swazi Lilangeni','LSL'=>'Lesotho Loti','GMD'=>'Gambian Dalasi','GNF'=>'Guinean Franc',
         'LRD'=>'Liberian Dollar','CVE'=>'Cape Verdean Escudo','SCR'=>'Seychellois Rupee','SLE'=>'Sierra Leonean Leone',
-        'STN'=>'São Tomé y Príncipe Dobra','ARS'=>'Argentine Peso','BOB'=>'Bolivian Boliviano','CLP'=>'Chilean Peso',
+        'STN'=>'São Tomé and Príncipe Dobra','ARS'=>'Argentine Peso','BOB'=>'Bolivian Boliviano','CLP'=>'Chilean Peso',
         'COP'=>'Colombian Peso','GYD'=>'Guyanese Dollar','PYG'=>'Paraguayan Guarani','PEN'=>'Peruvian Sol',
-        'SRD'=>'Surinamese Dollar','UYU'=>'Uruguayan Peso','VES'=>'Venezuelan Bolívar','FKP'=>'Falkly Islands Pound',
+        'SRD'=>'Surinamese Dollar','UYU'=>'Uruguayan Peso','VES'=>'Venezuelan Bolívar','FKP'=>'Falkland Islands Pound',
         'BMD'=>'Bermudian Dollar','KYD'=>'Cayman Islands Dollar','CRC'=>'Costa Rican Colón','CUP'=>'Cuban Peso',
         'DOP'=>'Dominican Peso','GTQ'=>'Guatemalan Quetzal','HNL'=>'Honduran Lempira','NIO'=>'Nicaraguan Córdoba',
         'PAB'=>'Panamanian Balboa','BSD'=>'Bahamian Dollar','BBD'=>'Barbadian Dollar','BZD'=>'Belize Dollar',
-        'JMD'=>'Jamaican Dollar','TTD'=>'Trinidad y Tobago Dollar','XCD'=>'East Caribbean Dollar','HTG'=>'Haitian Gourde',
+        'JMD'=>'Jamaican Dollar','TTD'=>'Trinidad and Tobago Dollar','XCD'=>'East Caribbean Dollar','HTG'=>'Haitian Gourde',
         'RON'=>'Romanian Leu','BGN'=>'Bulgarian Lev','RSD'=>'Serbian Dinar','UAH'=>'Ukrainian Hryvnia','BYN'=>'Belarusian Ruble',
         'MDL'=>'Moldovan Leu','ALL'=>'Albanian Lek','BAM'=>'Bosnia-Herzegovina Convertible Mark','MKD'=>'Macedonian Denar',
         'GEL'=>'Georgian Lari','ISK'=>'Icelandic Krona','GIP'=>'Gibraltar Pound','HRK'=>'Croatian Kuna',
@@ -500,7 +500,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         'سعر الذهب' => 'Gold Price', 'أسعار الذهب' => 'Precios del oro', 'العملة المحلية' => 'Moneda local'
     );
 
-    // Reuse el existing functions.php dictionaries where possible without modifying Arabic globals.
+    // Reuse the existing functions.php dictionaries where possible without modifying Arabic globals.
     global $currency_names, $carat_labels;
     if (is_array($currency_names)) {
         foreach ($currency_names as $code => $arabic_label) {
@@ -532,8 +532,8 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
 
     $gold_view = sanitize_key((string) get_query_var('gold_view'));
 
-    // Read el 24K gram benchmark once. All karat y weight calculations below
-    // continue to use this same USD source y el existing local-currency rate.
+    // Read the 24K gram benchmark once. All karat and weight calculations below
+    // continue to use this same USD source and the existing local-currency rate.
     $gram_24k_price_usd_raw = 0;
     $gram_24k_price_currency = 0;
     $gram_24k_price_usd_converted = 0;
@@ -547,9 +547,9 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         $gram_24k_price_usd_converted = $gram_24k_price_usd_raw;
     }
 
-    // Use el provider's dedicated global-ounce quote when available; otherwise
-    // fall back to el established 31.1g calculation. Local y global values
-    // are two conversions of el same international ounce benchmark.
+    // Use the provider's dedicated global-ounce quote when available; otherwise
+    // fall back to the established 31.1g calculation. Local and global values
+    // are two conversions of the same international ounce benchmark.
     $latest_global_ounce = function_exists('infi_get_latest_gold_prices')
         ? infi_get_latest_gold_prices('24k_oz')
         : array();
@@ -558,7 +558,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         : ($gram_24k_price_usd_converted * 31.1);
     $ounce_price_currency = $ounce_price_usd * $local_currency_per_usd;
 
-    // Preserve el site's established 8g, 21K gold-coin calculation.
+    // Preserve the site's established 8g, 21K gold-coin calculation.
     $gold_pound_currency = $gram_24k_price_currency * 8 * 0.875;
 ?>
 
@@ -615,7 +615,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         </section>
 	  </div>
 		
-      <!-- 2. Gold Bullion Bars y Coins Table Pane -->
+      <!-- 2. Gold Bullion Bars and Coins Table Pane -->
       <div id="tab-buy-sell" class="gold-tab-pane" style="display:none; text-align: left; direction: ltr;">
         <h2 class="col-12 p-0 font-3 mb-0" style="text-align:left !important; direction:ltr !important;">
             <span class="start-head cls120" style="background: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"></span>
@@ -720,7 +720,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
 
             <div class="raw-gold-alert mt-4" style="background: #1f2126; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb301;">
                 <span class="alert-icon">⚠️</span>
-                <strong>Importante:</strong> The prices shown above for bars y coins represent Los precios indicados arriba para lingotes y monedas representan únicamente el valor del oro; no incluyen gastos de fabricación, tasas de contraste ni impuestos.
+                <strong>Importante:</strong> The prices shown above for bars and coins represent Los precios indicados arriba para lingotes y monedas representan únicamente el valor del oro; no incluyen gastos de fabricación, tasas de contraste ni impuestos.
             </div>
 
         <?php } else { ?>
@@ -728,7 +728,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
         <?php } ?>
       </div>
 
-      <!-- 3. Gold Price Chart: restored to match el Arabic template structure. -->
+      <!-- 3. Gold Price Chart: restored to match the Arabic template structure. -->
       <div id="tab-indicator" class="gold-tab-pane" style="display:none; direction:ltr; text-align:left;">
         <h2 class="col-12 p-0 font-3 mb-3" style="text-align:left; direction:ltr;">
           <span class="start-head cls120" style="background: <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;"></span>
@@ -749,7 +749,7 @@ if (!function_exists('altaqrer_gold_es_translate_shortcode_html')) {
 </main>
 
 <script>
-// Translate legacy Arabic labels returned by el existing indicator AJAX action.
+// Translate legacy Arabic labels returned by the existing indicator AJAX action.
 function altaqrerTranslateEnglishIndicator(root) {
     if (!root) return;
     const translations = {
@@ -799,7 +799,7 @@ document.addEventListener("DOMContentLoaded", function () {
             targetPane.style.display = "block";
             button.classList.add("active");
 
-            // Load el same indicator frames used by el Arabic template once only.
+            // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
                 framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Cargando los gráficos del oro…</p>';
@@ -880,7 +880,7 @@ if (!function_exists('altaqrer_get_currency_live_rate')) {
                 : 0;
         }
 
-        // Same rate direction y conversion formula used by el Arabic template.
+        // Same rate direction and conversion formula used by the Arabic template.
         return $rate_cache[$target_currency] > 0
             ? (float) $local_currency_per_usd / $rate_cache[$target_currency]
             : 0;
@@ -953,7 +953,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 
 <div class="altaqrer-silo-links" style="margin: 25px auto; padding: 15px; background: #17191d; border: 1px solid #3a3f4d; border-radius: 6px; text-align: center; max-width: 800px; width: 95%; box-sizing: border-box; clear: both; direction: ltr;">
     <?php
-    // Reuse el already-resolved English country URL for every tab link.
+    // Reuse the already-resolved English country URL for every tab link.
     $base_country_url = $es_header_country_url;
 
     $active_bg = get_theme_mod('infi_default_color', '#ffb301');
@@ -1171,7 +1171,7 @@ if (!empty($gold_view)) {
 ?>
 
 <?php if (!empty($gold_view)) :
-    // The live values below use el same price snapshot y conversions as el tables above.
+    // The live values below use the same price snapshot and conversions as the tables above.
     $es_seo_base = home_url('/es/country/' . rawurlencode($es_header_country_slug) . '/');
     $es_seo_price_map = array(
         '24k' => array($price_24k_local, $price_24k_usd),
@@ -1214,7 +1214,7 @@ if (!empty($gold_view)) {
     <p>Consulta el valor de referencia de una <strong>moneda de oro de 8 gramos</strong> in <?php echo esc_html($display_country_name); ?>. Con los precios actuales por gramo, el valor orientativo de la moneda de 21K es <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (aproximadamente <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). La página también compara los valores de 22K y 24K para el mismo peso de 8 gramos, para comparar el efecto de la pureza.</p>
     <h3>Cómo se calcula el valor de la moneda de 8 gramos</h3>
     <p>El cálculo multiplica el valor del oro por gramo correspondiente por 8 gramos. Para la referencia habitual de 21K, la estimación multiplica el precio por gramo de 21K por ocho. Los valores comparativos de 22K y 24K usan sus respectivos precios por gramo con el mismo peso. Así se mantiene el cálculo de 8 gramos establecido por el sitio.</p>
-    <p>El precio real de la moneda puede variar por la acuñación, el estado, el diseño, la escasez, los márgenes del vendedor y los impuestos locales. Estos valores representan el contenido de oro y no son una oferta de transacción garantizada. Compara el <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">oro de precio del oro de 21K por gramo</a>, <a href="<?php echo esc_url($es_seo_base . '22k/'); ?>">22K gold price</a>, y <a href="<?php echo esc_url($es_seo_base . 'gold-bars/'); ?>">precios de los lingotes de oro</a>.</p>
+    <p>El precio real de la moneda puede variar por la acuñación, el estado, el diseño, la escasez, los márgenes del vendedor y los impuestos locales. Estos valores representan el contenido de oro y no son una oferta de transacción garantizada. Compara el <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">oro de precio del oro de 21K por gramo</a>, <a href="<?php echo esc_url($es_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($es_seo_base . 'gold-bars/'); ?>">precios de los lingotes de oro</a>.</p>
     <h3>Preguntas frecuentes</h3>
     <details><summary>¿Qué peso se utiliza para calcular la moneda de oro?</summary><p>Esta página mantiene el cálculo estándar de 8 gramos del sitio para comparar la moneda de oro.</p></details>
     <details><summary>¿El valor mostrado incluye el margen del vendedor?</summary><p>No. Solo estima el contenido de oro y no incluye acuñación, márgenes del vendedor, mano de obra ni impuestos.</p></details>
@@ -1228,7 +1228,7 @@ if (!empty($gold_view)) {
     <details><summary>¿Los precios de los lingotes incluyen los gastos de fabricación?</summary><p>No. La tabla estima solo el valor del oro y excluye fabricación, certificación, márgenes del vendedor e impuestos.</p></details>
     <details><summary>¿Por qué dos lingotes del mismo peso pueden tener precios diferentes?</summary><p>La marca, la certificación, los costes de fabricación, los márgenes del vendedor, la disponibilidad y los impuestos locales pueden afectar al precio final.</p></details>
 <?php elseif ($gold_view === 'gold-index') : ?>
-    <!-- Global XAU/USD chart added specifically to el Gold Index SEO section. -->
+    <!-- Global XAU/USD chart added specifically to the Gold Index SEO section. -->
     <section class="es-gold-index-chart" aria-labelledby="es-gold-index-chart-title" style="background:#17191d;border:1px solid #323742;border-radius:8px;padding:12px;margin:0 0 22px;direction:ltr;text-align:left;">
         <h3 id="es-gold-index-chart-title" style="color:#f0f1f5;text-align:left;margin:5px 5px 12px;font-size:20px;">Gráficos del precio del oro</h3>
         <div style="position:relative;width:100%;height:520px;overflow:hidden;border-radius:6px;">
@@ -1249,7 +1249,7 @@ if (!empty($gold_view)) {
     <p>Este resumen del mercado del oro reúne los últimos valores de referencia disponibles para distintas purezas. La referencia actual de 24K es <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> por gramo, mientras que 22K equivale aproximadamente a <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> y 21K equivale aproximadamente a <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. La onza troy mundial es de <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> y su equivalente en moneda local es <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
     <h3>Qué permite comparar el índice del oro</h3>
     <p>El índice ofrece una instantánea práctica de los valores del oro en purezas y monedas habituales. Permite comparar la referencia de lingotes de 24K con valores de quilatajes inferiores usados en joyería. Los valores locales se calculan con el precio de referencia del oro y los tipos de cambio disponibles; los importes en USD permiten compararlos con el mercado internacional.</p>
-    <p>Los precios del oro pueden reaccionar a la actividad del mercado al contado mundial, los movimientos de divisas, las expectativas de tipos de interés, la inflación y los cambios en la demanda de inversión. Una sola observación no establece una tendencia; conviene comparar las actualizaciones a lo largo del tiempo. Visita la <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">página del precio de 21K</a>, <a href="<?php echo esc_url($es_seo_base . '24k/'); ?>">página del precio de 24K</a>, y <a href="<?php echo esc_url($es_seo_base . 'ounce/'); ?>">página de la onza mundial</a>.</p>
+    <p>Los precios del oro pueden reaccionar a la actividad del mercado al contado mundial, los movimientos de divisas, las expectativas de tipos de interés, la inflación y los cambios en la demanda de inversión. Una sola observación no establece una tendencia; conviene comparar las actualizaciones a lo largo del tiempo. Visita la <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">página del precio de 21K</a>, <a href="<?php echo esc_url($es_seo_base . '24k/'); ?>">página del precio de 24K</a>, and <a href="<?php echo esc_url($es_seo_base . 'ounce/'); ?>">página de la onza mundial</a>.</p>
     <h3>Preguntas frecuentes</h3>
     <details><summary>¿El índice muestra un precio de mercado garantizado?</summary><p>No. Es una referencia informativa basada en los últimos datos disponibles del sitio. Los precios reales de transacción pueden incluir primas y cargos locales.</p></details>
     <details><summary>¿Por qué tienen precios distintos los diferentes quilatajes?</summary><p>Cada quilataje contiene una proporción distinta de oro puro. Las aleaciones de menor pureza tienen un valor de oro bruto por gramo inferior al 24K, antes de considerar otros costes.</p></details>
@@ -1258,7 +1258,7 @@ if (!empty($gold_view)) {
     <p>La última referencia disponible utilizada por esta página valora un dólar estadounidense en aproximadamente <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Los tipos de cambio son importantes para los compradores de oro porque los precios internacionales suelen cotizarse en USD. Si la moneda local cambia frente al dólar, el valor local convertido del oro puede variar aunque el precio internacional en USD permanezca estable.</p>
     <h3>Cómo afectan los movimientos de divisas a los precios locales del oro</h3>
     <p>Una estimación local del precio del oro combina una referencia internacional con la conversión de moneda y, en el comercio minorista, los posibles márgenes, impuestos o costes locales. Esta página muestra algunas comparaciones de divisas para explicar la conversión. Los tipos son informativos y pueden diferir de los ofrecidos por bancos, efectivo, tarjetas o remesas.</p>
-    <p>Para comparar el oro, consulta <a href="<?php echo esc_url($es_seo_base . '24k/'); ?>">precio del oro de 24K por gramo</a>, el <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">precio del oro de 21K por gramo</a>, y el <a href="<?php echo esc_url($es_seo_base . 'ounce/'); ?>">precio internacional de la onza de oro en USD</a>.</p>
+    <p>Para comparar el oro, consulta <a href="<?php echo esc_url($es_seo_base . '24k/'); ?>">precio del oro de 24K por gramo</a>, the <a href="<?php echo esc_url($es_seo_base . '21k/'); ?>">precio del oro de 21K por gramo</a>, y el <a href="<?php echo esc_url($es_seo_base . 'ounce/'); ?>">precio internacional de la onza de oro en USD</a>.</p>
     <h3>Preguntas frecuentes</h3>
     <details><summary>¿Es este el tipo de cambio que ofrece cada banco?</summary><p>No. Es la última referencia disponible utilizada por el sitio. Los bancos y proveedores de cambio pueden aplicar distintos tipos de compra y venta, diferenciales o comisiones.</p></details>
     <details><summary>¿Por qué importa el tipo de cambio del dólar para el oro?</summary><p>Como el oro suele cotizarse internacionalmente en dólares estadounidenses, convertir esa referencia a moneda local es uno de los factores para estimar los precios locales del oro.</p></details>
@@ -1288,7 +1288,7 @@ if (!empty($gold_view)) {
       <ul>
         <li><a href="<?php echo esc_url(home_url('/es/country/eg/')); ?>">Gold Prices in Egypt</a></li>
         <li><a href="<?php echo esc_url(home_url('/es/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/es/country/ae/')); ?>">Gold Prices in el UAE</a></li>
+        <li><a href="<?php echo esc_url(home_url('/es/country/ae/')); ?>">Gold Prices in the UAE</a></li>
         <li><a href="<?php echo esc_url(home_url('/es/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
       </ul>
       <h3 style="margin-top:16px;">Síguenos</h3>
