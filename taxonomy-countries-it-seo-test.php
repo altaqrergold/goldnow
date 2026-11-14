@@ -566,6 +566,41 @@ if (!function_exists('altaqrer_gold_it_translate_shortcode_html')) {
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
+<?php
+// IT section-specific SEO H1 titles and introductions, following the Hindi/German layout.
+$it_seo_titles = array(
+    '24k' => 'Prezzo dell’oro 24 carati oggi in ' . $display_country_name,
+    '22k' => 'Prezzo dell’oro 22 carati oggi in ' . $display_country_name,
+    '21k' => 'Prezzo dell’oro 21 carati oggi in ' . $display_country_name,
+    '18k' => 'Prezzo dell’oro 18 carati oggi in ' . $display_country_name,
+    '14k' => 'Prezzo dell’oro 14 carati oggi in ' . $display_country_name,
+    'ounce' => 'Prezzo mondiale dell’oncia d’oro oggi in USD',
+    'coin' => 'Prezzo della moneta d’oro da 8 grammi oggi in ' . $display_country_name,
+    'gold-bars' => 'Prezzi dei lingotti d’oro oggi in ' . $display_country_name,
+    'gold-index' => 'Indice del prezzo dell’oro in tempo reale in ' . $display_country_name,
+    'usd' => 'Tasso di cambio USD in ' . $display_country_name,
+);
+$it_seo_intros = array(
+    '24k' => 'Consulta il prezzo indicativo dell’oro 24 carati al grammo in ' . $display_country_name . '. Confronta il valore in valuta locale con l’equivalente in USD. L’oro 24 carati è il riferimento di purezza per lingotti e oro da investimento.',
+    '22k' => 'Segui il prezzo dell’oro 22 carati al grammo in ' . $display_country_name . ' e confrontalo con quello a 24 carati. L’oro 22 carati contiene 22 parti d’oro su 24; gli altri metalli ne influenzano proprietà e valore.',
+    '21k' => 'Consulta il prezzo dell’oro 21 carati al grammo in ' . $display_country_name . ', con valori di riferimento in valuta locale e USD. Lavorazione, margini dei venditori e imposte possono modificare il prezzo finale.',
+    '18k' => 'Consulta il prezzo indicativo dell’oro 18 carati al grammo in ' . $display_country_name . '. Contiene 18 parti d’oro su 24; il valore del metallo mostrato non coincide necessariamente con il prezzo finale di un gioiello.',
+    '14k' => 'Confronta il prezzo dell’oro 14 carati al grammo in ' . $display_country_name . ' con quelli a 18, 21, 22 e 24 carati. Il valore indicativo riflette la presenza di 14 parti d’oro su 24.',
+    'ounce' => 'Consulta il prezzo spot mondiale di un’oncia troy d’oro in USD. Un’oncia troy equivale a circa 31,1035 grammi. È un riferimento globale, non un prezzo locale per oncia.' . $display_country_name . '',
+    'coin' => 'Consulta il valore indicativo di una moneta d’oro da 8 grammi in ' . $display_country_name . '. Il calcolo del sito usa un peso di 8 grammi e confronta oro 21, 22 e 24 carati; premi e imposte possono cambiare il prezzo effettivo.',
+    'gold-bars' => 'Confronta i valori indicativi dei lingotti in base al peso in ' . $display_country_name . ', usando il prezzo dell’oro 24 carati al grammo. Certificazione, marchio, lavorazione, consegna e imposte possono incidere sul prezzo finale.',
+    'gold-index' => 'Confronta i prezzi dell’oro per purezza e valuta in ' . $display_country_name . '. L’indice riunisce i valori locali e il prezzo mondiale dell’oncia troy in USD per offrire un quadro più chiaro del mercato.',
+    'usd' => 'Consulta l’ultimo tasso di cambio USD disponibile per ' . $display_country_name . '. Le variazioni valutarie possono influire sui prezzi locali, poiché l’oro sui mercati internazionali è quotato comunemente in dollari.',
+);
+$it_seo_h1 = isset($it_seo_titles[$gold_view]) ? $it_seo_titles[$gold_view] : 'Prezzo dell’oro 24 carati oggi in ' . $display_country_name;
+$it_seo_intro = isset($it_seo_intros[$gold_view]) ? $it_seo_intros[$gold_view] : 'Consulta il prezzo indicativo dell’oro 24 carati al grammo in ' . $display_country_name . '. Confronta il valore in valuta locale con l’equivalente in USD. L’oro 24 carati è il riferimento di purezza per lingotti e oro da investimento.';
+?>
+<section class="it-seo-intro" aria-labelledby="it-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
+    <h1 id="it-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($it_seo_h1); ?></h1>
+    <p style="margin:0;"><?php echo esc_html($it_seo_intro); ?></p>
+    <p style="margin:10px 0 0;color:#aeb7c4;font-size:13px;">Aggiornato: <?php echo esc_html($today); ?> · I prezzi sono indicativi e possono variare con il mercato.</p>
+</section>
+
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
       <button class="gold-tab-btn active" type="button" data-tab="now">Prezzi in tempo reale</button>
