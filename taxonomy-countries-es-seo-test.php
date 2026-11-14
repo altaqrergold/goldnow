@@ -227,16 +227,16 @@ if ($es_meta_country === '') {
 }
 $es_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $es_meta_titles = array(
-    '24k' => 'Precio del oro de 24 quilates hoy ' . $es_meta_country',
-    '22k' => 'Precio del oro de 22 quilates hoy ' . $es_meta_country',
-    '21k' => 'Precio del oro de 21 quilates hoy ' . $es_meta_country',
-    '18k' => 'Precio del oro de 18 quilates hoy ' . $es_meta_country',
-    '14k' => 'Precio del oro de 14 quilates hoy ' . $es_meta_country',
-    'ounce' => 'Precio mundial de la onza de oro en USD ' . $es_meta_country',
-    'coin' => 'Precio de la moneda de oro de 8 gramos ' . $es_meta_country',
-    'gold-bars' => 'Precios de lingotes de oro hoy ' . $es_meta_country',
-    'gold-index' => 'Índice del precio del oro en vivo ' . $es_meta_country',
-    'usd' => 'Tipo de cambio del dólar estadounidense ' . $es_meta_country',
+    '24k' => 'Precio del oro de 24 quilates hoy ' . $es_meta_country,
+    '22k' => 'Precio del oro de 22 quilates hoy ' . $es_meta_country,
+    '21k' => 'Precio del oro de 21 quilates hoy ' . $es_meta_country,
+    '18k' => 'Precio del oro de 18 quilates hoy ' . $es_meta_country,
+    '14k' => 'Precio del oro de 14 quilates hoy ' . $es_meta_country,
+    'ounce' => 'Precio mundial de la onza de oro en USD ' . $es_meta_country,
+    'coin' => 'Precio de la moneda de oro de 8 gramos ' . $es_meta_country,
+    'gold-bars' => 'Precios de lingotes de oro hoy ' . $es_meta_country,
+    'gold-index' => 'Índice del precio del oro en vivo ' . $es_meta_country,
+    'usd' => 'Tipo de cambio del dólar estadounidense ' . $es_meta_country,
 );
 $es_meta_descriptions = array(
     '24k' => 'Consulte el precio del oro de 24 quilates por gramo. Compare valores de referencia en moneda local y USD y conozca la pureza del oro.',
