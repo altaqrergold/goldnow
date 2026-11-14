@@ -188,13 +188,25 @@ final class GNMM_Images {
 
         $logo = '';
         $logo_id = (int) get_theme_mod('custom_logo');
-        $logo_data = $logo_id ? wp_get_attachment_image_src($logo_id, 'full') : false;
-        $logo_url = (is_array($logo_data) && !empty($logo_data[0])) ? $logo_data[0] : get_site_icon_url(128);
-        if ($logo_url) {
+        if (!$logo_id) { $logo_id = (int) get_option('site_icon'); }
+        $logo_file = $logo_id ? get_attached_file($logo_id) : '';
+        $logo_mime = $logo_id ? get_post_mime_type($logo_id) : '';
+        $logo_source = '';
+        if ($logo_file && is_readable($logo_file) && filesize($logo_file) <= 524288 && in_array($logo_mime, array('image/png','image/jpeg','image/webp','image/gif','image/svg+xml'), true)) {
+            $logo_bytes = file_get_contents($logo_file);
+            if ($logo_bytes !== false) {
+                $logo_source = 'data:' . $logo_mime . ';base64,' . base64_encode($logo_bytes);
+            }
+        }
+        if (!$logo_source && $logo_id) {
+            $logo_data = wp_get_attachment_image_src($logo_id, 'full');
+            if (is_array($logo_data) && !empty($logo_data[0])) { $logo_source = $logo_data[0]; }
+        }
+        if ($logo_source) {
             $logo_x = $rtl ? 890 : 80;
             $site_x = $rtl ? 865 : 215;
             $site_anchor = $rtl ? 'end' : 'start';
-            $logo = '<image href="' . $esc($logo_url) . '" x="' . $logo_x . '" y="55" width="105" height="70" preserveAspectRatio="xMidYMid meet"/>';
+            $logo = '<image href="' . $esc($logo_source) . '" x="' . $logo_x . '" y="55" width="105" height="70" preserveAspectRatio="xMidYMid meet"/>';
         } else {
             $site_x = 540;
             $site_anchor = 'middle';
