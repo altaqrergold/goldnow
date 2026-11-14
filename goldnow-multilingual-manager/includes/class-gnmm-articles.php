@@ -40,37 +40,79 @@ final class GNMM_Articles {
         return $html;
     }
 
-    private static function ensure_article_dictionary() {
-        if (function_exists('goldnow_seo_article_data')) { return true; }
-
+    private static function article_dictionary_candidates() {
         $candidates = array();
+
+        // Prefer the exact directory of the installed GoldNow Language Manager.
+        // This also works when the plugin is installed in a custom folder name.
+        if (class_exists('GoldNow_Language_Manager')) {
+            try {
+                $reflection = new ReflectionClass('GoldNow_Language_Manager');
+                $main_file = $reflection->getFileName();
+                if ($main_file) {
+                    $candidates[] = dirname($main_file) . '/goldnow-seo-content.php';
+                }
+            } catch (Exception $e) {
+                // Continue with the registered plugin locations below.
+            }
+        }
+
+        $plugin_files = array();
+        $active_plugins = get_option('active_plugins', array());
+        if (is_array($active_plugins)) {
+            $plugin_files = array_merge($plugin_files, $active_plugins);
+        }
+        // Network-activated plugins are not listed in the per-site active_plugins option.
+        if (is_multisite()) {
+            $network_plugins = get_site_option('active_sitewide_plugins', array());
+            if (is_array($network_plugins)) {
+                $plugin_files = array_merge($plugin_files, array_keys($network_plugins));
+            }
+        }
+
         if (defined('WP_PLUGIN_DIR')) {
-            $candidates[] = WP_PLUGIN_DIR . '/goldnow-language-manager/goldnow-seo-content.php';
-            $active_plugins = get_option('active_plugins', array());
-            if (is_array($active_plugins)) {
-                foreach ($active_plugins as $plugin_file) {
-                    if (basename($plugin_file) === 'goldnow-language-manager.php') {
-                        $candidates[] = dirname(WP_PLUGIN_DIR . '/' . $plugin_file) . '/goldnow-seo-content.php';
-                    }
+            foreach (array_unique($plugin_files) as $plugin_file) {
+                if (basename($plugin_file) === 'goldnow-language-manager.php') {
+                    $main_file = WP_PLUGIN_DIR . '/' . ltrim($plugin_file, '/');
+                    $candidates[] = dirname($main_file) . '/goldnow-seo-content.php';
                 }
             }
+            $candidates[] = WP_PLUGIN_DIR . '/goldnow-seo-content.php';
+            $candidates[] = WP_PLUGIN_DIR . '/goldnow-language-manager/goldnow-seo-content.php';
         }
-        $candidates[] = dirname(GNMM_FILE) . '/../goldnow-seo-content.php';
 
-        foreach (array_unique($candidates) as $file) {
-            $file = wp_normalize_path($file);
-            if (is_readable($file)) {
-                require_once $file;
-                if (function_exists('goldnow_seo_article_data')) { return true; }
+        if (defined('WPMU_PLUGIN_DIR')) {
+            $candidates[] = WPMU_PLUGIN_DIR . '/goldnow-seo-content.php';
+            $candidates[] = WPMU_PLUGIN_DIR . '/goldnow-language-manager/goldnow-seo-content.php';
+        }
+
+        return array_values(array_unique(array_map('wp_normalize_path', $candidates)));
+    }
+
+    private static function ensure_article_dictionary() {
+        if (function_exists('goldnow_seo_article_data')) {
+            return true;
+        }
+
+        foreach (self::article_dictionary_candidates() as $file) {
+            if (!is_file($file) || !is_readable($file)) {
+                continue;
+            }
+
+            require_once $file;
+            if (function_exists('goldnow_seo_article_data')) {
+                return true;
             }
         }
+
         return function_exists('goldnow_seo_article_data');
     }
 
     public static function article_content($language, $section, $term, $snapshot) {
         self::ensure_article_dictionary();
         if (!function_exists('goldnow_seo_article_data')) {
-            return new WP_Error('gnmm_article_dictionary_missing', 'The localized GoldNow SEO article dictionary is not loaded.');
+            $checked = self::article_dictionary_candidates();
+            return new WP_Error('gnmm_article_dictionary_missing', 'The localized GoldNow SEO article dictionary is not loaded. Checked: ' . implode(' | ', $checked));
         }
         $article = goldnow_seo_article_data($language, $section);
         if (!is_array($article) || count($article) < 3) {
