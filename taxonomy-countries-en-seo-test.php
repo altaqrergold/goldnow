@@ -398,6 +398,41 @@ if (!function_exists('altaqrer_gold_en_translate_shortcode_html')) {
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
+<?php
+// EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
+$en_seo_titles = array(
+    '24k' => '24K Gold Price Today in ' . $display_country_name,
+    '22k' => '22K Gold Price Today in ' . $display_country_name,
+    '21k' => '21K Gold Price Today in ' . $display_country_name,
+    '18k' => '18K Gold Price Today in ' . $display_country_name,
+    '14k' => '14K Gold Price Today in ' . $display_country_name,
+    'ounce' => 'Global Gold Ounce Price Today in USD',
+    'coin' => '8-Gram Gold Coin Price Today in ' . $display_country_name,
+    'gold-bars' => 'Gold Bar Prices Today in ' . $display_country_name,
+    'gold-index' => 'Live Gold Price Index in ' . $display_country_name,
+    'usd' => 'USD Exchange Rate in ' . $display_country_name,
+);
+$en_seo_intros = array(
+    '24k' => 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.',
+    '22k' => 'Track the 22K gold price per gram in ' . $display_country_name . ' and compare it with 24K gold. 22K contains 22 parts gold out of 24; the remaining metals affect purity, properties and the reference value.',
+    '21k' => 'Check the 21K gold price per gram in ' . $display_country_name . ', including local-currency and USD reference values. 21K contains 21 parts gold out of 24; jewellery workmanship, seller premiums and taxes may affect the final retail price.',
+    '18k' => 'See the current 18K gold reference price per gram in ' . $display_country_name . '. 18K contains 18 parts gold out of 24, and the displayed metal value is not necessarily the final shop price of a finished jewellery item.',
+    '14k' => 'Compare the 14K gold price per gram in ' . $display_country_name . ' with 18K, 21K, 22K and 24K. Since 14K contains 14 parts gold out of 24, its reference value reflects a lower proportion of pure gold.',
+    'ounce' => 'Follow the international spot price of one troy ounce of gold in USD. A troy ounce is approximately 31.1035 grams. This is the global benchmark, not a country-specific local-currency ounce price.' . $display_country_name . '',
+    'coin' => 'Review the reference value of an 8-gram gold coin in ' . $display_country_name . '. The site\'s calculation uses an 8-gram weight and compares 21K, 22K and 24K gold content; minting, condition, premiums and taxes can change the actual selling price.',
+    'gold-bars' => 'Compare gold bar reference values by weight in ' . $display_country_name . ' using the 24K price per gram. Certification, brand, fabrication, delivery, dealer premiums and taxes may affect the final purchase price.',
+    'gold-index' => 'Compare gold prices across karats and currencies in ' . $display_country_name . '. The index brings together local reference values and the global troy-ounce benchmark in USD to help put market prices in context.',
+    'usd' => 'Review the latest available USD exchange-rate reference for ' . $display_country_name . '. Currency movements can affect local gold prices because international gold is commonly quoted in US dollars.',
+);
+$en_seo_h1 = isset($en_seo_titles[$gold_view]) ? $en_seo_titles[$gold_view] : '24K Gold Price Today in ' . $display_country_name;
+$en_seo_intro = isset($en_seo_intros[$gold_view]) ? $en_seo_intros[$gold_view] : 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.';
+?>
+<section class="en-seo-intro" aria-labelledby="en-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
+    <h1 id="en-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($en_seo_h1); ?></h1>
+    <p style="margin:0;"><?php echo esc_html($en_seo_intro); ?></p>
+    <p style="margin:10px 0 0;color:#aeb7c4;font-size:13px;">Updated: <?php echo esc_html($today); ?> · Prices are indicative and may change with the market.</p>
+</section>
+
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
       <button class="gold-tab-btn active" type="button" data-tab="now">Live Prices</button>
