@@ -1,10 +1,9 @@
 <?php
-
-<?php
-// Japanese visible-text localization layer. HTML structure, URLs, scripts and styles remain unchanged.
+/* Template Name: Japanese — Gold Country Prices (SEO Test) */
+// Localize selected visible strings without changing markup, calculations, URLs, scripts or styles.
 if (!function_exists('altaqrer_gold_ja_localize_output')) {
  function altaqrer_gold_ja_localize_output($html) {
-  $map = {"Live Gold Prices and Market Overview":"本日の金価格と市場概況","24K Gold Price Today":"本日の24K金価格","22K Gold Price Today":"本日の22K金価格","21K Gold Price Today":"本日の21K金価格","18K Gold Price Today":"本日の18K金価格","14K Gold Price Today":"本日の14K金価格","Global Gold Ounce Price Today in USD":"本日の世界金価格（トロイオンス・米ドル）","8-Gram Gold Coin Price Today":"本日の8グラム金貨価格","Gold Bar Prices Today":"本日の金地金価格","Live Gold Price Index":"リアルタイム金価格指数","USD Exchange Rate":"米ドル為替レート","Updated:":"更新日：","Frequently asked questions":"よくある質問","Related gold prices":"関連する金価格","Important Links":"重要なリンク","Privacy Policy":"プライバシーポリシー","Terms of Use":"利用規約","Contact Us":"お問い合わせ","Follow Us":"フォローする","Join Our Telegram Channel":"Telegramチャンネルに参加","Gold Price Charts":"金価格チャート","Gold Bar Prices":"金地金価格","Gold Price Today":"本日の金価格","per Gram":"1グラムあたり","How to read the local and USD prices":"現地通貨価格と米ドル価格の見方","How the 8-gram coin value is calculated":"8グラム金貨の価値の計算方法","How to compare gold bullion bar weights":"金地金の重量を比較する方法","How currency movements affect local gold prices":"為替変動が国内金価格に与える影響","Reference date:":"基準日：","All rights reserved":"無断転載を禁じます"};
+  $map = json_decode('{"Live Gold Prices and Market Overview":"本日の金価格と市場概況","24K Gold Price Today":"本日の24K金価格","22K Gold Price Today":"本日の22K金価格","21K Gold Price Today":"本日の21K金価格","18K Gold Price Today":"本日の18K金価格","14K Gold Price Today":"本日の14K金価格","Global Gold Ounce Price Today in USD":"本日の世界金価格（トロイオンス・米ドル）","8-Gram Gold Coin Price Today":"本日の8グラム金貨価格","Gold Bar Prices Today":"本日の金地金価格","Live Gold Price Index":"リアルタイム金価格指数","USD Exchange Rate":"米ドル為替レート","Updated:":"更新日：","Frequently asked questions":"よくある質問","Related gold prices":"関連する金価格","Important Links":"重要なリンク","Privacy Policy":"プライバシーポリシー","Terms of Use":"利用規約","Contact Us":"お問い合わせ","Follow Us":"フォローする","Join Our Telegram Channel":"Telegramチャンネルに参加","Gold Price Charts":"金価格チャート","Gold Bar Prices":"金地金価格","Gold Price Today":"本日の金価格","per Gram":"1グラムあたり","How to read the local and USD prices":"現地通貨価格と米ドル価格の見方","How the 8-gram coin value is calculated":"8グラム金貨の価値の計算方法","How to compare gold bullion bar weights":"金地金の重量を比較する方法","How currency movements affect local gold prices":"為替変動が国内金価格に与える影響","Reference date:":"基準日：","All rights reserved":"無断転載を禁じます"}', true);
   $protected = array();
   $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) { $k='LANGBLOCK'.count($protected).'TOKEN'; $protected[$k]=$m[0]; return $k; }, $html);
   $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) { return '>'.strtr($m[1], $map).'<'; }, $html);
@@ -13,8 +12,6 @@ if (!function_exists('altaqrer_gold_ja_localize_output')) {
  }
 }
 ob_start('altaqrer_gold_ja_localize_output');
-?>
-/* Template Name: Japanese — Gold Country Prices (SEO Test) */
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
