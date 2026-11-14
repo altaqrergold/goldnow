@@ -63,16 +63,16 @@ if ($en_meta_country === '') {
 }
 $en_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $en_meta_titles = array(
-    '24k' => '24K gold price today in ' . $en_meta_country',
-    '22k' => '22K gold price today in ' . $en_meta_country',
-    '21k' => '21K gold price today in ' . $en_meta_country',
-    '18k' => '18K gold price today in ' . $en_meta_country',
-    '14k' => '14K gold price today in ' . $en_meta_country',
-    'ounce' => 'Global gold ounce price today in USD in ' . $en_meta_country',
-    'coin' => '8-gram gold coin price in ' . $en_meta_country',
-    'gold-bars' => 'Gold bar prices today in ' . $en_meta_country',
-    'gold-index' => 'Live gold price index in ' . $en_meta_country',
-    'usd' => 'USD exchange rate in ' . $en_meta_country',
+    '24k' => '24K gold price today in ' . $en_meta_country,
+    '22k' => '22K gold price today in ' . $en_meta_country,
+    '21k' => '21K gold price today in ' . $en_meta_country,
+    '18k' => '18K gold price today in ' . $en_meta_country,
+    '14k' => '14K gold price today in ' . $en_meta_country,
+    'ounce' => 'Global gold ounce price today in USD in ' . $en_meta_country,
+    'coin' => '8-gram gold coin price in ' . $en_meta_country,
+    'gold-bars' => 'Gold bar prices today in ' . $en_meta_country,
+    'gold-index' => 'Live gold price index in ' . $en_meta_country,
+    'usd' => 'USD exchange rate in ' . $en_meta_country,
 );
 $en_meta_descriptions = array(
     '24k' => 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.',
