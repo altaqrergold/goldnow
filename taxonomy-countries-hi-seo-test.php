@@ -96,7 +96,7 @@ function altaqrer_gold_hi_output_translate($html) {
         "Prices" => "कीमतें",
         "Changes" => "बदलाव",
         "No." => "नहीं।",
-        "Why the global gold ounce matters" => "वैश्विक सोने का औंस क्यों महत्वपूर्ण है",
+        "Why the वैश्विक सोने का ट्रॉय औंस matters" => "वैश्विक सोने का औंस क्यों महत्वपूर्ण है",
         "From the global ounce to a local gram price" => "वैश्विक औंस से स्थानीय प्रति ग्राम कीमत तक",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "अंतरराष्ट्रीय बाज़ारों में सोने का भाव आमतौर पर ट्रॉय औंस के आधार पर दिया जाता है। व्यापारी, रिफाइनरी, वित्तीय सेवाएँ और बुलियन विक्रेता अलग-अलग बाज़ारों में सोने के मूल्य की तुलना के लिए इस मानक का उपयोग करते हैं। अमेरिकी डॉलर में बदलाव, ब्याज दरों की अपेक्षाएँ, महँगाई का अनुमान, केंद्रीय बैंकों की गतिविधियाँ और निवेशकों की माँग अंतरराष्ट्रीय सोने की कीमत को प्रभावित कर सकती हैं। ये सामान्य बाज़ार कारक हैं; इसका अर्थ यह नहीं है कि इनमें से किसी एक ने आज की कीमत में बदलाव किया है।",
         "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price per gram also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "तुलना के लिए, एक ट्रॉय औंस में लगभग 31.1 ग्राम होते हैं। प्रति ग्राम स्थानीय कीमत चुनी गई मुद्रा में विनिमय दर और स्थानीय बाज़ार की स्थितियों पर भी निर्भर करती है। ऊपर दी गई वैश्विक औंस कीमत USD में ही रखी गई है, ताकि इसकी अंतरराष्ट्रीय बाज़ार भावों से सही तुलना की जा सके।",
@@ -118,10 +118,10 @@ function altaqrer_gold_hi_output_translate($html) {
         "Is this ounce price converted to local currency?" => "क्या औंस की इस कीमत को स्थानीय मुद्रा में बदला गया है?",
         "Does the index show a guaranteed market trading price?" => "क्या सूचकांक किसी सुनिश्चित बाज़ार कीमत को दिखाता है?",
         "Does the displayed value include a dealer premium?" => "क्या दिखाई गई कीमत में विक्रेता का प्रीमियम शामिल है?",
-        "Gold Prices in Egypt" => "मिस्र में सोने की कीमतें",
-        "Gold Prices in Saudi Arabia" => "सऊदी अरब में सोने की कीमतें",
-        "Gold Prices in the UAE" => "संयुक्त अरब अमीरात में सोने की कीमतें",
-        "Gold Prices in Kuwait" => "कुवैत में सोने की कीमतें",
+        "मिस्र में सोने की कीमतें" => "मिस्र में सोने की कीमतें",
+        "सऊदी अरब में सोने की कीमतें" => "सऊदी अरब में सोने की कीमतें",
+        "संयुक्त अरब अमارات में सोने की कीमतें" => "संयुक्त अरब अमीरात में सोने की कीमतें",
+        "कुवैत में सोने की कीमतें" => "कुवैत में सोने की कीमतें",
     );
 
     // Match complete English terms/phrases only; never replace a fragment inside a larger word.
@@ -215,6 +215,60 @@ if ($is_enabled && !empty($ad_code) && !(isset($_GET['view']) && sanitize_text_f
     echo "\n<!-- نهاية كود أدسنس -->\n";
 }
 ?>
+<?php
+// Hindi SEO metadata: unique title and description for each country and gold section.
+$hi_meta_term = get_queried_object();
+$hi_meta_country = '';
+if (is_object($hi_meta_term) && function_exists('altaqrer_ml_country_name')) {
+    $hi_meta_country = (string) altaqrer_ml_country_name($hi_meta_term, 'hi');
+}
+if ($hi_meta_country === '' && is_object($hi_meta_term) && !empty($hi_meta_term->term_id)) {
+    $hi_meta_country = (string) get_term_meta((int) $hi_meta_term->term_id, 'country_english_name', true);
+}
+if ($hi_meta_country === '' && is_object($hi_meta_term) && !empty($hi_meta_term->slug)) {
+    $hi_meta_country = ucwords(str_replace(array('-', '_'), ' ', (string) $hi_meta_term->slug));
+}
+if ($hi_meta_country === '') {
+    $hi_meta_country = 'इस देश';
+}
+$hi_meta_view = sanitize_key((string) get_query_var('gold_view'));
+$hi_meta_titles = array(
+    '24k' => 'आज ' . $hi_meta_country . ' में 24 कैरेट सोने का भाव',
+    '22k' => 'आज ' . $hi_meta_country . ' में 22 कैरेट सोने की कीमत',
+    '21k' => 'आज ' . $hi_meta_country . ' में 21 कैरेट सोने का भाव',
+    '18k' => 'आज ' . $hi_meta_country . ' में 18 कैरेट सोने की कीमत',
+    '14k' => 'आज ' . $hi_meta_country . ' में 14 कैरेट सोने का भाव',
+    'ounce' => 'आज सोने की वैश्विक कीमत प्रति ट्रॉय औंस (USD)',
+    'coin' => $hi_meta_country . ' में 8 ग्राम सोने के सिक्के की कीमत',
+    'gold-bars' => $hi_meta_country . ' में सोने की छड़ों की कीमत',
+    'gold-index' => $hi_meta_country . ' में सोने की कीमतों का सूचकांक',
+    'usd' => $hi_meta_country . ' में अमेरिकी डॉलर की विनिमय दर',
+);
+$hi_meta_descriptions = array(
+    '24k' => $hi_meta_country . ' में आज 24 कैरेट सोने का प्रति ग्राम भाव देखें। स्थानीय मुद्रा और USD में उपलब्ध संदर्भ कीमत, शुद्धता और गणना की जानकारी पढ़ें।',
+    '22k' => $hi_meta_country . ' में आज 22 कैरेट सोने की प्रति ग्राम कीमत और 24 कैरेट से शुद्धता का अंतर देखें। स्थानीय मुद्रा और USD में संदर्भ भाव।',
+    '21k' => $hi_meta_country . ' में आज 21 कैरेट सोने का भाव प्रति ग्राम देखें। स्थानीय मुद्रा, USD में तुलनात्मक कीमत और 8 ग्राम सिक्के की गणना की जानकारी।',
+    '18k' => $hi_meta_country . ' में आज 18 कैरेट सोने की कीमत प्रति ग्राम देखें। शुद्ध सोने का अनुपात, स्थानीय मुद्रा में संदर्भ भाव और खरीद मूल्य से अंतर जानें।',
+    '14k' => $hi_meta_country . ' में आज 14 कैरेट सोने का प्रति ग्राम भाव देखें। 18K और अन्य कैरेट से तुलना तथा सोने की शुद्धता की जानकारी पढ़ें।',
+    'ounce' => 'आज की वैश्विक सोने की ट्रॉय औंस कीमत USD में देखें। ट्रॉय औंस का वजन, अंतरराष्ट्रीय स्पॉट भाव और स्थानीय ग्राम कीमत से इसका अंतर समझें।',
+    'coin' => $hi_meta_country . ' में 8 ग्राम सोने के सिक्के का संदर्भ मूल्य देखें। 21K, 22K और 24K की तुलना तथा अतिरिक्त शुल्क की जानकारी पढ़ें।',
+    'gold-bars' => $hi_meta_country . ' में 24 कैरेट सोने की छड़ों के अलग-अलग वजन की संदर्भ कीमत देखें। ग्राम, 10 ग्राम और 100 ग्राम की गणना समझें।',
+    'gold-index' => $hi_meta_country . ' में सोने के अलग-अलग कैरेट भावों की तुलना करें। स्थानीय मुद्रा के संदर्भ मूल्य और USD में वैश्विक सोने का भाव देखें।',
+    'usd' => $hi_meta_country . ' में अमेरिकी डॉलर की उपलब्ध संदर्भ विनिमय दर देखें और समझें कि मुद्रा में बदलाव स्थानीय सोने की कीमत को कैसे प्रभावित करता है।',
+);
+$hi_meta_title = isset($hi_meta_titles[$hi_meta_view])
+    ? $hi_meta_titles[$hi_meta_view]
+    : 'आज ' . $hi_meta_country . ' में सोने का भाव और कीमतें';
+$hi_meta_description = isset($hi_meta_descriptions[$hi_meta_view])
+    ? $hi_meta_descriptions[$hi_meta_view]
+    : $hi_meta_country . ' में 24K, 22K, 21K, 18K और 14K सोने की आज की संदर्भ कीमतें, प्रति ग्राम भाव और USD में वैश्विक सोने की कीमत देखें।';
+add_filter('rank_math/frontend/title', function ($title) use ($hi_meta_title) {
+    return $hi_meta_title . ' | AlTaqrer Gold';
+}, 99);
+add_filter('rank_math/frontend/description', function ($description) use ($hi_meta_description) {
+    return $hi_meta_description;
+}, 99);
+?>
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri() . '/style.css?v=1sz'); ?>" data-navigate-track="reload">
 <script type="application/ld+json">
@@ -296,14 +350,14 @@ body { background:#f5d771 !important; max-width:100vw; overflow-x:hidden; positi
         <span>AlTaqrer Gold</span>
       <?php endif; ?>
     </a>
-    <nav class="hi-main-nav" aria-label="Main navigation">
+    <nav class="hi-main-nav" aria-label="मुख्य नेविगेशन">
       <a href="<?php echo esc_url($hi_header_home_url); ?>">होम</a>
       <a href="<?php echo esc_url($hi_header_country_url); ?>">सोने की कीमतें</a>
       <a href="<?php echo esc_url($hi_header_country_url . 'gold-bars/'); ?>">सोने की छड़ें</a>
       <a href="<?php echo esc_url($hi_header_country_url . 'gold-index/'); ?>">सोना सूचकांक</a>
       <a href="<?php echo esc_url($hi_header_country_url . 'usd/'); ?>">USD विनिमय दरें</a>
       <div class="hi-country-wrap">
-        <button class="hi-country-toggle" type="button" aria-expanded="false" aria-controls="hi-country-menu">Countries ▾</button>
+        <button class="hi-country-toggle" type="button" aria-expanded="false" aria-controls="hi-country-menu">देश ▾</button>
         <div class="hi-country-menu" id="hi-country-menu">
           <a href="<?php echo esc_url(home_url('/hi/country/eg/')); ?>">मिस्र</a>
           <a href="<?php echo esc_url(home_url('/hi/country/sa/')); ?>">सऊदी अरब</a>
@@ -395,40 +449,23 @@ if (!function_exists('altaqrer_gold_hi_translate_shortcode_html')) {
 
     // Complete English currency labels for the currencies used by the site's country map.
     $currency_labels_hi = array(
-        'USD'=>'अमेरिकी डॉलर','EUR'=>'यूरो','GBP'=>'ब्रिटिश पाउंड','EGP'=>'मिस्री पाउंड','SAR'=>'सऊदी रियाल','AED'=>'संयुक्त अरब अमीरात दिरहम',
-        'KWD'=>'कुवैती दिनार','QAR'=>'कतरी रियाल','BHD'=>'बहरीनी दिनार','OMR'=>'ओमानी रियाल','JOD'=>'Jordanian Dinar',
-        'IQD'=>'Iraqi Dinar','MAD'=>'Moroccan Dirham','TND'=>'Tunisian Dinar','DZD'=>'Algerian Dinar','TRY'=>'Turkish Lira',
-        'JPY'=>'जापानी येन','CHF'=>'Swiss Franc','CAD'=>'Canadian Dollar','AUD'=>'Australian Dollar','NZD'=>'New Zealand Dollar',
-        'CNY'=>'Chinese Yuan','INR'=>'Indian Rupee','PKR'=>'Pakistani Rupee','RUB'=>'Russian Ruble','ZAR'=>'South African Rand',
-        'BRL'=>'Brazilian Real','MXN'=>'Mexican Peso','SGD'=>'Singapore Dollar','HKD'=>'Hong Kong Dollar','SEK'=>'Swedish Krona',
-        'NOK'=>'Norwegian Krone','DKK'=>'Danish Krone','PLN'=>'Polish Zloty','CZK'=>'Czech Koruna','HUF'=>'Hungarian Forint',
-        'KRW'=>'South Korean Won','THB'=>'Thai Baht','MYR'=>'Malaysian Ringgit','IDR'=>'Indonesian Rupiah','PHP'=>'Philippine Peso',
-        'ILS'=>'Israeli New Shekel','LKR'=>'Sri Lankan Rupee','NGN'=>'Nigerian Naira','KES'=>'Kenyan Shilling','GHS'=>'Ghanaian Cedi',
-        'LYD'=>'Libyan Dinar','SDG'=>'Sudanese Pound','LBP'=>'Lebanese Pound','SYP'=>'Syrian Pound','YER'=>'Yemeni Rial',
-        'TWD'=>'New Taiwan Dollar','SOS'=>'Somali Shilling','DJF'=>'Djiboutian Franc','MRU'=>'Mauritanian Ouguiya',
-        'KMF'=>'Comorian Franc','XOF'=>'West African CFA Franc','XAF'=>'Central African CFA Franc','TZS'=>'Tanzanian Shilling',
-        'UGX'=>'Ugandan Shilling','CDF'=>'Congolese Franc','AOA'=>'Angolan Kwanza','MZN'=>'Mozambican Metical',
-        'ZWL'=>'Zimbabwean Dollar','MGA'=>'Malagasy Ariary','MUR'=>'Mauritian Rupee','ZMW'=>'Zambian Kwacha',
-        'BWP'=>'Botswana Pula','NAD'=>'Namibian Dollar','RWF'=>'Rwandan Franc','BIF'=>'Burundian Franc','SSP'=>'South Sudanese Pound',
-        'ERN'=>'Eritrean Nakfa','SZL'=>'Swazi Lilangeni','LSL'=>'Lesotho Loti','GMD'=>'Gambian Dalasi','GNF'=>'Guinean Franc',
-        'LRD'=>'Liberian Dollar','CVE'=>'Cape Verdean Escudo','SCR'=>'Seychellois Rupee','SLE'=>'Sierra Leonean Leone',
-        'STN'=>'São Tomé and Príncipe Dobra','ARS'=>'Argentine Peso','BOB'=>'Bolivian Boliviano','CLP'=>'Chilean Peso',
-        'COP'=>'Colombian Peso','GYD'=>'Guyanese Dollar','PYG'=>'Paraguayan Guarani','PEN'=>'Peruvian Sol',
-        'SRD'=>'Surinamese Dollar','UYU'=>'Uruguayan Peso','VES'=>'Venezuelan Bolívar','FKP'=>'Falkland Islands Pound',
-        'BMD'=>'Bermudian Dollar','KYD'=>'Cayman Islands Dollar','CRC'=>'Costa Rican Colón','CUP'=>'Cuban Peso',
-        'DOP'=>'Dominican Peso','GTQ'=>'Guatemalan Quetzal','HNL'=>'Honduran Lempira','NIO'=>'Nicaraguan Córdoba',
-        'PAB'=>'Panamanian Balboa','BSD'=>'Bahamian Dollar','BBD'=>'Barbadian Dollar','BZD'=>'Belize Dollar',
-        'JMD'=>'Jamaican Dollar','TTD'=>'Trinidad and Tobago Dollar','XCD'=>'East Caribbean Dollar','HTG'=>'Haitian Gourde',
-        'RON'=>'Romanian Leu','BGN'=>'Bulgarian Lev','RSD'=>'Serbian Dinar','UAH'=>'Ukrainian Hryvnia','BYN'=>'Belarusian Ruble',
-        'MDL'=>'Moldovan Leu','ALL'=>'Albanian Lek','BAM'=>'Bosnia-Herzegovina Convertible Mark','MKD'=>'Macedonian Denar',
-        'GEL'=>'Georgian Lari','ISK'=>'Icelandic Krona','GIP'=>'Gibraltar Pound','HRK'=>'Croatian Kuna',
-        'KPW'=>'North Korean Won','VND'=>'Vietnamese Dong','BDT'=>'Bangladeshi Taka','NPR'=>'Nepalese Rupee',
-        'MMK'=>'Myanmar Kyat','KZT'=>'Kazakhstani Tenge','UZS'=>'Uzbekistani Som','KGS'=>'Kyrgyzstani Som',
-        'TJS'=>'Tajikistani Somoni','TMT'=>'Turkmenistani Manat','MNT'=>'Mongolian Tugrik','LAK'=>'Lao Kip',
-        'KHR'=>'Cambodian Riel','BTN'=>'Bhutanese Ngultrum','MVR'=>'Maldivian Rufiyaa','BND'=>'Brunei Dollar',
-        'IRR'=>'Iranian Rial','AFN'=>'Afghan Afghani','AMD'=>'Armenian Dram','AZN'=>'Azerbaijani Manat','MOP'=>'Macanese Pataca',
-        'ETB'=>'Ethiopian Birr','FJD'=>'Fijian Dollar','PGK'=>'Papua New Guinean Kina','SBD'=>'Solomon Islands Dollar',
-        'VUV'=>'Vanuatu Vatu','WST'=>'Samoan Tala','TOP'=>'Tongan Paʻanga','XPF'=>'CFP Franc','SHP'=>'Saint Helena Pound'
+        'USD'=>'अमेरिकी डॉलर','EUR'=>'यूरो','GBP'=>'ब्रिटिश पाउंड','EGP'=>'मिस्री पाउंड',
+        'SAR'=>'सऊदी रियाल','AED'=>'यूएई दिरहम','KWD'=>'कुवैती दीनार','QAR'=>'कतरी रियाल',
+        'BHD'=>'बहरीनी दीनार','OMR'=>'ओमानी रियाल','JOD'=>'जॉर्डनियाई दीनार','IQD'=>'इराकी दीनार',
+        'MAD'=>'मोरक्को दिरहम','TND'=>'ट्यूनीशियाई दीनार','DZD'=>'अल्जीरियाई दीनार','TRY'=>'तुर्की लीरा',
+        'JPY'=>'जापानी येन','CHF'=>'स्विस फ़्रैंक','CAD'=>'कनाडाई डॉलर','AUD'=>'ऑस्ट्रेलियाई डॉलर',
+        'NZD'=>'न्यूज़ीलैंड डॉलर','CNY'=>'चीनी युआन','INR'=>'भारतीय रुपया','PKR'=>'पाकिस्तानी रुपया',
+        'RUB'=>'रूसी रूबल','ZAR'=>'दक्षिण अफ़्रीकी रैंड','BRL'=>'ब्राज़ीलियाई रियाल','MXN'=>'मैक्सिकन पेसो',
+        'SGD'=>'सिंगापुर डॉलर','HKD'=>'हांगकांग डॉलर','SEK'=>'स्वीडिश क्रोना','NOK'=>'नॉर्वेजियन क्रोन',
+        'DKK'=>'डेनिश क्रोन','PLN'=>'पोलिश ज़्लॉटी','CZK'=>'चेक कोरुना','HUF'=>'हंगेरियन फ़ोरिंट',
+        'KRW'=>'दक्षिण कोरियाई वॉन','THB'=>'थाई बाट','MYR'=>'मलेशियाई रिंगिट','IDR'=>'इंडोनेशियाई रुपिया',
+        'PHP'=>'फ़िलिपीनी पेसो','ILS'=>'इज़राइली शेकेल','LKR'=>'श्रीलंकाई रुपया','NGN'=>'नाइजीरियाई नायरा',
+        'KES'=>'केन्याई शिलिंग','GHS'=>'घानाई सेडी','LYD'=>'लीबियाई दीनार','SDG'=>'सूडानी पाउंड',
+        'LBP'=>'लेबनानी पाउंड','SYP'=>'सीरियाई पाउंड','YER'=>'यमनी रियाल','TWD'=>'ताइवानी डॉलर',
+        'ARS'=>'अर्जेंटीनी पेसो','CLP'=>'चिली पेसो','COP'=>'कोलंबियाई पेसो','PEN'=>'पेरूवियन सोल',
+        'RON'=>'रोमानियाई ल्यू','BGN'=>'बुल्गारियाई लेव','RSD'=>'सर्बियाई दीनार','UAH'=>'यूक्रेनी रिव्निया',
+        'BDT'=>'बांग्लादेशी टका','NPR'=>'नेपाली रुपया','MMK'=>'म्यांमार क्यात','KZT'=>'कज़ाख़स्तानी तेंगे',
+        'UZS'=>'उज़्बेकिस्तानी सोम','IRR'=>'ईरानी रियाल','AFN'=>'अफ़गानी'
     );
     $currency_label = isset($currency_labels_hi[$country_currency]) ? $currency_labels_hi[$country_currency] : ($country_currency !== '' ? $country_currency : 'स्थानीय मुद्रा');
     $today = function_exists('wp_date') ? wp_date('d/m/Y') : date('d/m/Y');
@@ -442,18 +479,18 @@ if (!function_exists('altaqrer_gold_hi_translate_shortcode_html')) {
         'جرام عيار 18' => '18 कैरेट सोना प्रति ग्राम', 'جرام عيار 14' => '14 कैरेट सोना प्रति ग्राम',
         'جرام عيار 12' => '12 कैरेट सोना प्रति ग्राम',
         'الأونصة العالمية' => 'वैश्विक सोने का औंस', 'أونصة الذهب العالمية' => 'वैश्विक सोने का औंस',
-        'الأونصة بالعملة المحلية' => 'Gold Ounce in Local Currency', 'أونصة الذهب بالعملة المحلية' => 'Gold Ounce in Local Currency',
-        'جنيه الذهب' => 'सोने का सिक्का', 'الجنيه الذهب' => 'सोने का सिक्का', 'سعر الجنيه الذهب' => 'Gold Coin Price',
-        'السعر بالدولار' => 'Price in USD', 'سعر الدولار' => 'US Dollar Rate', 'سعر الدولار اليوم' => 'US Dollar Rate Today',
-        'السعر بالعملة المحلية' => 'Price in Local Currency', 'سعر الذهب بالدولار' => 'Gold Price in USD',
-        'جنيه مصري' => 'Egyptian Pound', 'الدولار الأمريكي' => 'US Dollar', 'دولار أمريكي' => 'US Dollar',
+        'الأونصة بالعملة المحلية' => 'स्थानीय मुद्रा में सोने का औंस', 'أونصة الذهب بالعملة المحلية' => 'स्थानीय मुद्रा में सोने का औंस',
+        'جنيه الذهب' => 'सोने का सिक्का', 'الجنيه الذهب' => 'सोने का सिक्का', 'سعر الجنيه الذهب' => 'सोने के सिक्के की कीमत',
+        'السعر بالدولار' => 'USD में कीमत', 'سعر الدولار' => 'अमेरिकी डॉलर की दर', 'سعر الدولار اليوم' => 'आज अमेरिकी डॉलर की दर',
+        'السعر بالعملة المحلية' => 'स्थानीय मुद्रा में कीमत', 'سعر الذهب بالدولار' => 'USD में सोने की कीमत',
+        'جنيه مصري' => 'मिस्री पाउंड', 'الدولار الأمريكي' => 'अमेरिकी डॉलर', 'دولار أمريكي' => 'अमेरिकी डॉलर',
         'الأكثر تداولاً' => 'सबसे अधिक कारोबार',
         'الأكثر تداولا' => 'सबसे अधिक कारोबार',
         'انضم إلى قناتنا على تيليجرام' => 'हमारे टेलीग्राम चैनल से जुड़ें', 'انضم إلى قناتنا على تليجرام' => 'हमारे टेलीग्राम चैनल से जुड़ें', 'انضم لقناتنا على تيليجرام' => 'हमारे टेलीग्राम चैनल से जुड़ें', 'انضم لقناتنا على تليجرام' => 'हमारे टेलीग्राम चैनल से जुड़ें',
-        'تنويه هام:' => 'Important Notice:', 'الوزن / النوع' => 'वज़न / प्रकार', 'السعر' => 'कीमत',
-        'السعر الآن' => 'Live Price', 'أعلى سعر' => 'Highest Price', 'أقل سعر' => 'Lowest Price',
-        'التغير' => 'Change', 'التحديث اللحظي' => 'Live Update', 'بدون مصنعية' => 'मेकिंग चार्ज के बिना',
-        'سعر الذهب' => 'Gold Price', 'أسعار الذهب' => 'सोने की कीमतें', 'العملة المحلية' => 'स्थानीय मुद्रा'
+        'تنويه هام:' => 'महत्वपूर्ण सूचना:', 'الوزن / النوع' => 'वज़न / प्रकार', 'السعر' => 'कीमत',
+        'السعر الآن' => 'वर्तमान कीमत', 'أعلى سعر' => 'सबसे अधिक कीमत', 'أقل سعر' => 'सबसे कम कीमत',
+        'التغير' => 'बदलाव', 'التحديث اللحظي' => 'ताज़ा अपडेट', 'بدون مصنعية' => 'मेकिंग चार्ज के बिना',
+        'سعر الذهب' => 'सोने की कीमत', 'أسعار الذهب' => 'सोने की कीमतें', 'العملة المحلية' => 'स्थानीय मुद्रा'
     );
 
     // Reuse the existing functions.php dictionaries where possible without modifying Arabic globals.
@@ -1017,10 +1054,9 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>मानक 18 कैरेट सोना:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_18k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_18k_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔹 <strong>14 कैरेट सोना:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_14k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_14k_usd, 2); ?> USD</small></div>
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>वैश्विक सोने का औंस (31.1 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong></span><br><small style="color:#94a3b8;">USD में अंतरराष्ट्रीय स्पॉट कीमत</small></div>
-                    <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>स्थानीय मुद्रा में सोने का औंस (31.1 ग्राम):</strong> <span style="color: #ffffff;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">वही वैश्विक औंस संदर्भ कीमत, स्थानीय मुद्रा में परिवर्तित</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    यह इंडेक्स में सोने की प्रमुख शुद्धताओं की तुलना करता है <?php echo esc_html($display_country_name); ?>और अंतरराष्ट्रीय स्पॉट संदर्भ से तुलना करता है। वैश्विक औंस USD में दिया जाता है, जबकि स्थानीय मुद्रा में औंस उसी संदर्भ कीमत को देश की विनिमय दर से बदलकर दिखाता है। इसमें आभूषण बनाने का शुल्क और विक्रेता का प्रीमियम शामिल नहीं है।
+                    यह इंडेक्स में सोने की प्रमुख शुद्धताओं की तुलना करता है <?php echo esc_html($display_country_name); ?>और अंतरराष्ट्रीय स्पॉट संदर्भ से तुलना करता है। वैश्विक ट्रॉय औंस का भाव केवल USD में दिखाया जाता है। स्थानीय मुद्रा में सोने की प्रति ग्राम कीमत विनिमय दर के आधार पर अलग से निकाली जाती है। इसमें आभूषण बनाने का शुल्क और विक्रेता का प्रीमियम शामिल नहीं है।
                 </p>
 
 
@@ -1288,7 +1324,7 @@ if (!empty($gold_view)) {
     <section>
       <h3>सोने की कीमत के अनुभाग</h3>
       <ul>
-        <li><a href="<?php echo esc_url($hi_header_country_url); ?>">Gold Prices in <?php echo esc_html(isset($display_country_name) ? $display_country_name : ''); ?></a></li>
+        <li><a href="<?php echo esc_url($hi_header_country_url); ?>"><?php echo esc_html(isset($display_country_name) ? $display_country_name : ''); ?> में सोने की कीमतें</a></li>
         <li><a href="<?php echo esc_url($hi_header_country_url . 'gold-bars/'); ?>">सोने की छड़ें और सिक्के</a></li>
         <li><a href="<?php echo esc_url($hi_header_country_url . 'gold-index/'); ?>">लाइव सोना सूचकांक</a></li>
         <li><a href="<?php echo esc_url($hi_header_country_url . 'usd/'); ?>">USD और मुद्रा दरें</a></li>
@@ -1297,10 +1333,10 @@ if (!empty($gold_view)) {
     <section>
       <h3>क्षेत्रीय सोने की कीमतें</h3>
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/hi/country/eg/')); ?>">Gold Prices in Egypt</a></li>
-        <li><a href="<?php echo esc_url(home_url('/hi/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/hi/country/ae/')); ?>">Gold Prices in the UAE</a></li>
-        <li><a href="<?php echo esc_url(home_url('/hi/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
+        <li><a href="<?php echo esc_url(home_url('/hi/country/eg/')); ?>">मिस्र में सोने की कीमतें</a></li>
+        <li><a href="<?php echo esc_url(home_url('/hi/country/sa/')); ?>">सऊदी अरब में सोने की कीमतें</a></li>
+        <li><a href="<?php echo esc_url(home_url('/hi/country/ae/')); ?>">संयुक्त अरब अमارات में सोने की कीमतें</a></li>
+        <li><a href="<?php echo esc_url(home_url('/hi/country/kw/')); ?>">कुवैत में सोने की कीमतें</a></li>
       </ul>
       <h3 style="margin-top:16px;">हमें फ़ॉलो करें</h3>
       <ul>
@@ -1308,17 +1344,14 @@ if (!empty($gold_view)) {
       </ul>
     </section>
     <?php
-    // Show only real published English pages; never leave dead /hi/# placeholder links.
+    // Show only real published Hindi pages; never link to an untranslated page.
     $en_footer_pages = array();
     foreach (array(
         'privacy-policy' => 'गोपनीयता नीति',
         'terms-of-use'   => 'उपयोग की शर्तें',
         'contact-us'     => 'संपर्क करें'
     ) as $page_slug => $page_label) {
-        $page_object = get_page_by_path('en/' . $page_slug);
-        if (!$page_object) {
-            $page_object = get_page_by_path($page_slug);
-        }
+        $page_object = get_page_by_path('hi/' . $page_slug);
         if ($page_object && $page_object->post_status === 'publish') {
             $en_footer_pages[] = array('url' => get_permalink($page_object), 'label' => $page_label);
         }
@@ -1334,7 +1367,7 @@ if (!empty($gold_view)) {
     </section>
     <?php endif; ?>
   </div>
-  <div class="hi-footer-bottom">All rights reserved &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> to <a href="<?php echo esc_url($hi_header_home_url); ?>">AlTaqrer Gold</a>.</div>
+  <div class="hi-footer-bottom">सर्वाधिकार सुरक्षित &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> to <a href="<?php echo esc_url($hi_header_home_url); ?>">AlTaqrer Gold</a>.</div>
 </footer>
 <?php endif; ?>
 <script>
