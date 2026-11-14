@@ -1,4 +1,5 @@
 <?php
+/* Template Name: English — Gold Country Prices (SEO Test) */
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
