@@ -307,11 +307,15 @@ final class GNMM_Images {
         $language = function_exists('altaqrer_ml_current_language') ? sanitize_key(altaqrer_ml_current_language()) : 'ar';
         $image = self::shortcode(array('lang'=>$language));
         if ($image === '') { return $html; }
-        // Insert after the opening content wrapper, below its top border/divider.
-        if (!preg_match('/<(div|section)\\b[^>]*class="[^"]*gold-tabs-content[^"]*"[^>]*>/i', $html, $match, PREG_OFFSET_CAPTURE)) {
-            return $html;
-        }
-        $insert_at = $match[0][1] + strlen($match[0][0]);
+        // Find the actual opening wrapper tag (works with either quote style).
+        $position = strpos($html, 'gold-tabs-content');
+        $tag_start = strrpos(substr($html, 0, $position), '<');
+        $tag_end = strpos($html, '>', $position);
+        if ($tag_start === false || $tag_end === false) { return $html; }
+        $opening_tag = substr($html, $tag_start, $tag_end - $tag_start + 1);
+        if (!preg_match('/^<(div|section)\\b/i', $opening_tag)) { return $html; }
+        // Insert inside the wrapper, after its top border/divider.
+        $insert_at = $tag_end + 1;
         return substr($html, 0, $insert_at) . $image . substr($html, $insert_at);
     }
 
