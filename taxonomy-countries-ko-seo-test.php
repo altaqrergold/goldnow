@@ -1,10 +1,9 @@
 <?php
-
-<?php
-// Korean visible-text localization layer. HTML structure, URLs, scripts and styles remain unchanged.
+/* Template Name: Korean — Gold Country Prices (SEO Test) */
+// Localize selected visible strings without changing markup, calculations, URLs, scripts or styles.
 if (!function_exists('altaqrer_gold_ko_localize_output')) {
  function altaqrer_gold_ko_localize_output($html) {
-  $map = {"Live Gold Prices and Market Overview":"오늘의 금 시세 및 시장 개요","24K Gold Price Today":"오늘의 24K 금 시세","22K Gold Price Today":"오늘의 22K 금 시세","21K Gold Price Today":"오늘의 21K 금 시세","18K Gold Price Today":"오늘의 18K 금 시세","14K Gold Price Today":"오늘의 14K 금 시세","Global Gold Ounce Price Today in USD":"오늘의 국제 금 트로이온스 가격 (USD)","8-Gram Gold Coin Price Today":"오늘의 8그램 금화 가격","Gold Bar Prices Today":"오늘의 골드바 가격","Live Gold Price Index":"실시간 금 가격 지수","USD Exchange Rate":"미국 달러 환율","Updated:":"업데이트:","Frequently asked questions":"자주 묻는 질문","Related gold prices":"관련 금 시세","Important Links":"중요한 링크","Privacy Policy":"개인정보 처리방침","Terms of Use":"이용약관","Contact Us":"문의하기","Follow Us":"팔로우","Join Our Telegram Channel":"텔레그램 채널 참여하기","Gold Price Charts":"금 가격 차트","Gold Bar Prices":"골드바 가격","Gold Price Today":"오늘의 금 시세","per Gram":"그램당","How to read the local and USD prices":"현지 통화 및 USD 가격 확인 방법","How the 8-gram coin value is calculated":"8그램 금화 가격 계산 방법","How to compare gold bullion bar weights":"골드바 중량 비교 방법","How currency movements affect local gold prices":"환율 변동이 국내 금 가격에 미치는 영향","Reference date:":"기준일:","All rights reserved":"저작권 소유"};
+  $map = json_decode('{"Live Gold Prices and Market Overview":"오늘의 금 시세 및 시장 개요","24K Gold Price Today":"오늘의 24K 금 시세","22K Gold Price Today":"오늘의 22K 금 시세","21K Gold Price Today":"오늘의 21K 금 시세","18K Gold Price Today":"오늘의 18K 금 시세","14K Gold Price Today":"오늘의 14K 금 시세","Global Gold Ounce Price Today in USD":"오늘의 국제 금 트로이온스 가격 (USD)","8-Gram Gold Coin Price Today":"오늘의 8그램 금화 가격","Gold Bar Prices Today":"오늘의 골드바 가격","Live Gold Price Index":"실시간 금 가격 지수","USD Exchange Rate":"미국 달러 환율","Updated:":"업데이트:","Frequently asked questions":"자주 묻는 질문","Related gold prices":"관련 금 시세","Important Links":"중요한 링크","Privacy Policy":"개인정보 처리방침","Terms of Use":"이용약관","Contact Us":"문의하기","Follow Us":"팔로우","Join Our Telegram Channel":"텔레그램 채널 참여하기","Gold Price Charts":"금 가격 차트","Gold Bar Prices":"골드바 가격","Gold Price Today":"오늘의 금 시세","per Gram":"그램당","How to read the local and USD prices":"현지 통화 및 USD 가격 확인 방법","How the 8-gram coin value is calculated":"8그램 금화 가격 계산 방법","How to compare gold bullion bar weights":"골드바 중량 비교 방법","How currency movements affect local gold prices":"환율 변동이 국내 금 가격에 미치는 영향","Reference date:":"기준일:","All rights reserved":"저작권 소유"}', true);
   $protected = array();
   $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) { $k='LANGBLOCK'.count($protected).'TOKEN'; $protected[$k]=$m[0]; return $k; }, $html);
   $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) { return '>'.strtr($m[1], $map).'<'; }, $html);
@@ -13,8 +12,6 @@ if (!function_exists('altaqrer_gold_ko_localize_output')) {
  }
 }
 ob_start('altaqrer_gold_ko_localize_output');
-?>
-/* Template Name: Korean — Gold Country Prices (SEO Test) */
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
