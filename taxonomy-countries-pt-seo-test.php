@@ -566,6 +566,41 @@ if (!function_exists('altaqrer_gold_pt_translate_shortcode_html')) {
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
+<?php
+// PT section-specific SEO H1 titles and introductions, following the Hindi/German layout.
+$pt_seo_titles = array(
+    '24k' => 'Preço do ouro 24 quilates hoje em ' . $display_country_name,
+    '22k' => 'Preço do ouro 22 quilates hoje em ' . $display_country_name,
+    '21k' => 'Preço do ouro 21 quilates hoje em ' . $display_country_name,
+    '18k' => 'Preço do ouro 18 quilates hoje em ' . $display_country_name,
+    '14k' => 'Preço do ouro 14 quilates hoje em ' . $display_country_name,
+    'ounce' => 'Preço mundial da onça de ouro hoje em USD',
+    'coin' => 'Preço da moeda de ouro de 8 gramas hoje em ' . $display_country_name,
+    'gold-bars' => 'Preços das barras de ouro hoje em ' . $display_country_name,
+    'gold-index' => 'Índice do preço do ouro em tempo real em ' . $display_country_name,
+    'usd' => 'Taxa de câmbio do USD em ' . $display_country_name,
+);
+$pt_seo_intros = array(
+    '24k' => 'Consulte o preço de referência do ouro 24 quilates por grama em ' . $display_country_name . '. Compare o valor em moeda local com o equivalente em USD. O ouro 24 quilates é a referência de pureza para barras e ouro de investimento.',
+    '22k' => 'Acompanhe o preço do ouro 22 quilates por grama em ' . $display_country_name . ' e compare com o de 24 quilates. O ouro 22 quilates contém 22 partes de ouro em 24; os outros metais influenciam suas propriedades e seu valor.',
+    '21k' => 'Consulte o preço do ouro 21 quilates por grama em ' . $display_country_name . ', com valores de referência em moeda local e USD. Fabricação de joias, margens comerciais e impostos podem alterar o preço final.',
+    '18k' => 'Consulte o preço de referência do ouro 18 quilates por grama em ' . $display_country_name . '. Ele contém 18 partes de ouro em 24; o valor do metal exibido não corresponde necessariamente ao preço final de uma joia.',
+    '14k' => 'Compare o preço do ouro 14 quilates por grama em ' . $display_country_name . ' com os de 18, 21, 22 e 24 quilates. Seu valor de referência reflete a proporção de 14 partes de ouro em 24.',
+    'ounce' => 'Consulte o preço mundial à vista de uma onça troy de ouro em USD. Uma onça troy equivale a aproximadamente 31,1035 gramas. É uma referência global, não um preço local por onça.' . $display_country_name . '',
+    'coin' => 'Consulte o valor de referência de uma moeda de ouro de 8 gramas em ' . $display_country_name . '. O cálculo do site usa o peso de 8 gramas e compara ouro 21, 22 e 24 quilates; ágio e impostos podem alterar o preço real.',
+    'gold-bars' => 'Compare os valores de referência das barras de ouro por peso em ' . $display_country_name . ', usando como base o preço do ouro 24 quilates por grama. Certificação, marca, fabricação, entrega e impostos podem afetar o preço final.',
+    'gold-index' => 'Compare os preços do ouro por pureza e moeda em ' . $display_country_name . '. O índice reúne valores locais e o preço mundial da onça troy em USD para ajudar a compreender o mercado.',
+    'usd' => 'Consulte a última taxa de câmbio de referência disponível do USD para ' . $display_country_name . '. As variações cambiais podem afetar os preços locais, pois o ouro internacional costuma ser cotado em dólares.',
+);
+$pt_seo_h1 = isset($pt_seo_titles[$gold_view]) ? $pt_seo_titles[$gold_view] : 'Preço do ouro 24 quilates hoje em ' . $display_country_name;
+$pt_seo_intro = isset($pt_seo_intros[$gold_view]) ? $pt_seo_intros[$gold_view] : 'Consulte o preço de referência do ouro 24 quilates por grama em ' . $display_country_name . '. Compare o valor em moeda local com o equivalente em USD. O ouro 24 quilates é a referência de pureza para barras e ouro de investimento.';
+?>
+<section class="pt-seo-intro" aria-labelledby="pt-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
+    <h1 id="pt-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($pt_seo_h1); ?></h1>
+    <p style="margin:0;"><?php echo esc_html($pt_seo_intro); ?></p>
+    <p style="margin:10px 0 0;color:#aeb7c4;font-size:13px;">Atualizado: <?php echo esc_html($today); ?> · Os preços são indicativos e podem variar com o mercado.</p>
+</section>
+
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
       <button class="gold-tab-btn active" type="button" data-tab="now">Preços em tempo real</button>
