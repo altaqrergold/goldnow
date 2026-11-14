@@ -69,39 +69,40 @@ $ja_meta_term = get_queried_object();
 $ja_meta_term_id = (is_object($ja_meta_term) && isset($ja_meta_term->term_id)) ? (int) $ja_meta_term->term_id : 0;
 $ja_meta_country = '';
 $ja_meta_country = $ja_meta_term_id ? (string) get_term_meta($ja_meta_term_id, 'country_english_name', true) : '';
+if ($ja_meta_country === '') { $ja_meta_country = '各国'; }
 
 if ($ja_meta_country === '') {
     $ja_meta_country = 'your country';
 }
 $ja_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $ja_meta_titles = array(
-    '' => 'の金市場全体を確認できます。24K、22K、21K、18K、14Kの1グラム価格、米ドル建ての国際金価格、8グラム金貨、金地金、為替レートを比較できます。各項目の詳細は下のタブからご覧ください。',
-    '24k' => 'の24K金の1グラムあたりの参考価格を確認できます。' . $display_country_name,
-    '22k' => 'の22K金の1グラム価格を24K金と比較できます。' . $display_country_name,
-    '21k' => 'の21K金の1グラムあたりの価格を確認できます。' . $display_country_name,
-    '18k' => 'の18K金の参考価格を確認できます。' . $display_country_name,
-    '14k' => 'の14K金価格を他の品位と比較できます。' . $display_country_name,
-    'ounce' => '国際スポット市場における金1トロイオンスの米ドル建て参考価格です。1トロイオンスは約31.1035グラムです。国別の現地通貨価格ではなく、世界共通の基準価格を表示します。',
-    'coin' => 'の重量8グラムの金貨の参考価値を確認できます。' . $display_country_name,
-    'gold-bars' => 'の24K金1グラム価格を基準に、重量別の金地金価格を比較できます。' . $display_country_name,
-    'gold-index' => 'の金価格を品位や通貨別に比較できます。' . $display_country_name,
-    'usd' => 'で使用される最新の米ドル為替レートの参考値を確認できます。' . $display_country_name,
+    '' => '本日の金価格と市場概況（' . $display_country_name,
+    '24k' => '本日の24K金価格（' . $display_country_name,
+    '22k' => '本日の22K金価格（' . $display_country_name,
+    '21k' => '本日の21K金価格（' . $display_country_name,
+    '18k' => '本日の18K金価格（' . $display_country_name,
+    '14k' => '本日の14K金価格（' . $display_country_name,
+    'ounce' => '本日の世界金価格（トロイオンス・USD）',
+    'coin' => '本日の8グラム金貨価格（' . $display_country_name,
+    'gold-bars' => '本日の金地金価格（' . $display_country_name,
+    'gold-index' => '本日の金価格指数（' . $display_country_name,
+    'usd' => '本日のUSD為替レート（' . $display_country_name,
 );
 $ja_meta_descriptions = array(
-    '' => 'の金市場全体を確認できます。24K、22K、21K、18K、14Kの1グラム価格、米ドル建ての国際金価格、8グラム金貨、金地金、為替レートを比較できます。各項目の詳細は下のタブからご覧ください。',
-    '24k' => 'の24K金の1グラムあたりの参考価格を確認できます。' . $display_country_name,
-    '22k' => 'の22K金の1グラム価格を24K金と比較できます。' . $display_country_name,
+    '' => '24K、22K、21K、18K、14Kの1グラム価格、米ドル建て国際金価格、8グラム金貨、金地金、為替レートを比較できます。対象地域：' . $display_country_name,
+    '24k' => 'の24K金の1グラムあたりの参考価格を確認し、他の品位と比較できます。' . $display_country_name,
+    '22k' => 'の22K金の価格と24K金との違いを確認できます。' . $display_country_name,
     '21k' => 'の21K金の1グラムあたりの価格を確認できます。' . $display_country_name,
     '18k' => 'の18K金の参考価格を確認できます。' . $display_country_name,
     '14k' => 'の14K金価格を他の品位と比較できます。' . $display_country_name,
-    'ounce' => '国際スポット市場における金1トロイオンスの米ドル建て参考価格です。1トロイオンスは約31.1035グラムです。国別の現地通貨価格ではなく、世界共通の基準価格を表示します。',
+    'ounce' => '国際スポット市場における金1トロイオンスの米ドル建て価格です。1トロイオンスは約31.1035グラムです。国別の現地通貨価格ではなく、世界共通の参考価格です。',
     'coin' => 'の重量8グラムの金貨の参考価値を確認できます。' . $display_country_name,
     'gold-bars' => 'の24K金1グラム価格を基準に、重量別の金地金価格を比較できます。' . $display_country_name,
     'gold-index' => 'の金価格を品位や通貨別に比較できます。' . $display_country_name,
-    'usd' => 'で使用される最新の米ドル為替レートの参考値を確認できます。' . $display_country_name,
+    'usd' => 'で使用される米ドル為替レートの参考値を確認できます。' . $display_country_name,
 );
-$ja_meta_title = isset($ja_meta_titles[$ja_meta_view]) ? $ja_meta_titles[$ja_meta_view] : '24K gold price today ' . $ja_meta_country;
-$ja_meta_description = isset($ja_meta_descriptions[$ja_meta_view]) ? $ja_meta_descriptions[$ja_meta_view] : 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.';
+$ja_meta_title = isset($ja_meta_titles[$ja_meta_view]) ? $ja_meta_titles[$ja_meta_view] : '本日の24K金価格（' . $ja_meta_country;
+$ja_meta_description = isset($ja_meta_descriptions[$ja_meta_view]) ? $ja_meta_descriptions[$ja_meta_view] : 'の24K金の1グラムあたりの参考価格を確認し、他の品位と比較できます。' . $ja_meta_country;
 add_filter('rank_math/frontend/title', function ($title) use ($ja_meta_title) {
     return $ja_meta_title . ' | AlTaqrer Gold';
 }, 99);
@@ -415,33 +416,33 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
 <?php
 // EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $ja_seo_titles = array(
-    '' => 'の金市場全体を確認できます。24K、22K、21K、18K、14Kの1グラム価格、米ドル建ての国際金価格、8グラム金貨、金地金、為替レートを比較できます。各項目の詳細は下のタブからご覧ください。',
-    '24k' => 'の24K金の1グラムあたりの参考価格を確認できます。' . $display_country_name,
-    '22k' => 'の22K金の1グラム価格を24K金と比較できます。' . $display_country_name,
-    '21k' => 'の21K金の1グラムあたりの価格を確認できます。' . $display_country_name,
-    '18k' => 'の18K金の参考価格を確認できます。' . $display_country_name,
-    '14k' => 'の14K金価格を他の品位と比較できます。' . $display_country_name,
-    'ounce' => '国際スポット市場における金1トロイオンスの米ドル建て参考価格です。1トロイオンスは約31.1035グラムです。国別の現地通貨価格ではなく、世界共通の基準価格を表示します。',
-    'coin' => 'の重量8グラムの金貨の参考価値を確認できます。' . $display_country_name,
-    'gold-bars' => 'の24K金1グラム価格を基準に、重量別の金地金価格を比較できます。' . $display_country_name,
-    'gold-index' => 'の金価格を品位や通貨別に比較できます。' . $display_country_name,
-    'usd' => 'で使用される最新の米ドル為替レートの参考値を確認できます。' . $display_country_name,
+    '' => '本日の金価格と市場概況（' . $display_country_name,
+    '24k' => '本日の24K金価格（' . $display_country_name,
+    '22k' => '本日の22K金価格（' . $display_country_name,
+    '21k' => '本日の21K金価格（' . $display_country_name,
+    '18k' => '本日の18K金価格（' . $display_country_name,
+    '14k' => '本日の14K金価格（' . $display_country_name,
+    'ounce' => '本日の世界金価格（トロイオンス・USD）',
+    'coin' => '本日の8グラム金貨価格（' . $display_country_name,
+    'gold-bars' => '本日の金地金価格（' . $display_country_name,
+    'gold-index' => '本日の金価格指数（' . $display_country_name,
+    'usd' => '本日のUSD為替レート（' . $display_country_name,
 );
 $ja_seo_intros = array(
-    '' => 'の金市場全体を確認できます。24K、22K、21K、18K、14Kの1グラム価格、米ドル建ての国際金価格、8グラム金貨、金地金、為替レートを比較できます。各項目の詳細は下のタブからご覧ください。',
-    '24k' => 'の24K金の1グラムあたりの参考価格を確認できます。' . $display_country_name,
-    '22k' => 'の22K金の1グラム価格を24K金と比較できます。' . $display_country_name,
+    '' => '24K、22K、21K、18K、14Kの1グラム価格、米ドル建て国際金価格、8グラム金貨、金地金、為替レートを比較できます。対象地域：' . $display_country_name,
+    '24k' => 'の24K金の1グラムあたりの参考価格を確認し、他の品位と比較できます。' . $display_country_name,
+    '22k' => 'の22K金の価格と24K金との違いを確認できます。' . $display_country_name,
     '21k' => 'の21K金の1グラムあたりの価格を確認できます。' . $display_country_name,
     '18k' => 'の18K金の参考価格を確認できます。' . $display_country_name,
     '14k' => 'の14K金価格を他の品位と比較できます。' . $display_country_name,
-    'ounce' => '国際スポット市場における金1トロイオンスの米ドル建て参考価格です。1トロイオンスは約31.1035グラムです。国別の現地通貨価格ではなく、世界共通の基準価格を表示します。',
+    'ounce' => '国際スポット市場における金1トロイオンスの米ドル建て価格です。1トロイオンスは約31.1035グラムです。国別の現地通貨価格ではなく、世界共通の参考価格です。',
     'coin' => 'の重量8グラムの金貨の参考価値を確認できます。' . $display_country_name,
     'gold-bars' => 'の24K金1グラム価格を基準に、重量別の金地金価格を比較できます。' . $display_country_name,
     'gold-index' => 'の金価格を品位や通貨別に比較できます。' . $display_country_name,
-    'usd' => 'で使用される最新の米ドル為替レートの参考値を確認できます。' . $display_country_name,
+    'usd' => 'で使用される米ドル為替レートの参考値を確認できます。' . $display_country_name,
 );
-$ja_seo_h1 = isset($ja_seo_titles[$gold_view]) ? $ja_seo_titles[$gold_view] : '24K Gold Price Today in ' . $display_country_name;
-$ja_seo_intro = isset($ja_seo_intros[$gold_view]) ? $ja_seo_intros[$gold_view] : 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.';
+$ja_seo_h1 = isset($ja_seo_titles[$gold_view]) ? $ja_seo_titles[$gold_view] : '本日の24K金価格（' . $display_country_name;
+$ja_seo_intro = isset($ja_seo_intros[$gold_view]) ? $ja_seo_intros[$gold_view] : 'の24K金の1グラムあたりの参考価格を確認し、他の品位と比較できます。' . $display_country_name;
 ?>
 <section class="ja-seo-intro" aria-labelledby="ja-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
     <h1 id="ja-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($ja_seo_h1); ?></h1>
