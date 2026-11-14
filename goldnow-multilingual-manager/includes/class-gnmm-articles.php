@@ -387,7 +387,14 @@ final class GNMM_Articles {
         }
         update_post_meta($post_id, '_gnmm_featured_image_id', (int)$attachment_id);
         update_post_meta($attachment_id, '_wp_attachment_image_alt', sanitize_text_field($title));
-        update_post_meta($attachment_id, '_wp_attached_file', ltrim(str_replace(trailingslashit($upload['basedir']), '', $file), '/'));
+        $relative_file = ltrim(str_replace(trailingslashit($upload['basedir']), '', $file), '/');
+        update_post_meta($attachment_id, '_wp_attached_file', $relative_file);
+        // WordPress core needs dimensions in attachment metadata to render an SVG
+        // as a featured image via wp_get_attachment_image().
+        update_post_meta($attachment_id, '_wp_attachment_metadata', array(
+            'width'=>1200, 'height'=>630, 'file'=>$relative_file,
+            'sizes'=>array(), 'image_meta'=>array()
+        ));
         set_post_thumbnail($post_id, (int)$attachment_id);
         return array('id'=>(int)$attachment_id, 'url'=>$url, 'path'=>$file);
     }
