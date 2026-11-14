@@ -29,3 +29,5 @@ jobs:
             echo "Checking $file"
             php -l "$file"
           done
+
+# Re-run lint after the latest template fixes.
