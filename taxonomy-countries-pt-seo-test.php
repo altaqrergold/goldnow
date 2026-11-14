@@ -227,6 +227,7 @@ if ($pt_meta_country === '') {
 }
 $pt_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $pt_meta_titles = array(
+    '' => 'Preço do ouro hoje e visão geral do mercado em $pt_meta_country',
     '24k' => 'Preço do ouro 24 quilates hoje ' . $pt_meta_country,
     '22k' => 'Preço do ouro 22 quilates hoje ' . $pt_meta_country,
     '21k' => 'Preço do ouro 21 quilates hoje ' . $pt_meta_country,
@@ -239,6 +240,7 @@ $pt_meta_titles = array(
     'usd' => 'Taxa de câmbio do dólar americano ' . $pt_meta_country,
 );
 $pt_meta_descriptions = array(
+    '' => 'Consulte os preços do ouro por quilate, a onça global em USD, a moeda de 8 gramas, as barras de ouro e as taxas de câmbio em $pt_meta_country. Compare os principais indicadores numa única visão geral.',
     '24k' => 'Consulte o preço do ouro 24 quilates por grama. Compare valores de referência em moeda local e USD e entenda a pureza do ouro.',
     '22k' => 'Consulte o preço do ouro 22 quilates por grama e compare com o de 24 quilates, em moeda local e USD.',
     '21k' => 'Acompanhe o preço do ouro 21 quilates por grama, compare valores locais e em USD e conheça o cálculo da moeda de 8 gramas.',
@@ -569,6 +571,7 @@ if (!function_exists('altaqrer_gold_pt_translate_shortcode_html')) {
 <?php
 // PT section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $pt_seo_titles = array(
+    '' => 'Preços do ouro em tempo real e visão geral do mercado em $display_country_name',
     '24k' => 'Preço do ouro 24 quilates hoje em ' . $display_country_name,
     '22k' => 'Preço do ouro 22 quilates hoje em ' . $display_country_name,
     '21k' => 'Preço do ouro 21 quilates hoje em ' . $display_country_name,
@@ -581,6 +584,7 @@ $pt_seo_titles = array(
     'usd' => 'Taxa de câmbio do USD em ' . $display_country_name,
 );
 $pt_seo_intros = array(
+    '' => 'Consulte uma visão geral do mercado do ouro em $display_country_name: compare os preços de referência por grama de 24K, 22K, 21K, 18K e 14K, a onça global em USD, a moeda de ouro de 8 gramas, as barras de ouro e as taxas de câmbio. Esta página reúne os principais indicadores; cada secção abaixo apresenta informações específicas.',
     '24k' => 'Consulte o preço de referência do ouro 24 quilates por grama em ' . $display_country_name . '. Compare o valor em moeda local com o equivalente em USD. O ouro 24 quilates é a referência de pureza para barras e ouro de investimento.',
     '22k' => 'Acompanhe o preço do ouro 22 quilates por grama em ' . $display_country_name . ' e compare com o de 24 quilates. O ouro 22 quilates contém 22 partes de ouro em 24; os outros metais influenciam suas propriedades e seu valor.',
     '21k' => 'Consulte o preço do ouro 21 quilates por grama em ' . $display_country_name . ', com valores de referência em moeda local e USD. Fabricação de joias, margens comerciais e impostos podem alterar o preço final.',
