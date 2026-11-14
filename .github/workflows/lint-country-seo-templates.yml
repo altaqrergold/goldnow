@@ -31,3 +31,5 @@ jobs:
           done
 
 # Re-run lint after the latest template fixes.
+
+# Trigger lint for the latest English template fix.
