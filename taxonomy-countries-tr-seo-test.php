@@ -227,16 +227,16 @@ if ($tr_meta_country === '') {
 }
 $tr_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $tr_meta_titles = array(
-    '24k' => 'Bugün 24 ayar altın fiyatı ' . $tr_meta_country',
-    '22k' => 'Bugün 22 ayar altın fiyatı ' . $tr_meta_country',
-    '21k' => 'Bugün 21 ayar altın fiyatı ' . $tr_meta_country',
-    '18k' => 'Bugün 18 ayar altın fiyatı ' . $tr_meta_country',
-    '14k' => 'Bugün 14 ayar altın fiyatı ' . $tr_meta_country',
-    'ounce' => 'USD cinsinden küresel altın ons fiyatı ' . $tr_meta_country',
-    'coin' => '8 gram altın sikke fiyatı ' . $tr_meta_country',
-    'gold-bars' => 'Bugünkü altın külçe fiyatları ' . $tr_meta_country',
-    'gold-index' => 'Canlı altın fiyat endeksi ' . $tr_meta_country',
-    'usd' => 'ABD doları döviz kuru ' . $tr_meta_country',
+    '24k' => 'Bugün 24 ayar altın fiyatı ' . $tr_meta_country,
+    '22k' => 'Bugün 22 ayar altın fiyatı ' . $tr_meta_country,
+    '21k' => 'Bugün 21 ayar altın fiyatı ' . $tr_meta_country,
+    '18k' => 'Bugün 18 ayar altın fiyatı ' . $tr_meta_country,
+    '14k' => 'Bugün 14 ayar altın fiyatı ' . $tr_meta_country,
+    'ounce' => 'USD cinsinden küresel altın ons fiyatı ' . $tr_meta_country,
+    'coin' => '8 gram altın sikke fiyatı ' . $tr_meta_country,
+    'gold-bars' => 'Bugünkü altın külçe fiyatları ' . $tr_meta_country,
+    'gold-index' => 'Canlı altın fiyat endeksi ' . $tr_meta_country,
+    'usd' => 'ABD doları döviz kuru ' . $tr_meta_country,
 );
 $tr_meta_descriptions = array(
     '24k' => '24 ayar altının gram fiyatını inceleyin. Yerel para birimi ve USD cinsinden referans değerleri karşılaştırın, saflık oranını öğrenin.',
