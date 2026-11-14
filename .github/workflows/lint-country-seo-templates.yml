@@ -1,0 +1,31 @@
+name: Lint multilingual country SEO templates
+
+on:
+  push:
+    branches:
+      - work/unified-country-template-rebuild
+    paths:
+      - 'taxonomy-countries-*-seo-test.php'
+      - '.github/workflows/lint-country-seo-templates.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Lint all nine SEO templates
+        run: |
+          set -e
+          for file in taxonomy-countries-*-seo-test.php; do
+            echo "Checking $file"
+            php -l "$file"
+          done
