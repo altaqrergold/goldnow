@@ -20,6 +20,11 @@ final class GNMM_Articles {
         }
         $timezone = get_term_meta((int) $term->term_id, 'country_timezone', true);
         if (!$timezone) { $timezone = get_term_meta((int) $term->term_id, 'timezone', true); }
+        if (!$timezone && preg_match('/^[a-z]{2}$/i', $code)) {
+            // PHP's IANA database maps ISO country codes to their time zones.
+            $country_zones = DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, strtoupper($code));
+            if (!empty($country_zones)) { $timezone = $country_zones[0]; }
+        }
         try { $tz = $timezone ? new DateTimeZone($timezone) : wp_timezone(); }
         catch (Exception $e) { $tz = wp_timezone(); }
         return (new DateTime('now', $tz))->format('Y-m-d');
@@ -346,7 +351,7 @@ final class GNMM_Articles {
                 '_yoast_wpseo_focuskw'=>$article['focus_keyword'],
                 'rank_math_title'=>$article['seo_title'],
                 'rank_math_description'=>$article['description'],
-                'rank_math_focus_keyword'=>implode(', ',array_merge(array($article['focus_keyword']),$article['tags']))
+                'rank_math_focus_keyword'=>$article['focus_keyword']
             )
         );
 
