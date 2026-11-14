@@ -1,10 +1,9 @@
 <?php
-
-<?php
-// Thai visible-text localization layer. HTML structure, URLs, scripts and styles remain unchanged.
+/* Template Name: Thai — Gold Country Prices (SEO Test) */
+// Localize selected visible strings without changing markup, calculations, URLs, scripts or styles.
 if (!function_exists('altaqrer_gold_th_localize_output')) {
  function altaqrer_gold_th_localize_output($html) {
-  $map = {"Live Gold Prices and Market Overview":"ราคาทองคำวันนี้และภาพรวมตลาดทองคำ","24K Gold Price Today":"ราคาทองคำ 24K วันนี้","22K Gold Price Today":"ราคาทองคำ 22K วันนี้","21K Gold Price Today":"ราคาทองคำ 21K วันนี้","18K Gold Price Today":"ราคาทองคำ 18K วันนี้","14K Gold Price Today":"ราคาทองคำ 14K วันนี้","Global Gold Ounce Price Today in USD":"ราคาทองคำโลกต่อทรอยออนซ์วันนี้ (USD)","8-Gram Gold Coin Price Today":"ราคาเหรียญทองคำหนัก 8 กรัมวันนี้","Gold Bar Prices Today":"ราคาทองคำแท่งวันนี้","Live Gold Price Index":"ดัชนีราคาทองคำแบบเรียลไทม์","USD Exchange Rate":"อัตราแลกเปลี่ยนดอลลาร์สหรัฐ","Updated:":"อัปเดต:","Frequently asked questions":"คำถามที่พบบ่อย","Related gold prices":"ราคาทองคำที่เกี่ยวข้อง","Important Links":"ลิงก์สำคัญ","Privacy Policy":"นโยบายความเป็นส่วนตัว","Terms of Use":"ข้อกำหนดการใช้งาน","Contact Us":"ติดต่อเรา","Follow Us":"ติดตามเรา","Join Our Telegram Channel":"เข้าร่วมช่อง Telegram ของเรา","Gold Price Charts":"กราฟราคาทองคำ","Gold Bar Prices":"ราคาทองคำแท่ง","Gold Price Today":"ราคาทองคำวันนี้","per Gram":"ต่อกรัม","How to read the local and USD prices":"วิธีอ่านราคาในสกุลเงินท้องถิ่นและดอลลาร์สหรัฐ","How the 8-gram coin value is calculated":"วิธีคำนวณมูลค่าเหรียญทองคำหนัก 8 กรัม","How to compare gold bullion bar weights":"วิธีเปรียบเทียบน้ำหนักทองคำแท่ง","How currency movements affect local gold prices":"ผลของการเปลี่ยนแปลงค่าเงินต่อราคาทองคำในประเทศ","Reference date:":"วันที่อ้างอิง:","All rights reserved":"สงวนลิขสิทธิ์"};
+  $map = json_decode('{"Live Gold Prices and Market Overview":"ราคาทองคำวันนี้และภาพรวมตลาดทองคำ","24K Gold Price Today":"ราคาทองคำ 24K วันนี้","22K Gold Price Today":"ราคาทองคำ 22K วันนี้","21K Gold Price Today":"ราคาทองคำ 21K วันนี้","18K Gold Price Today":"ราคาทองคำ 18K วันนี้","14K Gold Price Today":"ราคาทองคำ 14K วันนี้","Global Gold Ounce Price Today in USD":"ราคาทองคำโลกต่อทรอยออนซ์วันนี้ (USD)","8-Gram Gold Coin Price Today":"ราคาเหรียญทองคำหนัก 8 กรัมวันนี้","Gold Bar Prices Today":"ราคาทองคำแท่งวันนี้","Live Gold Price Index":"ดัชนีราคาทองคำแบบเรียลไทม์","USD Exchange Rate":"อัตราแลกเปลี่ยนดอลลาร์สหรัฐ","Updated:":"อัปเดต:","Frequently asked questions":"คำถามที่พบบ่อย","Related gold prices":"ราคาทองคำที่เกี่ยวข้อง","Important Links":"ลิงก์สำคัญ","Privacy Policy":"นโยบายความเป็นส่วนตัว","Terms of Use":"ข้อกำหนดการใช้งาน","Contact Us":"ติดต่อเรา","Follow Us":"ติดตามเรา","Join Our Telegram Channel":"เข้าร่วมช่อง Telegram ของเรา","Gold Price Charts":"กราฟราคาทองคำ","Gold Bar Prices":"ราคาทองคำแท่ง","Gold Price Today":"ราคาทองคำวันนี้","per Gram":"ต่อกรัม","How to read the local and USD prices":"วิธีอ่านราคาในสกุลเงินท้องถิ่นและดอลลาร์สหรัฐ","How the 8-gram coin value is calculated":"วิธีคำนวณมูลค่าเหรียญทองคำหนัก 8 กรัม","How to compare gold bullion bar weights":"วิธีเปรียบเทียบน้ำหนักทองคำแท่ง","How currency movements affect local gold prices":"ผลของการเปลี่ยนแปลงค่าเงินต่อราคาทองคำในประเทศ","Reference date:":"วันที่อ้างอิง:","All rights reserved":"สงวนลิขสิทธิ์"}', true);
   $protected = array();
   $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) { $k='LANGBLOCK'.count($protected).'TOKEN'; $protected[$k]=$m[0]; return $k; }, $html);
   $html = preg_replace_callback('~>([^<>]+)<~u', function($m) use ($map) { return '>'.strtr($m[1], $map).'<'; }, $html);
@@ -13,8 +12,6 @@ if (!function_exists('altaqrer_gold_th_localize_output')) {
  }
 }
 ob_start('altaqrer_gold_th_localize_output');
-?>
-/* Template Name: Thai — Gold Country Prices (SEO Test) */
 /**
  * Standalone English header for the country gold-price template.
  * The Arabic theme header and navigation are not loaded here.
