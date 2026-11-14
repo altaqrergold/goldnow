@@ -37,20 +37,19 @@ jobs:
         run: |
           grep -q "function goldnow_seo_article_data" goldnow-multilingual-manager/includes/goldnow-seo-content.php
 
-      - name: Build plugin ZIP
+      - name: Verify plugin root and files
         run: |
           set -euo pipefail
-          mkdir -p dist
-          cd goldnow-multilingual-manager
-          zip -qr ../dist/goldnow-multilingual-manager-0.1.5.zip .
+          test -f goldnow-multilingual-manager/goldnow-multilingual-manager.php
+          find goldnow-multilingual-manager -type f -maxdepth 3 -print
 
-      - name: Verify ZIP archive
-        run: unzip -t dist/goldnow-multilingual-manager-0.1.5.zip
-
-      - name: Upload installable plugin ZIP
+      # Upload the plugin directory, not a ZIP nested inside the artifact ZIP.
+      # The downloaded Actions artifact is then directly installable by WordPress.
+      - name: Upload installable plugin folder
         uses: actions/upload-artifact@v4
         with:
-          name: goldnow-multilingual-manager-0.1.5
-          path: dist/goldnow-multilingual-manager-0.1.5.zip
+          name: goldnow-multilingual-manager-0.1.6
+          path: goldnow-multilingual-manager/
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 14
