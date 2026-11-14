@@ -584,7 +584,7 @@ $es_seo_titles = array(
     'usd' => 'Tipo de cambio del USD en ' . $display_country_name,
 );
 $es_seo_intros = array(
-    '' => 'Consulte una visión general del mercado del oro en ' . $display_country_name . ' compare los precios de referencia por gramo de 24K, 22K, 21K, 18K y 14K, la onza mundial en USD, la moneda de oro de 8 gramos, los lingotes y los tipos de cambio. Este resumen reúne los principales indicadores; cada sección inferior ofrece información específica.',
+    '' => 'Consulte una visión general del mercado del oro en ' . $display_country_name . ': compare los precios de referencia por gramo de 24K, 22K, 21K, 18K y 14K, la onza mundial en USD, la moneda de oro de 8 gramos, los lingotes y los tipos de cambio. Este resumen reúne los principales indicadores; cada sección inferior ofrece información específica.',
     '24k' => 'Consulte el precio de referencia del oro de 24 quilates por gramo en ' . $display_country_name . '. Compare el valor en moneda local con su equivalente en USD. El oro de 24 quilates es la referencia de pureza para lingotes y oro de inversión.',
     '22k' => 'Siga el precio del oro de 22 quilates por gramo en ' . $display_country_name . ' y compárelo con el de 24 quilates. El oro de 22 quilates contiene 22 partes de oro de cada 24; los demás metales influyen en sus propiedades y valor.',
     '21k' => 'Consulte el precio del oro de 21 quilates por gramo en ' . $display_country_name . ', con valores de referencia en moneda local y USD. La elaboración de joyas, los márgenes comerciales y los impuestos pueden modificar el precio final.',
