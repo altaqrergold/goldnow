@@ -227,6 +227,7 @@ if ($it_meta_country === '') {
 }
 $it_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $it_meta_titles = array(
+    '' => 'Prezzo dell’oro oggi e panoramica del mercato in $it_meta_country',
     '24k' => 'Prezzo dell’oro 24 carati oggi ' . $it_meta_country,
     '22k' => 'Prezzo dell’oro 22 carati oggi ' . $it_meta_country,
     '21k' => 'Prezzo dell’oro 21 carati oggi ' . $it_meta_country,
@@ -239,6 +240,7 @@ $it_meta_titles = array(
     'usd' => 'Tasso di cambio del dollaro USA ' . $it_meta_country,
 );
 $it_meta_descriptions = array(
+    '' => 'Consulta i prezzi dell’oro per caratura, l’oncia globale in USD, la moneta da 8 grammi, i lingotti e i tassi di cambio in $it_meta_country. Confronta i principali indicatori in un’unica panoramica.',
     '24k' => 'Consulta il prezzo dell’oro 24 carati al grammo. Confronta i valori indicativi in valuta locale e USD e scopri il ruolo della purezza.',
     '22k' => 'Consulta il prezzo dell’oro 22 carati al grammo e confrontalo con il 24 carati, con valori di riferimento locali e in USD.',
     '21k' => 'Segui il prezzo dell’oro 21 carati al grammo, confronta i valori locali e in USD e scopri il calcolo della moneta da 8 grammi.',
@@ -569,6 +571,7 @@ if (!function_exists('altaqrer_gold_it_translate_shortcode_html')) {
 <?php
 // IT section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $it_seo_titles = array(
+    '' => 'Prezzi dell’oro in tempo reale e panoramica del mercato in $display_country_name',
     '24k' => 'Prezzo dell’oro 24 carati oggi in ' . $display_country_name,
     '22k' => 'Prezzo dell’oro 22 carati oggi in ' . $display_country_name,
     '21k' => 'Prezzo dell’oro 21 carati oggi in ' . $display_country_name,
@@ -581,6 +584,7 @@ $it_seo_titles = array(
     'usd' => 'Tasso di cambio USD in ' . $display_country_name,
 );
 $it_seo_intros = array(
+    '' => 'Consulta una panoramica completa del mercato dell’oro in $display_country_name: confronta i prezzi di riferimento al grammo per 24K, 22K, 21K, 18K e 14K, l’oncia globale in USD, la moneta d’oro da 8 grammi, i lingotti e i tassi di cambio. Questa pagina riunisce gli indicatori principali; ogni sezione qui sotto presenta i propri dettagli.',
     '24k' => 'Consulta il prezzo indicativo dell’oro 24 carati al grammo in ' . $display_country_name . '. Confronta il valore in valuta locale con l’equivalente in USD. L’oro 24 carati è il riferimento di purezza per lingotti e oro da investimento.',
     '22k' => 'Segui il prezzo dell’oro 22 carati al grammo in ' . $display_country_name . ' e confrontalo con quello a 24 carati. L’oro 22 carati contiene 22 parti d’oro su 24; gli altri metalli ne influenzano proprietà e valore.',
     '21k' => 'Consulta il prezzo dell’oro 21 carati al grammo in ' . $display_country_name . ', con valori di riferimento in valuta locale e USD. Lavorazione, margini dei venditori e imposte possono modificare il prezzo finale.',
