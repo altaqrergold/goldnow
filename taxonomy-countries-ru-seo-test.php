@@ -25,7 +25,7 @@ function altaqrer_gold_ru_output_translate($html) {
         "Gold Price Sections" => "Разделы цен на золото",
         "Gold Price Chart in" => "График цены золота в",
         "About AlTaqrer Gold" => "О проекте AlTaqrer Gold",
-        "All rights reserved" => "Все права защищены",
+        "Все права защищены" => "Все права защищены",
         "Related gold prices" => "Связанные цены на золото",
         "Gold Coin Prices in" => "Цены на золотые монеты в",
         "Gold Price Today in" => "Цена золота сегодня в",
@@ -100,7 +100,7 @@ function altaqrer_gold_ru_output_translate($html) {
         "From the global ounce to a local gram price" => "От мировой цены за унцию к местной цене за грамм",
         "Gold is commonly quoted in international markets by the troy ounce. Traders, refiners, financial services, and bullion dealers use this benchmark to compare the value of gold across markets. Changes in the US dollar, interest-rate expectations, inflation outlook, central-bank activity, and investor demand can all influence the international gold price. These are general market drivers, not a claim that any one factor caused today's movement." => "На международных рынках золото обычно котируется за тройскую унцию. Трейдеры, аффинажные предприятия, финансовые компании и продавцы драгоценных металлов используют этот ориентир для сравнения стоимости золота на разных рынках. На международную цену могут влиять курс доллара США, ожидания по процентным ставкам, инфляционные прогнозы, действия центральных банков и спрос инвесторов. Это общие рыночные факторы, а не утверждение, что какой-либо из них вызвал сегодняшнее движение цены.",
         "For a simple reference comparison, a troy ounce contains about 31.1 grams. The local price за грамм also depends on the selected currency conversion and local market conditions. The global ounce figure above remains in USD so that it can be compared consistently with international quotations." => "Для справки: одна тройская унция содержит около 31,1 грамма. Местная цена за грамм также зависит от пересчёта в выбранную валюту и условий местного рынка. Указанная выше мировая цена за унцию остаётся в USD, чтобы её можно было сопоставлять с международными котировками.",
-        "One troy ounce is approximately 31.1035 grams. The page uses 31.1 grams for its displayed reference calculation." => "Одна тройская унция составляет примерно 31,1035 грамма. Для отображаемого справочного расчёта на этой странице используется значение 31,1 грамма.",
+        "One troy ounce is примерно 31.1035 grams. The page uses 31.1 grams for its displayed reference calculation." => "Одна тройская унция составляет примерно 31,1035 грамма. Для отображаемого справочного расчёта на этой странице используется значение 31,1 грамма.",
         "No. This page shows the international gold ounce benchmark in USD only. Local-currency values are shown separately in the country gold-price tables where applicable." => "Нет. На этой странице мировой ориентир цены золота за унцию показан только в USD. Значения в местной валюте, если они доступны, приводятся отдельно в таблицах цен на золото для выбранной страны.",
         "The calculation multiplies the relevant per-gram gold value by 8 grams. For the common 21K reference, the displayed estimate uses the 21K gram price multiplied by eight. The 22K and 24K comparison values use their respective gram prices at the same weight. This preserves the site's established 8-gram coin calculation." => "При расчёте соответствующая стоимость золота за грамм умножается на 8 граммов. Для стандартного ориентира 21K отображаемая оценка рассчитывается умножением цены грамма золота 21K на восемь. Для сравнения стоимости 22K и 24K используются соответствующие цены за грамм при том же весе. Таким образом сохраняется принятый на сайте расчёт монеты весом 8 граммов.",
         "Actual coin prices may differ because of minting, condition, design, scarcity, dealer premiums, and local taxes. The values here represent the gold-content reference and should not be treated as a guaranteed transaction quote." => "Фактическая цена монеты может отличаться в зависимости от чеканки, состояния, дизайна, редкости, наценки продавца и местных налогов. Указанные значения отражают справочную стоимость содержащегося в монете золота и не являются гарантированной ценой сделки.",
@@ -118,10 +118,10 @@ function altaqrer_gold_ru_output_translate($html) {
         "Is this ounce price converted to local currency?" => "Пересчитывается ли цена за унцию в местную валюту?",
         "Does the index show a guaranteed market trading price?" => "Показывает ли индекс гарантированную рыночную цену?",
         "Does the displayed value include a dealer premium?" => "Включает ли указанная стоимость наценку продавца?",
-        "Gold Prices in Egypt" => "Цены на золото в Египте",
-        "Gold Prices in Saudi Arabia" => "Цены на золото в Саудовской Аравии",
-        "Gold Prices in the UAE" => "Цены на золото в ОАЭ",
-        "Gold Prices in Kuwait" => "Цены на золото в Кувейте",
+        "Цены на золото в Египте" => "Цены на золото в Египте",
+        "Цены на золото в Саудовской Аравии" => "Цены на золото в Саудовской Аравии",
+        "Цены на золото в ОАЭ" => "Цены на золото в ОАЭ",
+        "Цены на золото в Кувейте" => "Цены на золото в Кувейте",
     );
 
     // Match complete English terms/phrases only; never replace a fragment inside a larger word.
@@ -1249,13 +1249,13 @@ if (!empty($gold_view)) {
     <p>Отслеживайте справочную стоимость <strong>золотой монеты весом 8 граммов</strong> in <?php echo esc_html($display_country_name); ?>. По текущим ценам за грамм ориентировочная стоимость монеты 21K составляет <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (около <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). На странице также сравниваются значения 22K и 24K для того же веса 8 граммов, чтобы сравнить влияние пробы.</p>
     <h3>Как рассчитывается стоимость монеты весом 8 граммов</h3>
     <p>Расчет умножает соответствующую стоимость золота за грамм на 8 граммов. Для стандартного ориентира 21K оценка рассчитывается умножением цены грамма 21K на восемь. Для сравнения 22K и 24K используются их цены за грамм при том же весе. Так сохраняется принятый на сайте расчет монеты весом 8 граммов.</p>
-    <p>Фактическая цена монеты может отличаться из-за чеканки, состояния, дизайна, редкости, наценки продавца и местных налогов. Здесь указана справочная стоимость содержащегося золота, а не гарантированная цена сделки. Сравните <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">золото цена 21K за грамм</a>, <a href="<?php echo esc_url($ru_seo_base . '22k/'); ?>">22K gold price</a>, and <a href="<?php echo esc_url($ru_seo_base . 'gold-bars/'); ?>">цены на золотые слитки</a>.</p>
+    <p>Фактическая цена монеты может отличаться из-за чеканки, состояния, дизайна, редкости, наценки продавца и местных налогов. Здесь указана справочная стоимость содержащегося золота, а не гарантированная цена сделки. Сравните <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">цена золота 21K за грамм</a>, <a href="<?php echo esc_url($ru_seo_base . '22k/'); ?>">цена золота 22K</a>, и <a href="<?php echo esc_url($ru_seo_base . 'gold-bars/'); ?>">цены на золотые слитки</a>.</p>
     <h3>Часто задаваемые вопросы</h3>
     <details><summary>Какой вес используется при расчете золотой монеты?</summary><p>На этой странице сохраняется стандартный расчет сайта для монеты весом 8 граммов.</p></details>
     <details><summary>Включена ли наценка продавца в указанную стоимость?</summary><p>Нет. Учитывается только содержание золота, без затрат на чеканку, наценки продавца, работы и налогов.</p></details>
 <?php elseif ($gold_view === 'gold-bars') : ?>
     <h2 id="ru-seo-title">Цены на золотые слитки сегодня в <?php echo esc_html($display_country_name); ?></h2>
-    <p>Золотые слитки обычно оцениваются по ориентиру золота 24K. Исходя из текущей справочной цены 24K <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?> за грамм</strong> (approximately <strong><?php echo number_format($price_24k_usd, 2); ?> USD</strong>), a 10-gram bar has an indicative gold-content value of <strong><?php echo number_format($price_24k_local * 10, 2); ?> <?php echo esc_html($currency_label); ?></strong>, а стоимость слитка весом 100 граммов составляет примерно <strong><?php echo number_format($price_24k_local * 100, 2); ?> <?php echo esc_html($currency_label); ?></strong>. В таблице выше приведены другие варианты веса для сравнения.</p>
+    <p>Золотые слитки обычно оцениваются по ориентиру золота 24K. Исходя из текущей справочной цены 24K <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?> за грамм</strong> (примерно <strong><?php echo number_format($price_24k_usd, 2); ?> USD</strong>), ориентировочная стоимость золота в слитке весом 10 граммов составляет <strong><?php echo number_format($price_24k_local * 10, 2); ?> <?php echo esc_html($currency_label); ?></strong>, а стоимость слитка весом 100 граммов составляет примерно <strong><?php echo number_format($price_24k_local * 100, 2); ?> <?php echo esc_html($currency_label); ?></strong>. В таблице выше приведены другие варианты веса для сравнения.</p>
     <h3>Как сравнивать вес золотых слитков</h3>
     <p>Для простой оценки умножьте справочную цену 24K за грамм на вес слитка. Полученная сумма отражает стоимость содержащегося золота до учета изготовления, проверки или клеймения, наценки продавца, доставки и налогов. Поэтому конечная цена продажи может быть выше приведенного расчета.</p>
     <p>Перед покупкой проверьте заявленную пробу, точный вес, сертификат, производителя и репутацию продавца. <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">золото цена золота 24K</a> — основной ориентир цены за грамм, а <a href="<?php echo esc_url($ru_seo_base . 'ounce/'); ?>">мировая цена унции золота</a> дает возможность международного сравнения в USD.</p>
@@ -1284,7 +1284,7 @@ if (!empty($gold_view)) {
     <p>В этом обзоре собраны последние доступные справочные значения для разных проб золота. Текущий ориентир 24K составляет <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> за грамм, а 22K составляет примерно <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> а 21K составляет примерно <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Мировая тройская унция составляет <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong>а ее эквивалент в местной валюте составляет <strong><?php echo number_format($ounce_price_currency, 2); ?> <?php echo esc_html($currency_label); ?></strong>.</p>
     <h3>Что позволяет сравнить индекс золота</h3>
     <p>Индекс дает удобный обзор стоимости золота распространенных проб и валют. Он помогает сравнить ориентир слиткового золота 24K со стоимостью сплавов меньшей пробы, часто используемых в ювелирных изделиях. Местные значения рассчитываются по справочной цене золота и доступным курсам валют; значения в USD позволяют сравнивать их с международным рынком.</p>
-    <p>Цены на золото могут реагировать на мировую спотовую торговлю, колебания валют, ожидания по ставкам, инфляционные опасения и изменения инвестиционного спроса. Одного снимка недостаточно, чтобы определить тенденцию, поэтому сравнивайте обновления во времени. Перейдите на страницы <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">страница цены 21K</a>, <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">страница цены 24K</a>, and <a href="<?php echo esc_url($ru_seo_base . 'ounce/'); ?>">страница мировой цены унции</a>.</p>
+    <p>Цены на золото могут реагировать на мировую спотовую торговлю, колебания валют, ожидания по ставкам, инфляционные опасения и изменения инвестиционного спроса. Одного снимка недостаточно, чтобы определить тенденцию, поэтому сравнивайте обновления во времени. Перейдите на страницы <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">страница цены 21K</a>, <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">страница цены 24K</a>, и <a href="<?php echo esc_url($ru_seo_base . 'ounce/'); ?>">страница мировой цены унции</a>.</p>
     <h3>Часто задаваемые вопросы</h3>
     <details><summary>Показывает ли индекс гарантированную рыночную цену?</summary><p>Нет. Это справочная информация на основе последних доступных данных сайта. Фактические цены сделок могут включать местные надбавки и комиссии.</p></details>
     <details><summary>Почему золото разной пробы стоит по-разному?</summary><p>В каждом карате содержится разная доля чистого золота. Сплавы меньшей пробы имеют меньшую стоимость чистого золота за грамм, чем 24K, до учета дополнительных расходов.</p></details>
@@ -1293,7 +1293,7 @@ if (!empty($gold_view)) {
     <p>Последний доступный справочный курс на этой странице оценивает один доллар США примерно в <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Курсы валют важны для покупателей золота, поскольку международные цены на слитки обычно указываются в USD. При изменении курса местной валюты к доллару местная стоимость золота может измениться, даже если мировая цена в USD остается стабильной.</p>
     <h3>Как колебания валют влияют на местные цены золота</h3>
     <p>Оценка местной цены золота объединяет международный ориентир с пересчетом валюты и, в розничной торговле, возможными местными надбавками, налогами и расходами. На странице приведены отдельные сравнения валют для пояснения конвертации. Эти курсы справочные и могут отличаться от банковских, наличных, карточных и переводных курсов.</p>
-    <p>Для сравнения цен на золото смотрите <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">цена 24K за грамм</a>, the <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">цена 21K за грамм</a>, и <a href="<?php echo esc_url($ru_seo_base . 'ounce/'); ?>">международная цена унции золота в USD</a>.</p>
+    <p>Для сравнения цен на золото смотрите <a href="<?php echo esc_url($ru_seo_base . '24k/'); ?>">цена 24K за грамм</a>, цена <a href="<?php echo esc_url($ru_seo_base . '21k/'); ?>">цена 21K за грамм</a>, и <a href="<?php echo esc_url($ru_seo_base . 'ounce/'); ?>">международная цена унции золота в USD</a>.</p>
     <h3>Часто задаваемые вопросы</h3>
     <details><summary>Это курс, который предлагают все банки?</summary><p>Нет. Это последний справочный курс, используемый сайтом. Банки и обменные сервисы могут применять другие курсы покупки и продажи, спреды и комиссии.</p></details>
     <details><summary>Почему курс доллара важен для золота?</summary><p>Поскольку на международном рынке золото обычно котируется в долларах США, пересчет этого ориентира в местную валюту является одним из факторов оценки местной цены.</p></details>
@@ -1312,7 +1312,7 @@ if (!empty($gold_view)) {
     <section>
       <h3>Разделы цен на золото</h3>
       <ul>
-        <li><a href="<?php echo esc_url($ru_header_country_url); ?>">Gold Prices in <?php echo esc_html(isset($display_country_name) ? $display_country_name : ''); ?></a></li>
+        <li><a href="<?php echo esc_url($ru_header_country_url); ?>">Цены на золото в <?php echo esc_html(isset($display_country_name) ? $display_country_name : ''); ?></a></li>
         <li><a href="<?php echo esc_url($ru_header_country_url . 'gold-bars/'); ?>">Золотые слитки и монеты</a></li>
         <li><a href="<?php echo esc_url($ru_header_country_url . 'gold-index/'); ?>">Текущий индекс золота</a></li>
         <li><a href="<?php echo esc_url($ru_header_country_url . 'usd/'); ?>">USD и валютные курсы</a></li>
@@ -1321,10 +1321,10 @@ if (!empty($gold_view)) {
     <section>
       <h3>Региональные цены на золото</h3>
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/ru/country/eg/')); ?>">Gold Prices in Egypt</a></li>
-        <li><a href="<?php echo esc_url(home_url('/ru/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/ru/country/ae/')); ?>">Gold Prices in the UAE</a></li>
-        <li><a href="<?php echo esc_url(home_url('/ru/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
+        <li><a href="<?php echo esc_url(home_url('/ru/country/eg/')); ?>">Цены на золото в Египте</a></li>
+        <li><a href="<?php echo esc_url(home_url('/ru/country/sa/')); ?>">Цены на золото в Саудовской Аравии</a></li>
+        <li><a href="<?php echo esc_url(home_url('/ru/country/ae/')); ?>">Цены на золото в ОАЭ</a></li>
+        <li><a href="<?php echo esc_url(home_url('/ru/country/kw/')); ?>">Цены на золото в Кувейте</a></li>
       </ul>
       <h3 style="margin-top:16px;">Подписывайтесь на нас</h3>
       <ul>
@@ -1358,7 +1358,7 @@ if (!empty($gold_view)) {
     </section>
     <?php endif; ?>
   </div>
-  <div class="ru-footer-bottom">All rights reserved &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> to <a href="<?php echo esc_url($ru_header_home_url); ?>">AlTaqrer Gold</a>.</div>
+  <div class="ru-footer-bottom">Все права защищены &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> — <a href="<?php echo esc_url($ru_header_home_url); ?>">AlTaqrer Gold</a>.</div>
 </footer>
 <?php endif; ?>
 <script>
