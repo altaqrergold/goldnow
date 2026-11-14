@@ -42,7 +42,12 @@ final class GNMM_Admin {
         $module = isset($_POST['module']) ? sanitize_key(wp_unslash($_POST['module'])) : '';
         if (!in_array($module,array('images','articles'),true)) { wp_die('Invalid module.',400); }
         $settings = GNMM_Core::settings();
-        do_action($module === 'images' ? 'gnmm_run_image_module' : 'gnmm_run_article_module',$settings);
+        if ($module === 'images') {
+            do_action('gnmm_run_image_module', $settings);
+        } else {
+            // Manual reruns refresh today's existing draft/post; cron remains duplicate-safe.
+            do_action('gnmm_run_article_module', $settings, 'manual');
+        }
         wp_safe_redirect(add_query_arg(array('page'=>'goldnow-multilingual-manager','queued'=>$module),admin_url('admin.php'))); exit;
     }
 
