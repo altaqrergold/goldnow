@@ -1,0 +1,27 @@
+name: Inspect original GoldNow Auto Posts source
+on:
+  push:
+    branches:
+      - feature/goldnow-multilingual-manager
+    paths:
+      - '.github/workflows/inspect-auto-posts.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract original plugin source
+        run: |
+          mkdir -p /tmp/gnap
+          unzip -q goldnow-auto-posts.zip -d /tmp/gnap
+          find /tmp/gnap -type f -name '*.php' | sort
+          mkdir -p extracted
+          find /tmp/gnap -type f \( -name '*image*.php' -o -name '*publisher*.php' -o -name '*content*.php' -o -name '*settings*.php' \) -exec cp --parents {} extracted/ \;
+      - uses: actions/upload-artifact@v4
+        with:
+          name: original-auto-posts-source-review
+          path: extracted/
+          if-no-files-found: error
+          retention-days: 3
