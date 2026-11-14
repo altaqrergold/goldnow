@@ -318,6 +318,80 @@ final class GNMM_Articles {
         }
     }
 
+    /**
+     * Create a separate editorial featured image for the daily article.
+     * Kept separate from the country-price page graphic.
+     */
+    private static function ensure_featured_image($post_id, $term, $language, $article, $snapshot, $date) {
+        $code = GNMM_Gold_Manager::country_code($term);
+        $country = GNMM_Gold_Manager::localized_country_name($term, $language);
+        $local = self::local_prices($term, $snapshot);
+        $p21 = isset($local['21k']) ? number_format_i18n($local['21k'], 2) : '—';
+        $p24 = isset($local['24k']) ? number_format_i18n($local['24k'], 2) : '—';
+        $currency = GNMM_Gold_Manager::currency($term, $code);
+        $labels = array(
+            'ar'=>array('today'=>'أسعار الذهب اليوم','country'=>'السوق','k21'=>'عيار 21','k24'=>'عيار 24','brand'=>'التقرير جولد'),
+            'en'=>array('today'=>'GOLD PRICE UPDATE','country'=>'MARKET','k21'=>'21K GOLD','k24'=>'24K GOLD','brand'=>'ALTAQRER GOLD'),
+            'fr'=>array('today'=>'COURS DE L’OR','country'=>'MARCHÉ','k21'=>'OR 21 CARATS','k24'=>'OR 24 CARATS','brand'=>'ALTAQRER GOLD'),
+            'de'=>array('today'=>'GOLDPREIS AKTUELL','country'=>'MARKT','k21'=>'21 KARAT','k24'=>'24 KARAT','brand'=>'ALTAQRER GOLD'),
+            'es'=>array('today'=>'PRECIO DEL ORO','country'=>'MERCADO','k21'=>'ORO 21 QUILATES','k24'=>'ORO 24 QUILATES','brand'=>'ALTAQRER GOLD'),
+            'it'=>array('today'=>'PREZZO DELL’ORO','country'=>'MERCATO','k21'=>'ORO 21 CARATI','k24'=>'ORO 24 CARATI','brand'=>'ALTAQRER GOLD'),
+            'pt'=>array('today'=>'PREÇO DO OURO','country'=>'MERCADO','k21'=>'OURO 21 QUILATES','k24'=>'OURO 24 QUILATES','brand'=>'ALTAQRER GOLD'),
+            'ru'=>array('today'=>'ЦЕНА ЗОЛОТА','country'=>'РЫНОК','k21'=>'ЗОЛОТО 21 ПРОБЫ','k24'=>'ЗОЛОТО 24 ПРОБЫ','brand'=>'ALTAQRER GOLD'),
+            'hi'=>array('today'=>'सोने की कीमत','country'=>'बाज़ार','k21'=>'21 कैरेट सोना','k24'=>'24 कैरेट सोना','brand'=>'ALTAQRER GOLD'),
+            'tr'=>array('today'=>'GÜNCEL ALTIN FİYATI','country'=>'PİYASA','k21'=>'21 AYAR ALTIN','k24'=>'24 AYAR ALTIN','brand'=>'ALTAQRER GOLD')
+        );
+        $w = isset($labels[$language]) ? $labels[$language] : $labels['en'];
+        $esc = static function($v) { return htmlspecialchars((string)$v, ENT_QUOTES | ENT_XML1, 'UTF-8'); };
+        $title = !empty($article['title']) ? $article['title'] : ($w['today'] . ' - ' . $country);
+        $svg = '<?xml version="1.0" encoding="UTF-8"?>';
+        $svg .= '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="' . $esc($title) . '">';
+        $svg .= '<defs><linearGradient id="goldnowbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#201b12"/><stop offset="1" stop-color="#806020"/></linearGradient></defs>';
+        $svg .= '<rect width="1200" height="630" rx="28" fill="url(#goldnowbg)"/><rect x="24" y="24" width="1152" height="582" rx="22" fill="none" stroke="#e4c16d" stroke-width="3"/>';
+        $svg .= '<text x="600" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" letter-spacing="4" fill="#f2d98f">' . $esc($w['brand']) . '</text>';
+        $svg .= '<text x="600" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="45" font-weight="700" fill="#fff">' . $esc($w['today']) . '</text>';
+        $svg .= '<text x="600" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="39" font-weight="700" fill="#f5d98d">' . $esc($country) . '</text>';
+        $svg .= '<rect x="105" y="310" width="470" height="150" rx="18" fill="#fff" opacity=".97"/><rect x="625" y="310" width="470" height="150" rx="18" fill="#fff" opacity=".97"/>';
+        $svg .= '<text x="340" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#806020">' . $esc($w['k21']) . '</text><text x="340" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#242016">' . $esc($p21 . ' ' . $currency) . '</text>';
+        $svg .= '<text x="860" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#806020">' . $esc($w['k24']) . '</text><text x="860" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#242016">' . $esc($p24 . ' ' . $currency) . '</text>';
+        $svg .= '<text x="600" y="530" text-anchor="middle" font-family="Arial,sans-serif" font-size="23" fill="#f5e7c1">' . $esc($date) . '</text></svg>';
+
+        $upload = wp_upload_dir();
+        if (!empty($upload['error'])) { return new WP_Error('gnmm_featured_upload', $upload['error']); }
+        $dir = trailingslashit($upload['basedir']) . 'goldnow-multilingual-manager/article-images/' . $language . '/';
+        if (!wp_mkdir_p($dir)) { return new WP_Error('gnmm_featured_directory', 'Could not create article image directory.'); }
+        $key = $date . '|' . $code . '|' . $language;
+        $filename = 'gold-article-' . $code . '-' . $language . '-' . $date . '.svg';
+        $file = $dir . $filename;
+        if (file_put_contents($file, $svg, LOCK_EX) === false || filesize($file) <= 0) {
+            return new WP_Error('gnmm_featured_write', 'Could not write the article featured image.');
+        }
+        $attachment_id = (int) get_post_meta($post_id, '_gnmm_featured_image_id', true);
+        if (!$attachment_id || get_post_type($attachment_id) !== 'attachment') {
+            $existing = get_posts(array('post_type'=>'attachment','post_status'=>'inherit','posts_per_page'=>1,'fields'=>'ids','meta_key'=>'_gnmm_article_image_key','meta_value'=>$key));
+            $attachment_id = $existing ? (int)$existing[0] : 0;
+        }
+        $url = trailingslashit($upload['baseurl']) . 'goldnow-multilingual-manager/article-images/' . rawurlencode($language) . '/' . rawurlencode($filename);
+        if (!$attachment_id) {
+            $attachment_id = wp_insert_attachment(array(
+                'post_mime_type'=>'image/svg+xml',
+                'post_title'=>sanitize_text_field($w['today'] . ' - ' . $country . ' - ' . $date),
+                'post_status'=>'inherit',
+                'post_content'=>''
+            ), $file, $post_id, true);
+            if (is_wp_error($attachment_id)) { return $attachment_id; }
+            update_post_meta($attachment_id, '_gnmm_article_image_key', $key);
+        } else {
+            update_attached_file($attachment_id, $file);
+            wp_update_post(array('ID'=>$attachment_id,'post_parent'=>$post_id));
+        }
+        update_post_meta($post_id, '_gnmm_featured_image_id', (int)$attachment_id);
+        update_post_meta($attachment_id, '_wp_attachment_image_alt', sanitize_text_field($title));
+        update_post_meta($attachment_id, '_wp_attached_file', ltrim(str_replace(trailingslashit($upload['basedir']), '', $file), '/'));
+        set_post_thumbnail($post_id, (int)$attachment_id);
+        return array('id'=>(int)$attachment_id, 'url'=>$url, 'path'=>$file);
+    }
+
     public static function publish_daily_article($term, $language, $settings, $snapshot, $context = 'cron') {
         $code = GNMM_Gold_Manager::country_code($term);
         $date = self::country_date($term,$code);
@@ -378,8 +452,14 @@ final class GNMM_Articles {
         }
         if (taxonomy_exists('countries')) { wp_set_object_terms($post_id,array((int) $term->term_id),'countries',false); }
         update_post_meta($post_id,'_gnmm_post_status',get_post_status($post_id));
+        $featured = self::ensure_featured_image($post_id, $term, $language, $article, $snapshot, $date);
+        if (is_wp_error($featured)) {
+            GNMM_Storage::log('error','articles','Article saved, but featured image generation failed: ' . $featured->get_error_message(),$code,$language,array('post_id'=>$post_id,'post_url'=>get_permalink($post_id)));
+        }
         GNMM_Storage::log('success','articles',($result === 'created' ? 'Created' : 'Updated') . ' localized SEO country article.',$code,$language,array(
             'post_id'=>$post_id,'post_url'=>get_permalink($post_id),'edit_url'=>get_edit_post_link($post_id,'raw'),
+            'featured_image_url'=>is_array($featured) ? $featured['url'] : '',
+            'featured_image_id'=>is_array($featured) ? $featured['id'] : 0,
             'status'=>get_post_status($post_id),'seo_title'=>$article['seo_title'],'focus_keyword'=>$article['focus_keyword']
         ));
         return (int) $post_id;
