@@ -164,15 +164,30 @@ final class GNMM_Images {
         if ($file_mtime === false || $file_size === false || $file_size <= 0) {
             return new WP_Error('gnmm_image_verify', 'The generated SVG could not be verified after replacement.');
         }
+        $version = md5_file($current_path);
+        if (!$version) {
+            return new WP_Error('gnmm_image_hash', 'Could not calculate the generated SVG fingerprint.');
+        }
+        // Publish an immutable, content-addressed URL. This bypasses stale browser,
+        // page and CDN caches even when the old country filename was cached.
+        $versioned_name = $code . '-' . $version . '.svg';
+        $versioned_path = $current_dir . $versioned_name;
+        if (!file_exists($versioned_path) && !@copy($current_path, $versioned_path)) {
+            return new WP_Error('gnmm_image_version_copy', 'Could not publish the versioned SVG image.');
+        }
+        clearstatcache(true, $versioned_path);
+        if (!is_file($versioned_path) || filesize($versioned_path) <= 0 || md5_file($versioned_path) !== $version) {
+            return new WP_Error('gnmm_image_version_verify', 'The versioned SVG image failed content verification.');
+        }
+        $versioned_url = $base_url . rawurlencode($language) . '/' . rawurlencode($versioned_name);
         GNMM_Storage::upsert_asset(array(
             'asset_type' => 'image', 'country_code' => $code, 'language' => $language,
-            'current_url' => $url, 'archive_url' => $archive_url,
+            'current_url' => $versioned_url, 'archive_url' => $archive_url,
             'source_updated_at' => $snapshot['source_updated_at'],
-            'meta' => array('currency'=>$currency,'prices'=>$local,'file_mtime'=>$file_mtime,'file_size'=>$file_size,'file_hash'=>md5_file($current_path))
+            'meta' => array('currency'=>$currency,'prices'=>$local,'file_mtime'=>$file_mtime,'file_size'=>filesize($versioned_path),'file_hash'=>$version,'canonical_url'=>$url)
         ));
         self::purge_country_page_cache($term, $language);
-        $version = md5_file($current_path);
-        return array('url'=>add_query_arg('gnmm_v', $version, $url), 'canonical_url'=>$url, 'archive_url'=>$archive_url, 'currency'=>$currency, 'version'=>$version);
+        return array('url'=>$versioned_url, 'canonical_url'=>$url, 'archive_url'=>$archive_url, 'currency'=>$currency, 'version'=>$version, 'file_size'=>filesize($versioned_path), 'file_mtime'=>$file_mtime);
     }
 
     private static function build_svg($country, $currency, $local, $usd, $labels, $language, $snapshot) {
