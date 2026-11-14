@@ -1,0 +1,52 @@
+name: Validate and package GoldNow Multilingual Manager
+
+on:
+  push:
+    branches:
+      - feature/goldnow-multilingual-manager
+    paths:
+      - 'goldnow-multilingual-manager/**'
+      - '.github/workflows/validate-gnmm.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Lint all plugin PHP files
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            php -l "$file"
+          done < <(find goldnow-multilingual-manager -type f -name '*.php' -print0)
+
+      - name: Build plugin ZIP
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          cd goldnow-multilingual-manager
+          zip -qr ../dist/goldnow-multilingual-manager-0.1.3.zip .
+
+      - name: Verify ZIP archive
+        run: unzip -t dist/goldnow-multilingual-manager-0.1.3.zip
+
+      - name: Upload installable plugin ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: goldnow-multilingual-manager-0.1.3
+          path: dist/goldnow-multilingual-manager-0.1.3.zip
+          if-no-files-found: error
+          retention-days: 14
