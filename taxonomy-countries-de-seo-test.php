@@ -587,7 +587,7 @@ $de_seo_titles = array(
     'usd' => 'US-Dollar-Wechselkurs heute in ' . $display_country_name,
 );
 $de_seo_intros = array(
-    '' => 'Sehen Sie die wichtigsten Goldmarktwerte für ' . $display_country_name . ' Vergleichen Sie die Referenzpreise für 24K, 22K, 21K, 18K und 14K je Gramm, den globalen Goldpreis je Feinunze in USD, die 8-Gramm-Goldmünze, Goldbarren und Wechselkurse. Diese Übersicht bündelt die wichtigsten Indikatoren; die folgenden Bereiche zeigen jeweils eigene Preisinformationen.',
+    '' => 'Sehen Sie die wichtigsten Goldmarktwerte für ' . $display_country_name . ': Vergleichen Sie die Referenzpreise für 24K, 22K, 21K, 18K und 14K je Gramm, den globalen Goldpreis je Feinunze in USD, die 8-Gramm-Goldmünze, Goldbarren und Wechselkurse. Diese Übersicht bündelt die wichtigsten Indikatoren; die folgenden Bereiche zeigen jeweils eigene Preisinformationen.',
     '24k' => 'Sehen Sie den heutigen 24-Karat-Goldpreis pro Gramm in ' . $display_country_name . '. Die Seite zeigt den lokalen Referenzwert und den entsprechenden USD-Vergleich. 24K-Gold dient als Reinheitsmaßstab für Anlagegold und Goldbarren.',
     '22k' => 'Verfolgen Sie den heutigen 22-Karat-Goldpreis pro Gramm in ' . $display_country_name . '. 22K-Gold enthält 22 von 24 Teilen reines Gold; der übrige Anteil besteht aus anderen Metallen und beeinflusst Eigenschaften und Referenzwert.',
     '21k' => 'Sehen Sie den aktuellen 21-Karat-Goldpreis pro Gramm in ' . $display_country_name . ' und vergleichen Sie ihn mit dem USD-Wert. 21K-Gold enthält 21 von 24 Teilen reines Gold. Bei Schmuck können zusätzlich Verarbeitung, Händleraufschläge und Steuern anfallen.',
