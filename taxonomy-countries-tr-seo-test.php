@@ -566,6 +566,41 @@ if (!function_exists('altaqrer_gold_tr_translate_shortcode_html')) {
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
+<?php
+// TR section-specific SEO H1 titles and introductions, following the Hindi/German layout.
+$tr_seo_titles = array(
+    '24k' => 'Bugün 24 ayar altın fiyatı: ' . $display_country_name,
+    '22k' => 'Bugün 22 ayar altın fiyatı: ' . $display_country_name,
+    '21k' => 'Bugün 21 ayar altın fiyatı: ' . $display_country_name,
+    '18k' => 'Bugün 18 ayar altın fiyatı: ' . $display_country_name,
+    '14k' => 'Bugün 14 ayar altın fiyatı: ' . $display_country_name,
+    'ounce' => 'Bugün küresel altın ons spot fiyatı (USD)',
+    'coin' => 'Bugün 8 gram altın sikke fiyatı: ' . $display_country_name,
+    'gold-bars' => 'Bugün altın külçe fiyatları: ' . $display_country_name,
+    'gold-index' => 'Canlı altın fiyat endeksi: ' . $display_country_name,
+    'usd' => 'Bugün ABD doları döviz kuru: ' . $display_country_name,
+);
+$tr_seo_intros = array(
+    '24k' => '' . $display_country_name . ' için 24 ayar altının gram başına referans fiyatını inceleyin. Yerel para birimindeki değeri USD karşılığıyla karşılaştırın. 24 ayar altın, külçe ve yatırım altını için saflık ölçütüdür.',
+    '22k' => '' . $display_country_name . ' için 22 ayar altının gram fiyatını takip edin ve 24 ayar altınla karşılaştırın. 22 ayar altın 24 parçanın 22 parçası saf altından oluşur; diğer metaller özellikleri ve değeri etkiler.',
+    '21k' => '' . $display_country_name . ' için 21 ayar altının gram fiyatını, yerel para birimi ve USD referans değerleriyle inceleyin. İşçilik, satıcı payı ve vergiler nihai satış fiyatını değiştirebilir.',
+    '18k' => '' . $display_country_name . ' için 18 ayar altının gram başına referans fiyatını görün. 18 ayar altın 24 parçanın 18 parçası altındır; gösterilen metal değeri bitmiş bir mücevherin mağaza fiyatıyla aynı olmayabilir.',
+    '14k' => '' . $display_country_name . ' için 14 ayar altının gram fiyatını 18, 21, 22 ve 24 ayar altınla karşılaştırın. Referans değer, 24 parçanın 14 parçası olan saf altın oranına bağlıdır.',
+    'ounce' => 'Altının bir troy onsu için USD cinsinden küresel spot fiyatı takip edin. Bir troy ons yaklaşık 31,1035 gramdır. Bu küresel referanstır; ülkeye özgü yerel para birimiyle ons fiyatı değildir.' . $display_country_name . '',
+    'coin' => '' . $display_country_name . ' için 8 gram altın sikkenin referans değerini inceleyin. Sitedeki hesaplama 8 gram ağırlığı esas alır ve 21, 22 ve 24 ayar altın içeriğini karşılaştırır; basım, durum, satıcı payı ve vergiler gerçek fiyatı etkileyebilir.',
+    'gold-bars' => '' . $display_country_name . ' için farklı ağırlıklardaki altın külçelerinin referans değerlerini 24 ayar gram fiyatına göre karşılaştırın. Sertifika, marka, üretim, teslimat ve vergiler nihai maliyeti etkileyebilir.',
+    'gold-index' => '' . $display_country_name . ' için altın fiyatlarını ayar ve para birimine göre karşılaştırın. Endeks, yerel referans değerlerini ve USD cinsinden küresel troy ons fiyatını bir araya getirir.',
+    'usd' => '' . $display_country_name . ' için mevcut en son USD referans kurunu inceleyin. Uluslararası altın genellikle ABD dolarıyla fiyatlandığından döviz hareketleri yerel altın fiyatlarını etkileyebilir.',
+);
+$tr_seo_h1 = isset($tr_seo_titles[$gold_view]) ? $tr_seo_titles[$gold_view] : 'Bugün 24 ayar altın fiyatı: ' . $display_country_name;
+$tr_seo_intro = isset($tr_seo_intros[$gold_view]) ? $tr_seo_intros[$gold_view] : '' . $display_country_name . ' için 24 ayar altının gram başına referans fiyatını inceleyin. Yerel para birimindeki değeri USD karşılığıyla karşılaştırın. 24 ayar altın, külçe ve yatırım altını için saflık ölçütüdür.';
+?>
+<section class="tr-seo-intro" aria-labelledby="tr-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
+    <h1 id="tr-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($tr_seo_h1); ?></h1>
+    <p style="margin:0;"><?php echo esc_html($tr_seo_intro); ?></p>
+    <p style="margin:10px 0 0;color:#aeb7c4;font-size:13px;">Son güncelleme: <?php echo esc_html($today); ?> · Fiyatlar gösterge niteliğindedir ve piyasa koşullarına göre değişebilir.</p>
+</section>
+
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
       <button class="gold-tab-btn active" type="button" data-tab="now">Canlı Fiyatlar</button>
