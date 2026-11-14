@@ -69,39 +69,40 @@ $th_meta_term = get_queried_object();
 $th_meta_term_id = (is_object($th_meta_term) && isset($th_meta_term->term_id)) ? (int) $th_meta_term->term_id : 0;
 $th_meta_country = '';
 $th_meta_country = $th_meta_term_id ? (string) get_term_meta($th_meta_term_id, 'country_english_name', true) : '';
+if ($th_meta_country === '') { $th_meta_country = 'ประเทศของคุณ'; }
 
 if ($th_meta_country === '') {
     $th_meta_country = 'your country';
 }
 $th_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $th_meta_titles = array(
-    '' => 'ดูภาพรวมตลาดทองคำในวันนี้ เปรียบเทียบราคาทอง 24K, 22K, 21K, 18K และ 14K ต่อกรัม พร้อมราคาอ้างอิงทองคำโลกต่อทรอยออนซ์เป็น USD เหรียญทองคำ 8 กรัม ทองคำแท่ง และอัตราแลกเปลี่ยน เลือกหัวข้อด้านล่างเพื่อดูรายละเอียดราคาแต่ละประเภทของ ',
-    '24k' => 'ติดตามราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    '22k' => 'เปรียบเทียบราคาทองคำ 22K ต่อกรัมกับทองคำ 24K ใน ' . $display_country_name,
-    '21k' => 'ตรวจสอบราคาทองคำ 21K ต่อกรัมใน ' . $display_country_name,
-    '18k' => 'ดูราคาอ้างอิงทองคำ 18K ต่อกรัมใน ' . $display_country_name,
-    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับความบริสุทธิ์ระดับอื่นใน ' . $display_country_name,
-    'ounce' => 'ติดตามราคาทองคำสปอตระหว่างประเทศต่อหนึ่งทรอยออนซ์เป็น USD หนึ่งทรอยออนซ์มีน้ำหนักประมาณ 31.1035 กรัม ราคานี้เป็นราคาอ้างอิงระดับโลก ไม่ใช่ราคาออนซ์สกุลเงินท้องถิ่นของประเทศใด',
-    'coin' => 'ดูมูลค่าอ้างอิงของเหรียญทองคำหนัก 8 กรัมใน ' . $display_country_name,
-    'gold-bars' => 'เปรียบเทียบมูลค่าทองคำแท่งตามน้ำหนักโดยใช้ราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    'gold-index' => 'เปรียบเทียบราคาทองคำตามความบริสุทธิ์และสกุลเงินใน ' . $display_country_name,
-    'usd' => 'ตรวจสอบอัตราแลกเปลี่ยน USD ล่าสุดที่ใช้เป็นข้อมูลอ้างอิงใน ' . $display_country_name,
+    '' => 'ราคาทองคำวันนี้และภาพรวมตลาดทองคำใน ' . $display_country_name,
+    '24k' => 'ราคาทองคำ 24K วันนี้ใน ' . $display_country_name,
+    '22k' => 'ราคาทองคำ 22K วันนี้ใน ' . $display_country_name,
+    '21k' => 'ราคาทองคำ 21K วันนี้ใน ' . $display_country_name,
+    '18k' => 'ราคาทองคำ 18K วันนี้ใน ' . $display_country_name,
+    '14k' => 'ราคาทองคำ 14K วันนี้ใน ' . $display_country_name,
+    'ounce' => 'ราคาทองคำโลกต่อทรอยออนซ์วันนี้ (USD)',
+    'coin' => 'ราคาเหรียญทองคำ 8 กรัมวันนี้ใน ' . $display_country_name,
+    'gold-bars' => 'ราคาทองคำแท่งวันนี้ใน ' . $display_country_name,
+    'gold-index' => 'ดัชนีราคาทองคำวันนี้ใน ' . $display_country_name,
+    'usd' => 'อัตราแลกเปลี่ยน USD วันนี้ใน ' . $display_country_name,
 );
 $th_meta_descriptions = array(
-    '' => 'ดูภาพรวมตลาดทองคำในวันนี้ เปรียบเทียบราคาทอง 24K, 22K, 21K, 18K และ 14K ต่อกรัม พร้อมราคาอ้างอิงทองคำโลกต่อทรอยออนซ์เป็น USD เหรียญทองคำ 8 กรัม ทองคำแท่ง และอัตราแลกเปลี่ยน เลือกหัวข้อด้านล่างเพื่อดูรายละเอียดราคาแต่ละประเภทของ ',
-    '24k' => 'ติดตามราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    '22k' => 'เปรียบเทียบราคาทองคำ 22K ต่อกรัมกับทองคำ 24K ใน ' . $display_country_name,
-    '21k' => 'ตรวจสอบราคาทองคำ 21K ต่อกรัมใน ' . $display_country_name,
+    '' => 'เปรียบเทียบราคาทองคำ 24K, 22K, 21K, 18K และ 14K ต่อกรัม พร้อมราคาอ้างอิงทองคำโลกต่อทรอยออนซ์เป็น USD เหรียญทองคำหนัก 8 กรัม ทองคำแท่ง และอัตราแลกเปลี่ยนของ ' . $display_country_name,
+    '24k' => 'ตรวจสอบราคาอ้างอิงทองคำ 24K ต่อกรัมและเปรียบเทียบกับระดับความบริสุทธิ์อื่นใน ' . $display_country_name,
+    '22k' => 'ดูราคาทองคำ 22K ต่อกรัมและความแตกต่างจากทองคำ 24K ใน ' . $display_country_name,
+    '21k' => 'ตรวจสอบราคาอ้างอิงทองคำ 21K ต่อกรัมใน ' . $display_country_name,
     '18k' => 'ดูราคาอ้างอิงทองคำ 18K ต่อกรัมใน ' . $display_country_name,
-    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับความบริสุทธิ์ระดับอื่นใน ' . $display_country_name,
-    'ounce' => 'ติดตามราคาทองคำสปอตระหว่างประเทศต่อหนึ่งทรอยออนซ์เป็น USD หนึ่งทรอยออนซ์มีน้ำหนักประมาณ 31.1035 กรัม ราคานี้เป็นราคาอ้างอิงระดับโลก ไม่ใช่ราคาออนซ์สกุลเงินท้องถิ่นของประเทศใด',
+    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับระดับความบริสุทธิ์อื่นใน ' . $display_country_name,
+    'ounce' => 'ราคาอ้างอิงทองคำสปอตระหว่างประเทศต่อหนึ่งทรอยออนซ์ในหน่วย USD หนึ่งทรอยออนซ์มีน้ำหนักประมาณ 31.1035 กรัม ตัวเลขนี้เป็นราคาอ้างอิงระดับโลก ไม่ใช่ราคาออนซ์ในสกุลเงินท้องถิ่นของประเทศใด',
     'coin' => 'ดูมูลค่าอ้างอิงของเหรียญทองคำหนัก 8 กรัมใน ' . $display_country_name,
-    'gold-bars' => 'เปรียบเทียบมูลค่าทองคำแท่งตามน้ำหนักโดยใช้ราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
+    'gold-bars' => 'เปรียบเทียบราคาทองคำแท่งตามน้ำหนักโดยใช้ราคา 24K ต่อกรัมเป็นเกณฑ์ใน ' . $display_country_name,
     'gold-index' => 'เปรียบเทียบราคาทองคำตามความบริสุทธิ์และสกุลเงินใน ' . $display_country_name,
-    'usd' => 'ตรวจสอบอัตราแลกเปลี่ยน USD ล่าสุดที่ใช้เป็นข้อมูลอ้างอิงใน ' . $display_country_name,
+    'usd' => 'ตรวจสอบอัตราแลกเปลี่ยน USD ที่ใช้เป็นข้อมูลอ้างอิงใน ' . $display_country_name,
 );
-$th_meta_title = isset($th_meta_titles[$th_meta_view]) ? $th_meta_titles[$th_meta_view] : '24K gold price today ' . $th_meta_country;
-$th_meta_description = isset($th_meta_descriptions[$th_meta_view]) ? $th_meta_descriptions[$th_meta_view] : 'Check the 24K gold price per gram today. Compare local-currency and USD reference values and learn how purity affects the gold rate.';
+$th_meta_title = isset($th_meta_titles[$th_meta_view]) ? $th_meta_titles[$th_meta_view] : 'ราคาทองคำ 24K วันนี้ใน ' . $th_meta_country;
+$th_meta_description = isset($th_meta_descriptions[$th_meta_view]) ? $th_meta_descriptions[$th_meta_view] : 'ตรวจสอบราคาอ้างอิงทองคำ 24K ต่อกรัมและเปรียบเทียบกับระดับความบริสุทธิ์อื่นใน ' . $th_meta_country;
 add_filter('rank_math/frontend/title', function ($title) use ($th_meta_title) {
     return $th_meta_title . ' | AlTaqrer Gold';
 }, 99);
@@ -415,33 +416,33 @@ if (!function_exists('altaqrer_gold_th_translate_shortcode_html')) {
 <?php
 // EN section-specific SEO H1 titles and introductions, following the Hindi/German layout.
 $th_seo_titles = array(
-    '' => 'ดูภาพรวมตลาดทองคำในวันนี้ เปรียบเทียบราคาทอง 24K, 22K, 21K, 18K และ 14K ต่อกรัม พร้อมราคาอ้างอิงทองคำโลกต่อทรอยออนซ์เป็น USD เหรียญทองคำ 8 กรัม ทองคำแท่ง และอัตราแลกเปลี่ยน เลือกหัวข้อด้านล่างเพื่อดูรายละเอียดราคาแต่ละประเภทของ ',
-    '24k' => 'ติดตามราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    '22k' => 'เปรียบเทียบราคาทองคำ 22K ต่อกรัมกับทองคำ 24K ใน ' . $display_country_name,
-    '21k' => 'ตรวจสอบราคาทองคำ 21K ต่อกรัมใน ' . $display_country_name,
-    '18k' => 'ดูราคาอ้างอิงทองคำ 18K ต่อกรัมใน ' . $display_country_name,
-    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับความบริสุทธิ์ระดับอื่นใน ' . $display_country_name,
-    'ounce' => 'ติดตามราคาทองคำสปอตระหว่างประเทศต่อหนึ่งทรอยออนซ์เป็น USD หนึ่งทรอยออนซ์มีน้ำหนักประมาณ 31.1035 กรัม ราคานี้เป็นราคาอ้างอิงระดับโลก ไม่ใช่ราคาออนซ์สกุลเงินท้องถิ่นของประเทศใด',
-    'coin' => 'ดูมูลค่าอ้างอิงของเหรียญทองคำหนัก 8 กรัมใน ' . $display_country_name,
-    'gold-bars' => 'เปรียบเทียบมูลค่าทองคำแท่งตามน้ำหนักโดยใช้ราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    'gold-index' => 'เปรียบเทียบราคาทองคำตามความบริสุทธิ์และสกุลเงินใน ' . $display_country_name,
-    'usd' => 'ตรวจสอบอัตราแลกเปลี่ยน USD ล่าสุดที่ใช้เป็นข้อมูลอ้างอิงใน ' . $display_country_name,
+    '' => 'ราคาทองคำวันนี้และภาพรวมตลาดทองคำใน ' . $display_country_name,
+    '24k' => 'ราคาทองคำ 24K วันนี้ใน ' . $display_country_name,
+    '22k' => 'ราคาทองคำ 22K วันนี้ใน ' . $display_country_name,
+    '21k' => 'ราคาทองคำ 21K วันนี้ใน ' . $display_country_name,
+    '18k' => 'ราคาทองคำ 18K วันนี้ใน ' . $display_country_name,
+    '14k' => 'ราคาทองคำ 14K วันนี้ใน ' . $display_country_name,
+    'ounce' => 'ราคาทองคำโลกต่อทรอยออนซ์วันนี้ (USD)',
+    'coin' => 'ราคาเหรียญทองคำ 8 กรัมวันนี้ใน ' . $display_country_name,
+    'gold-bars' => 'ราคาทองคำแท่งวันนี้ใน ' . $display_country_name,
+    'gold-index' => 'ดัชนีราคาทองคำวันนี้ใน ' . $display_country_name,
+    'usd' => 'อัตราแลกเปลี่ยน USD วันนี้ใน ' . $display_country_name,
 );
 $th_seo_intros = array(
-    '' => 'ดูภาพรวมตลาดทองคำในวันนี้ เปรียบเทียบราคาทอง 24K, 22K, 21K, 18K และ 14K ต่อกรัม พร้อมราคาอ้างอิงทองคำโลกต่อทรอยออนซ์เป็น USD เหรียญทองคำ 8 กรัม ทองคำแท่ง และอัตราแลกเปลี่ยน เลือกหัวข้อด้านล่างเพื่อดูรายละเอียดราคาแต่ละประเภทของ ',
-    '24k' => 'ติดตามราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    '22k' => 'เปรียบเทียบราคาทองคำ 22K ต่อกรัมกับทองคำ 24K ใน ' . $display_country_name,
-    '21k' => 'ตรวจสอบราคาทองคำ 21K ต่อกรัมใน ' . $display_country_name,
+    '' => 'เปรียบเทียบราคาทองคำ 24K, 22K, 21K, 18K และ 14K ต่อกรัม พร้อมราคาอ้างอิงทองคำโลกต่อทรอยออนซ์เป็น USD เหรียญทองคำหนัก 8 กรัม ทองคำแท่ง และอัตราแลกเปลี่ยนของ ' . $display_country_name,
+    '24k' => 'ตรวจสอบราคาอ้างอิงทองคำ 24K ต่อกรัมและเปรียบเทียบกับระดับความบริสุทธิ์อื่นใน ' . $display_country_name,
+    '22k' => 'ดูราคาทองคำ 22K ต่อกรัมและความแตกต่างจากทองคำ 24K ใน ' . $display_country_name,
+    '21k' => 'ตรวจสอบราคาอ้างอิงทองคำ 21K ต่อกรัมใน ' . $display_country_name,
     '18k' => 'ดูราคาอ้างอิงทองคำ 18K ต่อกรัมใน ' . $display_country_name,
-    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับความบริสุทธิ์ระดับอื่นใน ' . $display_country_name,
-    'ounce' => 'ติดตามราคาทองคำสปอตระหว่างประเทศต่อหนึ่งทรอยออนซ์เป็น USD หนึ่งทรอยออนซ์มีน้ำหนักประมาณ 31.1035 กรัม ราคานี้เป็นราคาอ้างอิงระดับโลก ไม่ใช่ราคาออนซ์สกุลเงินท้องถิ่นของประเทศใด',
+    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับระดับความบริสุทธิ์อื่นใน ' . $display_country_name,
+    'ounce' => 'ราคาอ้างอิงทองคำสปอตระหว่างประเทศต่อหนึ่งทรอยออนซ์ในหน่วย USD หนึ่งทรอยออนซ์มีน้ำหนักประมาณ 31.1035 กรัม ตัวเลขนี้เป็นราคาอ้างอิงระดับโลก ไม่ใช่ราคาออนซ์ในสกุลเงินท้องถิ่นของประเทศใด',
     'coin' => 'ดูมูลค่าอ้างอิงของเหรียญทองคำหนัก 8 กรัมใน ' . $display_country_name,
-    'gold-bars' => 'เปรียบเทียบมูลค่าทองคำแท่งตามน้ำหนักโดยใช้ราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
+    'gold-bars' => 'เปรียบเทียบราคาทองคำแท่งตามน้ำหนักโดยใช้ราคา 24K ต่อกรัมเป็นเกณฑ์ใน ' . $display_country_name,
     'gold-index' => 'เปรียบเทียบราคาทองคำตามความบริสุทธิ์และสกุลเงินใน ' . $display_country_name,
-    'usd' => 'ตรวจสอบอัตราแลกเปลี่ยน USD ล่าสุดที่ใช้เป็นข้อมูลอ้างอิงใน ' . $display_country_name,
+    'usd' => 'ตรวจสอบอัตราแลกเปลี่ยน USD ที่ใช้เป็นข้อมูลอ้างอิงใน ' . $display_country_name,
 );
-$th_seo_h1 = isset($th_seo_titles[$gold_view]) ? $th_seo_titles[$gold_view] : '24K Gold Price Today in ' . $display_country_name;
-$th_seo_intro = isset($th_seo_intros[$gold_view]) ? $th_seo_intros[$gold_view] : 'View the latest 24K gold reference price per gram in ' . $display_country_name . '. Compare the local-currency value with its USD equivalent and understand why 24K is used as the purity benchmark for gold bars and investment gold.';
+$th_seo_h1 = isset($th_seo_titles[$gold_view]) ? $th_seo_titles[$gold_view] : 'ราคาทองคำ 24K วันนี้ใน ' . $display_country_name;
+$th_seo_intro = isset($th_seo_intros[$gold_view]) ? $th_seo_intros[$gold_view] : 'ตรวจสอบราคาอ้างอิงทองคำ 24K ต่อกรัมและเปรียบเทียบกับระดับความบริสุทธิ์อื่นใน ' . $display_country_name;
 ?>
 <section class="th-seo-intro" aria-labelledby="th-seo-h1" style="max-width:1000px;width:95%;box-sizing:border-box;margin:18px auto 22px;padding:20px 22px;background:#1f2126;border:1px solid #343944;border-left:5px solid <?php echo esc_attr(get_theme_mod('infi_default_color', '#ffb301')); ?>;border-radius:9px;color:#e5e7eb;line-height:1.85;text-align:left;direction:ltr;">
     <h1 id="th-seo-h1" style="margin:0 0 10px;color:#fff;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:800;"><?php echo esc_html($th_seo_h1); ?></h1>
