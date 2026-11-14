@@ -758,7 +758,7 @@ $de_seo_intro = isset($de_seo_intros[$gold_view]) ? $de_seo_intros[$gold_view] :
 
             <div class="raw-gold-alert mt-4" style="background: #1f2126; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb301;">
                 <span class="alert-icon">⚠️</span>
-                <strong>Wichtig:</strong> The prices shown above for bars and coins represent Die oben angezeigten Preise für Barren und Münzen entsprechen ausschließlich dem Goldwert; Herstellungskosten, Gebühren für die Punzierung und Steuern sind nicht enthalten.
+                <strong>Wichtig:</strong> Die oben angezeigten Preise für Goldbarren und Münzen entsprechen ausschließlich dem Goldwert. Herstellungs- und Prägekosten, Gebühren für Prüfung oder Zertifizierung sowie Steuern sind nicht enthalten.
             </div>
 
         <?php } else { ?>
@@ -1326,10 +1326,10 @@ if (!empty($gold_view)) {
     <section>
       <h3>Regionale Goldpreise</h3>
       <ul>
-        <li><a href="<?php echo esc_url(home_url('/de/country/eg/')); ?>">Gold Prices in Egypt</a></li>
-        <li><a href="<?php echo esc_url(home_url('/de/country/sa/')); ?>">Gold Prices in Saudi Arabia</a></li>
-        <li><a href="<?php echo esc_url(home_url('/de/country/ae/')); ?>">Gold Prices in the UAE</a></li>
-        <li><a href="<?php echo esc_url(home_url('/de/country/kw/')); ?>">Gold Prices in Kuwait</a></li>
+        <li><a href="<?php echo esc_url(home_url('/de/country/eg/')); ?>">Goldpreise in Ägypten</a></li>
+        <li><a href="<?php echo esc_url(home_url('/de/country/sa/')); ?>">Goldpreise in Saudi-Arabien</a></li>
+        <li><a href="<?php echo esc_url(home_url('/de/country/ae/')); ?>">Goldpreise in den Vereinigten Arabischen Emiraten</a></li>
+        <li><a href="<?php echo esc_url(home_url('/de/country/kw/')); ?>">Goldpreise in Kuwait</a></li>
       </ul>
       <h3 style="margin-top:16px;">Folgen Sie uns</h3>
       <ul>
