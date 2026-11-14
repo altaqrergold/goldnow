@@ -84,7 +84,15 @@ final class GNMM_Images {
             'tr' => array('title'=>'Bugün altın fiyatları:','subtitle'=>'Ayarına göre gram altın fiyatı','karat'=>'Ayar','price'=>'Fiyat','updated'=>'Son güncelleme','ounce'=>'Küresel altın onsu (USD)','brand'=>'Altaqrer Gold','karat_suffix'=>'%s ayar','currency_names'=>array('EGP'=>'Mısır Lirası','USD'=>'ABD doları','SAR'=>'Suudi riyali','AED'=>'BAE dirhemi','EUR'=>'Euro','GBP'=>'İngiliz sterlini','KWD'=>'Kuveyt dinarı','QAR'=>'Katar riyali','BHD'=>'Bahreyn dinarı','OMR'=>'Umman riyali','MAD'=>'Fas dirhemi','DZD'=>'Cezayir dinarı','TND'=>'Tunus dinarı','JOD'=>'Ürdün dinarı','TRY'=>'Türk lirası','INR'=>'Hindistan rupisi'))
         );
         $labels = isset($all[$language]) ? $all[$language] : $all['en'];
-        $labels['currency_name'] = isset($labels['currency_names'][$GLOBALS['gnmm_current_currency'] ?? '']) ? $labels['currency_names'][$GLOBALS['gnmm_current_currency']] : (string) ($GLOBALS['gnmm_current_currency'] ?? '');
+        $currency = (string) ($GLOBALS['gnmm_current_currency'] ?? '');
+        if (isset($labels['currency_names'][$currency])) {
+            $labels['currency_name'] = $labels['currency_names'][$currency];
+        } elseif ($language === 'ar') {
+            global $currency_names;
+            $labels['currency_name'] = (is_array($currency_names) && !empty($currency_names[$currency])) ? $currency_names[$currency] : $currency;
+        } else {
+            $labels['currency_name'] = $currency;
+        }
         return $labels;
     }
 
