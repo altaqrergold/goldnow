@@ -246,7 +246,7 @@ final class GNMM_Articles {
             $usd_rate = (!empty($snapshot['currency_rates'][$currency]) && $usd_base > 0) ? (float) $snapshot['currency_rates'][$currency] / $usd_base : null;
         }
 
-        $date = wp_date('Y-m-d');
+        $date = self::country_date($term, $code);
         $base_url = GNMM_Gold_Manager::country_url($term, $language);
         $render_data = array(
             'country'=>$country,
@@ -366,6 +366,9 @@ final class GNMM_Articles {
         if (is_wp_error($post_id)) { return $post_id; }
 
         wp_set_post_tags($post_id,$article['tags'],false);
+        if (!empty($settings['article_category'])) {
+            wp_set_post_categories($post_id,array(absint($settings['article_category'])),false);
+        }
         if (taxonomy_exists('countries')) { wp_set_object_terms($post_id,array((int) $term->term_id),'countries',false); }
         update_post_meta($post_id,'_gnmm_post_status',get_post_status($post_id));
         GNMM_Storage::log('success','articles',($result === 'created' ? 'Created' : 'Updated') . ' localized SEO country article.',$code,$language,array(
