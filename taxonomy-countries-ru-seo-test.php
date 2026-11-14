@@ -227,16 +227,16 @@ if ($ru_meta_country === '') {
 }
 $ru_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $ru_meta_titles = array(
-    '24k' => 'Цена золота 24 карата сегодня ' . $ru_meta_country',
-    '22k' => 'Цена золота 22 карата сегодня ' . $ru_meta_country',
-    '21k' => 'Цена золота 21 карата сегодня ' . $ru_meta_country',
-    '18k' => 'Цена золота 18 каратов сегодня ' . $ru_meta_country',
-    '14k' => 'Цена золота 14 каратов сегодня ' . $ru_meta_country',
-    'ounce' => 'Мировая цена унции золота в USD ' . $ru_meta_country',
-    'coin' => 'Цена золотой монеты весом 8 граммов ' . $ru_meta_country',
-    'gold-bars' => 'Цены на золотые слитки сегодня ' . $ru_meta_country',
-    'gold-index' => 'Индекс цен на золото в реальном времени ' . $ru_meta_country',
-    'usd' => 'Курс доллара США ' . $ru_meta_country',
+    '24k' => 'Цена золота 24 карата сегодня ' . $ru_meta_country,
+    '22k' => 'Цена золота 22 карата сегодня ' . $ru_meta_country,
+    '21k' => 'Цена золота 21 карата сегодня ' . $ru_meta_country,
+    '18k' => 'Цена золота 18 каратов сегодня ' . $ru_meta_country,
+    '14k' => 'Цена золота 14 каратов сегодня ' . $ru_meta_country,
+    'ounce' => 'Мировая цена унции золота в USD ' . $ru_meta_country,
+    'coin' => 'Цена золотой монеты весом 8 граммов ' . $ru_meta_country,
+    'gold-bars' => 'Цены на золотые слитки сегодня ' . $ru_meta_country,
+    'gold-index' => 'Индекс цен на золото в реальном времени ' . $ru_meta_country,
+    'usd' => 'Курс доллара США ' . $ru_meta_country,
 );
 $ru_meta_descriptions = array(
     '24k' => 'Узнайте справочную цену золота 24 карата за грамм. Сравните значения в местной валюте и USD и изучите влияние пробы.',
