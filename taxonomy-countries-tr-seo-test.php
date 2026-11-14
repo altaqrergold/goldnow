@@ -89,6 +89,9 @@ function altaqrer_gold_tr_output_translate($html) {
         "22K Gold" => "22 Ayar Altın",
         "21K Gold" => "21 Ayar Altın",
         "21K Gold Price Movement" => "21 Ayar Altın Fiyat Değişimi",
+        "21 Ayar Altın Fiyat Movement 21k" => "21 Ayar Altın Fiyat Değişimi",
+        "21 Ayar Altın Fiyat Değişimi 21k" => "21 Ayar Altın Fiyat Değişimi",
+        "21K Gold Price Movement 21k" => "21 Ayar Altın Fiyat Değişimi",
         "18K Gold" => "18 Ayar Altın",
         "14K Gold" => "14 Ayar Altın",
         "12K Gold" => "12 Ayar Altın",
@@ -1156,7 +1159,7 @@ if (!empty($gold_view)) {
                     <li>🔹 <strong>ABD doları karşılığı:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_22k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    Üst segment <strong>22K ayar gram altın fiyatı</strong> fiyatı <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Yüksek değerli metal içeriğini yapısal dayanıklılıkla dengeler.
+                    Üst segmentte 22 ayar altının gram fiyatı <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Yüksek değerli metal içeriğini yapısal dayanıklılıkla dengeler.
                 </p>
 
             <?php elseif ($gold_view == '21k') : ?>
@@ -1176,7 +1179,7 @@ if (!empty($gold_view)) {
                     <li>🔹 <strong>ABD doları karşılığı:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_18k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    Piyasa güncellemelerine göre standart <strong>18K ayar gram altın fiyatı</strong> fiyatını <strong><?php echo number_format($price_18k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, lüks mücevher işçiliği için ekonomik bir seçenektir.
+                    Piyasa güncellemelerine göre standart 18 ayar altının gram fiyatı <strong><?php echo number_format($price_18k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, lüks mücevher işçiliği için ekonomik bir seçenektir.
                 </p>
 
             <?php elseif ($gold_view == '14k') : ?>
@@ -1186,7 +1189,7 @@ if (!empty($gold_view)) {
                     <li>🔹 <strong>ABD doları karşılığı:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_14k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    Hesaplanan endeks <strong>14K ayar gram altın fiyatı</strong> fiyatını <strong><?php echo number_format($price_14k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> fiyatını gösterir; bu dayanıklı alaşım günlük mücevher kullanımı için uygundur.
+                    Hesaplanan endeks 14 ayar altının gram fiyatını <strong><?php echo number_format($price_14k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> fiyatını gösterir; bu dayanıklı alaşım günlük mücevher kullanımı için uygundur.
                 </p>
 
             <?php elseif ($gold_view == 'ounce') : ?>
@@ -1223,31 +1226,31 @@ if (!empty($gold_view)) {
     $en_active_price_usd = $tr_seo_price_map[$gold_view][1];
     $tr_karat = str_replace(['24K','22K','21K','18K','14K'], ['24 ayar','22 ayar','21 ayar','18 ayar','14 ayar'], strtoupper($gold_view));
 ?>
-    <h2 id="tr-seo-title"><?php echo esc_html($tr_karat); ?> altın fiyatı bugün <?php echo esc_html($display_country_name); ?> gram başına</h2>
-    <p>Yukarıdaki canlı referansa göre <strong><?php echo esc_html($display_country_name); ?> için <?php echo esc_html($tr_karat); ?> altının güncel gram fiyatını</strong> takip edin. Güncel gösterge değer <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong> gram başına, yaklaşık olarak <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong>. Bu değerler, mevcut en güncel 24 ayar referans fiyatı ve saflık oranı kullanılarak hesaplanır: <?php echo esc_html($tr_karat); ?> altın ve sitenin kullandığı en güncel döviz kuru.</p>
+    <h2 id="tr-seo-title"><?php echo esc_html($display_country_name); ?> için bugün <?php echo esc_html($tr_karat); ?> altının gram fiyatı</h2>
+    <p>Yukarıdaki canlı referansa göre <strong><?php echo esc_html($display_country_name); ?> için <?php echo esc_html($tr_karat); ?> altının güncel gram fiyatını</strong> takip edin. Güncel gösterge fiyatı gram başına <strong><?php echo number_format($en_active_price_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, USD karşılığı ise yaklaşık <strong><?php echo number_format($en_active_price_usd, 2); ?> USD</strong> düzeyindedir. Değerler, mevcut 24 ayar referans fiyatı, <?php echo esc_html($tr_karat); ?> altının saflık oranı ve sitenin kullandığı en güncel döviz kuru temel alınarak hesaplanır.</p>
     <h3><?php echo esc_html($tr_karat); ?> altın ne anlama gelir?</h3>
     <p>Ayar, alaşımdaki saf altın oranını gösterir. 24 ayar saf altın referansıdır; daha düşük ayarlar daha fazla başka metal içerir. <?php echo esc_html($tr_karat); ?> bu nedenle takının nihai satış fiyatını değil, altın içeriğini yansıtır. Mağaza fiyatına işçilik, satıcı primi, vergiler ve burada gösterilen ham piyasa değerine dahil olmayan yerel ücretler eklenebilir.</p>
     <h3>Yerel ve USD fiyatları nasıl okunur</h3>
-    <p>Yerel para birimindeki tutar, <?php echo esc_html($display_country_name); ?>; USD karşılığı aynı altın içeriğini uluslararası fiyatlarla karşılaştırmayı kolaylaştırır. Yerel fiyatlar küresel altın göstergesi, döviz kurları veya yerel piyasa koşullarına göre değişebilir. Bunlar gösterge niteliğindedir; garantili alış ya da satış teklifi değildir.</p>
+    <p><?php echo esc_html($display_country_name); ?> için yerel para birimiyle gösterilen tutar, altının yerel piyasa değerini ifade eder. USD karşılığı ise aynı altın değerini uluslararası fiyatlarla karşılaştırmayı kolaylaştırır. Yerel fiyatlar küresel altın göstergesine, döviz kurlarına ve piyasa koşullarına göre değişebilir. Gösterilen tutarlar bilgilendirme amaçlıdır; kesin alış veya satış teklifi değildir.</p>
     <h3>İlgili altın fiyatları</h3>
-    <p>Bu fiyatı şu değerlerle karşılaştırın: <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'gold-index/'); ?>">gerçek zamanlı altın piyasası endeksi</a> piyasayı daha geniş değerlendirmek için.</p>
+    <p>Altın piyasasını daha kapsamlı değerlendirmek için bu fiyatı <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altın</a>, <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a> ve <a href="<?php echo esc_url($tr_seo_base . 'gold-index/'); ?>">canlı altın piyasası endeksi</a> ile karşılaştırın.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Gösterilen <?php echo esc_html($tr_karat); ?> kuyumcu nihai satış fiyatı mı?</summary><p>Hayır. Bu, işçilik, satıcı primi, vergiler ve bitmiş ürüne uygulanabilecek diğer ücretleri içermeyen gösterge niteliğinde ham altın değeridir.</p></details>
     <details><summary>USD karşılığı neden yerel fiyattan farklı?</summary><p>İki değer farklı para birimlerini kullanır. Yerel tutar sitenin en güncel döviz kuruyla hesaplanır; USD tutarı altının ABD doları karşılığını gösterir.</p></details>
 <?php elseif ($gold_view === 'ounce') : ?>
     <h2 id="tr-seo-title">Bugün küresel altın ons fiyatı (USD)</h2>
-    <p>Bu sayfadaki uluslararası altın ons referansı <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> yaklaşık 31,1 gram 24 ayar altın içeren bir troy ons içindir. Bu, <strong>küresel spot altın göstergesidir</strong> ve ABD doları üzerinden fiyatlandırılır. Ülkeye özgü yerel para birimi ons fiyatı olarak sunulmaz; yerel gram fiyatları seçilen ülke için ayrıca dönüştürülür.</p>
+    <p>Bu sayfada gösterilen uluslararası altın ons referansı <strong><?php echo number_format($ounce_price_usd, 2); ?> USD</strong> düzeyindedir ve yaklaşık 31,1 gram 24 ayar altına karşılık gelen bir troy onsu ifade eder. Bu değer, ABD doları üzerinden açıklanan <strong>küresel spot altın göstergesidir</strong>; ülkeye özgü yerel para biriminde ons fiyatı değildir. Yerel gram fiyatları seçilen ülkenin para birimine ayrıca çevrilir.</p>
     <h3>Küresel altın ons fiyatı neden önemlidir</h3>
     <p>Uluslararası piyasalarda altın genellikle troy ons üzerinden fiyatlanır. İşlemciler, rafineriler, finans kuruluşları ve külçe altın satıcıları bu göstergeyi piyasalar arasında karşılaştırma yapmak için kullanır. ABD doları, faiz beklentileri, enflasyon görünümü, merkez bankalarının faaliyetleri ve yatırımcı talebi uluslararası fiyatı etkileyebilir. Bunlar genel piyasa etkenleridir; bugünkü hareketin tek bir nedeni olduğu iddiası değildir.</p>
     <h3>Küresel ons fiyatından yerel gram fiyatına</h3>
     <p>Basit bir karşılaştırma için bir troy ons yaklaşık 31,1 gramdır. Yerel gram fiyatı seçilen döviz dönüşümüne ve yerel piyasa koşullarına da bağlıdır. Yukarıdaki küresel ons değeri uluslararası kotasyonlarla tutarlı karşılaştırma için USD olarak kalır.</p>
-    <p>Şuraya geçin: <a href="<?php echo esc_url($tr_seo_base); ?>"> bölgesindeki altın fiyatı <?php echo esc_html($display_country_name); ?></a>, inceleyin <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar altın gram başına</a>, veya açın <a href="<?php echo esc_url($tr_seo_base . 'gold-index/'); ?>">altın piyasası endeksi</a>.</p>
+    <p><a href="<?php echo esc_url($tr_seo_base); ?>"><?php echo esc_html($display_country_name); ?> altın fiyatlarını</a> inceleyin; ayrıca <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar altının gram fiyatına</a> ve <a href="<?php echo esc_url($tr_seo_base . 'gold-index/'); ?>">altın piyasası endeksine</a> göz atın.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Bir troy ons altın kaç gramdır?</summary><p>Bir troy ons yaklaşık 31,1035 gramdır. Sayfadaki referans hesaplamasında 31,1 gram kullanılır.</p></details>
     <details><summary>Bu ons fiyatı yerel para birimine çevriliyor mu?</summary><p>Hayır. Bu sayfa yalnızca USD cinsinden uluslararası altın ons göstergesini gösterir. Yerel para birimi değerleri ilgili ülke fiyat tablolarında ayrıca sunulur.</p></details>
 <?php elseif ($gold_view === 'coin') : ?>
-    <h2 id="tr-seo-title">Bugün 8 gram altın sikke fiyatı <?php echo esc_html($display_country_name); ?></h2>
-    <p>Referans değerini takip edin: <strong><?php echo esc_html($display_country_name); ?> için 8 gramlık altın sikke</strong>. Güncel gram fiyatlarına göre 21 ayar sikkenin gösterge değeri <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (yaklaşık <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). Sayfa ayrıca şunları karşılaştırır: aynı 8 gram ağırlık için 22 ve 24 ayar değerlerini karşılaştırarak saflığın etkisini görebilirsiniz.</p>
+    <h2 id="tr-seo-title"><?php echo esc_html($display_country_name); ?> için bugün 8 gram altın sikke fiyatı</h2>
+    <p><?php echo esc_html($display_country_name); ?> için 8 gramlık altın sikkenin gösterge değeri, güncel 21 ayar gram fiyatının sekizle çarpılmasıyla hesaplanır: <strong><?php echo number_format($price_21k_local * 8, 2); ?> <?php echo esc_html($currency_label); ?></strong> (yaklaşık <strong><?php echo number_format($price_21k_usd * 8, 2); ?> USD</strong>). Aynı 8 gram ağırlık üzerinden 22 ve 24 ayar altının karşılaştırma değerleri de hesaplanır.</p>
     <h3>8 gram sikkenin değeri nasıl hesaplanır</h3>
     <p>Hesaplamada ilgili gram altın değeri 8 gramla çarpılır. Standart 21 ayar referansı için 21 ayar gram fiyatı sekizle çarpılır. 22 ve 24 ayar karşılaştırmaları aynı ağırlıkta kendi gram fiyatlarını kullanır. Böylece sitenin mevcut 8 gram sikke hesaplaması korunur.</p>
     <p>Sikkenin gerçek fiyatı basım, kondisyon, tasarım, nadirlik, satıcı primi ve yerel vergilere göre değişebilir. Buradaki değer altın içeriği referansıdır; garantili işlem fiyatı değildir. Şunlarla karşılaştırın: <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar altının gram fiyatı</a>, <a href="<?php echo esc_url($tr_seo_base . '22k/'); ?>">22 ayar altın fiyatı</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'gold-bars/'); ?>">altın külçe fiyatları</a>.</p>
@@ -1294,7 +1297,7 @@ if (!empty($gold_view)) {
     <p>Bu sayfada kullanılan en güncel referansa göre bir ABD doları yaklaşık <strong><?php echo number_format($local_currency_per_usd, 2); ?> <?php echo esc_html($currency_label); ?></strong>. Döviz kurları altın alıcıları için önemlidir; uluslararası külçe fiyatları genellikle USD üzerinden kote edilir. Yerel para dolar karşısında değiştiğinde, uluslararası USD altın fiyatı sabit kalsa bile altının yerel değeri değişebilir.</p>
     <h3>Döviz hareketleri yerel altın fiyatlarını nasıl etkiler</h3>
     <p>Yerel altın fiyatı tahmini, uluslararası altın göstergesini döviz dönüşümüyle ve perakende piyasadaki yerel prim, vergi veya maliyetlerle birleştirir. Bu sayfa dönüşüm bağlamını açıklamak için seçili para birimi karşılaştırmaları sunar. Kurlar bilgilendirme amaçlıdır; banka, nakit, kart veya havale kurlarından farklı olabilir.</p>
-    <p>Altın karşılaştırması için şu sayfaları inceleyin: <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar gram fiyatı</a>,  href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar gram fiyatı</a>, ve <a href="<?php echo esc_url($tr_seo_base . 'ounce/'); ?>">USD cinsinden uluslararası altın onsu</a>.</p>
+    <p>Altın fiyatlarını karşılaştırmak için <a href="<?php echo esc_url($tr_seo_base . '24k/'); ?>">24 ayar gram fiyatını</a>, <a href="<?php echo esc_url($tr_seo_base . '21k/'); ?>">21 ayar gram fiyatını</a> ve <a href="<?php echo esc_url($tr_seo_base . 'ounce/'); ?>">USD cinsinden uluslararası altın ons fiyatını</a> inceleyin.</p>
     <h3>Sıkça Sorulan Sorular</h3>
     <details><summary>Bu döviz kuru tüm bankaların sunduğu kur mudur?</summary><p>Hayır. Bu, sitenin kullandığı en güncel referans kurdur. Bankalar ve döviz sağlayıcıları farklı alış-satış kurları, makas veya ücret uygulayabilir.</p></details>
     <details><summary>Dolar kuru altın için neden önemlidir?</summary><p>Altın uluslararası piyasalarda genellikle ABD dolarıyla fiyatlandığından, bu göstergenin yerel para birimine çevrilmesi yerel altın değerini tahmin etmenin unsurlarından biridir.</p></details>
