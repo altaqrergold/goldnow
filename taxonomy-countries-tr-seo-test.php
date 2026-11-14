@@ -244,7 +244,7 @@ $tr_meta_titles = array(
     'usd' => 'ABD doları döviz kuru ' . $tr_meta_country,
 );
 $tr_meta_descriptions = array(
-    '' => $tr_meta_country . 'için farklı ayarlardaki altın fiyatlarını, USD cinsinden küresel ons fiyatını, 8 gram altın sikkeyi, külçe altınları ve döviz kurlarını inceleyin. Temel piyasa göstergelerini tek bir genel görünümde karşılaştırın.',
+    '' => $tr_meta_country . ' için farklı ayarlardaki altın fiyatlarını, USD cinsinden küresel ons fiyatını, 8 gram altın sikkeyi, külçe altınları ve döviz kurlarını inceleyin. Temel piyasa göstergelerini tek bir genel görünümde karşılaştırın.',
     '24k' => '24 ayar altının gram fiyatını inceleyin. Yerel para birimi ve USD cinsinden referans değerleri karşılaştırın, saflık oranını öğrenin.',
     '22k' => '22 ayar altının gram fiyatını inceleyin ve 24 ayar altınla yerel para birimi ve USD cinsinden karşılaştırın.',
     '21k' => '21 ayar altının gram fiyatını takip edin, yerel ve USD değerlerini karşılaştırın ve 8 gram sikke hesaplamasını öğrenin.',
@@ -588,7 +588,7 @@ $tr_seo_titles = array(
     'usd' => 'Bugün ABD doları döviz kuru: ' . $display_country_name,
 );
 $tr_seo_intros = array(
-    '' => $display_country_name . 'altın piyasasının genel görünümünü inceleyin: 24, 22, 21, 18 ve 14 ayar altının gram referans fiyatlarını, USD cinsinden küresel troy ons fiyatını, 8 gram altın sikkeyi, külçe altınları ve döviz kurlarını karşılaştırın. Bu ana sayfa temel göstergeleri bir araya getirir; aşağıdaki her sekmede kendine özgü ayrıntılar bulunur.',
+    '' => $display_country_name . ' için altın piyasasının genel görünümünü inceleyin: 24, 22, 21, 18 ve 14 ayar altının gram referans fiyatlarını, USD cinsinden küresel troy ons fiyatını, 8 gram altın sikkeyi, külçe altınları ve döviz kurlarını karşılaştırın. Bu ana sayfa temel göstergeleri bir araya getirir; aşağıdaki her sekmede kendine özgü ayrıntılar bulunur.',
     '24k' => '' . $display_country_name . ' için 24 ayar altının gram başına referans fiyatını inceleyin. Yerel para birimindeki değeri USD karşılığıyla karşılaştırın. 24 ayar altın, külçe ve yatırım altını için saflık ölçütüdür.',
     '22k' => '' . $display_country_name . ' için 22 ayar altının gram fiyatını takip edin ve 24 ayar altınla karşılaştırın. 22 ayar altın 24 parçanın 22 parçası saf altından oluşur; diğer metaller özellikleri ve değeri etkiler.',
     '21k' => '' . $display_country_name . ' için 21 ayar altının gram fiyatını, yerel para birimi ve USD referans değerleriyle inceleyin. İşçilik, satıcı payı ve vergiler nihai satış fiyatını değiştirebilir.',
