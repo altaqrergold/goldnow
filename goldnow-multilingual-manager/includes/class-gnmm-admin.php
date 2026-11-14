@@ -129,9 +129,19 @@ final class GNMM_Admin {
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="display:inline-block;margin-right:12px"><input type="hidden" name="action" value="gnmm_run_now"><input type="hidden" name="module" value="images"><?php wp_nonce_field('gnmm_run_now'); ?><?php submit_button('Generate selected images','secondary','submit',false); ?></form>
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="display:inline-block"><input type="hidden" name="action" value="gnmm_run_now"><input type="hidden" name="module" value="articles"><?php wp_nonce_field('gnmm_run_now'); ?><?php submit_button('Create selected articles','secondary','submit',false); ?></form>
         <h2>Recent activity</h2>
-        <?php global $wpdb; $log_table=GNMM_Storage::tables()['logs']; $logs=$wpdb->get_results("SELECT level,module,country_code,language,message,created_at FROM {$log_table} ORDER BY id DESC LIMIT 20"); ?>
-        <table class="widefat striped"><thead><tr><th>Time (UTC)</th><th>Level</th><th>Module</th><th>Country</th><th>Language</th><th>Message</th></tr></thead><tbody>
-        <?php if($logs): foreach($logs as $log): ?><tr><td><?php echo esc_html($log->created_at); ?></td><td><?php echo esc_html($log->level); ?></td><td><?php echo esc_html($log->module); ?></td><td><?php echo esc_html($log->country_code); ?></td><td><?php echo esc_html($log->language); ?></td><td><?php echo esc_html($log->message); ?></td></tr><?php endforeach; else: ?><tr><td colspan="6">No activity recorded yet.</td></tr><?php endif; ?></tbody></table>
+        <?php global $wpdb; $log_table=GNMM_Storage::tables()['logs']; $logs=$wpdb->get_results("SELECT level,module,country_code,language,message,context,created_at FROM {$log_table} ORDER BY id DESC LIMIT 30"); ?>
+        <table class="widefat striped"><thead><tr><th>Time (UTC)</th><th>Level</th><th>Module</th><th>Country</th><th>Language</th><th>Message and verified output</th></tr></thead><tbody>
+        <?php if($logs): foreach($logs as $log): $ctx=!empty($log->context)?json_decode($log->context,true):array(); $ctx=is_array($ctx)?$ctx:array(); ?>
+        <tr><td><?php echo esc_html($log->created_at); ?></td><td><?php echo esc_html($log->level); ?></td><td><?php echo esc_html($log->module); ?></td><td><?php echo esc_html($log->country_code); ?></td><td><?php echo esc_html($log->language); ?></td><td>
+        <?php echo esc_html($log->message); ?>
+        <?php if(!empty($ctx['url'])): ?><br><strong>Image:</strong> <a href="<?php echo esc_url($ctx['url']); ?>" target="_blank" rel="noopener">Open generated image</a><?php endif; ?>
+        <?php if(!empty($ctx['archive_url'])): ?><br><strong>Previous image:</strong> <a href="<?php echo esc_url($ctx['archive_url']); ?>" target="_blank" rel="noopener">Open archived image</a><?php endif; ?>
+        <?php if(!empty($ctx['post_url'])): ?><br><strong>Article:</strong> <a href="<?php echo esc_url($ctx['post_url']); ?>" target="_blank" rel="noopener">Open article</a><?php endif; ?>
+        <?php if(!empty($ctx['edit_url'])): ?> · <a href="<?php echo esc_url($ctx['edit_url']); ?>">Edit article</a><?php endif; ?>
+        <?php if(!empty($ctx['featured_image_url'])): ?><br><strong>Featured image:</strong> <a href="<?php echo esc_url($ctx['featured_image_url']); ?>" target="_blank" rel="noopener">Open featured image</a><?php endif; ?>
+        <?php if(!empty($ctx['version'])): ?><br><small>Version: <code><?php echo esc_html($ctx['version']); ?></code></small><?php endif; ?>
+        <?php if(!empty($ctx['file_size'])): ?> · <small><?php echo esc_html(size_format((int)$ctx['file_size'])); ?></small><?php endif; ?>
+        </td></tr><?php endforeach; else: ?><tr><td colspan="6">No activity recorded yet.</td></tr><?php endif; ?></tbody></table>
         <p><strong>Countries discovered:</strong> <?php echo esc_html((string)count($countries)); ?></p>
         </div>
         <?php self::bulk_script();
