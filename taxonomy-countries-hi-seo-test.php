@@ -87,6 +87,7 @@ function altaqrer_gold_hi_output_translate($html) {
         "ट्रॉय औंस (31,1 g)" => "ट्रॉय औंस (31.1 ग्राम)",
         "24K Gold" => "24 कैरेट सोना",
         "22K Gold" => "22 कैरेट सोना",
+        "21K Gold Price Movement" => "21 कैरेट सोने की कीमत में बदलाव",
         "21K Gold" => "21 कैरेट सोना",
         "18K Gold" => "18 कैरेट सोना",
         "14K Gold" => "14 कैरेट सोना",
