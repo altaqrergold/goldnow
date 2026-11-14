@@ -43,6 +43,12 @@ final class GNMM_Articles {
     private static function article_dictionary_candidates() {
         $candidates = array();
 
+        // Ship the exact localized SEO dictionary with GNMM so article creation
+        // does not depend on a separate plugin file being present on the server.
+        if (defined('GNMM_DIR')) {
+            $candidates[] = GNMM_DIR . 'includes/goldnow-seo-content.php';
+        }
+
         // Prefer the exact directory of the installed GoldNow Language Manager.
         // This also works when the plugin is installed in a custom folder name.
         if (class_exists('GoldNow_Language_Manager')) {
