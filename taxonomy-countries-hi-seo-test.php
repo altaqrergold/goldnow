@@ -238,7 +238,7 @@ $hi_meta_titles = array(
     '21k' => 'आज ' . $hi_meta_country . ' में 21 कैरेट सोने का भाव',
     '18k' => 'आज ' . $hi_meta_country . ' में 18 कैरेट सोने की कीमत',
     '14k' => 'आज ' . $hi_meta_country . ' में 14 कैरेट सोने का भाव',
-    'ounce' => 'आज सोने की वैश्विक कीमत प्रति ट्रॉय औंस (USD)',
+    'ounce' => 'आज सोने की वैश्विक ट्रॉय औंस कीमत (USD)',
     'coin' => $hi_meta_country . ' में 8 ग्राम सोने के सिक्के की कीमत',
     'gold-bars' => $hi_meta_country . ' में सोने की छड़ों की कीमत',
     'gold-index' => $hi_meta_country . ' में सोने की कीमतों का सूचकांक',
@@ -555,14 +555,14 @@ if (!function_exists('altaqrer_gold_hi_translate_shortcode_html')) {
     $gold_pound_currency = $gram_24k_price_currency * 8 * 0.875;
 
 $hi_seo_page_titles = array(
-    '24k' => 'आज 24 कैरेट सोने का भाव — ' . $display_country_name,
-    '22k' => 'आज 22 कैरेट सोने की कीमत — ' . $display_country_name,
-    '21k' => 'आज 21 कैरेट सोने का भाव — ' . $display_country_name,
-    '18k' => 'आज 18 कैरेट सोने की कीमत — ' . $display_country_name,
-    '14k' => 'आज 14 कैरेट सोने का भाव — ' . $display_country_name,
+    '24k' => $display_country_name . ' में आज 24 कैरेट सोने का भाव',
+    '22k' => $display_country_name . ' में आज 22 कैरेट सोने की कीमत',
+    '21k' => $display_country_name . ' में आज 21 कैरेट सोने का भाव',
+    '18k' => $display_country_name . ' में आज 18 कैरेट सोने की कीमत',
+    '14k' => $display_country_name . ' में आज 14 कैरेट सोने का भाव',
     'ounce' => 'आज सोने की वैश्विक कीमत प्रति ट्रॉय औंस (USD)',
     'coin' => $display_country_name . ' में आज 8 ग्राम सोने के सिक्के की कीमत',
-    'gold-bars' => $display_country_name . ' में आज सोने की छड़ों और गोल्ड बार की कीमत',
+    'gold-bars' => $display_country_name . ' में आज गोल्ड बार की कीमतें',
     'gold-index' => $display_country_name . ' में आज सोने का बाजार सूचकांक',
     'usd' => $display_country_name . ' में आज अमेरिकी डॉलर की विनिमय दर',
 );
@@ -570,16 +570,16 @@ $hi_seo_h1 = !empty($gold_view) && isset($hi_seo_page_titles[$gold_view])
     ? $hi_seo_page_titles[$gold_view]
     : 'आज सोने का भाव — ' . $display_country_name . ' में सोने की कीमतें';
 $hi_seo_intros = array(
-    '24k' => 'इस पृष्ठ पर ' . $display_country_name . ' में 24 कैरेट सोने का आज का भाव, प्रति ग्राम स्थानीय मुद्रा में कीमत और USD में तुलनात्मक मूल्य देखें। 24 कैरेट सोना उच्च शुद्धता वाला संदर्भ मानक है, जिसका उपयोग सोने की छड़ों और बुलियन के मूल्य का अनुमान लगाने में किया जाता है।',
-    '22k' => 'यहाँ ' . $display_country_name . ' में 22 कैरेट सोने की आज की कीमत और प्रति ग्राम भाव का ताज़ा संदर्भ दिया गया है। 22 कैरेट सोने में शुद्ध सोने के साथ अन्य धातुएँ भी होती हैं; इसलिए इसका मूल्य 24 कैरेट सोने से अलग होता है और आभूषणों की कीमत समझने में उपयोगी है।',
-    '21k' => 'इस पृष्ठ पर ' . $display_country_name . ' में 21 कैरेट सोने का आज का भाव प्रति ग्राम और USD में तुलना के लिए दिखाया गया है। 21 कैरेट में 24 में से 21 भाग शुद्ध सोना होता है। वास्तविक आभूषण मूल्य में कारीगरी, विक्रेता का प्रीमियम और स्थानीय कर अलग से जुड़ सकते हैं।',
-    '18k' => 'यहाँ ' . $display_country_name . ' में 18 कैरेट सोने की आज की कीमत प्रति ग्राम देखें। 18 कैरेट मिश्रधातु में 24 भागों में से 18 भाग सोना होता है; शेष धातुएँ मजबूती और रंग जैसे गुणों को प्रभावित करती हैं। दिखाया गया भाव सोने की मात्रा का संदर्भ है, अंतिम खुदरा बिल नहीं।',
-    '14k' => 'इस पृष्ठ पर ' . $display_country_name . ' में 14 कैरेट सोने का आज का प्रति ग्राम भाव दिया गया है। 14 कैरेट सोने में 24 भागों में से 14 भाग शुद्ध सोना होता है। इसकी तुलना 18K, 21K, 22K और 24K के भाव से करके अलग-अलग शुद्धता स्तरों का मूल्य समझें।',
-    'ounce' => 'यह पृष्ठ अंतरराष्ट्रीय बाजार में सोने की एक ट्रॉय औंस की स्पॉट कीमत USD में दिखाता है। एक ट्रॉय औंस लगभग 31.1035 ग्राम होता है। यह वैश्विक बेंचमार्क है; इसे ' . $display_country_name . ' की स्थानीय मुद्रा में औंस कीमत न समझें। स्थानीय ग्राम भाव अलग से मुद्रा विनिमय और बाजार स्थितियों पर निर्भर करता है।',
-    'coin' => $display_country_name . ' में सोने के सिक्के का संदर्भ मूल्य यहाँ 8 ग्राम वजन के आधार पर दिखाया जाता है। तुलना में 21K, 22K और 24K शुद्धता के मूल्य शामिल हैं। यह सोने की मात्रा का अनुमान है; ढलाई, डिजाइन, प्रमाणन, विक्रेता प्रीमियम और कर के कारण वास्तविक सिक्के की कीमत अलग हो सकती है।',
-    'gold-bars' => 'यहाँ ' . $display_country_name . ' में सोने की छड़ों और गोल्ड बार के अलग-अलग वजन के संदर्भ मूल्य देखें। गणना 24 कैरेट सोने के प्रति ग्राम बेंचमार्क पर आधारित है। वास्तविक खरीद मूल्य में ब्रांड, प्रमाणन, निर्माण, डिलीवरी, विक्रेता प्रीमियम और कर शामिल हो सकते हैं।',
-    'gold-index' => 'यह सूचकांक ' . $display_country_name . ' के लिए अलग-अलग कैरेट स्तरों और अंतरराष्ट्रीय सोने के बेंचमार्क की तुलना करने में मदद करता है। स्थानीय मुद्रा के भाव उपलब्ध 24 कैरेट संदर्भ मूल्य और विनिमय दर से निकाले जाते हैं, जबकि वैश्विक ट्रॉय औंस का भाव USD में अलग दिखाया जाता है।',
-    'usd' => 'अंतरराष्ट्रीय बाजार में सोने की कीमत आमतौर पर अमेरिकी डॉलर में उद्धृत होती है। इस पृष्ठ पर ' . $display_country_name . ' के लिए उपलब्ध USD विनिमय दर और प्रमुख मुद्राओं की तुलना दी गई है, ताकि समझा जा सके कि मुद्रा में बदलाव स्थानीय सोने के मूल्य को कैसे प्रभावित कर सकता है।',
+    '24k' => $display_country_name . ' में आज 24 कैरेट सोने का भाव और प्रति ग्राम कीमत देखें। यहाँ स्थानीय मुद्रा में कीमत के साथ USD में तुलनात्मक मूल्य भी दिया गया है। 24 कैरेट सोना उच्च शुद्धता वाला मानक है और सोने की छड़ों के मूल्य का आकलन करने में उपयोग किया जाता है।',
+    '22k' => $display_country_name . ' में आज 22 कैरेट सोने की प्रति ग्राम कीमत देखें। 22 कैरेट सोने में शुद्ध सोने के साथ अन्य धातुएँ भी मिली होती हैं, इसलिए इसका भाव 24 कैरेट सोने से अलग होता है। यह जानकारी आभूषणों के मूल्य की तुलना करने में मदद करती है।',
+    '21k' => $display_country_name . ' में आज 21 कैरेट सोने का भाव प्रति ग्राम देखें और USD में इसकी तुलना करें। 21 कैरेट सोने में 24 भागों में से 21 भाग शुद्ध सोना होता है। आभूषण की अंतिम कीमत में कारीगरी, विक्रेता का प्रीमियम और स्थानीय कर भी जुड़ सकते हैं।',
+    '18k' => $display_country_name . ' में आज 18 कैरेट सोने की प्रति ग्राम कीमत देखें। 18 कैरेट सोने में 24 भागों में से 18 भाग सोना होता है। बाकी धातुएँ इसकी मजबूती और रंग को प्रभावित करती हैं। यहाँ दिया गया भाव सोने के मूल्य का संदर्भ है, अंतिम खुदरा कीमत नहीं।',
+    '14k' => $display_country_name . ' में आज 14 कैरेट सोने का प्रति ग्राम भाव देखें। 14 कैरेट सोने में 24 भागों में से 14 भाग शुद्ध सोना होता है। इसकी तुलना 18K, 21K, 22K और 24K के भाव से करके अलग-अलग शुद्धता स्तरों के मूल्य को समझा जा सकता है।',
+    'ounce' => 'इस पृष्ठ पर अंतरराष्ट्रीय बाज़ार में सोने की एक ट्रॉय औंस की स्पॉट कीमत USD में दिखाई जाती है। एक ट्रॉय औंस लगभग 31.1035 ग्राम होता है। यह वैश्विक मानक भाव है। इसे ' . $display_country_name . ' की स्थानीय मुद्रा में दिखाई गई औंस कीमत से अलग समझें। स्थानीय प्रति ग्राम भाव विनिमय दर और स्थानीय बाज़ार की स्थितियों पर निर्भर करता है।',
+    'coin' => $display_country_name . ' में सोने के सिक्के का संदर्भ मूल्य 8 ग्राम वज़न के आधार पर दिखाया जाता है। इसमें 21K, 22K और 24K शुद्धता के भावों की तुलना शामिल है। यह केवल सोने की मात्रा का अनुमान है; ढलाई, डिज़ाइन, प्रमाणन, विक्रेता प्रीमियम और कर के कारण वास्तविक सिक्के की कीमत अलग हो सकती है।',
+    'gold-bars' => $display_country_name . ' में अलग-अलग वज़न के गोल्ड बार की संदर्भ कीमतें देखें। इनकी गणना 24 कैरेट सोने के प्रति ग्राम भाव के आधार पर की जाती है। वास्तविक खरीद कीमत में ब्रांड, प्रमाणन, निर्माण, डिलीवरी, विक्रेता प्रीमियम और कर शामिल हो सकते हैं।',
+    'gold-index' => 'यह सूचकांक ' . $display_country_name . ' में सोने की अलग-अलग शुद्धताओं के भावों की तुलना अंतरराष्ट्रीय मानक कीमत से करने में मदद करता है। स्थानीय मुद्रा में कीमतें उपलब्ध 24 कैरेट संदर्भ भाव और विनिमय दर के आधार पर दिखाई जाती हैं। वैश्विक ट्रॉय औंस का भाव USD में भी दिया जाता है।',
+    'usd' => 'अंतरराष्ट्रीय बाज़ार में सोने की कीमत आमतौर पर अमेरिकी डॉलर में बताई जाती है। इस पृष्ठ पर ' . $display_country_name . ' के लिए USD की विनिमय दर और प्रमुख मुद्राओं की तुलना दी गई है। इससे समझने में मदद मिलती है कि मुद्रा की दरों में बदलाव स्थानीय सोने की कीमत को कैसे प्रभावित कर सकता है।',
 );
 $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
     ? $hi_seo_intros[$gold_view]
@@ -598,9 +598,9 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
 	  
     <!-- ✅ Tab Navigation Buttons -->
     <div class="gold-tabs-nav text-center py-4">
-      <button class="gold-tab-btn active" type="button" data-tab="now">लाइव कीमतें</button>
-      <button class="gold-tab-btn" type="button" data-tab="buy-sell">सोने की छड़ें</button>
-      <button class="gold-tab-btn" type="button" data-tab="indicator">सोने की कीमत का चार्ट</button>
+      <button class="gold-tab-btn active" type="button" data-tab="now">सोने के ताज़ा भाव</button>
+      <button class="gold-tab-btn" type="button" data-tab="buy-sell">गोल्ड बार और सिक्के</button>
+      <button class="gold-tab-btn" type="button" data-tab="indicator">सोने का मूल्य चार्ट</button>
     </div>
 
     <!-- ✅ Tab Content Container -->
@@ -630,7 +630,7 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
           <?php 
           if ($gold_view == 'usd') { echo 'प्रमुख अंतरराष्ट्रीय और क्षेत्रीय मुद्राओं की लाइव विनिमय दरें'; }
           elseif ($gold_view == 'ounce') { echo '24 कैरेट सोने के एक ट्रॉय औंस का अंतरराष्ट्रीय स्पॉट मानक, USD में'; }
-          else { echo 'में सोने की कीमत ' . esc_html($display_country_name) . ' —  मेकिंग चार्ज शामिल नहीं हैं'; }
+          else { echo esc_html($display_country_name) . ' में सोने के भाव — निर्माण शुल्क शामिल नहीं हैं'; }
           ?>
         </h3>
 
@@ -676,11 +676,11 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
                             <?php
                             $weights = [
                                 ['weight' => 1, 'name' => 'सोने की छड़ — 1 g'],
-                                ['weight' => 2.5, 'name' => 'सोने की छड़ — 2,5 g'],
+                                ['weight' => 2.5, 'name' => 'सोने की छड़ — 2.5 g'],
                                 ['weight' => 5, 'name' => 'सोने की छड़ — 5 g'],
                                 ['weight' => 10, 'name' => 'सोने की छड़ — 10 g'],
                                 ['weight' => 20, 'name' => 'सोने की छड़ — 20 g'],
-                                ['weight' => 31.1, 'name' => 'ट्रॉय औंस (31,1 g)'],
+                                ['weight' => 31.1, 'name' => 'ट्रॉय औंस (31.1 g)'],
                                 ['weight' => 50, 'name' => 'सोने की छड़ — 50 g'],
                                 ['weight' => 100, 'name' => 'सोने की छड़ — 100 g'],
                             ];
@@ -750,7 +750,7 @@ $hi_seo_intro = !empty($gold_view) && isset($hi_seo_intros[$gold_view])
 
             <div class="raw-gold-alert mt-4" style="background: #1f2126; padding: 15px; border-radius: 6px; border-left: 4px solid #ffb301;">
                 <span class="alert-icon">⚠️</span>
-                <strong>महत्वपूर्ण:</strong> The prices shown above for bars and coins represent ऊपर दिए गए छड़ों और सिक्कों के भाव केवल सोने के मूल्य को दर्शाते हैं; इनमें मेकिंग चार्ज, हॉलमार्किंग शुल्क और कर शामिल नहीं हैं।
+                <strong>महत्वपूर्ण:</strong> ऊपर दिए गए गोल्ड बार और सिक्कों के भाव केवल सोने की मात्रा का संदर्भ मूल्य दिखाते हैं। इनमें निर्माण शुल्क, हॉलमार्किंग शुल्क और कर शामिल नहीं हैं।
             </div>
 
         <?php } else { ?>
@@ -864,11 +864,11 @@ document.addEventListener("DOMContentLoaded", function () {
 <?php if (empty($gold_view)) : ?>
 <div class="altaqrer-dynamic-article-box" style="background: #1f2126; padding: 20px; border: 1px solid #323742; border-left: 5px solid <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; color: #f0f1f5; font-size: 14.5px; line-height: 1.9; direction: ltr; text-align: left; border-radius: 8px; margin: 25px auto; max-width: 800px; width: 95%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.25); font-family: sans-serif; clear: both;">
     <p style="margin-top: 0; margin-bottom: 15px;">
-        📊 यह गोल्ड ट्रैकर आज <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo esc_html($display_country_name); ?> में सोने की कीमतों के ताज़ा बदलाव रियल टाइम में</strong></span> दिखाता है। <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> तारीख: <strong><?php echo esc_html($today); ?></strong>। जानकारी क्षेत्रीय बाज़ार आँकड़ों और <?php echo esc_html($display_country_name); ?> के लिए अंतरराष्ट्रीय सोना एक्सचेंज दर पर आधारित है।
+        📊 यह गोल्ड ट्रैकर <span style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>;"><strong><?php echo esc_html($display_country_name); ?> में सोने की कीमतों में होने वाले ताज़ा बदलाव</strong></span> दिखाता है। <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:20px; vertical-align:middle; margin: 0 4px;"> तारीख: <strong><?php echo esc_html($today); ?></strong>। जानकारी क्षेत्रीय बाज़ार आँकड़ों और <?php echo esc_html($display_country_name); ?> के लिए अंतरराष्ट्रीय सोना एक्सचेंज दर पर आधारित है।
     </p>
 
     <p style="margin-bottom: 15px;">
-        💡 इस रिपोर्ट में सोने की सभी प्रमुख शुद्धताओं के ताज़ा भाव शामिल हैं: <strong>21 कैरेट सोना</strong> — जो सबसे अधिक कारोबार वाली शुद्धता है — साथ ही <strong>22, 18 और 14 कैरेट सोना</strong>। इसमें अन्य कीमती धातुओं की कीमतें, आभूषण बाज़ार और रोज़ाना के बाज़ार बदलाव भी शामिल हैं।
+        💡 इस रिपोर्ट में सोने की सभी प्रमुख शुद्धताओं के ताज़ा भाव शामिल हैं: <strong>21 कैरेट सोना</strong> के साथ <strong>22, 18 और 14 कैरेट सोने</strong>। इसमें अन्य कीमती धातुओं की कीमतें, आभूषण बाज़ार और रोज़ाना के बाज़ार बदलाव भी शामिल हैं।
     </p>
 
     <p style="margin-bottom: 15px;">
@@ -931,7 +931,7 @@ $local_currency_per_jpy  = altaqrer_get_currency_live_rate('JPY', $local_currenc
 <?php if (empty($gold_view)) : ?>
     <div style="background: #17191d; padding: 15px; border-radius: 6px; border: 1px solid #3a3f4d; color: #d1d5db; font-size: 14px; margin: 20px auto; max-width: 800px; width: 95%; box-sizing: border-box; clear: both;">
         <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 15px; text-align: left; direction: ltr;">
-            💵 के मुकाबले लाइव विनिमय दरें <?php echo esc_html($currency_label); ?> के मुकाबले <?php echo esc_html($display_country_name); ?> <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
+            💵 <?php echo esc_html($display_country_name); ?> में <?php echo esc_html($currency_label); ?> की लाइव विनिमय दरें <img alt="<?php echo esc_html($display_country_name); ?> का ध्वज" src="<?php echo esc_url($country_flag); ?>" style="width:18px; vertical-align:middle; margin: 0 4px;">:
         </strong>
         
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; direction: ltr;">
@@ -1056,12 +1056,12 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 10px 15px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>वैश्विक सोने का औंस (31.1 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($ounce_price_currency, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">अंतरराष्ट्रीय कीमत: <?php echo number_format($ounce_price_usd, 2); ?> USD</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    यह इंडेक्स में सोने की प्रमुख शुद्धताओं की तुलना करता है <?php echo esc_html($display_country_name); ?>और अंतरराष्ट्रीय स्पॉट संदर्भ से तुलना करता है। वैश्विक ट्रॉय औंस का भाव USD में अंतरराष्ट्रीय संदर्भ के रूप में दिखाया जाता है, साथ ही उसका समकक्ष मूल्य स्थानीय मुद्रा में भी दिया जाता है। इसमें आभूषण बनाने का शुल्क और विक्रेता का प्रीमियम शामिल नहीं है।
+                    यह सूचकांक <?php echo esc_html($display_country_name); ?> में सोने की प्रमुख शुद्धताओं के भावों की तुलना अंतरराष्ट्रीय स्पॉट कीमत से करता है। वैश्विक ट्रॉय औंस का भाव USD में अंतरराष्ट्रीय संदर्भ के रूप में दिखाया जाता है। उसका समकक्ष मूल्य स्थानीय मुद्रा में भी दिया जाता है। इसमें आभूषण बनाने का शुल्क और विक्रेता का प्रीमियम शामिल नहीं है।
                 </p>
 
 
             <?php elseif ($gold_view == 'gold-bars') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">🪙 में आज सोने की छड़ों की कीमतें <?php echo esc_html($display_country_name); ?> (शुद्ध 24 कैरेट सोना):</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">🪙 <?php echo esc_html($display_country_name); ?> में आज 24 कैरेट गोल्ड बार की कीमतें:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 1 g:</strong> <span style="color: #ffb301;"><strong><?php echo number_format($price_24k_local * 1, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 1, 2); ?> USD</small></div>
@@ -1074,11 +1074,11 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 10px; border-radius: 6px; border: 1px solid #262930;">🔸 <strong>सोने की छड़ — 100 g:</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 100, 2); ?></strong></span> <?php echo esc_html($currency_label); ?><br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 100, 2); ?> USD</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    यह ट्रैकर इनकी कीमतों पर नज़र रखता है: <strong>आज सोने की छड़ों की कीमतें</strong>जो 999.9 शुद्धता वाले 24 कैरेट सोने से बनी हैं। सोने की छड़ों में निवेश धन संरक्षण और दीर्घकालिक तरलता सुरक्षा का प्रमुख साधन है: <strong><?php echo esc_html($display_country_name); ?></strong> में व्यापक आर्थिक महंगाई के विरुद्ध।
+                    यह ट्रैकर 999.9 शुद्धता वाले 24 कैरेट सोने से बने गोल्ड बार की कीमतों को ट्रैक करता है। <strong>आज गोल्ड बार की कीमतें</strong> वज़न के अनुसार देखें। खरीदते समय ब्रांड, प्रमाणन, विक्रेता प्रीमियम और स्थानीय करों को भी ध्यान में रखें।
                 </p>
 
             <?php elseif ($gold_view == 'coin') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">🪙 आज सोने के सिक्के की कीमत <?php echo esc_html($display_country_name); ?> (मानक वजन 8 ग्राम):</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">🪙 <?php echo esc_html($display_country_name); ?> में आज 8 ग्राम सोने के सिक्के की कीमत:</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 20px; text-align: left; direction: ltr;">
                     <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>21 कैरेट सोने का सिक्का (8 ग्राम):</strong> <span style="color: #ffb301;"><strong><?php echo number_format($price_21k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_21k_usd * 8, 2); ?> USD</small></div>
@@ -1086,11 +1086,11 @@ if (!empty($gold_view)) {
                     <div style="background: #1f2126; padding: 12px; border-radius: 6px; border: 1px solid #262930;">👑 <strong>24 कैरेट सोने का सिक्का (8 ग्राम):</strong> <span style="color: #ffffff;"><strong><?php echo number_format($price_24k_local * 8, 2); ?></strong></span> <?php echo esc_html($currency_label); ?> <br><small style="color:#94a3b8;">मूल्य: <?php echo number_format($price_24k_usd * 8, 2); ?> USD</small></div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    आज की वर्तमान कीमत के लाइव अपडेट देखें: <strong>सोने के सिक्के की कीमत</strong> के निवेश बाजार में <strong><?php echo esc_html($display_country_name); ?></strong>. ठीक 8 ग्राम वजन वाले स्वर्ण सिक्कों को सुरक्षित भौतिक निवेश संपत्ति के रूप में देखा जाता है।
+                    <strong><?php echo esc_html($display_country_name); ?></strong> में 8 ग्राम सोने के सिक्के का अनुमानित मूल्य देखें। यहाँ दी गई कीमत सोने की मात्रा पर आधारित है; वास्तविक सिक्के की कीमत डिज़ाइन, ढलाई, प्रमाणन और विक्रेता के प्रीमियम के अनुसार अलग हो सकती है।
                 </p>
 
             <?php elseif ($gold_view == 'usd') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">💵 लाइव विनिमय दरें <?php echo esc_html($currency_label); ?> के मुकाबले <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 15px; font-size: 16px;">💵 <?php echo esc_html($display_country_name); ?> में मुद्रा विनिमय की लाइव दरें (<?php echo esc_html($currency_label); ?>):</strong>
                 
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; text-align: left; direction: ltr; margin-bottom: 20px;">
                     <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -1129,67 +1129,67 @@ if (!empty($gold_view)) {
                     </div>
                 </div>
                 <p style="margin: 15px 0 0 0; font-size: 14.5px; color: #94a3b8; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    यह गतिशील इंडेक्स बैंकिंग विनिमय दरों पर नज़र रखता है। स्थानीय सोने की संदर्भ कीमतें वैश्विक भंडार के मुकाबले विनिमय दरों में बदलाव के अनुसार बदलती हैं।
+                    यह सूचकांक उपलब्ध विनिमय दरों और सोने के संदर्भ भावों को साथ देखकर स्थानीय कीमतों की तुलना करने में मदद करता है। बैंक और मुद्रा विनिमय प्रदाताओं की वास्तविक दरें अलग हो सकती हैं।
                 </p>
 
             <?php elseif ($gold_view == '24k') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज की लाइव रिपोर्ट: 24K में आज प्रति ग्राम सोने की कीमत <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 <?php echo esc_html($display_country_name); ?> में आज 24 कैरेट सोने की प्रति ग्राम कीमत:</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong>स्थानीय मुद्रा में कीमत:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($price_24k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></li>
                     <li>🔹 <strong>अमेरिकी डॉलर में समकक्ष कीमत:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_24k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    आज <strong>24K कैरेट सोने की प्रति ग्राम कीमत</strong> है <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. 99.9% शुद्धता वाला यह कैरेट सोने की छड़ों और बुलियन उत्पादन का औद्योगिक मानक है।
+                    आज <strong>24 कैरेट सोने की प्रति ग्राम कीमत</strong> <strong><?php echo number_format($price_24k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. 99.9% शुद्धता वाला सोना गोल्ड बार और बुलियन के लिए प्रमुख मानक है।
                 </p>
 
             <?php elseif ($gold_view == '22k') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज की लाइव रिपोर्ट: 22K में आज प्रति ग्राम सोने की कीमत <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 <?php echo esc_html($display_country_name); ?> में आज 22 कैरेट सोने की प्रति ग्राम कीमत:</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong>स्थानीय मुद्रा में कीमत:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($price_22k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></li>
                     <li>🔹 <strong>अमेरिकी डॉलर में समकक्ष कीमत:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_22k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    प्रीमियम <strong>22K कैरेट सोने की प्रति ग्राम कीमत</strong> की कीमत <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. इसमें कीमती धातु की उच्च मात्रा और मिश्रधातु की मजबूती का संतुलन है।
+                    <strong>22 कैरेट सोने की प्रति ग्राम कीमत</strong> <strong><?php echo number_format($price_22k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. इसमें कीमती धातु की उच्च मात्रा और मिश्रधातु की मजबूती का संतुलन है।
                 </p>
 
             <?php elseif ($gold_view == '21k') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज की लाइव रिपोर्ट: 21K में आज प्रति ग्राम सोने की कीमत <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 <?php echo esc_html($display_country_name); ?> में आज 21 कैरेट सोने की प्रति ग्राम कीमत:</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong>स्थानीय मुद्रा में कीमत:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($price_21k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></li>
                     <li>🔹 <strong>अमेरिकी डॉलर में समकक्ष कीमत:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_21k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    सबसे अधिक मांग वाले <strong>21K कैरेट सोने की प्रति ग्राम कीमत</strong> की कीमत <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. स्थानीय आभूषण बाजार के अधिकांश कारोबार में इसी कैरेट का उपयोग होता है।
+                    <strong>21 कैरेट सोने की प्रति ग्राम कीमत</strong> <strong><?php echo number_format($price_21k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>. इस शुद्धता का उपयोग कुछ स्थानीय आभूषण बाज़ारों में किया जाता है।
                 </p>
 
             <?php elseif ($gold_view == '18k') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज की लाइव रिपोर्ट: 18K में आज प्रति ग्राम सोने की कीमत <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 <?php echo esc_html($display_country_name); ?> में आज 18 कैरेट सोने की प्रति ग्राम कीमत:</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong>स्थानीय मुद्रा में कीमत:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($price_18k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></li>
                     <li>🔹 <strong>अमेरिकी डॉलर में समकक्ष कीमत:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_18k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    बाजार के ताज़ा अपडेट के अनुसार मानक <strong>18K कैरेट सोने की प्रति ग्राम कीमत</strong> की कीमत <strong><?php echo number_format($price_18k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, जो उच्च गुणवत्ता वाले आभूषणों के लिए किफायती विकल्प है।
+                    बाज़ार के ताज़ा आँकड़ों के अनुसार <strong>18 कैरेट सोने की प्रति ग्राम कीमत</strong> <strong><?php echo number_format($price_18k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, जो उच्च गुणवत्ता वाले आभूषणों के लिए किफायती विकल्प है।
                 </p>
 
             <?php elseif ($gold_view == '14k') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज की लाइव रिपोर्ट: 14K में आज प्रति ग्राम सोने की कीमत <?php echo esc_html($display_country_name); ?>:</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 <?php echo esc_html($display_country_name); ?> में आज 14 कैरेट सोने की प्रति ग्राम कीमत:</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong>स्थानीय मुद्रा में कीमत:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($price_14k_local, 2); ?></strong></span> <?php echo esc_html($currency_label); ?></li>
                     <li>🔹 <strong>अमेरिकी डॉलर में समकक्ष कीमत:</strong> <span style="color: #ffffff; font-size: 16px;"><strong><?php echo number_format($price_14k_usd, 2); ?></strong></span> USD</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    गणना आधारित इंडेक्स के अनुसार <strong>14K कैरेट सोने की प्रति ग्राम कीमत</strong> की कीमत <strong><?php echo number_format($price_14k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, यह टिकाऊ मिश्रधातु रोज़मर्रा के आभूषणों के लिए उपयुक्त है।
+                    गणना के आधार पर <strong>14 कैरेट सोने की प्रति ग्राम कीमत</strong> <strong><?php echo number_format($price_14k_local, 2); ?> <?php echo esc_html($currency_label); ?></strong>, यह टिकाऊ मिश्रधातु रोज़मर्रा के आभूषणों के लिए उपयुक्त है।
                 </p>
 
             <?php elseif ($gold_view == 'ounce') : ?>
-                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज सोने की वैश्विक औंस कीमत (31.1 ग्राम):</strong>
+                <strong style="color: <?php echo get_theme_mod('infi_default_color', '#ffb301'); ?>; display: block; margin-bottom: 12px; font-size: 16px;">📊 आज वैश्विक ट्रॉय औंस (31.1 ग्राम) की कीमत:</strong>
                 <ul style="list-style: none; padding: 0; margin: 0 0 15px 0; line-height: 2.2; font-size: 15px;">
                     <li>🔹 <strong>अंतरराष्ट्रीय स्पॉट कीमत:</strong> <span style="color: #ffb301; font-size: 19px;"><strong><?php echo number_format($ounce_price_usd, 2); ?></strong></span> USD</li>
                     <li>🔹 <strong>कोटेशन मुद्रा:</strong> अमेरिकी डॉलर (USD)</li>
                 </ul>
                 <p style="margin: 10px 0 0 0; font-size: 14.5px; color: #d1d5db; border-top: 1px solid #262930; padding-top: 12px; text-align: justify;">
-                    वैश्विक सोने का औंस अंतरराष्ट्रीय बाजार में अमेरिकी डॉलर में मूल्यांकित होता है और 24 कैरेट सोने के 31.1 ग्राम के बराबर है। इस वैश्विक संदर्भ मूल्य में स्थानीय मुद्रा का रूपांतरण शामिल नहीं है; स्थानीय सोने की कीमतें लागू विनिमय दर के आधार पर अलग से गणना की जाती हैं।
+                    वैश्विक ट्रॉय औंस की कीमत अंतरराष्ट्रीय बाज़ार में अमेरिकी डॉलर (USD) में बताई जाती है। एक ट्रॉय औंस लगभग 31.1 ग्राम सोने के बराबर होता है। यह अंतरराष्ट्रीय संदर्भ कीमत USD में है। स्थानीय मुद्रा में सोने की कीमत विनिमय दर और स्थानीय बाज़ार की स्थितियों के आधार पर अलग से दिखाई जाती है।
                 </p>
             <?php endif; ?>
 
