@@ -687,14 +687,19 @@ $ja_seo_intro = isset($ja_seo_intros[$gold_view]) ? $ja_seo_intros[$gold_view] :
 function altaqrerTranslateJapaneseIndicator(root) {
     if (!root) return;
     const translations = {
-        'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
-        'عيار 18': '18K Gold', 'عيار 14': '14K Gold', 'عيار 12': '12K Gold',
-        'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
-        'جنيه الذهب': 'Gold Coin', 'سعر الدولار': 'US Dollar Exchange Rate',
-        'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
-        'انضم إلى قناتنا على تيليجرام': 'Join Our Telegram Channel',
-        'انضم إلى قناتنا على تليجرام': 'Join Our Telegram Channel'
+        'عيار 24': '24K金',
+        'عيار 22': '22K金',
+        'عيار 21': '21K金',
+        'عيار 18': '18K金',
+        'عيار 14': '14K金',
+        'عيار 12': '12K金',
+        'الأونصة العالمية': '世界の金1トロイオンス（USD）',
+        'جنيه الذهب': '金貨',
+        'سعر الدولار': '米ドル為替レート',
+        'جنيه مصري': 'エジプト・ポンド',
+        'دولار أمريكي': '米ドル',
+        'انضم إلى قناتنا على تيليجرام': 'Telegramチャンネルに参加',
+        'انضم إلى قناتنا على تليجرام': 'Telegramチャンネルに参加'
     };
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const nodes = [];
