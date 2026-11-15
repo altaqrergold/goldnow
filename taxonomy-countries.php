@@ -1,4 +1,70 @@
-<?php get_header(); ?>
+<?php
+$ar_header_term=get_queried_object();
+$ar_header_slug=(is_object($ar_header_term)&&!empty($ar_header_term->slug))?sanitize_title($ar_header_term->slug):'';
+if($ar_header_slug===''&&is_object($ar_header_term)&&!empty($ar_header_term->term_id)){$ar_header_slug=strtolower((string)get_term_meta((int)$ar_header_term->term_id,'country_code',true));}
+if($ar_header_slug===''){$ar_header_slug='eg';}
+$ar_header_country_url=home_url('/country/'.rawurlencode($ar_header_slug).'/');
+$ar_header_home_url=home_url('/');
+$ar_header_accent=get_theme_mod('infi_default_color','#ffb301');
+$ar_header_logo_id=(int)get_theme_mod('custom_logo');
+$ar_header_is_app=(isset($_GET['view'])&&sanitize_text_field(wp_unslash($_GET['view']))==='app');
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="<?php bloginfo('charset'); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<?php wp_head(); ?>
+<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri().'/style.css'); ?>">
+<style>
+html,body{direction:rtl;text-align:right}
+.ar-site-header{position:relative;z-index:1000;background:#1a1a1a;border-bottom:4px solid <?php echo esc_attr($ar_header_accent); ?>;color:#fff}
+.ar-site-header-inner{max-width:1200px;width:95%;margin:0 auto;min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0}
+.ar-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:20px;white-space:nowrap}
+.ar-brand img{max-width:54px;max-height:54px;width:auto;height:auto;object-fit:contain}
+.ar-main-nav{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap}
+.ar-main-nav a,.ar-country-toggle{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.15);background:transparent;border-radius:6px;padding:9px 12px;font:600 13px inherit;cursor:pointer}
+.ar-main-nav a:hover,.ar-country-toggle:hover{color:#1a1a1a;background:<?php echo esc_attr($ar_header_accent); ?>}
+.ar-country-wrap{position:relative}
+.ar-country-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;min-width:210px;background:#202329;border:1px solid #444;border-radius:7px;padding:7px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:10000}
+.ar-country-menu a{display:block;border:0;border-radius:4px;text-align:right}
+.ar-country-menu.is-open{display:block}
+.ar-site-footer{margin-top:32px;background:#1a1a1a;color:#eee;border-top:4px solid <?php echo esc_attr($ar_header_accent); ?>}
+.ar-site-footer-inner{max-width:1200px;width:95%;margin:0 auto;padding:28px 0 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.ar-site-footer h3{color:#e0b94f;font-size:16px;margin:0 0 12px}
+.ar-site-footer p,.ar-site-footer li{color:#c8c8c8;font-size:13px;line-height:1.8}
+.ar-site-footer ul{list-style:none;padding:0;margin:0}
+.ar-site-footer a{color:#e0b94f;text-decoration:none}
+.ar-site-footer a:hover{text-decoration:underline}
+.ar-footer-bottom{text-align:center;border-top:1px solid #393939;padding:15px 10px;font-size:13px;color:#c8c8c8}
+@media(max-width:760px){.ar-site-header-inner{align-items:flex-start;flex-direction:column}.ar-main-nav{justify-content:flex-start;width:100%}.ar-main-nav a,.ar-country-toggle{padding:8px 10px}}
+@media(max-width:480px){.ar-main-nav{gap:6px}.ar-main-nav a,.ar-country-toggle{font-size:12px}}
+@media(max-width:768px){.ar-site-footer-inner{grid-template-columns:1fr;gap:18px;text-align:center}}
+</style>
+</head>
+<body <?php body_class('ar-gold-template'); ?>>
+<?php if(function_exists('wp_body_open')){wp_body_open();} ?>
+<?php if(!$ar_header_is_app): ?>
+<header class="ar-site-header">
+<div class="ar-site-header-inner">
+<a class="ar-brand" href="<?php echo esc_url($ar_header_home_url); ?>" aria-label="الرئيسية - التقرير جولد">
+<?php if($ar_header_logo_id): ?><?php echo wp_get_attachment_image($ar_header_logo_id,'full',false,array('alt'=>'التقرير جولد')); ?><?php else: ?><span>التقرير جولد</span><?php endif; ?>
+</a>
+<nav class="ar-main-nav" aria-label="القائمة الرئيسية">
+<a href="<?php echo esc_url($ar_header_home_url); ?>">الرئيسية</a>
+<a href="<?php echo esc_url($ar_header_country_url); ?>">أسعار الذهب</a>
+<a href="<?php echo esc_url($ar_header_country_url.'gold-bars/'); ?>">أسعار السبائك</a>
+<a href="<?php echo esc_url($ar_header_country_url.'gold-index/'); ?>">مؤشر الذهب</a>
+<a href="<?php echo esc_url($ar_header_country_url.'usd/'); ?>">الدولار والعملات</a>
+<div class="ar-country-wrap"><button class="ar-country-toggle" type="button" aria-expanded="false" aria-controls="ar-country-menu">الدول ▾</button>
+<div class="ar-country-menu" id="ar-country-menu">
+<a href="<?php echo esc_url(home_url('/country/eg/')); ?>">مصر</a><a href="<?php echo esc_url(home_url('/country/sa/')); ?>">السعودية</a><a href="<?php echo esc_url(home_url('/country/ae/')); ?>">الإمارات</a><a href="<?php echo esc_url(home_url('/country/kw/')); ?>">الكويت</a><a href="<?php echo esc_url(home_url('/all-countries/')); ?>">كل الدول</a>
+</div></div></nav></div></header>
+<?php endif; ?>
+<script>
+document.addEventListener('DOMContentLoaded',function(){var t=document.querySelector('.ar-country-toggle'),m=document.getElementById('ar-country-menu');if(!t||!m)return;t.addEventListener('click',function(e){e.preventDefault();var o=m.classList.toggle('is-open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!e.target.closest('.ar-country-wrap')){m.classList.remove('is-open');t.setAttribute('aria-expanded','false');}});});
+</script>
 
 <main class="p-0 font-2">
   <div class="container home px-2">
@@ -734,5 +800,27 @@ if (!empty($gold_view)) {
     </p>
 </div>
 
-<?php get_footer(); ?>
-
+<?php if(!$ar_header_is_app): ?>
+<footer class="ar-site-footer">
+<div class="ar-site-footer-inner">
+<section><h3>عن التقرير جولد</h3><p><strong>التقرير جولد</strong> يساعدك على متابعة أسعار الذهب في الأسواق المحلية والعالمية، مع عرض أسعار الأعيرة المختلفة ومتابعة السبائك والجنيه الذهب وأونصة الذهب العالمية. الأسعار استرشادية وقد تختلف أسعار البيع والشراء الفعلية حسب المصنعية والرسوم.</p></section>
+<section><h3>أقسام أسعار الذهب</h3><ul>
+<li><a href="<?php echo esc_url($ar_header_country_url); ?>">أسعار الذهب في الدولة الحالية</a></li>
+<li><a href="<?php echo esc_url($ar_header_country_url.'gold-bars/'); ?>">أسعار سبائك الذهب</a></li>
+<li><a href="<?php echo esc_url($ar_header_country_url.'gold-index/'); ?>">مؤشر الذهب</a></li>
+<li><a href="<?php echo esc_url($ar_header_country_url.'usd/'); ?>">أسعار الدولار والعملات</a></li>
+</ul></section>
+<section><h3>أسعار الذهب في الدول</h3><ul>
+<li><a href="<?php echo esc_url(home_url('/country/eg/')); ?>">أسعار الذهب في مصر</a></li>
+<li><a href="<?php echo esc_url(home_url('/country/sa/')); ?>">أسعار الذهب في السعودية</a></li>
+<li><a href="<?php echo esc_url(home_url('/country/ae/')); ?>">أسعار الذهب في الإمارات</a></li>
+<li><a href="<?php echo esc_url(home_url('/country/kw/')); ?>">أسعار الذهب في الكويت</a></li>
+<li><a href="<?php echo esc_url(home_url('/all-countries/')); ?>">كل الدول</a></li>
+</ul><h3 style="margin-top:16px">تابعنا</h3><ul><li><a href="https://t.me/goldaltaqrer" target="_blank" rel="noopener noreferrer">انضم إلى قناتنا على تيليجرام</a></li></ul></section>
+</div>
+<div class="ar-footer-bottom">جميع الحقوق محفوظة &copy; <?php echo esc_html(function_exists('wp_date')?wp_date('Y'):date('Y')); ?> لموقع <a href="<?php echo esc_url($ar_header_home_url); ?>">التقرير جولد</a>.</div>
+</footer>
+<?php endif; ?>
+<?php wp_footer(); ?>
+</body>
+</html>
