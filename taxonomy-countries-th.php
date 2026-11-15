@@ -486,6 +486,15 @@ if (!function_exists('altaqrer_gold_th_translate_shortcode_html')) {
     "Reference date:" => "วันที่อ้างอิง:",
     "Updated:" => "อัปเดต:"
    ));
+   $map = array_merge($map, array(
+    "Updated:" => "อัปเดต:",
+    " · Prices are indicative and may change with the market." => " · ราคาเป็นข้อมูลอ้างอิงและอาจเปลี่ยนแปลงตามตลาด",
+    "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* ข้อมูลได้รับการอัปเดตโดยอัตโนมัติผ่านดัชนีตลาดแบบเรียลไทม์อย่างเป็นทางการ ขอแนะนำให้ติดตั้ง ",
+    "กำลังโหลดกราฟราคาทองคำ..." => "กำลังโหลดกราฟราคาทองคำ...",
+    "ไม่สามารถโหลดข้อมูลกราฟได้ โปรดลองอีกครั้ง" => "ไม่สามารถโหลดข้อมูลกราฟได้ โปรดลองอีกครั้ง",
+    "Gold Price in " => "ราคาทองคำใน ",
+    "Gold Price Sections" => "หมวดหมู่ราคาทองคำ"
+   ));
    $protected = array();
         $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function ($m) use (&$protected) {
             $token = 'ALTQRGOLDENBLOCK' . count($protected) . 'TOKEN';
@@ -991,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">กำลังโหลดกราฟราคาทองคำ...</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -1007,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateThaiIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">ไม่สามารถโหลดข้อมูลกราฟได้ โปรดลองอีกครั้ง</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
