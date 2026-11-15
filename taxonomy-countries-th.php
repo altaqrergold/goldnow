@@ -1059,12 +1059,12 @@ if (!empty($gold_view)) {
     // The live values below use the same price snapshot and conversions as the tables above.
     $th_seo_base = home_url('/th/country/' . rawurlencode($th_header_country_slug) . '/');
     $th_seo_price_map = array(
-    '24k' => 'ติดตามราคาอ้างอิงทองคำ 24K ต่อกรัมใน ' . $display_country_name,
-    '22k' => 'เปรียบเทียบราคาทองคำ 22K ต่อกรัมกับทองคำ 24K ใน ' . $display_country_name,
-    '21k' => 'ตรวจสอบราคาทองคำ 21K ต่อกรัมใน ' . $display_country_name,
-    '18k' => 'ดูราคาอ้างอิงทองคำ 18K ต่อกรัมใน ' . $display_country_name,
-    '14k' => 'เปรียบเทียบราคาทองคำ 14K กับความบริสุทธิ์ระดับอื่นใน ' . $display_country_name,
-    );
+    '24k' => array($price_24k_local, $price_24k_usd),
+    '22k' => array($price_22k_local, $price_22k_usd),
+    '21k' => array($price_21k_local, $price_21k_usd),
+    '18k' => array($price_18k_local, $price_18k_usd),
+    '14k' => array($price_14k_local, $price_14k_usd),
+);
 ?>
 <article class="th-seo-article" aria-labelledby="th-seo-title">
 <?php if (isset($th_seo_price_map[$gold_view])) :
