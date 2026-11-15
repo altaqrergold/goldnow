@@ -31,6 +31,7 @@ if (!function_exists('altaqrer_gold_vi_localize_output')) {
    "Gold Price in USD" => "Giá vàng bằng USD",
    "Local Currency" => "Nội tệ",
    "Egyptian Pound" => "Bảng Ai Cập",
+   "ian Pound" => " Bảng",
    "US Dollar" => "Đô la Mỹ",
    "British Pound" => "Bảng Anh",
    "Saudi Riyal" => "Riyal Ả Rập Xê Út",
