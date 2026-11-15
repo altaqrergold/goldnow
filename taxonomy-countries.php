@@ -135,7 +135,9 @@ document.addEventListener('DOMContentLoaded',function(){var t=document.querySele
 ?>
 
 
-<?php goldnow_display_ad('below_cards'); ?>
+<div class="ar-middle-ad-slot" style="width:100%;max-width:1200px;margin:12px auto 18px;padding:10px 8px;box-sizing:border-box;text-align:center;direction:rtl;clear:both;">
+    <?php goldnow_display_ad('below_cards'); ?>
+</div>
 	  
     <!-- ✅ أزرار التبويبات (مطابقة للصفحة الرئيسية) -->
     <div class="gold-tabs-nav text-center py-4">
@@ -833,23 +835,41 @@ if (!empty($gold_view)) {
 
 <?php if(!$ar_header_is_app): ?>
 <footer class="ar-site-footer">
-<div class="ar-site-footer-inner">
-<section><h3>عن التقرير جولد</h3><p><strong>التقرير جولد</strong> يساعدك على متابعة أسعار الذهب في الأسواق المحلية والعالمية، مع عرض أسعار الأعيرة المختلفة ومتابعة السبائك والجنيه الذهب وأونصة الذهب العالمية. الأسعار استرشادية وقد تختلف أسعار البيع والشراء الفعلية حسب المصنعية والرسوم.</p></section>
-<section><h3>أقسام أسعار الذهب</h3><ul>
-<li><a href="<?php echo esc_url($ar_header_country_url); ?>">أسعار الذهب في الدولة الحالية</a></li>
-<li><a href="<?php echo esc_url($ar_header_country_url.'gold-bars/'); ?>">أسعار سبائك الذهب</a></li>
-<li><a href="<?php echo esc_url($ar_header_country_url.'gold-index/'); ?>">مؤشر الذهب</a></li>
-<li><a href="<?php echo esc_url($ar_header_country_url.'usd/'); ?>">أسعار الدولار والعملات</a></li>
-</ul></section>
-<section><h3>أسعار الذهب في الدول</h3><ul>
-<li><a href="<?php echo esc_url(home_url('/country/eg/')); ?>">أسعار الذهب في مصر</a></li>
-<li><a href="<?php echo esc_url(home_url('/country/sa/')); ?>">أسعار الذهب في السعودية</a></li>
-<li><a href="<?php echo esc_url(home_url('/country/ae/')); ?>">أسعار الذهب في الإمارات</a></li>
-<li><a href="<?php echo esc_url(home_url('/country/kw/')); ?>">أسعار الذهب في الكويت</a></li>
-<li><a href="<?php echo esc_url(home_url('/all-countries/')); ?>">كل الدول</a></li>
-</ul><h3 style="margin-top:16px">تابعنا</h3><ul><li><a href="https://t.me/goldaltaqrer" target="_blank" rel="noopener noreferrer">انضم إلى قناتنا على تيليجرام</a></li></ul></section>
-</div>
-<div class="ar-footer-bottom">جميع الحقوق محفوظة &copy; <?php echo esc_html(function_exists('wp_date')?wp_date('Y'):date('Y')); ?> لموقع <a href="<?php echo esc_url($ar_header_home_url); ?>">التقرير جولد</a>.</div>
+  <div class="ar-site-footer-inner">
+    <section>
+      <h3>عن التقرير جولد</h3>
+      <p><strong>التقرير جولد</strong> يساعد القراء على متابعة أسعار الذهب في الأسواق الإقليمية والعالمية. تابع الأسعار الاسترشادية المباشرة لعيارات 24 و22 و21 و18 و14، وقارن أسعار سبائك الذهب والجنيه الذهب بوزن 8 جرامات، وتابع سعر أونصة الذهب العالمية بالدولار الأمريكي. تُعرض الأسعار لأغراض المعلومات والمقارنة، وقد تشمل أسعار البيع النهائية المصنعية والعلاوات والضرائب.</p>
+    </section>
+    <section>
+      <h3>أقسام أسعار الذهب</h3>
+      <ul>
+        <li><a href="<?php echo esc_url($ar_header_country_url); ?>">أسعار الذهب في <?php echo esc_html($country_name); ?></a></li>
+        <li><a href="<?php echo esc_url($ar_header_country_url.'gold-bars/'); ?>">أسعار السبائك والجنيهات</a></li>
+        <li><a href="<?php echo esc_url($ar_header_country_url.'gold-index/'); ?>">مؤشر الذهب المباشر</a></li>
+        <li><a href="<?php echo esc_url($ar_header_country_url.'usd/'); ?>">أسعار الدولار والعملات</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3>أسعار الذهب في الدول</h3>
+      <ul>
+        <li><a href="<?php echo esc_url(home_url('/country/eg/')); ?>">أسعار الذهب في مصر</a></li>
+        <li><a href="<?php echo esc_url(home_url('/country/sa/')); ?>">أسعار الذهب في السعودية</a></li>
+        <li><a href="<?php echo esc_url(home_url('/country/ae/')); ?>">أسعار الذهب في الإمارات</a></li>
+        <li><a href="<?php echo esc_url(home_url('/country/kw/')); ?>">أسعار الذهب في الكويت</a></li>
+      </ul>
+      <h3 style="margin-top:16px;">تابعنا</h3>
+      <ul>
+        <li><a href="https://t.me/goldaltaqrer" target="_blank" rel="noopener noreferrer">انضم إلى قناتنا على تيليجرام</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3>روابط مهمة</h3>
+      <ul>
+        <li><a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">سياسة الخصوصية</a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="ar-footer-bottom">جميع الحقوق محفوظة &copy; <?php echo esc_html(function_exists('wp_date') ? wp_date('Y') : date('Y')); ?> لموقع <a href="<?php echo esc_url($ar_header_home_url); ?>">التقرير جولد</a>.</div>
 </footer>
 <?php endif; ?>
 <?php wp_footer(); ?>
