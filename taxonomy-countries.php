@@ -24,6 +24,22 @@ body.ar-gold-template{margin:0;max-width:100vw;overflow-x:hidden;position:relati
 .gold-tab-btn{flex:1 1 auto;text-align:center;background:#fff8e1;border:1px solid #dfb551;padding:10px 12px;cursor:pointer;font-weight:bold;border-radius:6px;transition:.3s;color:#3a2e0a;min-width:0}
 .gold-tab-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
 .gold-tab-btn:hover{background:#dfb551;color:#2c2107}
+.gold-section{margin-bottom:25px}
+.section-header{display:flex;justify-content:space-between;align-items:center;background:#b8860b;padding:12px 15px;border-radius:8px 8px 0 0;border:1px solid #b8860b;color:#fff}
+.section-header h4{margin:0;font-size:18px;font-weight:bold;color:#fff}
+.date-badge{background:#fff8e1;padding:2px 8px;border-radius:4px;font-size:12px;color:#b8860b;font-weight:bold}
+.table-responsive{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.gold-table{width:100%;min-width:520px;background:#fff8e1;border-collapse:collapse;border:1px solid #dfb551;border-radius:0 0 8px 8px}
+.gold-table thead{background:#dfb551}
+.gold-table th{padding:12px;color:#2c2107;border-bottom:2px solid #b8860b;font-size:15px;text-align:center;white-space:nowrap}
+.gold-table td{padding:12px;border-bottom:1px solid #dfb551;color:#3a2e0a;text-align:center;vertical-align:middle;white-space:nowrap}
+.gold-table tr:last-child td{border-bottom:none}
+.gold-table tr:hover{background:#ffe8b3}
+.font-bold{font-weight:bold;text-align:right!important}
+.price-cell{font-weight:bold;color:#b8860b;font-size:16px}
+.usd-cell{font-weight:bold;color:#2c2107;font-size:16px;direction:ltr;unicode-bidi:embed}
+.raw-gold-alert{background:#fff8e1;border:1px solid #dfb551;border-right:5px solid #b8860b;color:#5a4a1b;padding:15px;border-radius:4px;font-size:14px;line-height:1.6;box-shadow:0 2px 5px rgba(0,0,0,.05)}
+.alert-icon{font-size:18px;margin-left:5px}
 .ar-site-header{position:relative;z-index:1000;background:#1a1a1a;border-bottom:4px solid <?php echo esc_attr($ar_header_accent); ?>;color:#fff}
 .ar-site-header-inner{max-width:1200px;width:95%;margin:0 auto;min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0}
 .ar-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:20px;white-space:nowrap}
