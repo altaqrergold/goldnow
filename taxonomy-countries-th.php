@@ -83,11 +83,11 @@ if (!function_exists('altaqrer_gold_th_localize_output')) {
    " — the most widely traded purity — as well as " => " — ซึ่งเป็นความบริสุทธิ์ที่มีการซื้อขายมากที่สุด — รวมถึง ",
    "22K gold" => "ทองคำ 22K",
    "18K gold" => "ทองคำ 18K",
-   " value options, and " => "، وخيارات قيمة ทองคำ 18K، و",
+   " value options, and " => " รวมถึงตัวเลือกราคาทองคำ 18K และ ",
    "14K gold" => "ทองคำ 14K",
    "The tracker also covers precious-metal prices, jewellery markets, and daily market movements. It also helps compare local-currency values with the international USD benchmark when reviewing daily price changes." => "เครื่องมือนี้ยังติดตามราคาโลหะมีค่า ตลาดเครื่องประดับ และความเคลื่อนไหวของตลาดในแต่ละวัน",
-   "It also helps compare local-currency values with the international USD benchmark when reviewing daily price changes." => "كما يساعد على مقارنة الأسعار بالعملة المحلية بالسعر المرجعي العالمي بالدولار عند متابعة تغيرات الأسعار اليومية.",
-   "Live market data, excluding making charges, puts the " => "تشير بيانات السوق المباشرة، دون المصنعية، إلى أن ",
+   "It also helps compare local-currency values with the international USD benchmark when reviewing daily price changes." => "นอกจากนี้ยังช่วยเปรียบเทียบราคาในสกุลเงินท้องถิ่นกับราคาอ้างอิงสากลในสกุล USD เมื่อตรวจสอบการเปลี่ยนแปลงของราคาในแต่ละวัน",
+   "Live market data, excluding making charges, puts the " => "ข้อมูลตลาดล่าสุดที่ไม่รวมค่ากำเหน็จระบุว่า ",
    "24K gold price per gram" => "ราคาทองคำ 24K ต่อกรัม",
    " at approximately " => " อยู่ที่ประมาณ ",
    " US dollars" => " ดอลลาร์สหรัฐ",
@@ -106,13 +106,13 @@ if (!function_exists('altaqrer_gold_th_localize_output')) {
    " across weights from 1 gram to 1 kilogram can help you follow market movements when considering a purchase or sale." => "ในน้ำหนักตั้งแต่ 1 กรัมถึง 1 กิโลกรัม ช่วยให้คุณติดตามความเคลื่อนไหวของตลาดเมื่อต้องการซื้อหรือขาย",
    "Local gold prices move with exchange rates." => "ราคาทองคำในประเทศเปลี่ยนแปลงตามอัตราแลกเปลี่ยน",
    "US dollar exchange rate today in " => "อัตราแลกเปลี่ยนดอลลาร์สหรัฐวันนี้ใน ",
-   " per US dollar, based on the latest available market data." => " لكل ดอลลาร์สหรัฐ، وفق أحدث بيانات السوق المتاحة.",
+   " per US dollar, based on the latest available market data." => " ต่อดอลลาร์สหรัฐ โดยอ้างอิงจากข้อมูลตลาดล่าสุดที่มี",
    "Download the " => "ดาวน์โหลด",
    "gold prices app" => "แอปราคาทองคำ",
    " for timely price alerts." => " เพื่อรับการแจ้งเตือนราคาอย่างทันท่วงที",
-   "Prices of gold live in " => "أسعار الذهب المباشرة في ",
-   "Global Gold Ounce Price Today in USD" => "ราคาทองคำโลกต่อทรอยออนซ์วันนี้ بالدولار الأمريكي",
-   "8-Gram Gold Coin Price Today in " => "سعر العملة الذهبية بوزن 8 جرامات اليوم في "
+   "Prices of gold live in " => "ราคาทองคำแบบเรียลไทม์ใน ",
+   "Global Gold Ounce Price Today in USD" => "ราคาทองคำโลกต่อทรอยออนซ์วันนี้ในสกุล USD",
+   "8-Gram Gold Coin Price Today in " => "ราคาเหรียญทองคำหนัก 8 กรัมวันนี้ใน "
   ));
   $protected = array();
   $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function($m) use (&$protected) { $k='LANGBLOCK'.count($protected).'TOKEN'; $protected[$k]=$m[0]; return $k; }, $html);
