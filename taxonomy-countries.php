@@ -135,7 +135,13 @@ document.addEventListener('DOMContentLoaded',function(){var t=document.querySele
 ?>
 
 
-<div class="ar-middle-ad-slot" style="width:100%;max-width:1200px;margin:12px auto 18px;padding:10px 8px;box-sizing:border-box;text-align:center;direction:rtl;clear:both;">
+<style>
+.ar-middle-ad-slot{width:100%;max-width:1200px;margin:12px auto 18px;padding:10px 8px;box-sizing:border-box;text-align:center;direction:ltr;clear:both;display:flex;justify-content:center;align-items:center;}
+.ar-middle-ad-slot>.goldnow-ad-below_cards{width:100%;max-width:100%;margin:0 auto!important;text-align:center!important;float:none!important;display:flex;justify-content:center;align-items:center;}
+.ar-middle-ad-slot ins.adsbygoogle{display:block!important;margin-left:auto!important;margin-right:auto!important;}
+.ar-middle-ad-slot iframe{display:block!important;margin-left:auto!important;margin-right:auto!important;}
+</style>
+<div class="ar-middle-ad-slot">
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
