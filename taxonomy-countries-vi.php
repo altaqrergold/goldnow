@@ -347,7 +347,7 @@ if (!function_exists('altaqrer_gold_vi_translate_shortcode_html')) {
             return $html;
         }
 
-        $map = array_merge($map, array(
+        $translations = array_merge($translations, array(
     "Live Prices" => "Giá vàng trực tiếp",
     "Gold Price" => "Giá vàng",
     "Gold Prices" => "Giá vàng",
@@ -486,7 +486,7 @@ if (!function_exists('altaqrer_gold_vi_translate_shortcode_html')) {
     "Reference date:" => "Ngày tham chiếu:",
     "Updated:" => "Cập nhật:"
    ));
-   $map = array_merge($map, array(
+   $translations = array_merge($translations, array(
     "Updated:" => "Cập nhật:",
     " · Prices are indicative and may change with the market." => " · Giá chỉ mang tính tham khảo và có thể thay đổi theo thị trường",
     "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* Dữ liệu được cập nhật tự động thông qua các chỉ số thị trường trực tiếp chính thức. Bạn nên cài đặt ",
