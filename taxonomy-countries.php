@@ -135,7 +135,18 @@ document.addEventListener('DOMContentLoaded',function(){var t=document.querySele
 ?>
 
 
-<div class="ar-middle-ad-slot" style="width:100%;max-width:1200px;margin:12px auto 18px;padding:10px 8px;box-sizing:border-box;text-align:center;direction:ltr;clear:both;">
+<style>
+.ar-middle-ad-slot{width:100%;max-width:1200px;margin:12px auto 18px;padding:10px 8px;box-sizing:border-box;text-align:center!important;direction:ltr;clear:both;float:none!important;}
+.ar-middle-ad-slot .goldnow-ad-below_cards{display:block!important;width:100%!important;max-width:100%!important;margin:0 auto!important;padding:0!important;float:none!important;text-align:center!important;direction:ltr!important;box-sizing:border-box!important;}
+.ar-middle-ad-slot .goldnow-ad-below_cards ins.adsbygoogle,
+.ar-middle-ad-slot .goldnow-ad-below_cards iframe,
+.ar-middle-ad-slot .goldnow-ad-below_cards img{display:block!important;margin-left:auto!important;margin-right:auto!important;float:none!important;max-width:100%!important;}
+@media(max-width:768px){
+.ar-middle-ad-slot{width:100%!important;max-width:100%!important;padding:10px 0!important;margin:12px auto 18px!important;overflow:hidden;box-sizing:border-box!important;}
+.ar-middle-ad-slot .goldnow-ad-below_cards{width:100%!important;max-width:100%!important;overflow:hidden;box-sizing:border-box!important;}
+}
+</style>
+<div class="ar-middle-ad-slot">
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
 	  
