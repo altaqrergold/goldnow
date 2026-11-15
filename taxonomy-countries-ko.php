@@ -347,7 +347,7 @@ if (!function_exists('altaqrer_gold_ko_translate_shortcode_html')) {
             return $html;
         }
 
-        $map = array_merge($map, array(
+        $translations = array_merge($translations, array(
     "Live Prices" => "실시간 금 시세",
     "Gold Price" => "금 시세",
     "Gold Prices" => "금 시세",
@@ -657,7 +657,7 @@ if (!function_exists('altaqrer_gold_ko_translate_shortcode_html')) {
     "Gold Prices in Kuwait" => "쿠웨이트 금 시세",
     "Flag of " => "국기: "
    ));
-   $map = array_merge($map, array(
+   $translations = array_merge($translations, array(
     "Updated:" => "업데이트:",
     " · Prices are indicative and may change with the market." => " · 가격은 참고용이며 시장 상황에 따라 변동될 수 있습니다",
     "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* 공식 실시간 시장 지수를 통해 데이터가 자동으로 업데이트됩니다. 공식 앱 설치를 권장합니다: ",
