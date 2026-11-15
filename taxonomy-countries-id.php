@@ -347,7 +347,7 @@ if (!function_exists('altaqrer_gold_id_translate_shortcode_html')) {
             return $html;
         }
 
-        $map = array_merge($map, array(
+        $translations = array_merge($translations, array(
     "Live Prices" => "Harga Emas Langsung",
     "Gold Price" => "Harga Emas",
     "Gold Prices" => "Harga Emas",
@@ -486,7 +486,7 @@ if (!function_exists('altaqrer_gold_id_translate_shortcode_html')) {
     "Reference date:" => "Tanggal referensi:",
     "Updated:" => "Diperbarui:"
    ));
-   $map = array_merge($map, array(
+   $translations = array_merge($translations, array(
     "Updated:" => "Diperbarui:",
     " · Prices are indicative and may change with the market." => " · Harga hanya sebagai referensi dan dapat berubah mengikuti pasar",
     "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* Data diperbarui secara otomatis melalui indeks pasar langsung resmi. Kami menyarankan untuk memasang ",
