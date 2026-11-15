@@ -1059,12 +1059,12 @@ if (!empty($gold_view)) {
     // The live values below use the same price snapshot and conversions as the tables above.
     $id_seo_base = home_url('/id/country/' . rawurlencode($id_header_country_slug) . '/');
     $id_seo_price_map = array(
-    '24k' => 'Pantau harga acuan emas 24K per gram di ' . $display_country_name,
-    '22k' => 'Pantau harga emas 22K per gram di ' . $display_country_name,
-    '21k' => 'Periksa harga emas 21K per gram di ' . $display_country_name,
-    '18k' => 'Lihat harga acuan emas 18K per gram di ' . $display_country_name,
-    '14k' => 'Bandingkan harga emas 14K dengan kadar lainnya di ' . $display_country_name,
-    );
+    '24k' => array($price_24k_local, $price_24k_usd),
+    '22k' => array($price_22k_local, $price_22k_usd),
+    '21k' => array($price_21k_local, $price_21k_usd),
+    '18k' => array($price_18k_local, $price_18k_usd),
+    '14k' => array($price_14k_local, $price_14k_usd),
+);
 ?>
 <article class="id-seo-article" aria-labelledby="id-seo-title">
 <?php if (isset($id_seo_price_map[$gold_view])) :
