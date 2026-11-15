@@ -687,14 +687,19 @@ $ko_seo_intro = isset($ko_seo_intros[$gold_view]) ? $ko_seo_intros[$gold_view] :
 function altaqrerTranslateKoreanIndicator(root) {
     if (!root) return;
     const translations = {
-        'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
-        'عيار 18': '18K Gold', 'عيار 14': '14K Gold', 'عيار 12': '12K Gold',
-        'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
-        'جنيه الذهب': 'Gold Coin', 'سعر الدولار': 'US Dollar Exchange Rate',
-        'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
-        'انضم إلى قناتنا على تيليجرام': 'Join Our Telegram Channel',
-        'انضم إلى قناتنا على تليجرام': 'Join Our Telegram Channel'
+        'عيار 24': '24K 금',
+        'عيار 22': '22K 금',
+        'عيار 21': '21K 금',
+        'عيار 18': '18K 금',
+        'عيار 14': '14K 금',
+        'عيار 12': '12K 금',
+        'الأونصة العالمية': '국제 금 1트로이온스 (USD)',
+        'جنيه الذهب': '금화',
+        'سعر الدولار': '미국 달러 환율',
+        'جنيه مصري': '이집트 파운드',
+        'دولار أمريكي': '미국 달러',
+        'انضم إلى قناتنا على تيليجرام': '텔레그램 채널 참여하기',
+        'انضم إلى قناتنا على تليجرام': '텔레그램 채널 참여하기'
     };
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const nodes = [];
