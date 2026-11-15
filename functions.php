@@ -1619,19 +1619,40 @@ function infi_load_indicator_frames() {
     $referer = wp_get_referer();
     $page_path = $referer ? (string) wp_parse_url($referer, PHP_URL_PATH) : '';
 
-    // العناوين الافتراضية بالعربية
+    // Preserve the current behavior for the existing languages.
     $global_ounce_title = 'سعر أونصة الذهب العالمي (USD)';
     $local_ounce_title = 'سعر أونصة الذهب في';
+    $tv_locale = 'ar_AE';
+    $show_local_ounce = true;
 
-    // الإنجليزية
     if (preg_match('#^/en(?:/|$)#i', $page_path)) {
         $global_ounce_title = 'Global Gold Ounce Price (USD)';
         $local_ounce_title = 'Gold Ounce Price in';
-    }
-    // الفرنسية
-    elseif (preg_match('#^/fr(?:/|$)#i', $page_path)) {
+        $tv_locale = 'en';
+    } elseif (preg_match('#^/fr(?:/|$)#i', $page_path)) {
         $global_ounce_title = 'Prix mondial de l’once d’or (USD)';
         $local_ounce_title = 'Prix de l’once d’or en';
+        $tv_locale = 'fr';
+    } elseif (preg_match('#^/th(?:/|$)#i', $page_path)) {
+        $global_ounce_title = 'ราคาทองคำโลกต่อทรอยออนซ์ (USD)';
+        $show_local_ounce = false;
+        $tv_locale = 'th';
+    } elseif (preg_match('#^/vi(?:/|$)#i', $page_path)) {
+        $global_ounce_title = 'Giá vàng thế giới mỗi ounce troy (USD)';
+        $show_local_ounce = false;
+        $tv_locale = 'vi';
+    } elseif (preg_match('#^/id(?:/|$)#i', $page_path)) {
+        $global_ounce_title = 'Harga Emas Global per Troy Ons (USD)';
+        $show_local_ounce = false;
+        $tv_locale = 'id';
+    } elseif (preg_match('#^/ja(?:/|$)#i', $page_path)) {
+        $global_ounce_title = '世界の金1トロイオンス価格（USD）';
+        $show_local_ounce = false;
+        $tv_locale = 'ja';
+    } elseif (preg_match('#^/ko(?:/|$)#i', $page_path)) {
+        $global_ounce_title = '국제 금 1트로이온스 가격 (USD)';
+        $show_local_ounce = false;
+        $tv_locale = 'kr';
     }
 
     ob_start();
@@ -1679,13 +1700,14 @@ function infi_load_indicator_frames() {
         </div>
         <div class="chart-container">
             <iframe
-              src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=ar_AE#%7B%22symbols%22%3A%5B%5B%22TVC%3AGOLD%7C1D%22%5D%5D%2C%22chartOnly%22:false%2C%22width%22:%22100%25%22%2C%22height%22:%22400%22%2C%22colorTheme%22:%22light%22%2C%22gridLineColor%22%3A%22%23f0f3fa%22%2C%22fontColor%22%3A%22%23787b86%22%2C%22isTransparent%22%3Atrue%2C%22showFloatingTooltip%22%3Atrue%7D"
+              src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=<?php echo rawurlencode($tv_locale); ?>#%7B%22symbols%22%3A%5B%5B%22TVC%3AGOLD%7C1D%22%5D%5D%2C%22chartOnly%22:false%2C%22width%22:%22100%25%22%2C%22height%22:%22400%22%2C%22colorTheme%22:%22light%22%2C%22gridLineColor%22%3A%22%23f0f3fa%22%2C%22fontColor%22%3A%22%23787b86%22%2C%22isTransparent%22%3Atrue%2C%22showFloatingTooltip%22%3Atrue%7D"
               style="width:100%; height:400px; border:none;">
             </iframe>
         </div>
     </div>
 
-    <!-- 2. الشارت المحلي -->
+    <?php if ($show_local_ounce) : ?>
+    <!-- 2. الشارت المحلي: retained for existing languages; omitted for the five new locales. -->
     <div class="gold-frame-box mb-5">
         <div class="chart-header">
             <span class="chart-icon">📊</span>
@@ -1703,7 +1725,7 @@ function infi_load_indicator_frames() {
                 "chartOnly" => false,
                 "width" => "100%",
                 "height" => "400",
-                "locale" => "ar_AE",
+                "locale" => $tv_locale,
                 "colorTheme" => "light",
                 "gridLineColor" => "#f0f3fa",
                 "isTransparent" => true,
@@ -1715,11 +1737,12 @@ function infi_load_indicator_frames() {
             $json_config = json_encode($tv_config);
             ?>
             <iframe
-              src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=ar_AE#<?php echo rawurlencode($json_config); ?>"
+              src="https://www.tradingview-widget.com/embed-widget/symbol-overview/?locale=<?php echo rawurlencode($tv_locale); ?>#<?php echo rawurlencode($json_config); ?>"
               style="width:100%; height:400px; border:none;">
             </iframe>
         </div>
     </div>
+    <?php endif; ?>
 
     <?php
     echo ob_get_clean();
