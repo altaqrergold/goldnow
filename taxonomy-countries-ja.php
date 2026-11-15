@@ -60,6 +60,7 @@ if (!function_exists('altaqrer_gold_ja_localize_output')) {
    "Gold Bars and Coins in " => "の金地金・金貨価格",
    "Latest gold bar and coin prices (excluding making charges)" => "金地金と金貨の最新価格（加工費を除く）",
    "About AlTaqrer Gold" => "AlTaqrer Goldについて",
+   " helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes." => "は、地域市場および国際市場の金価格を追跡するための情報を提供します。24K、22K、21K、18K、14K金のリアルタイム参考価格を確認し、金地金と8グラム金貨の価値を比較し、USD建ての世界金1トロイオンス価格を追跡できます。価格は情報提供と比較を目的としており、実際の小売価格には加工費、プレミアム、税金が含まれる場合があります",
    "USD and Currency Rates" => "米ドルと為替レート",
    "Gold Price" => "金価格",
    "Gold Prices" => "金価格",
