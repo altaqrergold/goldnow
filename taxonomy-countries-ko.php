@@ -60,6 +60,7 @@ if (!function_exists('altaqrer_gold_ko_localize_output')) {
    "Gold Bars and Coins in " => "골드바 및 금화 가격 - ",
    "Latest gold bar and coin prices (excluding making charges)" => "최신 골드바 및 금화 가격 (가공비 제외)",
    "About AlTaqrer Gold" => "AlTaqrer Gold 소개",
+   " helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes." => "은 지역 및 국제 시장의 금 시세를 확인할 수 있도록 돕습니다. 24K, 22K, 21K, 18K, 14K 금의 실시간 기준 가격을 살펴보고 골드바와 8그램 금화의 가치를 비교하며 USD 기준 국제 금 트로이온스 가격을 확인할 수 있습니다. 가격은 정보 제공 및 비교 목적으로 제공되며 실제 소매 가격에는 세공비, 프리미엄 및 세금이 포함될 수 있습니다",
    "USD and Currency Rates" => "USD 및 환율",
    "Gold Price" => "금 시세",
    "Gold Prices" => "금 시세",
