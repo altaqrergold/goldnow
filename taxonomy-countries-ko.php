@@ -178,39 +178,35 @@ if ($is_enabled && !empty($ad_code) && !(isset($_GET['view']) && sanitize_text_f
 // EN SEO metadata: unique Rank Math title and description for every gold section.
 $ko_meta_term = get_queried_object();
 $ko_meta_term_id = (is_object($ko_meta_term) && isset($ko_meta_term->term_id)) ? (int) $ko_meta_term->term_id : 0;
-$ko_meta_country = '';
-$ko_meta_country = $ko_meta_term_id ? (string) get_term_meta($ko_meta_term_id, 'country_english_name', true) : '';
-if ($ko_meta_country === '') { $ko_meta_country = '각 국가'; }
-
-if ($ko_meta_country === '') {
-    $ko_meta_country = 'your country';
-}
+$ko_meta_code = $ko_meta_term_id ? strtolower((string) get_term_meta($ko_meta_term_id, 'country_code', true)) : '';
+$ko_meta_names = array('eg'=>'이집트','sa'=>'사우디아라비아','ae'=>'아랍에미리트','kw'=>'쿠웨이트','qa'=>'카타르','bh'=>'바레인','om'=>'오만','jo'=>'요르단','iq'=>'이라크','ma'=>'모로코','tn'=>'튀니지','dz'=>'알제리','tr'=>'튀르키예','us'=>'미국','gb'=>'영국','in'=>'인도','jp'=>'일본','kr'=>'대한민국','vn'=>'베트남','id'=>'인도네시아','th'=>'태국');
+$ko_meta_country = isset($ko_meta_names[$ko_meta_code]) ? $ko_meta_names[$ko_meta_code] : '각 국가';
 $ko_meta_view = sanitize_key((string) get_query_var('gold_view'));
 $ko_meta_titles = array(
-    '' => '오늘의 금 시세 및 시장 개요 (' . $display_country_name,
-    '24k' => '오늘의 24K 금 시세 (' . $display_country_name,
-    '22k' => '오늘의 22K 금 시세 (' . $display_country_name,
-    '21k' => '오늘의 21K 금 시세 (' . $display_country_name,
-    '18k' => '오늘의 18K 금 시세 (' . $display_country_name,
-    '14k' => '오늘의 14K 금 시세 (' . $display_country_name,
-    'ounce' => '오늘의 국제 금 트로이온스 가격 (USD)',
-    'coin' => '오늘의 8그램 금화 가격 (' . $display_country_name,
-    'gold-bars' => '오늘의 골드바 가격 (' . $display_country_name,
-    'gold-index' => '오늘의 금 가격 지수 (' . $display_country_name,
-    'usd' => '오늘의 USD 환율 (' . $display_country_name,
+ ''=>'오늘의 금 시세와 시장 동향 - '.$ko_meta_country,
+ '24k'=>'오늘의 24캐럿 순금 가격 - '.$ko_meta_country,
+ '22k'=>'오늘의 22캐럿 금 가격 - '.$ko_meta_country,
+ '21k'=>'오늘의 21캐럿 금 가격 - '.$ko_meta_country,
+ '18k'=>'오늘의 18캐럿 금 가격 - '.$ko_meta_country,
+ '14k'=>'오늘의 14캐럿 금 가격 - '.$ko_meta_country,
+ 'ounce'=>'국제 금 트로이온스 가격 - USD',
+ 'coin'=>'표준 8그램 금화 가격 - '.$ko_meta_country,
+ 'gold-bars'=>'금괴 중량별 가격 - '.$ko_meta_country,
+ 'gold-index'=>'실시간 금 시세 지수 - '.$ko_meta_country,
+ 'usd'=>'미국 달러 환율과 주요 통화 - '.$ko_meta_country
 );
 $ko_meta_descriptions = array(
-    '' => '24K, 22K, 21K, 18K, 14K의 그램당 가격과 USD 기준 국제 금값, 8그램 금화, 골드바 및 환율을 비교할 수 있습니다. 대상 지역:' . $display_country_name,
-    '24k' => '의 24K 금 그램당 기준 가격을 확인하고 다른 순도와 비교하세요.' . $display_country_name,
-    '22k' => '의 22K 금 가격과 24K 금의 차이를 확인하세요.' . $display_country_name,
-    '21k' => '의 21K 금 그램당 가격을 확인하세요.' . $display_country_name,
-    '18k' => '의 18K 금 기준 가격을 확인하세요.' . $display_country_name,
-    '14k' => '의 14K 금 가격을 다른 순도와 비교하세요.' . $display_country_name,
-    'ounce' => '국제 현물 시장의 금 1트로이온스 가격을 USD로 표시합니다. 1트로이온스는 약 31.1035그램입니다. 국가별 현지 통화 가격이 아닌 세계 시장 기준 가격입니다.',
-    'coin' => '의 8그램 금화 기준 가치를 확인하세요.' . $display_country_name,
-    'gold-bars' => '의 24K 금 그램당 가격을 기준으로 중량별 골드바 가격을 비교하세요.' . $display_country_name,
-    'gold-index' => '의 순도 및 통화별 금 가격을 비교하세요.' . $display_country_name,
-    'usd' => '에서 사용하는 USD 환율 기준값을 확인하세요.' . $display_country_name,
+ ''=>$ko_meta_country.'의 실시간 금 시세를 확인하고 24K부터 14K까지의 가격, 국제 금 시세, 8그램 금화, 금괴 및 환율을 비교하세요.',
+ '24k'=>$ko_meta_country.'의 24캐럿 순금 1그램 가격과 USD 환산액을 확인하세요. 국제 시세와 환율이 가격에 미치는 영향도 살펴볼 수 있습니다.',
+ '22k'=>$ko_meta_country.'의 22캐럿 금 1그램 가격과 순금 함량을 확인하고 24캐럿 금과의 차이 및 장신구 가격에 더해질 수 있는 비용을 알아보세요.',
+ '21k'=>$ko_meta_country.'의 21캐럿 금 1그램 시세와 USD 환산액을 확인하세요. 금 함량과 8그램 금화 가격을 이해하는 데 필요한 기준 정보를 제공합니다.',
+ '18k'=>$ko_meta_country.'의 18캐럿 금 가격과 순금 함량, 내구성 및 다른 순도와의 가격 차이를 비교하세요.',
+ '14k'=>$ko_meta_country.'의 14캐럿 금 시세와 1그램 기준 가격, 합금의 특성 및 구매 전 확인할 사항을 살펴보세요.',
+ 'ounce'=>'국제 시장에서 거래되는 금 1트로이온스의 가격을 USD로 확인하세요. 약 31.1035그램의 24캐럿 금을 기준으로 하며 현지 통화 가격과 구분됩니다.',
+ 'coin'=>$ko_meta_country.'의 표준 8그램 금화 가격을 21K, 22K 및 24K 기준으로 비교하세요. 표시 금액은 금 함량의 가치이며 별도 비용은 포함하지 않습니다.',
+ 'gold-bars'=>$ko_meta_country.'의 24캐럿 금괴 가격을 다양한 중량별로 비교하세요. 계산 기준과 인증 비용, 세공비 및 세금의 차이를 알아보세요.',
+ 'gold-index'=>$ko_meta_country.'의 주요 금 순도별 가격과 국제 금 시세를 비교하세요. 지수의 구성과 시장 변동을 해석하는 방법을 안내합니다.',
+ 'usd'=>$ko_meta_country.'의 미국 달러 환율과 주요 통화의 환산 기준을 확인하세요. 환율 변화가 현지 금 가격에 미치는 영향도 살펴보세요.'
 );
 $ko_meta_title = isset($ko_meta_titles[$ko_meta_view]) ? $ko_meta_titles[$ko_meta_view] : '오늘의 24K 금 시세 (' . $ko_meta_country;
 $ko_meta_description = isset($ko_meta_descriptions[$ko_meta_view]) ? $ko_meta_descriptions[$ko_meta_view] : '의 24K 금 그램당 기준 가격을 확인하고 다른 순도와 비교하세요.' . $ko_meta_country;
