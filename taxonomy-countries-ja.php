@@ -507,6 +507,7 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
     "US Dollar and Currency Exchange Rates Today in " => "本日の米ドル・為替レート：",
     "Gold Coin Price Today in " => "本日の金貨価格："
    ));
+   unset($map["."]); // Preserve decimal points in prices and gram weights.
    $protected = array();
         $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function ($m) use (&$protected) {
             $token = 'ALTQRGOLDENBLOCK' . count($protected) . 'TOKEN';
