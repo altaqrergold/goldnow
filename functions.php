@@ -1628,11 +1628,9 @@ function infi_load_indicator_frames() {
     if (preg_match('#^/en(?:/|$)#i', $page_path)) {
         $global_ounce_title = 'Global Gold Ounce Price (USD)';
         $local_ounce_title = 'Gold Ounce Price in';
-        $tv_locale = 'en';
     } elseif (preg_match('#^/fr(?:/|$)#i', $page_path)) {
         $global_ounce_title = 'Prix mondial de l’once d’or (USD)';
         $local_ounce_title = 'Prix de l’once d’or en';
-        $tv_locale = 'fr';
     } elseif (preg_match('#^/th(?:/|$)#i', $page_path)) {
         $global_ounce_title = 'ราคาทองคำโลกต่อทรอยออนซ์ (USD)';
         $show_local_ounce = false;
