@@ -2,12 +2,14 @@ name: PHP syntax checks
 
 on:
   push:
-    branches: [main]
+    branches:
+      - work/multilingual-auto-posts-15-languages
     paths:
       - 'goldnow-multilingual-routes.php'
       - 'goldnow-language-manager.php'
       - 'goldnow-seo-content.php'
       - 'goldnow-seo-admin.php'
+      - 'goldnow-seo-shortcode.php'
       - 'tests/test-seo-renderer.php'
       - '.github/workflows/php-lint.yml'
   pull_request:
@@ -16,13 +18,15 @@ on:
       - 'goldnow-language-manager.php'
       - 'goldnow-seo-content.php'
       - 'goldnow-seo-admin.php'
+      - 'goldnow-seo-shortcode.php'
+      - 'tests/test-seo-renderer.php'
       - '.github/workflows/php-lint.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: goldnow-php-lint-main
+  group: goldnow-php-lint-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -31,37 +35,40 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-      - name: Inspect current plugin archive layout
-        run: unzip -l goldnow-language-manager.zip
-      - name: Lint changed PHP source files
+
+      - name: Lint PHP source files
         run: |
           php -l goldnow-multilingual-routes.php
           php -l goldnow-language-manager.php
           php -l goldnow-seo-content.php
           php -l goldnow-seo-admin.php
-          php tests/test-seo-renderer.php
+          php -l goldnow-seo-shortcode.php
+          php -l tests/test-seo-renderer.php
 
-      - name: Rebuild plugin ZIP with SEO module
+      - name: Run SEO renderer tests
+        run: php tests/test-seo-renderer.php
+
+      - name: Build and validate Language Manager ZIP
         run: |
-          rm -rf dist
+          rm -rf dist package-check
           mkdir -p dist/goldnow-language-manager
-          cp goldnow-language-manager.php goldnow-seo-content.php goldnow-seo-admin.php dist/goldnow-language-manager/
+          cp goldnow-language-manager.php goldnow-seo-content.php goldnow-seo-admin.php goldnow-seo-shortcode.php dist/goldnow-language-manager/
           (cd dist && zip -qr ../goldnow-language-manager.zip goldnow-language-manager)
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add goldnow-language-manager.zip
-          if ! git diff --cached --quiet; then
-            git commit -m "Build GoldNow Language Manager v1.3.0 package"
-            git pull --rebase origin main
-            git push
-          fi
           unzip -t goldnow-language-manager.zip
-          rm -rf package-check
           unzip -q goldnow-language-manager.zip -d package-check
           php -l package-check/goldnow-language-manager/goldnow-language-manager.php
           php -l package-check/goldnow-language-manager/goldnow-seo-content.php
           php -l package-check/goldnow-language-manager/goldnow-seo-admin.php
+          php -l package-check/goldnow-language-manager/goldnow-seo-shortcode.php
+
+      - name: Upload validated plugin package
+        uses: actions/upload-artifact@v4
+        with:
+          name: goldnow-language-manager
+          path: goldnow-language-manager.zip
+          if-no-files-found: error
