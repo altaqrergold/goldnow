@@ -19,6 +19,11 @@ $ar_header_is_app=(isset($_GET['view'])&&sanitize_text_field(wp_unslash($_GET['v
 <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri().'/style.css'); ?>">
 <style>
 html,body{direction:rtl;text-align:right}
+body.ar-gold-template{margin:0;max-width:100vw;overflow-x:hidden;position:relative}
+.gold-tabs-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:5px;padding:16px 0}
+.gold-tab-btn{flex:1 1 auto;text-align:center;background:#fff8e1;border:1px solid #dfb551;padding:10px 12px;cursor:pointer;font-weight:bold;border-radius:6px;transition:.3s;color:#3a2e0a;min-width:0}
+.gold-tab-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.gold-tab-btn:hover{background:#dfb551;color:#2c2107}
 .ar-site-header{position:relative;z-index:1000;background:#1a1a1a;border-bottom:4px solid <?php echo esc_attr($ar_header_accent); ?>;color:#fff}
 .ar-site-header-inner{max-width:1200px;width:95%;margin:0 auto;min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0}
 .ar-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:20px;white-space:nowrap}
@@ -62,6 +67,16 @@ html,body{direction:rtl;text-align:right}
 <a href="<?php echo esc_url(home_url('/country/eg/')); ?>">مصر</a><a href="<?php echo esc_url(home_url('/country/sa/')); ?>">السعودية</a><a href="<?php echo esc_url(home_url('/country/ae/')); ?>">الإمارات</a><a href="<?php echo esc_url(home_url('/country/kw/')); ?>">الكويت</a><a href="<?php echo esc_url(home_url('/all-countries/')); ?>">كل الدول</a>
 </div></div></nav></div></header>
 <?php endif; ?>
+
+<?php
+// إعلان الهيدر الموجود في إعدادات القالب، بنفس موضع النسخة الإنجليزية.
+if (!$ar_header_is_app && function_exists('goldnow_display_ad')) :
+?>
+<div class="ar-top-header-ad" style="width:100%;max-width:1200px;margin:0 auto;padding:10px 8px;box-sizing:border-box;text-align:center;direction:rtl;clear:both;">
+    <?php goldnow_display_ad('below_navbar'); ?>
+</div>
+<?php endif; ?>
+
 <script>
 document.addEventListener('DOMContentLoaded',function(){var t=document.querySelector('.ar-country-toggle'),m=document.getElementById('ar-country-menu');if(!t||!m)return;t.addEventListener('click',function(e){e.preventDefault();var o=m.classList.toggle('is-open');t.setAttribute('aria-expanded',o?'true':'false');});document.addEventListener('click',function(e){if(!e.target.closest('.ar-country-wrap')){m.classList.remove('is-open');t.setAttribute('aria-expanded','false');}});});
 </script>
