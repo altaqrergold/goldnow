@@ -1,0 +1,22 @@
+name: Temporary plugin source extraction
+on:
+  push:
+    branches:
+      - work/multilingual-auto-posts-15-languages
+  workflow_dispatch:
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract source archives
+        run: |
+          mkdir -p extracted/auto-posts extracted/goldnow-plugin
+          unzip -q goldnow-auto-posts.zip -d extracted/auto-posts
+          unzip -q goldnow-plugin.zip -d extracted/goldnow-plugin
+          find extracted -maxdepth 4 -type f | sort
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extracted-plugin-sources
+          path: extracted/
+          retention-days: 1
