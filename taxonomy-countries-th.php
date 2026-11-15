@@ -347,7 +347,7 @@ if (!function_exists('altaqrer_gold_th_translate_shortcode_html')) {
             return $html;
         }
 
-        $map = array_merge($map, array(
+        $translations = array_merge($translations, array(
     "Live Prices" => "ราคาทองคำเรียลไทม์",
     "Gold Price" => "ราคาทองคำ",
     "Gold Prices" => "ราคาทองคำ",
@@ -486,7 +486,7 @@ if (!function_exists('altaqrer_gold_th_translate_shortcode_html')) {
     "Reference date:" => "วันที่อ้างอิง:",
     "Updated:" => "อัปเดต:"
    ));
-   $map = array_merge($map, array(
+   $translations = array_merge($translations, array(
     "Updated:" => "อัปเดต:",
     " · Prices are indicative and may change with the market." => " · ราคาเป็นข้อมูลอ้างอิงและอาจเปลี่ยนแปลงตามตลาด",
     "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* ข้อมูลได้รับการอัปเดตโดยอัตโนมัติผ่านดัชนีตลาดแบบเรียลไทม์อย่างเป็นทางการ ขอแนะนำให้ติดตั้ง ",
