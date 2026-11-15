@@ -687,14 +687,19 @@ $th_seo_intro = isset($th_seo_intros[$gold_view]) ? $th_seo_intros[$gold_view] :
 function altaqrerTranslateThaiIndicator(root) {
     if (!root) return;
     const translations = {
-        'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
-        'عيار 18': '18K Gold', 'عيار 14': '14K Gold', 'عيار 12': '12K Gold',
-        'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
-        'جنيه الذهب': 'Gold Coin', 'سعر الدولار': 'US Dollar Exchange Rate',
-        'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
-        'انضم إلى قناتنا على تيليجرام': 'Join Our Telegram Channel',
-        'انضم إلى قناتنا على تليجرام': 'Join Our Telegram Channel'
+        'عيار 24': 'ทองคำ 24K',
+        'عيار 22': 'ทองคำ 22K',
+        'عيار 21': 'ทองคำ 21K',
+        'عيار 18': 'ทองคำ 18K',
+        'عيار 14': 'ทองคำ 14K',
+        'عيار 12': 'ทองคำ 12K',
+        'الأونصة العالمية': 'ทองคำโลกหนึ่งทรอยออนซ์ (USD)',
+        'جنيه الذهب': 'เหรียญทองคำ',
+        'سعر الدولار': 'อัตราแลกเปลี่ยนดอลลาร์สหรัฐ',
+        'جنيه مصري': 'ปอนด์อียิปต์',
+        'دولار أمريكي': 'ดอลลาร์สหรัฐ',
+        'انضم إلى قناتنا على تيليجرام': 'เข้าร่วมช่อง Telegram ของเรา',
+        'انضم إلى قناتنا على تليجرام': 'เข้าร่วมช่อง Telegram ของเรา'
     };
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const nodes = [];
