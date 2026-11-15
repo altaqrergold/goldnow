@@ -687,14 +687,19 @@ $vi_seo_intro = isset($vi_seo_intros[$gold_view]) ? $vi_seo_intros[$gold_view] :
 function altaqrerTranslateVietnameseIndicator(root) {
     if (!root) return;
     const translations = {
-        'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
-        'عيار 18': '18K Gold', 'عيار 14': '14K Gold', 'عيار 12': '12K Gold',
-        'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
-        'جنيه الذهب': 'Gold Coin', 'سعر الدولار': 'US Dollar Exchange Rate',
-        'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
-        'انضم إلى قناتنا على تيليجرام': 'Join Our Telegram Channel',
-        'انضم إلى قناتنا على تليجرام': 'Join Our Telegram Channel'
+        'عيار 24': 'Vàng 24K',
+        'عيار 22': 'Vàng 22K',
+        'عيار 21': 'Vàng 21K',
+        'عيار 18': 'Vàng 18K',
+        'عيار 14': 'Vàng 14K',
+        'عيار 12': 'Vàng 12K',
+        'الأونصة العالمية': 'Một ounce troy vàng thế giới (USD)',
+        'جنيه الذهب': 'Vàng xu',
+        'سعر الدولار': 'Tỷ giá đô la Mỹ',
+        'جنيه مصري': 'Bảng Ai Cập',
+        'دولار أمريكي': 'Đô la Mỹ',
+        'انضم إلى قناتنا على تيليجرام': 'Tham gia kênh Telegram của chúng tôi',
+        'انضم إلى قناتنا على تليجرام': 'Tham gia kênh Telegram của chúng tôi'
     };
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const nodes = [];
