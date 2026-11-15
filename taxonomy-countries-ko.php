@@ -31,6 +31,7 @@ if (!function_exists('altaqrer_gold_ko_localize_output')) {
    "Gold Price in USD" => "USD 기준 금 가격",
    "Local Currency" => "현지 통화",
    "Egyptian Pound" => "이집트 파운드",
+   "ian Pound" => " 파운드",
    "US Dollar" => "미국 달러",
    "British Pound" => "영국 파운드",
    "Saudi Riyal" => "사우디 리얄",
