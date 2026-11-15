@@ -31,6 +31,7 @@ if (!function_exists('altaqrer_gold_ja_localize_output')) {
    "Gold Price in USD" => "USD建て金価格",
    "Local Currency" => "現地通貨",
    "Egyptian Pound" => "エジプト・ポンド",
+   "ian Pound" => "ポンド",
    "US Dollar" => "米ドル",
    "British Pound" => "英ポンド",
    "Saudi Riyal" => "サウジアラビア・リヤル",
