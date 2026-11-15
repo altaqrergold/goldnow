@@ -486,6 +486,15 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
     "Reference date:" => "基準日：",
     "Updated:" => "更新："
    ));
+   $map = array_merge($map, array(
+    "Updated:" => "更新：",
+    " · Prices are indicative and may change with the market." => " · 価格は参考値であり、市場状況により変動します",
+    "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* データは公式のリアルタイム市場指数を通じて自動更新されます。公式アプリのインストールをおすすめします：",
+    "金価格チャートを読み込んでいます..." => "金価格チャートを読み込んでいます...",
+    "チャートデータを読み込めませんでした。もう一度お試しください" => "チャートデータを読み込めませんでした。もう一度お試しください",
+    "Gold Price in " => "金価格：",
+    "Gold Price Sections" => "金価格メニュー"
+   ));
    $protected = array();
         $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function ($m) use (&$protected) {
             $token = 'ALTQRGOLDENBLOCK' . count($protected) . 'TOKEN';
@@ -991,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">金価格チャートを読み込んでいます...</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -1007,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateJapaneseIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">チャートデータを読み込めませんでした。もう一度お試しください</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
