@@ -31,6 +31,7 @@ if (!function_exists('altaqrer_gold_id_localize_output')) {
    "Gold Price in USD" => "Harga Emas dalam USD",
    "Local Currency" => "Mata Uang Lokal",
    "Egyptian Pound" => "Pound Mesir",
+   "ian Pound" => " Pound",
    "US Dollar" => "Dolar AS",
    "British Pound" => "Poundsterling Inggris",
    "Saudi Riyal" => "Riyal Saudi",
