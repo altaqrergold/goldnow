@@ -1059,12 +1059,12 @@ if (!empty($gold_view)) {
     // The live values below use the same price snapshot and conversions as the tables above.
     $ja_seo_base = home_url('/ja/country/' . rawurlencode($ja_header_country_slug) . '/');
     $ja_seo_price_map = array(
-    '24k' => 'の24K金の1グラムあたりの参考価格を確認できます。' . $display_country_name,
-    '22k' => 'の22K金の1グラム価格を24K金と比較できます。' . $display_country_name,
-    '21k' => 'の21K金の1グラムあたりの価格を確認できます。' . $display_country_name,
-    '18k' => 'の18K金の参考価格を確認できます。' . $display_country_name,
-    '14k' => 'の14K金価格を他の品位と比較できます。' . $display_country_name,
-    );
+    '24k' => array($price_24k_local, $price_24k_usd),
+    '22k' => array($price_22k_local, $price_22k_usd),
+    '21k' => array($price_21k_local, $price_21k_usd),
+    '18k' => array($price_18k_local, $price_18k_usd),
+    '14k' => array($price_14k_local, $price_14k_usd),
+);
 ?>
 <article class="ja-seo-article" aria-labelledby="ja-seo-title">
 <?php if (isset($ja_seo_price_map[$gold_view])) :
