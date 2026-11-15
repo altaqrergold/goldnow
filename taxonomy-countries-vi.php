@@ -1059,12 +1059,12 @@ if (!empty($gold_view)) {
     // The live values below use the same price snapshot and conversions as the tables above.
     $vi_seo_base = home_url('/vi/country/' . rawurlencode($vi_header_country_slug) . '/');
     $vi_seo_price_map = array(
-    '24k' => 'Theo dõi giá tham chiếu vàng 24K mỗi gram tại ' . $display_country_name,
-    '22k' => 'Theo dõi giá vàng 22K mỗi gram tại ' . $display_country_name,
-    '21k' => 'Kiểm tra giá vàng 21K mỗi gram tại ' . $display_country_name,
-    '18k' => 'Xem giá tham chiếu vàng 18K mỗi gram tại ' . $display_country_name,
-    '14k' => 'So sánh giá vàng 14K với các độ tuổi vàng khác tại ' . $display_country_name,
-    );
+    '24k' => array($price_24k_local, $price_24k_usd),
+    '22k' => array($price_22k_local, $price_22k_usd),
+    '21k' => array($price_21k_local, $price_21k_usd),
+    '18k' => array($price_18k_local, $price_18k_usd),
+    '14k' => array($price_14k_local, $price_14k_usd),
+);
 ?>
 <article class="vi-seo-article" aria-labelledby="vi-seo-title">
 <?php if (isset($vi_seo_price_map[$gold_view])) :
