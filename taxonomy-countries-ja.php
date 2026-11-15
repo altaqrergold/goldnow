@@ -495,6 +495,18 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
     "Gold Price in " => "金価格：",
     "Gold Price Sections" => "金価格メニュー"
    ));
+   $map = array_merge($map, array(
+    "Gold Bullion Bar Prices in " => "金地金価格：",
+    "Gold Coin Prices in " => "金貨価格：",
+    "Gold Bars and Coins in " => "金地金・金貨価格：",
+    "Gold Price Chart in " => "金価格チャート：",
+    "Gold Prices in " => "金価格：",
+    "Gold Price Today in " => "本日の金価格：",
+    "Gold Bullion Bar Prices Today in " => "本日の金地金価格：",
+    "Live Gold Market Index Today in " => "本日のリアルタイム金市場指数：",
+    "US Dollar and Currency Exchange Rates Today in " => "本日の米ドル・為替レート：",
+    "Gold Coin Price Today in " => "本日の金貨価格："
+   ));
    $protected = array();
         $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function ($m) use (&$protected) {
             $token = 'ALTQRGOLDENBLOCK' . count($protected) . 'TOKEN';
