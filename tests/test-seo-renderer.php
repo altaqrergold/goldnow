@@ -79,7 +79,7 @@ if (strpos($faq_html, 'Custom FAQ question') === false) {
     exit(1);
 }
 $GLOBALS['goldnow_test_option_overrides'] = array();
-if ($override[0] !== 'Custom English SEO title' || $override[1] !== 'Custom intro' || $override[2] !== 'Custom body paragraph.') {
+if ($override[0] !== 'Custom English SEO title' || $override[1] !== 'Custom intro' || $override[2] !== "Custom first paragraph.\n\nCustom second paragraph.") {
     fwrite(STDERR, "Saved SEO editorial overrides were not applied.\\n");
     exit(1);
 }
