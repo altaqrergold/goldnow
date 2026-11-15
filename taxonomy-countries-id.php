@@ -687,14 +687,19 @@ $id_seo_intro = isset($id_seo_intros[$gold_view]) ? $id_seo_intros[$gold_view] :
 function altaqrerTranslateIndonesianIndicator(root) {
     if (!root) return;
     const translations = {
-        'عيار 24': '24K Gold', 'عيار 22': '22K Gold', 'عيار 21': '21K Gold',
-        'عيار 18': '18K Gold', 'عيار 14': '14K Gold', 'عيار 12': '12K Gold',
-        'الأونصة العالمية': 'Global Gold Ounce (USD)',
-        'الأونصة بالعملة المحلية': 'Gold Ounce in Local Currency',
-        'جنيه الذهب': 'Gold Coin', 'سعر الدولار': 'US Dollar Exchange Rate',
-        'جنيه مصري': 'Egyptian Pound', 'دولار أمريكي': 'US Dollar',
-        'انضم إلى قناتنا على تيليجرام': 'Join Our Telegram Channel',
-        'انضم إلى قناتنا على تليجرام': 'Join Our Telegram Channel'
+        'عيار 24': 'Emas 24K',
+        'عيار 22': 'Emas 22K',
+        'عيار 21': 'Emas 21K',
+        'عيار 18': 'Emas 18K',
+        'عيار 14': 'Emas 14K',
+        'عيار 12': 'Emas 12K',
+        'الأونصة العالمية': 'Satu Troy Ons Emas Global (USD)',
+        'جنيه الذهب': 'Koin Emas',
+        'سعر الدولار': 'Kurs Dolar AS',
+        'جنيه مصري': 'Pound Mesir',
+        'دولار أمريكي': 'Dolar AS',
+        'انضم إلى قناتنا على تيليجرام': 'Bergabung dengan Kanal Telegram Kami',
+        'انضم إلى قناتنا على تليجرام': 'Bergabung dengan Kanal Telegram Kami'
     };
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     const nodes = [];
