@@ -486,6 +486,15 @@ if (!function_exists('altaqrer_gold_id_translate_shortcode_html')) {
     "Reference date:" => "Tanggal referensi:",
     "Updated:" => "Diperbarui:"
    ));
+   $map = array_merge($map, array(
+    "Updated:" => "Diperbarui:",
+    " · Prices are indicative and may change with the market." => " · Harga hanya sebagai referensi dan dapat berubah mengikuti pasar",
+    "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* Data diperbarui secara otomatis melalui indeks pasar langsung resmi. Kami menyarankan untuk memasang ",
+    "Memuat grafik harga emas..." => "Memuat grafik harga emas...",
+    "Data grafik tidak dapat dimuat. Silakan coba lagi" => "Data grafik tidak dapat dimuat. Silakan coba lagi",
+    "Gold Price in " => "Harga emas di ",
+    "Gold Price Sections" => "Bagian Harga Emas"
+   ));
    $protected = array();
         $html = preg_replace_callback('~<!--.*?-->|<(script|style)\\b[^>]*>.*?</\\1\\s*>~is', function ($m) use (&$protected) {
             $token = 'ALTQRGOLDENBLOCK' . count($protected) . 'TOKEN';
@@ -991,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Load the same indicator frames used by the Arabic template once only.
             if (tab === 'indicator' && !targetPane.dataset.framesLoaded) {
                 const framesContainer = document.getElementById('ajax-indicator-frames');
-                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Loading gold charts...</p>';
+                framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#cbd5e1;">Memuat grafik harga emas...</p>';
                 const formData = new FormData();
                 formData.append('action', 'load_indicator_frames');
                 formData.append('country_currency', <?php echo wp_json_encode($country_currency); ?>);
@@ -1007,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     altaqrerTranslateIndonesianIndicator(framesContainer);
                     targetPane.dataset.framesLoaded = 'true';
                 } catch (error) {
-                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">The chart data could not be loaded. Please try again.</p>';
+                    framesContainer.innerHTML = '<p style="text-align:center;padding:18px;color:#fca5a5;">Data grafik tidak dapat dimuat. Silakan coba lagi</p>';
                     delete targetPane.dataset.framesLoaded;
                 }
             }
