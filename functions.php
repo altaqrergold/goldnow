@@ -1652,7 +1652,7 @@ function infi_load_indicator_frames() {
     } elseif (preg_match('#^/ko(?:/|$)#i', $page_path)) {
         $global_ounce_title = '국제 금 1트로이온스 가격 (USD)';
         $show_local_ounce = false;
-        $tv_locale = 'kr';
+        $tv_locale = 'ko';
     }
 
     ob_start();
