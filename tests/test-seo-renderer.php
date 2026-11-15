@@ -65,7 +65,7 @@ function get_option($key, $default = false) {
 
 
 $GLOBALS['goldnow_test_option_overrides'] = array(
-    'en' => array('24k' => array('title' => 'Custom English SEO title', 'intro' => 'Custom intro', 'body' => 'Custom first paragraph.\\n\\nCustom second paragraph.'))
+    'en' => array('24k' => array('title' => 'Custom English SEO title', 'intro' => 'Custom intro', 'body' => "Custom first paragraph.\n\nCustom second paragraph."))
 );
 $override = goldnow_seo_article_data('en', '24k');
 $GLOBALS['goldnow_test_option_overrides']['en']['24k']['faq1_q'] = 'Custom FAQ question';
