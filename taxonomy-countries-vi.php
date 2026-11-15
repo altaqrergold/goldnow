@@ -60,6 +60,7 @@ if (!function_exists('altaqrer_gold_vi_localize_output')) {
    "Gold Bars and Coins in " => "Vàng miếng và đồng vàng tại ",
    "Latest gold bar and coin prices (excluding making charges)" => "Giá vàng miếng và đồng vàng mới nhất (chưa bao gồm tiền công)",
    "About AlTaqrer Gold" => "Giới thiệu về AlTaqrer Gold",
+   " helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes." => " giúp độc giả theo dõi giá vàng tại các thị trường khu vực và quốc tế. Khám phá giá tham chiếu trực tiếp của vàng 24K, 22K, 21K, 18K và 14K, so sánh giá trị vàng miếng và đồng vàng 8 gram, đồng thời theo dõi giá vàng thế giới theo ounce troy bằng USD. Giá được cung cấp để tham khảo và so sánh; giá bán lẻ cuối cùng có thể bao gồm tiền công, phụ phí và thuế",
    "USD and Currency Rates" => "Tỷ giá USD và các loại tiền tệ",
    "Gold Price" => "Giá vàng",
    "Gold Prices" => "Giá vàng",
