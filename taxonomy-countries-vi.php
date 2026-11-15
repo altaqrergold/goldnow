@@ -282,7 +282,29 @@ if (!function_exists('altaqrer_gold_vi_translate_shortcode_html')) {
             $country_fallback = '';
         }
     }
-    $localized_country_names = {'eg':'Ai Cập','sa':'Ả Rập Xê Út','ae':'Các Tiểu vương quốc Ả Rập Thống nhất','kw':'Kuwait','qa':'Qatar','bh':'Bahrain','om':'Oman','jo':'Jordan','iq':'Iraq','ma':'Maroc','tn':'Tunisia','dz':'Algeria','tr':'Thổ Nhĩ Kỳ','us':'Hoa Kỳ','gb':'Vương quốc Anh','in':'Ấn Độ','jp':'Nhật Bản','kr':'Hàn Quốc','vn':'Việt Nam','id':'Indonesia','th':'Thái Lan'};
+    $localized_country_names = array(
+        'eg' => 'Ai Cập',
+        'sa' => 'Ả Rập Xê Út',
+        'ae' => 'Các Tiểu vương quốc Ả Rập Thống nhất',
+        'kw' => 'Kuwait',
+        'qa' => 'Qatar',
+        'bh' => 'Bahrain',
+        'om' => 'Oman',
+        'jo' => 'Jordan',
+        'iq' => 'Iraq',
+        'ma' => 'Maroc',
+        'tn' => 'Tunisia',
+        'dz' => 'Algeria',
+        'tr' => 'Thổ Nhĩ Kỳ',
+        'us' => 'Hoa Kỳ',
+        'gb' => 'Vương quốc Anh',
+        'in' => 'Ấn Độ',
+        'jp' => 'Nhật Bản',
+        'kr' => 'Hàn Quốc',
+        'vn' => 'Việt Nam',
+        'id' => 'Indonesia',
+        'th' => 'Thái Lan'
+    );
     $country_code_key = strtolower((string) $country_code);
     $display_country_name = isset($localized_country_names[$country_code_key])
         ? $localized_country_names[$country_code_key]
@@ -326,7 +348,27 @@ if (!function_exists('altaqrer_gold_vi_translate_shortcode_html')) {
         'ETB'=>'Ethiopian Birr','FJD'=>'Fijian Dollar','PGK'=>'Papua New Guinean Kina','SBD'=>'Solomon Islands Dollar',
         'VUV'=>'Vanuatu Vatu','WST'=>'Samoan Tala','TOP'=>'Tongan Paʻanga','XPF'=>'CFP Franc','SHP'=>'Saint Helena Pound'
     );
-    $currency_labels_local = {'USD':'Đô la Mỹ','EGP':'Bảng Ai Cập','SAR':'Riyal Ả Rập Xê Út','AED':'Dirham UAE','KWD':'Dinar Kuwait','QAR':'Riyal Qatar','BHD':'Dinar Bahrain','OMR':'Rial Oman','JOD':'Dinar Jordan','EUR':'Euro','GBP':'Bảng Anh','TRY':'Lira Thổ Nhĩ Kỳ','JPY':'Yên Nhật','KRW':'Won Hàn Quốc','VND':'Đồng Việt Nam','IDR':'Rupiah Indonesia','THB':'Baht Thái','INR':'Rupee Ấn Độ','CNY':'Nhân dân tệ'};
+    $currency_labels_local = array(
+        'USD' => 'Đô la Mỹ',
+        'EGP' => 'Bảng Ai Cập',
+        'SAR' => 'Riyal Ả Rập Xê Út',
+        'AED' => 'Dirham UAE',
+        'KWD' => 'Dinar Kuwait',
+        'QAR' => 'Riyal Qatar',
+        'BHD' => 'Dinar Bahrain',
+        'OMR' => 'Rial Oman',
+        'JOD' => 'Dinar Jordan',
+        'EUR' => 'Euro',
+        'GBP' => 'Bảng Anh',
+        'TRY' => 'Lira Thổ Nhĩ Kỳ',
+        'JPY' => 'Yên Nhật',
+        'KRW' => 'Won Hàn Quốc',
+        'VND' => 'Đồng Việt Nam',
+        'IDR' => 'Rupiah Indonesia',
+        'THB' => 'Baht Thái',
+        'INR' => 'Rupee Ấn Độ',
+        'CNY' => 'Nhân dân tệ'
+    );
     $currency_label = isset($currency_labels_local[$country_currency])
         ? $currency_labels_local[$country_currency]
         : (isset($currency_labels_en[$country_currency]) ? $currency_labels_en[$country_currency] : ($country_currency !== '' ? $country_currency : 'Local Currency'));
