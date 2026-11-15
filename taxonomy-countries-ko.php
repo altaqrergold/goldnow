@@ -282,7 +282,29 @@ if (!function_exists('altaqrer_gold_ko_translate_shortcode_html')) {
             $country_fallback = '';
         }
     }
-    $localized_country_names = {'eg':'이집트','sa':'사우디아라비아','ae':'아랍에미리트','kw':'쿠웨이트','qa':'카타르','bh':'바레인','om':'오만','jo':'요르단','iq':'이라크','ma':'모로코','tn':'튀니지','dz':'알제리','tr':'튀르키예','us':'미국','gb':'영국','in':'인도','jp':'일본','kr':'대한민국','vn':'베트남','id':'인도네시아','th':'태국'};
+    $localized_country_names = array(
+        'eg' => '이집트',
+        'sa' => '사우디아라비아',
+        'ae' => '아랍에미리트',
+        'kw' => '쿠웨이트',
+        'qa' => '카타르',
+        'bh' => '바레인',
+        'om' => '오만',
+        'jo' => '요르단',
+        'iq' => '이라크',
+        'ma' => '모로코',
+        'tn' => '튀니지',
+        'dz' => '알제리',
+        'tr' => '튀르키예',
+        'us' => '미국',
+        'gb' => '영국',
+        'in' => '인도',
+        'jp' => '일본',
+        'kr' => '대한민국',
+        'vn' => '베트남',
+        'id' => '인도네시아',
+        'th' => '태국'
+    );
     $country_code_key = strtolower((string) $country_code);
     $display_country_name = isset($localized_country_names[$country_code_key])
         ? $localized_country_names[$country_code_key]
@@ -326,7 +348,27 @@ if (!function_exists('altaqrer_gold_ko_translate_shortcode_html')) {
         'ETB'=>'Ethiopian Birr','FJD'=>'Fijian Dollar','PGK'=>'Papua New Guinean Kina','SBD'=>'Solomon Islands Dollar',
         'VUV'=>'Vanuatu Vatu','WST'=>'Samoan Tala','TOP'=>'Tongan Paʻanga','XPF'=>'CFP Franc','SHP'=>'Saint Helena Pound'
     );
-    $currency_labels_local = {'USD':'미국 달러','EGP':'이집트 파운드','SAR':'사우디 리얄','AED':'UAE 디르함','KWD':'쿠웨이트 디나르','QAR':'카타르 리얄','BHD':'바레인 디나르','OMR':'오만 리알','JOD':'요르단 디나르','EUR':'유로','GBP':'영국 파운드','TRY':'튀르키예 리라','JPY':'일본 엔','KRW':'대한민국 원','VND':'베트남 동','IDR':'인도네시아 루피아','THB':'태국 바트','INR':'인도 루피','CNY':'중국 위안'};
+    $currency_labels_local = array(
+        'USD' => '미국 달러',
+        'EGP' => '이집트 파운드',
+        'SAR' => '사우디 리얄',
+        'AED' => 'UAE 디르함',
+        'KWD' => '쿠웨이트 디나르',
+        'QAR' => '카타르 리얄',
+        'BHD' => '바레인 디나르',
+        'OMR' => '오만 리알',
+        'JOD' => '요르단 디나르',
+        'EUR' => '유로',
+        'GBP' => '영국 파운드',
+        'TRY' => '튀르키예 리라',
+        'JPY' => '일본 엔',
+        'KRW' => '대한민국 원',
+        'VND' => '베트남 동',
+        'IDR' => '인도네시아 루피아',
+        'THB' => '태국 바트',
+        'INR' => '인도 루피',
+        'CNY' => '중국 위안'
+    );
     $currency_label = isset($currency_labels_local[$country_currency])
         ? $currency_labels_local[$country_currency]
         : (isset($currency_labels_en[$country_currency]) ? $currency_labels_en[$country_currency] : ($country_currency !== '' ? $country_currency : 'Local Currency'));
