@@ -347,7 +347,7 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
             return $html;
         }
 
-        $map = array_merge($map, array(
+        $translations = array_merge($translations, array(
     "Live Prices" => "リアルタイム価格",
     "Gold Price" => "金価格",
     "Gold Prices" => "金価格",
@@ -486,7 +486,7 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
     "Reference date:" => "基準日：",
     "Updated:" => "更新："
    ));
-   $map = array_merge($map, array(
+   $translations = array_merge($translations, array(
     "Updated:" => "更新：",
     " · Prices are indicative and may change with the market." => " · 価格は参考値であり、市場状況により変動します",
     "* Updates are performed programmatically via official live market indices. We advise installing the official " => "* データは公式のリアルタイム市場指数を通じて自動更新されます。公式アプリのインストールをおすすめします：",
@@ -495,7 +495,7 @@ if (!function_exists('altaqrer_gold_ja_translate_shortcode_html')) {
     "Gold Price in " => "金価格：",
     "Gold Price Sections" => "金価格メニュー"
    ));
-   $map = array_merge($map, array(
+   $translations = array_merge($translations, array(
     "Gold Bullion Bar Prices in " => "金地金価格：",
     "Gold Coin Prices in " => "金貨価格：",
     "Gold Bars and Coins in " => "金地金・金貨価格：",
