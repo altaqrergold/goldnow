@@ -1059,12 +1059,12 @@ if (!empty($gold_view)) {
     // The live values below use the same price snapshot and conversions as the tables above.
     $ko_seo_base = home_url('/ko/country/' . rawurlencode($ko_header_country_slug) . '/');
     $ko_seo_price_map = array(
-    '24k' => '의 24K 금 그램당 기준 가격을 확인하세요.' . $display_country_name,
-    '22k' => '의 22K 금 그램당 가격을 24K 금과 비교하세요.' . $display_country_name,
-    '21k' => '의 21K 금 그램당 가격을 확인하세요.' . $display_country_name,
-    '18k' => '의 18K 금 기준 가격을 확인하세요.' . $display_country_name,
-    '14k' => '의 14K 금 가격을 다른 순도와 비교하세요.' . $display_country_name,
-    );
+    '24k' => array($price_24k_local, $price_24k_usd),
+    '22k' => array($price_22k_local, $price_22k_usd),
+    '21k' => array($price_21k_local, $price_21k_usd),
+    '18k' => array($price_18k_local, $price_18k_usd),
+    '14k' => array($price_14k_local, $price_14k_usd),
+);
 ?>
 <article class="ko-seo-article" aria-labelledby="ko-seo-title">
 <?php if (isset($ko_seo_price_map[$gold_view])) :
