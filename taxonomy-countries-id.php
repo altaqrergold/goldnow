@@ -282,7 +282,11 @@ if (!function_exists('altaqrer_gold_id_translate_shortcode_html')) {
             $country_fallback = '';
         }
     }
-    $display_country_name = $english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country');
+    $localized_country_names = {'eg':'Mesir','sa':'Arab Saudi','ae':'Uni Emirat Arab','kw':'Kuwait','qa':'Qatar','bh':'Bahrain','om':'Oman','jo':'Yordania','iq':'Irak','ma':'Maroko','tn':'Tunisia','dz':'Aljazair','tr':'Turki','us':'Amerika Serikat','gb':'Britania Raya','in':'India','jp':'Jepang','kr':'Korea Selatan','vn':'Vietnam','id':'Indonesia','th':'Thailand'};
+    $country_code_key = strtolower((string) $country_code);
+    $display_country_name = isset($localized_country_names[$country_code_key])
+        ? $localized_country_names[$country_code_key]
+        : ($english_name !== '' ? $english_name : ($country_fallback !== '' ? $country_fallback : 'Country'));
     $country_name = $display_country_name; // AJAX/legacy variables must also receive English.
 
     // Complete English currency labels for the currencies used by the site’s country map.
@@ -322,7 +326,10 @@ if (!function_exists('altaqrer_gold_id_translate_shortcode_html')) {
         'ETB'=>'Ethiopian Birr','FJD'=>'Fijian Dollar','PGK'=>'Papua New Guinean Kina','SBD'=>'Solomon Islands Dollar',
         'VUV'=>'Vanuatu Vatu','WST'=>'Samoan Tala','TOP'=>'Tongan Paʻanga','XPF'=>'CFP Franc','SHP'=>'Saint Helena Pound'
     );
-    $currency_label = isset($currency_labels_en[$country_currency]) ? $currency_labels_en[$country_currency] : ($country_currency !== '' ? $country_currency : 'Local Currency');
+    $currency_labels_local = {'USD':'Dolar AS','EGP':'Pound Mesir','SAR':'Riyal Saudi','AED':'Dirham UEA','KWD':'Dinar Kuwait','QAR':'Riyal Qatar','BHD':'Dinar Bahrain','OMR':'Rial Oman','JOD':'Dinar Yordania','EUR':'Euro','GBP':'Poundsterling','TRY':'Lira Turki','JPY':'Yen Jepang','KRW':'Won Korea Selatan','VND':'Dong Vietnam','IDR':'Rupiah Indonesia','THB':'Baht Thailand','INR':'Rupee India','CNY':'Yuan Tiongkok'};
+    $currency_label = isset($currency_labels_local[$country_currency])
+        ? $currency_labels_local[$country_currency]
+        : (isset($currency_labels_en[$country_currency]) ? $currency_labels_en[$country_currency] : ($country_currency !== '' ? $country_currency : 'Local Currency'));
     $today = function_exists('wp_date') ? wp_date('d/m/Y') : date('d/m/Y');
 
     // Build a text-only translation dictionary for legacy shortcodes that still use Arabic labels.
