@@ -88,7 +88,7 @@ body.ar-gold-template{margin:0;max-width:100vw;overflow-x:hidden;position:relati
 // إعلان الهيدر الموجود في إعدادات القالب، بنفس موضع النسخة الإنجليزية.
 if (!$ar_header_is_app && function_exists('goldnow_display_ad')) :
 ?>
-<div class="ar-ad-slot ar-top-header-ad" style="width:100%;max-width:1200px;margin:0 auto;padding:10px 8px;box-sizing:border-box;text-align:center;direction:ltr;clear:both;">
+<div class="ar-top-header-ad" style="width:100%;max-width:1200px;margin:0 auto;padding:10px 8px;box-sizing:border-box;text-align:center;direction:ltr;clear:both;">
     <?php goldnow_display_ad('below_navbar'); ?>
 </div>
 <?php endif; ?>
@@ -136,20 +136,53 @@ document.addEventListener('DOMContentLoaded',function(){var t=document.querySele
 
 
 <style>
-.ar-ad-slot{display:flex!important;justify-content:center!important;align-items:center!important;width:100%;max-width:1200px;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important;text-align:center!important;direction:ltr!important;clear:both;float:none!important;position:relative;}
-.ar-ad-slot .goldnow-ad{display:flex!important;justify-content:center!important;align-items:center!important;width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;padding:0!important;float:none!important;text-align:center!important;direction:ltr!important;box-sizing:border-box!important;}
-.ar-ad-slot .goldnow-ad>*{margin-left:auto!important;margin-right:auto!important;float:none!important;max-width:100%!important;}
-.ar-ad-slot ins.adsbygoogle,.ar-ad-slot iframe,.ar-ad-slot img{display:block!important;margin-left:auto!important;margin-right:auto!important;float:none!important;max-width:100%!important;}
-.ar-middle-ad-slot{padding:10px 8px;margin-top:12px;margin-bottom:18px;}
-.ar-bottom-ad-slot{padding:10px 8px;margin-top:18px;margin-bottom:22px;}
-@media(max-width:768px){
-.ar-middle-ad-slot{width:100%!important;max-width:100%!important;padding:10px 0!important;margin:12px auto 18px!important;overflow:hidden;box-sizing:border-box!important;}
-.ar-ad-slot .goldnow-ad{width:100%!important;max-width:100%!important;overflow:hidden;box-sizing:border-box!important;}
-}
+.ar-seo-article{max-width:900px;width:95%;box-sizing:border-box;margin:20px auto 26px;padding:24px;color:#e5e7eb;background:#1f2126;border:1px solid #343944;border-right:5px solid <?php echo esc_attr($ar_header_accent); ?>;border-radius:9px;line-height:1.85;font-size:15px;direction:rtl;text-align:right;}
+.ar-seo-article h2{color:#fff;line-height:1.35;font-size:23px;margin:0 0 14px;font-weight:700;}
+.ar-seo-article p{color:#d1d5db;margin:0;line-height:1.9;font-size:15px;}
+@media(max-width:600px){.ar-seo-article{padding:17px;margin:18px auto 22px}.ar-seo-article h2{font-size:20px}}
 </style>
-<div class="ar-ad-slot ar-middle-ad-slot">
+<div class="ar-middle-ad-slot" style="width:100%;max-width:1200px;margin:12px auto 18px;padding:10px 8px;box-sizing:border-box;text-align:center;direction:ltr;clear:both;">
     <?php goldnow_display_ad('below_cards'); ?>
 </div>
+
+<!-- قسم الوصف المحسن للسيو (SEO Description Section) -->
+<?php
+// 11 عنواناً و11 مقدمة عربية متنوعة، ويُختار النص بثبات حسب كود الدولة.
+$gold_seo_titles = array(
+    'تابع أسعار الذهب اليوم في %s وتحديثات السوق لحظة بلحظة',
+    'سعر الذهب في %s الآن: متابعة الأعيرة والسبائك والجنيه الذهب',
+    'دليلك لمتابعة أسعار الذهب في %s وتحركات بورصة الذهب',
+    'أسعار الذهب في %s اليوم لجميع العيارات مع تحديث مباشر',
+    'كل ما تريد معرفته عن سعر الذهب اليوم في %s',
+    'مؤشر أسعار الذهب في %s ومتابعة حركة البيع والشراء',
+    'أسعار عيار 24 و21 و18 في %s ومتابعة الذهب مباشرة',
+    'سوق الذهب في %s: الأسعار اليومية وتحليل حركة المعدن الأصفر',
+    'تابع سعر جرام الذهب والسبائك في %s وفق آخر تحديث',
+    'أسعار الذهب والجنيه الذهب في %s ومتابعة تغيرات السوق',
+    'رصد يومي لأسعار الذهب في %s وأسعار الأعيرة المختلفة'
+);
+$gold_seo_intros = array(
+    'تابع <strong>أسعار الذهب اليوم في %1$s</strong> عبر تحديثات متجددة لأسعار جرامات الذهب بمختلف الأعيرة، مع متابعة <strong>عيار 24 وعيار 21 وعيار 18</strong> وأسعار السبائك والجنيه الذهب. يساعدك التقرير جولد على مقارنة الأسعار وفهم حركة السوق قبل اتخاذ قرار الشراء أو البيع.',
+    'إذا كنت تبحث عن <strong>سعر الذهب في %1$s الآن</strong>، فهذه الصفحة تجمع لك أسعار الأعيرة الأكثر تداولاً، إلى جانب أسعار السبائك والجنيه الذهب ومؤشرات حركة السوق. تابع التغيرات أولاً بأول وقارن السعر المحلي بالمؤشرات العالمية للذهب.',
+    'يوفر لك التقرير جولد متابعة واضحة لحركة <strong>الذهب في %1$s</strong>، من سعر الجرام بمختلف درجات النقاء إلى السبائك والجنيه الذهب. راجع تحديثات الأسعار ومؤشرات السوق لتكوين صورة أفضل عن اتجاهات المعدن الأصفر.',
+    'تعرف على <strong>أسعار الذهب اليوم في %1$s</strong> مع عرض منظم لأسعار عيارات 24 و22 و21 و18 و14، بالإضافة إلى وحدات الذهب الاستثمارية. تُحدّث البيانات وفق المعلومات المتاحة، وقد تختلف أسعار التنفيذ لدى التجار بسبب المصنعية والرسوم.',
+    'تقدم هذه الصفحة دليلاً لمتابعة <strong>سعر جرام الذهب في %1$s</strong> ومقارنة الأعيرة المختلفة، مع رصد أسعار السبائك والجنيه الذهب. استخدم بيانات الأسعار لمتابعة حركة السوق، مع مراعاة اختلاف سعر البيع والشراء من متجر إلى آخر.',
+    'راقب <strong>مؤشر الذهب في %1$s</strong> وتابع تغيرات الأسعار اليومية للأعيرة والسبائك والجنيه الذهب. يجمع التقرير جولد أهم بيانات السوق في مكان واحد لتسهيل المقارنة ومتابعة تحركات الأسعار المحلية والعالمية.',
+    'سواء كنت تتابع <strong>عيار 24 للاستثمار</strong> أو <strong>عيار 21 للمشغولات</strong>، ستجد هنا أسعار الذهب في %1$s للأعيرة المتاحة، إلى جانب أسعار السبائك والجنيه الذهب. تابع آخر التحديثات وانتبه إلى أن السعر النهائي قد يتضمن مصنعية أو ضرائب.',
+    'تتأثر أسعار الذهب في %1$s بعوامل السوق المحلية وحركة الذهب العالمية وأسعار الصرف. من خلال هذه الصفحة يمكنك متابعة سعر الجرام بمختلف الأعيرة، ومراجعة أسعار السبائك والجنيه الذهب لفهم التغيرات اليومية بصورة أوضح.',
+    'اكتشف آخر تحديثات <strong>أسعار جرام الذهب في %1$s</strong>، وقارن بين الأعيرة من 24 إلى 14، وتابع أسعار السبائك والجنيه الذهب. نعرض الأسعار الاسترشادية لتكون مرجعاً سريعاً لمتابعة السوق قبل إتمام أي معاملة.',
+    'تجمع لك صفحة <strong>أسعار الذهب في %1$s</strong> بيانات الجرام والأعيرة والسبائك والجنيه الذهب في عرض واحد. تابع حركة الأسعار على مدار اليوم، وقارن التغيرات المحلية بالمؤشرات العالمية مع مراعاة فروق المصنعية وهوامش التجار.',
+    'للمهتمين بالادخار أو شراء المشغولات، توفر هذه الصفحة متابعة <strong>لأسعار الذهب في %1$s</strong> بمختلف الأعيرة، مع بيانات السبائك والجنيه الذهب. راجع السعر المحدث وقارن عروض البيع والشراء لدى التجار قبل اتخاذ قرارك.'
+);
+$gold_seo_country_key = !empty($country_code) ? strtolower((string) $country_code) : (!empty($current_term->slug) ? strtolower((string) $current_term->slug) : 'default');
+$gold_seo_index = hexdec(substr(md5($gold_seo_country_key), 0, 7)) % 11;
+$gold_seo_title = sprintf($gold_seo_titles[$gold_seo_index], $country_name);
+$gold_seo_intro = sprintf($gold_seo_intros[$gold_seo_index], $country_name);
+?>
+<article class="ar-seo-article" aria-labelledby="ar-seo-title">
+    <h2 id="ar-seo-title"><?php echo esc_html($gold_seo_title); ?></h2>
+    <p><?php echo wp_kses_post($gold_seo_intro); ?></p>
+</article>
 	  
     <!-- ✅ أزرار التبويبات (مطابقة للصفحة الرئيسية) -->
     <div class="gold-tabs-nav text-center py-4">
@@ -387,7 +420,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<div class="ar-ad-slot ar-bottom-ad-slot">
+<div class="ar-bottom-ad-slot" style="width:100%;max-width:1200px;margin:18px auto 22px;padding:10px 8px;box-sizing:border-box;text-align:center;direction:ltr;clear:both;">
     <?php goldnow_display_ad('below_countries'); ?>
 </div>
 
@@ -837,44 +870,7 @@ if (!empty($gold_view)) {
 ?>
 
 
-<!-- قسم الوصف المحسن للسيو (SEO Description Section) -->
-<?php
-// 11 عنواناً و11 مقدمة عربية متنوعة، ويُختار النص بثبات حسب كود الدولة.
-$gold_seo_titles = array(
-    'تابع أسعار الذهب اليوم في %s وتحديثات السوق لحظة بلحظة',
-    'سعر الذهب في %s الآن: متابعة الأعيرة والسبائك والجنيه الذهب',
-    'دليلك لمتابعة أسعار الذهب في %s وتحركات بورصة الذهب',
-    'أسعار الذهب في %s اليوم لجميع العيارات مع تحديث مباشر',
-    'كل ما تريد معرفته عن سعر الذهب اليوم في %s',
-    'مؤشر أسعار الذهب في %s ومتابعة حركة البيع والشراء',
-    'أسعار عيار 24 و21 و18 في %s ومتابعة الذهب مباشرة',
-    'سوق الذهب في %s: الأسعار اليومية وتحليل حركة المعدن الأصفر',
-    'تابع سعر جرام الذهب والسبائك في %s وفق آخر تحديث',
-    'أسعار الذهب والجنيه الذهب في %s ومتابعة تغيرات السوق',
-    'رصد يومي لأسعار الذهب في %s وأسعار الأعيرة المختلفة'
-);
-$gold_seo_intros = array(
-    'تابع <strong>أسعار الذهب اليوم في %1$s</strong> عبر تحديثات متجددة لأسعار جرامات الذهب بمختلف الأعيرة، مع متابعة <strong>عيار 24 وعيار 21 وعيار 18</strong> وأسعار السبائك والجنيه الذهب. يساعدك التقرير جولد على مقارنة الأسعار وفهم حركة السوق قبل اتخاذ قرار الشراء أو البيع.',
-    'إذا كنت تبحث عن <strong>سعر الذهب في %1$s الآن</strong>، فهذه الصفحة تجمع لك أسعار الأعيرة الأكثر تداولاً، إلى جانب أسعار السبائك والجنيه الذهب ومؤشرات حركة السوق. تابع التغيرات أولاً بأول وقارن السعر المحلي بالمؤشرات العالمية للذهب.',
-    'يوفر لك التقرير جولد متابعة واضحة لحركة <strong>الذهب في %1$s</strong>، من سعر الجرام بمختلف درجات النقاء إلى السبائك والجنيه الذهب. راجع تحديثات الأسعار ومؤشرات السوق لتكوين صورة أفضل عن اتجاهات المعدن الأصفر.',
-    'تعرف على <strong>أسعار الذهب اليوم في %1$s</strong> مع عرض منظم لأسعار عيارات 24 و22 و21 و18 و14، بالإضافة إلى وحدات الذهب الاستثمارية. تُحدّث البيانات وفق المعلومات المتاحة، وقد تختلف أسعار التنفيذ لدى التجار بسبب المصنعية والرسوم.',
-    'تقدم هذه الصفحة دليلاً لمتابعة <strong>سعر جرام الذهب في %1$s</strong> ومقارنة الأعيرة المختلفة، مع رصد أسعار السبائك والجنيه الذهب. استخدم بيانات الأسعار لمتابعة حركة السوق، مع مراعاة اختلاف سعر البيع والشراء من متجر إلى آخر.',
-    'راقب <strong>مؤشر الذهب في %1$s</strong> وتابع تغيرات الأسعار اليومية للأعيرة والسبائك والجنيه الذهب. يجمع التقرير جولد أهم بيانات السوق في مكان واحد لتسهيل المقارنة ومتابعة تحركات الأسعار المحلية والعالمية.',
-    'سواء كنت تتابع <strong>عيار 24 للاستثمار</strong> أو <strong>عيار 21 للمشغولات</strong>، ستجد هنا أسعار الذهب في %1$s للأعيرة المتاحة، إلى جانب أسعار السبائك والجنيه الذهب. تابع آخر التحديثات وانتبه إلى أن السعر النهائي قد يتضمن مصنعية أو ضرائب.',
-    'تتأثر أسعار الذهب في %1$s بعوامل السوق المحلية وحركة الذهب العالمية وأسعار الصرف. من خلال هذه الصفحة يمكنك متابعة سعر الجرام بمختلف الأعيرة، ومراجعة أسعار السبائك والجنيه الذهب لفهم التغيرات اليومية بصورة أوضح.',
-    'اكتشف آخر تحديثات <strong>أسعار جرام الذهب في %1$s</strong>، وقارن بين الأعيرة من 24 إلى 14، وتابع أسعار السبائك والجنيه الذهب. نعرض الأسعار الاسترشادية لتكون مرجعاً سريعاً لمتابعة السوق قبل إتمام أي معاملة.',
-    'تجمع لك صفحة <strong>أسعار الذهب في %1$s</strong> بيانات الجرام والأعيرة والسبائك والجنيه الذهب في عرض واحد. تابع حركة الأسعار على مدار اليوم، وقارن التغيرات المحلية بالمؤشرات العالمية مع مراعاة فروق المصنعية وهوامش التجار.',
-    'للمهتمين بالادخار أو شراء المشغولات، توفر هذه الصفحة متابعة <strong>لأسعار الذهب في %1$s</strong> بمختلف الأعيرة، مع بيانات السبائك والجنيه الذهب. راجع السعر المحدث وقارن عروض البيع والشراء لدى التجار قبل اتخاذ قرارك.'
-);
-$gold_seo_country_key = !empty($country_code) ? strtolower((string) $country_code) : (!empty($current_term->slug) ? strtolower((string) $current_term->slug) : 'default');
-$gold_seo_index = hexdec(substr(md5($gold_seo_country_key), 0, 7)) % 11;
-$gold_seo_title = sprintf($gold_seo_titles[$gold_seo_index], $country_name);
-$gold_seo_intro = sprintf($gold_seo_intros[$gold_seo_index], $country_name);
-?>
-<div class="gold-seo-description" style="margin: 20px 0; padding: 15px; background: #fff; border-right: 4px solid #d4af37; border-radius: 4px; direction: rtl; text-align: justify;">
-    <h2 style="font-size: 1.3rem; color: #333; margin-bottom: 10px; font-weight: bold;"><?php echo esc_html($gold_seo_title); ?></h2>
-    <p style="font-size: 1rem; color: #555; line-height: 1.8; margin: 0;"><?php echo wp_kses_post($gold_seo_intro); ?></p>
-</div>
+
 
 <?php if(!$ar_header_is_app): ?>
 <footer class="ar-site-footer">
