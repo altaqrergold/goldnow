@@ -60,6 +60,7 @@ if (!function_exists('altaqrer_gold_id_localize_output')) {
    "Gold Bars and Coins in " => "Emas batangan dan koin di ",
    "Latest gold bar and coin prices (excluding making charges)" => "Harga terbaru emas batangan dan koin (belum termasuk biaya pembuatan)",
    "About AlTaqrer Gold" => "Tentang AlTaqrer Gold",
+   " helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes." => " membantu pembaca mengikuti harga emas di pasar regional dan internasional. Lihat harga acuan langsung emas 24K, 22K, 21K, 18K, dan 14K, bandingkan nilai emas batangan dan koin 8 gram, serta pantau harga emas global per troy ounce dalam USD. Harga disediakan untuk informasi dan perbandingan; harga eceran akhir dapat mencakup biaya pembuatan, premi, dan pajak",
    "USD and Currency Rates" => "Kurs USD dan Mata Uang",
    "Gold Price" => "Harga Emas",
    "Gold Prices" => "Harga Emas",
