@@ -1110,7 +1110,8 @@ if (!empty($gold_view)) {
 <?php if (!empty($gold_view)) :
     // The live values below use the same price snapshot and conversions as the tables above.
     $ja_seo_base = home_url('/ja/country/' . rawurlencode($ja_header_country_slug) . '/');
-    $ja_seo_price_map = array(
+    // Keep numeric price pairs here: the SEO article reads [0] and [1] with number_format().
+$ja_seo_price_map = array(
     '24k' => array($price_24k_local, $price_24k_usd),
     '22k' => array($price_22k_local, $price_22k_usd),
     '21k' => array($price_21k_local, $price_21k_usd),
