@@ -60,6 +60,7 @@ if (!function_exists('altaqrer_gold_th_localize_output')) {
    "Gold Bars and Coins in " => "ทองคำแท่งและเหรียญทองคำใน ",
    "Latest gold bar and coin prices (excluding making charges)" => "ราคาทองคำแท่งและเหรียญทองคำล่าสุด (ไม่รวมค่ากำเหน็จ)",
    "About AlTaqrer Gold" => "เกี่ยวกับ AlTaqrer Gold",
+   " helps readers follow gold prices across regional and international markets. Explore live reference prices for 24K, 22K, 21K, 18K and 14K gold, compare bullion bar and 8-gram coin values, and track the global gold ounce in USD. Prices are provided for information and comparison; final retail prices may include workmanship, premiums, and taxes." => " ช่วยให้ผู้อ่านติดตามราคาทองคำในตลาดระดับภูมิภาคและตลาดโลก ตรวจสอบราคาอ้างอิงแบบเรียลไทม์ของทองคำ 24K, 22K, 21K, 18K และ 14K เปรียบเทียบมูลค่าทองคำแท่งและเหรียญทองคำหนัก 8 กรัม พร้อมติดตามราคาทองคำโลกต่อทรอยออนซ์ในสกุล USD ข้อมูลราคาจัดทำขึ้นเพื่อประกอบการศึกษาและเปรียบเทียบ โดยราคาขายปลีกจริงอาจรวมค่ากำเหน็จ ค่าพรีเมียม และภาษี",
    "USD and Currency Rates" => "อัตราแลกเปลี่ยน USD และสกุลเงิน",
    "Gold Price" => "ราคาทองคำ",
    "Gold Prices" => "ราคาทองคำ",
