@@ -36,6 +36,38 @@ final class GNMM_Images {
         return $lang;
     }
 
+    /** Return a non-Arabic country label when the selected image language cannot display Arabic. */
+    private static function safe_country_name($term, $language, $code = '') {
+        $name = GNMM_Gold_Manager::localized_country_name($term, $language);
+        if ($language !== 'ar' && preg_match('/[\\x{0600}-\\x{06FF}]/u', (string) $name)) {
+            $global_labels = array(
+                'ja' => '世界市場・米ドル',
+                'ko' => '글로벌 시장 (USD)',
+                'th' => 'ตลาดโลก (USD)',
+                'hi' => 'वैश्विक बाजार (USD)',
+                'en' => 'Global USD',
+                'fr' => 'Marché mondial USD',
+                'de' => 'Weltmarkt USD',
+                'es' => 'Mercado global USD',
+                'it' => 'Mercato globale USD',
+                'pt' => 'Mercado global USD',
+                'ru' => 'Мировой рынок USD',
+                'tr' => 'Küresel Piyasa USD',
+                'vi' => 'Thị trường toàn cầu USD',
+                'id' => 'Pasar Global USD',
+            );
+            if (strpos((string) $name, 'عالميا') !== false || strtolower((string) $code) === 'gold') {
+                return isset($global_labels[$language]) ? $global_labels[$language] : 'Global USD';
+            }
+            $en_name = GNMM_Gold_Manager::localized_country_name($term, 'en');
+            if (!preg_match('/[\\x{0600}-\\x{06FF}]/u', (string) $en_name)) {
+                return $en_name;
+            }
+            return isset($global_labels[$language]) ? $global_labels[$language] : 'Global USD';
+        }
+        return $name;
+    }
+
     private static function dictionary($lang) {
         $dict = array(
             'ar' => array('title' => 'أسعار الذهب اليوم في %s', 'k21' => 'سعر جرام الذهب عيار 21', 'k24' => 'عيار 24', 'k22' => 'عيار 22', 'k18' => 'عيار 18', 'ounce' => 'الأونصة عالمياً', 'updated' => 'آخر تحديث: %s GMT'),
@@ -497,10 +529,7 @@ final class GNMM_Images {
 
         $rlang = self::render_lang($language);
         $dict  = self::dictionary($rlang);
-        $country_name = GNMM_Gold_Manager::localized_country_name($term, $language);
-        if ($rlang === 'en' && $language !== 'en') {
-            $country_name = GNMM_Gold_Manager::localized_country_name($term, 'en');
-        }
+        $country_name = self::safe_country_name($term, $rlang, $code);
 
         $W = 1200;
         $H = 630;
@@ -672,7 +701,8 @@ final class GNMM_Images {
 
     /** Localized SEO Alt & Title text for Google Images (15 Languages) */
     public static function localized_alt($term, $language) {
-        $name = GNMM_Gold_Manager::localized_country_name($term, $language);
+        $code = GNMM_Gold_Manager::country_code($term);
+        $name = self::safe_country_name($term, $language, $code);
         $date = self::localized_date($language);
         $templates = array(
             'ar' => 'سعر الذهب اليوم في %1$s عيار 21 و24 - %2$s',
@@ -845,7 +875,7 @@ final class GNMM_Images {
                 $mtime     = is_file($file_path) ? (int) filemtime($file_path) : time();
                 $img_url   = add_query_arg('v', $mtime, $base_url . rawurlencode($lang) . '/' . rawurlencode($code) . '.png');
                 $caption   = self::localized_alt($term, $lang);
-                $title     = GNMM_Gold_Manager::localized_country_name($term, $lang);
+                $title     = self::safe_country_name($term, $lang, $code);
 
                 echo "  <url>
 ";
