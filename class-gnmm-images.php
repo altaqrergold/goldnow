@@ -41,8 +41,8 @@ final class GNMM_Images {
         $name = GNMM_Gold_Manager::localized_country_name($term, $language);
         if ($language !== 'ar' && preg_match('/[\\x{0600}-\\x{06FF}]/u', (string) $name)) {
             $global_labels = array(
-                'ja' => '世界市場・米ドル',
-                'ko' => '글로벌 시장 (USD)',
+                'ja' => '世界市場 米ドル',
+                'ko' => '세계 시장 USD',
                 'th' => 'ตลาดโลก (USD)',
                 'hi' => 'वैश्विक बाजार (USD)',
                 'en' => 'Global USD',
