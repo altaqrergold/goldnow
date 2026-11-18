@@ -1,25 +1,20 @@
-# GoldNow — 15-language translation review
+# GoldNow — 15-language translation review workspace
 
-Working artifact for the supplied `goldnow-15.zip` archive.
+This folder is the dedicated working area for the user-supplied `goldnow-15.zip` archive.
 
 - Repository: `altaqrergold/goldnow`
 - Working branch: `work/multilingual-auto-posts-15-languages`
-- The patch changes 11 language templates only: de, es, id, it, ja, ko, pt, ru, th, tr, vi.
-- Arabic, English, French, and Hindi templates are unchanged.
-- The patch preserves layout, URLs, gold-price calculations, and the 8-gram coin calculation.
+- Source archive: `goldnow-15.zip` (15 PHP templates)
+- Scope: review only Arabic or English text that is unintentionally visible in non-matching language versions.
+- Preserve the original template layout, routes, prices, calculations, and all already-correct translations.
+- Do not modify `main`.
 
-## Apply the patch to the supplied archive
+The source archive is being reviewed in the ChatGPT working session. No corrected PHP templates have been published in this folder yet. The actual revised files will be added here only after the source review and PHP validation are complete.
 
-1. Extract `goldnow-15.zip`.
-2. Download this file and decode/decompress it:
-   ```sh
-   base64 -d goldnow-15.patch.gz.b64 | gzip -d > language-review-15.patch
-   ```
-3. From the directory containing the 15 PHP templates, apply:
-   ```sh
-   patch -p1 < language-review-15.patch
-   ```
+## Language set
 
-The corrected full archive is also attached in the ChatGPT conversation as `goldnow-15-reviewed.zip`.
+Arabic (ar), English (en), French (fr), German (de), Italian (it), Portuguese (pt), Russian (ru), Hindi (hi), Spanish (es), Turkish (tr), Indonesian (id), Vietnamese (vi), Korean (ko), Thai (th), Japanese (ja).
 
-Static validation: all 15 PHP files passed `php -l`; the patch was tested against a fresh extraction and reproduced the corrected files. Live WordPress rendering has not yet been tested.
+## Validation status
+
+Pending: targeted translation review, PHP lint for changed files, and comparison to confirm that files outside the agreed language scope remain unchanged.
