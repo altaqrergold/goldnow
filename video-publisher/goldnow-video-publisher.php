@@ -50,13 +50,21 @@ final class GoldNow_Video_Publisher {
     public static function activate() {
         $saved = get_option(GNVP_OPTION, array());
         $auto_refresh = !isset($saved['auto_refresh']) || !empty($saved['auto_refresh']);
-        if ($auto_refresh && !wp_next_scheduled(self::CRON_HOOK)) {
+        // Replace legacy hourly events during activation; otherwise an old recurrence
+        // survives the code update because wp_next_scheduled() sees it as already present.
+        wp_clear_scheduled_hook(self::CRON_HOOK);
+        if ($auto_refresh) {
             wp_schedule_event(time() + 300, 'gnvp_every_three_hours', self::CRON_HOOK);
         }
         wp_clear_scheduled_hook(self::CLEANUP_HOOK);
-        if (!wp_next_scheduled(self::CLEANUP_HOOK)) { wp_schedule_event(time() + 60, 'gnvp_retention_15_minutes', self::CLEANUP_HOOK); }
+        wp_schedule_event(time() + 60, 'gnvp_retention_15_minutes', self::CLEANUP_HOOK);
+        // Rebuild the publishing recurrence too, so a saved interval change cannot
+        // leave an older schedule active after plugin reactivation.
+        wp_clear_scheduled_hook(self::ROTATION_HOOK);
         $pub = get_option('gnvp_publishing_settings', array());
-        if (!empty($pub['enabled']) && !wp_next_scheduled(self::ROTATION_HOOK)) { wp_schedule_event(time() + 300, 'gnvp_selected_publish_interval', self::ROTATION_HOOK); }
+        if (!empty($pub['enabled'])) {
+            wp_schedule_event(time() + 300, 'gnvp_selected_publish_interval', self::ROTATION_HOOK);
+        }
     }
 
     public static function deactivate() {
