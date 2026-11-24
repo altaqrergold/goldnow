@@ -1526,6 +1526,7 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
             array('name' => 'Uploads writable', 'value' => !empty($upload['error']) ? $upload['error'] : (wp_is_writable($upload['basedir']) ? $upload['basedir'] : 'Not writable'), 'ok' => empty($upload['error']) && wp_is_writable($upload['basedir'])),
             array('name' => 'Arabic Cairo font', 'value' => is_readable(GNVP_PATH . 'assets/fonts/Cairo-Bold.ttf') ? 'Bundled' : 'Missing', 'ok' => is_readable(GNVP_PATH . 'assets/fonts/Cairo-Bold.ttf')),
             array('name' => 'Facebook connection', 'value' => $this->facebook_connection()['connected'] ? 'Verified' : 'Not verified', 'ok' => (bool) $this->facebook_connection()['connected']),
+            array('name' => 'Google Cloud TTS configuration', 'value' => (!empty($this->tts_settings()['enabled']) && !empty($this->tts_settings()['api_key'])) ? 'Enabled with saved API key (live request not tested)' : 'Not configured', 'ok' => (!empty($this->tts_settings()['enabled']) && !empty($this->tts_settings()['api_key']))),
             array('name' => 'Persistent Live worker', 'value' => 'Not implemented in this build', 'ok' => false),
         );
         if ($ffmpeg) {
@@ -1754,6 +1755,7 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
         $videos = get_option(GNVP_RENDER_OPTION, array());
         $last_error = get_option('gnvp_last_refresh_error', array());
         $render_error = get_option('gnvp_render_error', '');
+        $tts_settings = $this->tts_settings();
         $preferred_order = array('24K', '22K', '21K', '18K', '14K', '12K');
         ?>
         <div class="wrap gnvp-wrap">
@@ -1819,7 +1821,7 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
                         <?php endforeach; ?>
                     </div><?php endif; ?>
                     <?php if ($render_error) : ?><p class="gnvp-error"><strong>أخطاء الإنتاج:</strong><br><?php echo nl2br(esc_html($render_error)); ?></p><?php endif; ?>
-                    <p class="gnvp-meta">الصوت المنطوق غير مفعّل في هذا الإصدار؛ ملفات MP4 الحالية تحتوي مسارًا صوتيًا صامتًا متوافقًا مع مشغلات الفيديو. سنضيف مزود صوت عربي وإنجليزي بعد اختيار وربط خدمة TTS.</p>
+                    <p class="gnvp-meta">الصوت: <?php echo (!empty($tts_settings['enabled']) && !empty($tts_settings['api_key'])) ? 'Google Cloud TTS مفعّل بإعدادات محفوظة؛ يجب نجاح طلب التوليد قبل إنتاج الفيديو.' : 'غير مهيأ بعد. أضف مفتاح Google Cloud وفعّل الصوت من صفحة ربط المنصات؛ لن ينتج النظام فيديو بمسار صامت بديل.'; ?></p>
                 </section>
 
                 <section class="gnvp-card gnvp-wide">
