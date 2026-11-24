@@ -95,7 +95,7 @@ final class GoldNow_Video_Publisher {
     private function defaults() {
         return array(
             'market' => 'EG', 'currency' => 'EGP',
-            'languages' => array('ar', 'en', 'fr', 'de', 'it', 'pt', 'ru', 'hi', 'es', 'tr', 'th', 'vi', 'id', 'ja', 'ko'),
+            'languages' => array('ar', 'en'),
             'formats' => array('vertical', 'horizontal'),
             'auto_refresh' => 1, 'auto_render' => 0,
             'live_enabled' => 0, 'live_start' => '08:00', 'live_duration' => 60,
@@ -107,12 +107,11 @@ final class GoldNow_Video_Publisher {
     private function settings() {
         $saved = get_option(GNVP_OPTION, array());
         $saved = is_array($saved) ? $saved : array();
-        // One-time upgrade: expand the old ar/en-only installation to the full site language set.
+        // The production pilot is Egypt in Arabic and English only.
+        // The other 13 locales remain available in the selector for later deliberate rollout;
+        // do not silently turn them all on during an upgrade.
         if (!get_option('gnvp_language_set_v2')) {
-            $saved['languages'] = array_values(array_unique(array_merge(
-                isset($saved['languages']) && is_array($saved['languages']) ? $saved['languages'] : array(),
-                array_keys($this->supported_languages())
-            )));
+            $saved['languages'] = array('ar', 'en');
             update_option(GNVP_OPTION, $saved, false);
             update_option('gnvp_language_set_v2', 1, false);
         }
