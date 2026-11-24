@@ -1,6 +1,6 @@
 # AlTaqrer Gold — Implementation Plan
 
-This is the implementation source of truth for the rebuild. Work is performed on `rebuild/working-arabic-baseline`; do not modify `main) or deploy automatically.
+This is the implementation source of truth for the rebuild. Work is performed on `release/goldnow-video-publisher-complete`, based on the immutable `rebuild/working-arabic-baseline`; do not modify `main` or deploy automatically.
 
 ## Product scope
 
