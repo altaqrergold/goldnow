@@ -33,3 +33,7 @@ No claim is made here that Google TTS has been verified against a live billable 
 
 - Expanded server diagnostics to check both required background images and the Arabic Cairo and English Noto Sans font files explicitly, rather than reporting only the Arabic font.
 - Added an upload lease to scheduled Facebook publishing: a queue item is marked uploading before the API request, overlapping cron invocations are blocked, and abandoned uploads become eligible for recovery after a 30-minute lease. Regression coverage verifies active leases cannot be started twice.
+
+## Packaging blocker
+
+- The original ZIP was recovered and inspected. Its two cinematic JPEG backgrounds and valid Cairo/Noto font files are not present in the current Git tree yet; the legacy Almarai-named files in that ZIP begin with HTML and are not valid TTF fonts. The final installable ZIP must restore the verified backgrounds and required fonts before it can be considered package-ready.
