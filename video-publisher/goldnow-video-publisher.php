@@ -38,6 +38,7 @@ final class GoldNow_Video_Publisher {
         add_action(self::ROTATION_HOOK, array($this, 'auto_publish_cycle'));
         add_action(self::CLEANUP_HOOK, array($this, 'cleanup_failed_video_files'));
         add_action('admin_post_gnvp_save_facebook', array($this, 'save_facebook_connection'));
+        add_action('admin_post_gnvp_save_tts', array($this, 'save_tts_settings'));
         add_action('admin_post_gnvp_test_facebook', array($this, 'test_facebook_connection'));
         add_action('admin_post_gnvp_queue_publish', array($this, 'queue_publish'));
         add_action('admin_post_gnvp_save_publishing_settings', array($this, 'save_publishing_settings'));
@@ -1585,6 +1586,86 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
         echo '</div></div>';
     }
 
+    private function tts_settings() {
+        $saved = get_option('gnvp_tts_settings', array());
+        return wp_parse_args(is_array($saved) ? $saved : array(), array('provider' => 'google_cloud', 'api_key' => '', 'enabled' => 0, 'speaking_rate' => 0.95));
+    }
+
+    private function tts_language_code($language) {
+        $codes = array(
+            'ar' => 'ar-XA', 'en' => 'en-US', 'fr' => 'fr-FR', 'de' => 'de-DE',
+            'it' => 'it-IT', 'pt' => 'pt-BR', 'ru' => 'ru-RU', 'hi' => 'hi-IN',
+            'es' => 'es-ES', 'tr' => 'tr-TR', 'th' => 'th-TH', 'vi' => 'vi-VN',
+            'id' => 'id-ID', 'ja' => 'ja-JP', 'ko' => 'ko-KR',
+        );
+        return isset($codes[$language]) ? $codes[$language] : '';
+    }
+
+    public function save_tts_settings() {
+        if (!current_user_can('manage_options')) { wp_die('Unauthorized'); }
+        check_admin_referer('gnvp_save_tts');
+        $old = $this->tts_settings();
+        $key = isset($_POST['api_key']) ? trim((string) wp_unslash($_POST['api_key'])) : '';
+        $settings = array(
+            'provider' => 'google_cloud',
+            'api_key' => $key !== '' ? sanitize_text_field($key) : $old['api_key'],
+            'enabled' => !empty($_POST['tts_enabled']) ? 1 : 0,
+            'speaking_rate' => 0.95,
+        );
+        update_option('gnvp_tts_settings', $settings, false);
+        wp_safe_redirect($this->admin_url_for('connections', array('tts_saved' => 1)));
+        exit;
+    }
+
+    /** Generate a localized MP3 voice track through Google Cloud Text-to-Speech. */
+    private function synthesize_voiceover($lines, $language, $target_file) {
+        $settings = $this->tts_settings();
+        if (empty($settings['enabled'])) {
+            return new WP_Error('gnvp_tts_disabled', 'Text-to-speech is not enabled. Enable a configured voice provider before rendering.');
+        }
+        if (empty($settings['api_key'])) {
+            return new WP_Error('gnvp_tts_missing_key', 'Google Cloud Text-to-Speech is enabled but its API key is missing.');
+        }
+        $language_code = $this->tts_language_code($language);
+        if (!$language_code) { return new WP_Error('gnvp_tts_language', 'No voice language mapping exists for ' . $language . '.'); }
+        $spoken_lines = array();
+        foreach ((array) $lines as $line) {
+            $line = trim(wp_strip_all_tags((string) $line));
+            if ($line !== '' && $line !== 'AlTaqrer Gold') { $spoken_lines[] = $line; }
+        }
+        $text = implode('. ', $spoken_lines);
+        if ($text === '') { return new WP_Error('gnvp_tts_empty_text', 'There is no localized text to synthesize.'); }
+        if (function_exists('mb_substr')) { $text = mb_substr($text, 0, 4500, 'UTF-8'); }
+        else { $text = substr($text, 0, 4500); }
+
+        $url = add_query_arg('key', rawurlencode($settings['api_key']), 'https://texttospeech.googleapis.com/v1/text:synthesize');
+        $response = wp_remote_post($url, array(
+            'timeout' => 45,
+            'redirection' => 0,
+            'headers' => array('Content-Type' => 'application/json; charset=utf-8'),
+            'body' => wp_json_encode(array(
+                'input' => array('text' => $text),
+                'voice' => array('languageCode' => $language_code),
+                'audioConfig' => array('audioEncoding' => 'MP3', 'speakingRate' => (float) $settings['speaking_rate']),
+            )),
+        ));
+        if (is_wp_error($response)) { return new WP_Error('gnvp_tts_request', 'TTS request failed: ' . $response->get_error_message()); }
+        $status = (int) wp_remote_retrieve_response_code($response);
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+        if ($status < 200 || $status >= 300 || empty($body['audioContent'])) {
+            $message = isset($body['error']['message']) ? sanitize_text_field($body['error']['message']) : 'The TTS provider returned no audio content (HTTP ' . $status . ').';
+            return new WP_Error('gnvp_tts_response', $message);
+        }
+        $audio = base64_decode($body['audioContent'], true);
+        if ($audio === false || strlen($audio) < 100 || (substr($audio, 0, 3) !== 'ID3' && (ord($audio[0]) !== 0xFF || (ord($audio[1]) & 0xE0) !== 0xE0))) {
+            return new WP_Error('gnvp_tts_invalid_audio', 'The TTS provider response was not a valid MP3 stream.');
+        }
+        if (@file_put_contents($target_file, $audio, LOCK_EX) === false) {
+            return new WP_Error('gnvp_tts_write', 'Could not write the generated voice track.');
+        }
+        return array('file' => $target_file, 'bytes' => strlen($audio), 'language_code' => $language_code);
+    }
+
     public function render_connections() {
         if (!current_user_can('manage_options')) { return; }
         $c = $this->facebook_connection(); $this->admin_header('ربط حسابات النشر', 'connections');
@@ -1597,6 +1678,15 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
         echo '<p><strong>الحالة:</strong> ' . ($c['connected'] ? '<span class="gnvp-ok">متصل: ' . esc_html($c['page_name']) . '</span>' : '<span class="gnvp-muted">غير متصل / لم يتم التحقق</span>') . '</p>';
         if ($c['last_error']) { echo '<div class="gnvp-error">' . esc_html($c['last_error']) . '</div>'; }
         echo '<p class="description">الصلاحيات المعتادة لنشر فيديو على صفحة: pages_show_list وpages_manage_posts وpages_read_engagement، مع مهمة CREATE_CONTENT على الصفحة. قد تتطلب مراجعة التطبيق حسب طريقة استخدامه.</p></section>';
+        $tts = $this->tts_settings();
+        if (isset($_GET['tts_saved'])) { echo '<div class="notice notice-success"><p>تم حفظ إعدادات الصوت.</p></div>'; }
+        echo '<section class="gnvp-card" style="margin-top:16px"><h3>الصوت والترجمة المنطوقة — Google Cloud Text-to-Speech</h3>';
+        echo '<p>ينشئ مسار MP3 باللغة المطابقة لكل فيديو من نص الأسعار نفسه. يلزم تفعيل Text-to-Speech API ومفتاح صالح في مشروع Google Cloud. لا يتم إرسال أي محتوى للنشر العام من هذه الصفحة.</p>';
+        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '"><input type="hidden" name="action" value="gnvp_save_tts">';
+        wp_nonce_field('gnvp_save_tts');
+        echo '<p><label><input type="checkbox" name="tts_enabled" value="1" ' . checked(!empty($tts['enabled']), true, false) . '> تفعيل إنشاء الصوت عند إنتاج الفيديو</label></p>';
+        echo '<p><label>Google Cloud API Key<br><input type="password" class="large-text" name="api_key" value="" autocomplete="new-password" placeholder="' . ($tts['api_key'] ? 'مفتاح محفوظ — اتركه فارغًا للاحتفاظ به' : 'أدخل API Key') . '"></label></p>';
+        echo '<p class="description">حالة المفتاح: ' . ($tts['api_key'] ? 'محفوظ' : 'غير مضاف') . ' — يتم الاحتفاظ بالمفتاح الحالي عند ترك الحقل فارغًا.</p><button class="button button-primary">حفظ إعدادات الصوت</button></form></section>';
         echo '<div class="gnvp-platform-grid">';
         $platforms = array('Threads' => 'Threads API + OAuth user authorization', 'YouTube' => 'YouTube Data API + Google OAuth 2.0', 'Instagram' => 'Instagram Graph API + Professional account', 'TikTok' => 'Content Posting API + app review and creator authorization');
         foreach ($platforms as $name => $detail) { echo '<div class="gnvp-card"><h3>' . esc_html($name) . '</h3><span class="gnvp-muted">غير مربوط</span><p>' . esc_html($detail) . '</p><p class="description">سيظهر نموذج الربط بعد استكمال موصل المنصة وموافقاتها.</p></div>'; }
