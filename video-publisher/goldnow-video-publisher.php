@@ -770,8 +770,10 @@ $shaped[] = $glyphs[$curr][$form];
             'format' => $job['format'], 'aspect_ratio' => $job['aspect_ratio'], 'file' => basename($mp4_path),
             'url' => trailingslashit($upload_dir['baseurl']) . basename($mp4_path), 'bytes' => filesize($mp4_path),
             'created_at' => current_time('mysql'),
-            'data_updated_at' => ($job['language'] === 'ar') ? (!empty($snapshot['source_updated_at']) ? $snapshot['source_updated_at'] : $snapshot['gold_date']) : (!empty($snapshot['ounce_updated_at']) ? $snapshot['ounce_updated_at'] : $snapshot['gold_date']),
-            'data_updated_label' => ($job['language'] === 'ar') ? (!empty($snapshot['source_updated_at']) ? 'source_fetch_time' : 'gold_date_fallback') : (!empty($snapshot['ounce_updated_at']) ? 'ounce_fetch_time' : 'gold_date_fallback'),
+            // Both Arabic and English pilot videos use Egyptian Gold Manager prices;
+            // other language editions use the global ounce source timestamp.
+            'data_updated_at' => (($job['market'] ?? '') === 'EG') ? (!empty($snapshot['source_updated_at']) ? $snapshot['source_updated_at'] : $snapshot['gold_date']) : (!empty($snapshot['ounce_updated_at']) ? $snapshot['ounce_updated_at'] : $snapshot['gold_date']),
+            'data_updated_label' => (($job['market'] ?? '') === 'EG') ? (!empty($snapshot['source_updated_at']) ? 'source_fetch_time' : 'gold_date_fallback') : (!empty($snapshot['ounce_updated_at']) ? 'ounce_fetch_time' : 'gold_date_fallback'),
             'duration_seconds' => $duration, 'audio' => 'google_cloud_text_to_speech', 'audio_language_code' => $voice_result['language_code']);
     }
 
