@@ -7,7 +7,7 @@ Baseline: `rebuild/working-arabic-baseline` (kept unchanged)
 ## Implemented in this branch
 
 - Bumped plugin development version to `0.6.8-dev`.
-- Changed automatic Gold Manager price refresh to the requested three-hour cadence, both on activation and when settings are saved; activation now clears stale legacy recurrence events before rebuilding schedules.
+- Changed automatic Gold Manager price refresh to the requested three-hour cadence, both on activation and when settings are saved; activation now clears stale legacy recurrence events before rebuilding schedules. New pilot installs now enable automatic video generation after each refresh by default (publishing remains disabled).
 - Removed the unsafe legacy font downloader that saved the generic GitHub homepage response as a `.ttf`; Arabic ASS rendering and the isolated Arabic diagnostic now use the verified bundled Cairo font.
 - Added a regression test that the default production matrix contains all 15 languages in both 9:16 and 16:9 formats (30 jobs). Corrected the pilot market assignment so both Arabic and English use Egyptian Gold Manager EGP data, while the other 13 languages remain global USD editions; added assertions for this split.
 - Added a Google Cloud Text-to-Speech adapter, secure admin key configuration, 15 locale mappings, MP3 response validation, and FFmpeg narration muxing. Rendering now fails clearly when speech is disabled or unconfigured rather than silently producing another silent-track video. Automated tests mock a valid provider MP3 response and verify locale/payload mapping; a real Google Cloud request still requires the user's API key.
