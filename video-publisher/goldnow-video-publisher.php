@@ -962,7 +962,6 @@ $shaped[] = $glyphs[$curr][$form];
             if ($started && $started > time() - 1800) { return; }
             // Recover a worker that died mid-request after a 30-minute lease.
             $queue[$id]['status'] = 'retrying';
-            $queue[$id]['retry_count'] = absint($queue[$id]['retry_count'] ?? 0) + 1;
         }
         $queue[$id]['status'] = 'uploading';
         $queue[$id]['attempt_started_at'] = time();
