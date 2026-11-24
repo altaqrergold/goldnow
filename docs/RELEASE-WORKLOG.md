@@ -7,7 +7,10 @@ Baseline: `rebuild/working-arabic-baseline` (kept unchanged)
 ## Implemented in this branch
 
 - Bumped plugin development version to `0.6.8-dev`.
-- Changed automatic Gold Manager price refresh from hourly to the requested three-hour cadence, both on activation and when settings are saved.
+- Changed automatic Gold Manager price refresh to the requested three-hour cadence, both on activation and when settings are saved; activation now clears stale legacy recurrence events before rebuilding schedules.
+- Removed the unsafe legacy font downloader that saved the generic GitHub homepage response as a `.ttf`; Arabic ASS rendering and the isolated Arabic diagnostic now use the verified bundled Cairo font.
+- Added a regression test that the default production matrix contains all 15 languages in both 9:16 and 16:9 formats (30 jobs).
+- Recovered the original plugin ZIP from the Library and inspected its media assets. Both cinematic backgrounds and the Noto/Cairo font files are present there; the two legacy Almarai files are not valid TTF files and must not be selected or shipped as usable fonts.
 - Reworked failed-video retention so the 24-hour window begins at the recorded final publishing failure, never at MP4 creation time.
 - Made cleanup fail closed: any queued, scheduled, uploading, retrying, processing, live, or unknown destination state protects the MP4.
 - Added a single safe deletion path that rejects traversal-like filenames, symlinks, paths outside the dedicated media folder, and non-MP4 files.
@@ -17,7 +20,7 @@ Baseline: `rebuild/working-arabic-baseline` (kept unchanged)
 
 ## Verification
 
-The GitHub Actions run for commit `d31c63c2d485547ffe2725230857e579e8d2a1b1` completed both substantive steps successfully:
+The GitHub Actions run for commit `2ce3a27d7eb7287bd336047bc3b1995286cee40f` completed both substantive steps successfully:
 - PHP syntax checks: passed.
 - Video retention regression tests: passed.
 
