@@ -100,6 +100,25 @@ gnvp_assert(($tts_payload['voice']['languageCode'] ?? '') === 'en-US', 'TTS requ
 gnvp_assert(($tts_payload['audioConfig']['audioEncoding'] ?? '') === 'MP3', 'TTS request must ask for MP3 audio');
 @unlink($mock_mp3);
 
+// Rotation must skip videos that already have pending publication attempts.
+$rotation_method = new ReflectionMethod('GoldNow_Video_Publisher', 'next_rotated_video');
+$rotation_method->setAccessible(true);
+update_option(GNVP_RENDER_OPTION, array(
+    array('id' => 'vertical-ar', 'format' => 'vertical', 'file' => 'vertical-ar.mp4'),
+    array('id' => 'vertical-en', 'format' => 'vertical', 'file' => 'vertical-en.mp4'),
+), false);
+update_option('gnvp_publish_queue', array(
+    'pending-ar' => array('video_id' => 'vertical-ar', 'status' => 'scheduled'),
+), false);
+update_option('gnvp_video_rotation_state', array('vertical' => 0), false);
+$next_video = $rotation_method->invoke($instance, 'vertical', array());
+gnvp_assert(is_array($next_video) && $next_video['id'] === 'vertical-en', 'rotation must skip a video with a pending scheduled post');
+update_option('gnvp_publish_queue', array(
+    'pending-ar' => array('video_id' => 'vertical-ar', 'status' => 'scheduled'),
+    'pending-en' => array('video_id' => 'vertical-en', 'status' => 'retrying'),
+), false);
+gnvp_assert($rotation_method->invoke($instance, 'vertical', array()) === false, 'rotation must not enqueue a duplicate when every video is pending');
+
 // The configured default production matrix must contain all 15 languages in both formats.
 $build_snapshot = new ReflectionMethod('GoldNow_Video_Publisher', 'build_snapshot');
 $build_snapshot->setAccessible(true);
