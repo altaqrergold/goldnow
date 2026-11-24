@@ -694,10 +694,12 @@ $shaped[] = $glyphs[$curr][$form];
         $has_drawtext = $this->ffmpeg_supports_filter($ffmpeg, 'drawtext');
         // Arabic must go through libass for correct right-to-left shaping and glyph joining. Never silently fall back to drawtext for Arabic.
         if ($is_ar && !$has_subtitles) {
+            @unlink($voice_path);
             return new WP_Error('gnvp_arabic_shaping_unavailable', 'Arabic rendering requires FFmpeg subtitles/libass with RTL shaping enabled.');
         }
         if ($has_subtitles) {
             if (!$this->build_ass_subtitles($lines, $ass_path, $width, $height, $font_size, $job['language'])) {
+                @unlink($voice_path);
                 return new WP_Error('gnvp_subtitle_write', 'Could not create the Arabic subtitle file.');
             }
             $ass_escaped = str_replace(array('\\', ':', "'", ','), array('\\\\', '\\:', "\\'", '\\,'), $ass_path);
@@ -707,12 +709,13 @@ $shaped[] = $glyphs[$curr][$form];
             $panel_h = $is_vertical ? 650 : 360;
             $filter = 'drawbox=x=38:y=38:w=iw-76:h=ih-76:color=0x050403@0.06:t=fill,fade=t=in:st=0:d=0.7,fade=t=out:st=44.2:d=0.8,subtitles=filename=' . "'" . $ass_escaped . "':fontsdir='" . $fonts_escaped . "'";
         } elseif ($has_drawtext) {
-            if (file_put_contents($txt_path, $text) === false) { return new WP_Error('gnvp_text_write', 'Could not write the video text file.'); }
+            if (file_put_contents($txt_path, $text) === false) { @unlink($voice_path); return new WP_Error('gnvp_text_write', 'Could not write the video text file.'); }
             $font_escaped = str_replace(array('\\', ':', "'"), array('\\\\', '\\:', "\\'"), $font);
             $text_escaped = str_replace(array('\\', ':', "'"), array('\\\\', '\\:', "\\'"), $txt_path);
             $filter = "drawtext=fontfile='" . $font_escaped . "':textfile='" . $text_escaped . "':fontcolor=white:fontsize={$font_size}:line_spacing=18:text_shaping=1:fix_bounds=1:x=(w-text_w)/2:y=(h-text_h)/2:box=1:boxcolor=0x090806@0.38:boxborderw=34";
         } elseif ($this->ffmpeg_supports_filter($ffmpeg, 'subtitles')) {
             if (!$this->build_ass_subtitles($lines, $ass_path, $width, $height, $font_size, $job['language'])) {
+                @unlink($voice_path);
                 return new WP_Error('gnvp_subtitle_write', 'Could not create the fallback subtitle file.');
             }
             $ass_escaped = str_replace(array('\\', ':', "'", ','), array('\\\\', '\\:', "\\'", '\\,'), $ass_path);
@@ -720,8 +723,9 @@ $shaped[] = $glyphs[$curr][$form];
             $fonts_escaped = str_replace(array('\\', ':', "'", ','), array('\\\\', '\\:', "\\'", '\\,'), $fonts_dir);
             $panel_y = $is_vertical ? 360 : 250;
             $panel_h = $is_vertical ? 650 : 360;
-            $filter = 'drawbox=x=38:y=38:w=iw-76:h=ih-76:color=0x050403@0.06:t=fill,fade=t=in:st=0:d=0.7,fade=t=out:st=14.2:d=0.8,subtitles=filename=' . "'" . $ass_escaped . "':fontsdir='" . $fonts_escaped . "'";
+            $filter = 'drawbox=x=38:y=38:w=iw-76:h=ih-76:color=0x050403@0.06:t=fill,fade=t=in:st=0:d=0.7,fade=t=out:st=44.2:d=0.8,subtitles=filename=' . "'" . $ass_escaped . "':fontsdir='" . $fonts_escaped . "'";
         } else {
+            @unlink($voice_path);
             return new WP_Error('gnvp_no_text_filter', 'This FFmpeg build has neither drawtext nor subtitles/libass. The plugin cannot render multilingual text with this build.');
         }
         $duration = 45;
@@ -1666,6 +1670,7 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
             return new WP_Error('gnvp_tts_invalid_audio', 'The TTS provider response was not a valid MP3 stream.');
         }
         if (@file_put_contents($target_file, $audio, LOCK_EX) === false) {
+            @unlink($target_file);
             return new WP_Error('gnvp_tts_write', 'Could not write the generated voice track.');
         }
         return array('file' => $target_file, 'bytes' => strlen($audio), 'language_code' => $language_code);
