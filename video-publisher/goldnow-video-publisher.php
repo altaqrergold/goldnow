@@ -555,22 +555,12 @@ final class GoldNow_Video_Publisher {
             return $date_only ? $date->format('d/m/Y') : $date->format('d/m/Y H:i');
         } catch (Exception $e) { return $value; }
     }
+    /**
+     * Legacy compatibility shim. Fonts must be bundled and validated, never downloaded
+     * from a generic homepage and saved with a .ttf extension.
+     */
     private function ensure_almarai_font_installed() {
-        $fonts_dir = plugin_dir_path(__FILE__) . 'assets/fonts/';
-        $regular_path = $fonts_dir . 'Almarai-Regular.ttf';
-        $bold_path    = $fonts_dir . 'Almarai-Bold.ttf';
-        if (!file_exists($regular_path)) {
-            $res = wp_remote_get('https://github.com', array('timeout' => 15));
-            if (!is_wp_error($res) && wp_remote_retrieve_response_code($res) === 200) {
-                file_put_contents($regular_path, wp_remote_retrieve_body($res));
-            }
-        }
-        if (!file_exists($bold_path)) {
-            $res = wp_remote_get('https://github.com', array('timeout' => 15));
-            if (!is_wp_error($res) && wp_remote_retrieve_response_code($res) === 200) {
-                file_put_contents($bold_path, wp_remote_retrieve_body($res));
-            }
-        }
+        return is_readable(GNVP_PATH . 'assets/fonts/Cairo-Bold.ttf');
     }
 
 	    private function shape_arabic_for_ass($text) {
@@ -1433,7 +1423,7 @@ $shaped[] = $glyphs[$curr][$form];
         $ffmpeg = $this->ffmpeg_binary();
         $fonts_dir = GNVP_PATH . 'assets/fonts';
         $this->ensure_almarai_font_installed();
-$font_file = $fonts_dir . '/Almarai-Bold.ttf';
+$font_file = $fonts_dir . '/Cairo-Bold.ttf';
 
         $report = array(
             'ffmpeg_found' => (bool) $ffmpeg,
