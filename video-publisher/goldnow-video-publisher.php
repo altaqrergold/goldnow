@@ -110,9 +110,10 @@ final class GoldNow_Video_Publisher {
         // The production pilot is Egypt in Arabic and English only.
         // The other 13 locales remain available in the selector for later deliberate rollout;
         // do not silently turn them all on during an upgrade.
-        if (!get_option('gnvp_language_set_v2')) {
+        if (!get_option('gnvp_egypt_pilot_scope_v1')) {
             $saved['languages'] = array('ar', 'en');
             update_option(GNVP_OPTION, $saved, false);
+            update_option('gnvp_egypt_pilot_scope_v1', 1, false);
             update_option('gnvp_language_set_v2', 1, false);
         }
         return wp_parse_args($saved, $this->defaults());
