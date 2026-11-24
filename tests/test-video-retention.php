@@ -10,6 +10,14 @@ define('MINUTE_IN_SECONDS', 60);
 define('WP_PLUGIN_DIR', __DIR__);
 $GLOBALS['gnvp_options'] = array();
 $GLOBALS['gnvp_uploads'] = array('basedir' => sys_get_temp_dir() . '/gnvp-retention-' . getmypid(), 'baseurl' => 'https://example.test/uploads', 'error' => false);
+if (!class_exists('WP_Error')) {
+    class WP_Error {
+        private $code;
+        public function __construct($code, $message = '') { $this->code = $code; }
+        public function get_error_code() { return $this->code; }
+    }
+}
+function is_wp_error($value) { return $value instanceof WP_Error; }
 function add_filter($hook, $callback) {}
 function add_action($hook, $callback, $priority = 10, $args = 1) {}
 function register_activation_hook($file, $callback) {}
@@ -47,6 +55,23 @@ function gnvp_set_state($videos, $queue) {
     update_option('gnvp_publish_queue', $queue, false);
 }
 $instance = new GoldNow_Video_Publisher();
+
+// All supported language editions must resolve to a valid Google TTS locale.
+$tts_locale = new ReflectionMethod('GoldNow_Video_Publisher', 'tts_language_code');
+$tts_locale->setAccessible(true);
+$expected_locales = array(
+    'ar' => 'ar-XA', 'en' => 'en-US', 'fr' => 'fr-FR', 'de' => 'de-DE',
+    'it' => 'it-IT', 'pt' => 'pt-BR', 'ru' => 'ru-RU', 'hi' => 'hi-IN',
+    'es' => 'es-ES', 'tr' => 'tr-TR', 'th' => 'th-TH', 'vi' => 'vi-VN',
+    'id' => 'id-ID', 'ja' => 'ja-JP', 'ko' => 'ko-KR',
+);
+foreach ($expected_locales as $language => $locale) {
+    gnvp_assert($tts_locale->invoke($instance, $language) === $locale, 'TTS locale mapping for ' . $language);
+}
+$tts_method = new ReflectionMethod('GoldNow_Video_Publisher', 'synthesize_voiceover');
+$tts_method->setAccessible(true);
+$tts_disabled = $tts_method->invoke($instance, array('test speech'), 'ar', sys_get_temp_dir() . '/gnvp-disabled-tts.mp3');
+gnvp_assert(is_wp_error($tts_disabled) && $tts_disabled->get_error_code() === 'gnvp_tts_disabled', 'rendering must not silently fall back to a silent audio track');
 
 // The configured default production matrix must contain all 15 languages in both formats.
 $build_snapshot = new ReflectionMethod('GoldNow_Video_Publisher', 'build_snapshot');
