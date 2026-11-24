@@ -102,9 +102,9 @@ $sample_data = array(
     'global_ounce_usd' => 4100,
 );
 $snapshot = $build_snapshot->invoke($instance, $sample_data);
-gnvp_assert(count($snapshot['production_jobs']) === 30, 'default production matrix must contain 15 languages by 2 formats');
+gnvp_assert(count($snapshot['production_jobs']) === 4, 'default Egypt pilot must contain Arabic and English in two formats (4 jobs)');
 $job_languages = array_values(array_unique(array_column($snapshot['production_jobs'], 'language')));
-gnvp_assert(count($job_languages) === 15, 'production matrix must include all 15 configured languages');
+gnvp_assert($job_languages === array('ar', 'en'), 'default production must be limited to Arabic and English pilot languages');
 $english_egypt_jobs = array_values(array_filter($snapshot['production_jobs'], function ($job) {
     return $job['language'] === 'en';
 }));
@@ -115,7 +115,11 @@ foreach ($english_egypt_jobs as $english_job) {
 $global_jobs = array_values(array_filter($snapshot['production_jobs'], function ($job) {
     return $job['language'] === 'fr';
 }));
-gnvp_assert(count($global_jobs) === 2 && $global_jobs[0]['market'] === 'GLOBAL' && $global_jobs[0]['currency'] === 'USD', 'non-pilot languages must remain global USD editions');
+gnvp_assert(count($global_jobs) === 0, 'global languages must not be automatically included in the Egypt pilot');
+$supported_method = new ReflectionMethod('GoldNow_Video_Publisher', 'supported_languages');
+$supported_method->setAccessible(true);
+$supported = $supported_method->invoke($instance);
+gnvp_assert(count($supported) === 15, 'all 15 locales must remain available for later explicit rollout');
 $job_formats = array_values(array_unique(array_column($snapshot['production_jobs'], 'format')));
 sort($job_formats);
 gnvp_assert($job_formats === array('horizontal', 'vertical'), 'production matrix must include vertical and horizontal formats');
