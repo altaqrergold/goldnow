@@ -39,6 +39,16 @@ function wp_clear_scheduled_hook($hook) { $GLOBALS['gnvp_cleared'][] = $hook; re
 function wp_parse_args($args, $defaults) { return array_merge($defaults, $args); }
 function absint($value) { return abs((int) $value); }
 function apply_filters($hook, $value) { return $value; }
+$GLOBALS['gnvp_last_http_request'] = array();
+function wp_json_encode($value) { return json_encode($value); }
+function add_query_arg($key, $value, $url) { return $url . '?' . rawurlencode($key) . '=' . rawurlencode($value); }
+function wp_strip_all_tags($value) { return strip_tags($value); }
+function wp_remote_post($url, $args) {
+    $GLOBALS['gnvp_last_http_request'] = array('url' => $url, 'args' => $args);
+    return array('response' => array('code' => 200), 'body' => json_encode(array('audioContent' => base64_encode('ID3' . str_repeat('A', 300))));
+}
+function wp_remote_retrieve_response_code($response) { return $response['response']['code']; }
+function wp_remote_retrieve_body($response) { return $response['body']; }
 require_once dirname(__DIR__) . '/video-publisher/goldnow-video-publisher.php';
 
 function gnvp_assert($condition, $message) {
@@ -72,6 +82,15 @@ $tts_method = new ReflectionMethod('GoldNow_Video_Publisher', 'synthesize_voiceo
 $tts_method->setAccessible(true);
 $tts_disabled = $tts_method->invoke($instance, array('test speech'), 'ar', sys_get_temp_dir() . '/gnvp-disabled-tts.mp3');
 gnvp_assert(is_wp_error($tts_disabled) && $tts_disabled->get_error_code() === 'gnvp_tts_disabled', 'rendering must not silently fall back to a silent audio track');
+update_option('gnvp_tts_settings', array('provider' => 'google_cloud', 'enabled' => 1, 'api_key' => 'test-key', 'speaking_rate' => 0.95), false);
+$mock_mp3 = sys_get_temp_dir() . '/gnvp-tts-' . getmypid() . '.mp3';
+$tts_result = $tts_method->invoke($instance, array('Gold prices today', '24 karat: 100 USD'), 'en', $mock_mp3);
+gnvp_assert(is_array($tts_result) && is_file($mock_mp3), 'valid TTS response must create an MP3 file');
+gnvp_assert($tts_result['language_code'] === 'en-US', 'TTS output must report the requested locale');
+$tts_payload = json_decode($GLOBALS['gnvp_last_http_request']['args']['body'], true);
+gnvp_assert(($tts_payload['voice']['languageCode'] ?? '') === 'en-US', 'TTS request must send the correct language code');
+gnvp_assert(($tts_payload['audioConfig']['audioEncoding'] ?? '') === 'MP3', 'TTS request must ask for MP3 audio');
+@unlink($mock_mp3);
 
 // The configured default production matrix must contain all 15 languages in both formats.
 $build_snapshot = new ReflectionMethod('GoldNow_Video_Publisher', 'build_snapshot');
