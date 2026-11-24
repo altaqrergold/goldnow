@@ -10,7 +10,7 @@ Baseline: `rebuild/working-arabic-baseline` (kept unchanged)
 - Changed automatic Gold Manager price refresh to the requested three-hour cadence, both on activation and when settings are saved; activation now clears stale legacy recurrence events before rebuilding schedules.
 - Removed the unsafe legacy font downloader that saved the generic GitHub homepage response as a `.ttf`; Arabic ASS rendering and the isolated Arabic diagnostic now use the verified bundled Cairo font.
 - Added a regression test that the default production matrix contains all 15 languages in both 9:16 and 16:9 formats (30 jobs).
-- Added a Google Cloud Text-to-Speech adapter, secure admin key configuration, 15 locale mappings, MP3 response validation, and FFmpeg narration muxing. Rendering now fails clearly when speech is disabled or unconfigured rather than silently producing another silent-track video.
+- Added a Google Cloud Text-to-Speech adapter, secure admin key configuration, 15 locale mappings, MP3 response validation, and FFmpeg narration muxing. Rendering now fails clearly when speech is disabled or unconfigured rather than silently producing another silent-track video. Automated tests mock a valid provider MP3 response and verify locale/payload mapping; a real Google Cloud request still requires the user's API key.
 - Recovered the original plugin ZIP from the Library and inspected its media assets. Both cinematic backgrounds and the Noto/Cairo font files are present there; the two legacy Almarai files are not valid TTF files and must not be selected or shipped as usable fonts.
 - Reworked failed-video retention so the 24-hour window begins at the recorded final publishing failure, never at MP4 creation time.
 - Made cleanup fail closed: any queued, scheduled, uploading, retrying, processing, live, or unknown destination state protects the MP4.
@@ -21,7 +21,7 @@ Baseline: `rebuild/working-arabic-baseline` (kept unchanged)
 
 ## Verification
 
-The GitHub Actions run for commit `2ce3a27d7eb7287bd336047bc3b1995286cee40f` completed both substantive steps successfully:
+The GitHub Actions run for commit `68686746567374539be3b5bfcf749f6e4a50393b` completed both substantive steps successfully:
 - PHP syntax checks: passed.
 - Video retention regression tests: passed.
 
