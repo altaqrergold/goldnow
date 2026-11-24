@@ -29,6 +29,7 @@ function wp_schedule_event($timestamp, $recurrence, $hook) { $GLOBALS['gnvp_sche
 function wp_schedule_single_event($timestamp, $hook, $args = array()) { $GLOBALS['gnvp_scheduled'][] = array($hook, 'single'); return true; }
 function wp_clear_scheduled_hook($hook) { $GLOBALS['gnvp_cleared'][] = $hook; return true; }
 function wp_parse_args($args, $defaults) { return array_merge($defaults, $args); }
+function absint($value) { return abs((int) $value); }
 function apply_filters($hook, $value) { return $value; }
 require_once dirname(__DIR__) . '/video-publisher/goldnow-video-publisher.php';
 
@@ -46,6 +47,23 @@ function gnvp_set_state($videos, $queue) {
     update_option('gnvp_publish_queue', $queue, false);
 }
 $instance = new GoldNow_Video_Publisher();
+
+// The configured default production matrix must contain all 15 languages in both formats.
+$build_snapshot = new ReflectionMethod('GoldNow_Video_Publisher', 'build_snapshot');
+$build_snapshot->setAccessible(true);
+$sample_data = array(
+    'gold_date' => '2026-11-24', 'currency_date' => '2026-11-24',
+    'source_updated_at' => '2026-11-24 10:00:00', 'ounce_updated_at' => '2026-11-24 10:00:00',
+    'prices' => array(array('carat' => '24K', 'price_egp' => 5000, 'price_usd' => 100)),
+    'global_ounce_usd' => 4100,
+);
+$snapshot = $build_snapshot->invoke($instance, $sample_data);
+gnvp_assert(count($snapshot['production_jobs']) === 30, 'default production matrix must contain 15 languages by 2 formats');
+$job_languages = array_values(array_unique(array_column($snapshot['production_jobs'], 'language')));
+gnvp_assert(count($job_languages) === 15, 'production matrix must include all 15 configured languages');
+$job_formats = array_values(array_unique(array_column($snapshot['production_jobs'], 'format')));
+sort($job_formats);
+gnvp_assert($job_formats === array('horizontal', 'vertical'), 'production matrix must include vertical and horizontal formats');
 
 // Activation must replace legacy hourly events with the requested 3-hour recurrence.
 GoldNow_Video_Publisher::activate();
