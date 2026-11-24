@@ -22,9 +22,12 @@ function wp_upload_dir() { return $GLOBALS['gnvp_uploads']; }
 function trailingslashit($value) { return rtrim($value, '/\\\\') . DIRECTORY_SEPARATOR; }
 function current_time($type) { return date('Y-m-d H:i:s'); }
 function sanitize_key($value) { return preg_replace('/[^a-z0-9_\\-]/', '', strtolower($value)); }
+$GLOBALS['gnvp_scheduled'] = array();
+$GLOBALS['gnvp_cleared'] = array();
 function wp_next_scheduled($hook) { return false; }
-function wp_schedule_event($timestamp, $recurrence, $hook) {}
-function wp_clear_scheduled_hook($hook) {}
+function wp_schedule_event($timestamp, $recurrence, $hook) { $GLOBALS['gnvp_scheduled'][] = array($hook, $recurrence); return true; }
+function wp_schedule_single_event($timestamp, $hook, $args = array()) { $GLOBALS['gnvp_scheduled'][] = array($hook, 'single'); return true; }
+function wp_clear_scheduled_hook($hook) { $GLOBALS['gnvp_cleared'][] = $hook; return true; }
 function wp_parse_args($args, $defaults) { return array_merge($defaults, $args); }
 function apply_filters($hook, $value) { return $value; }
 require_once dirname(__DIR__) . '/video-publisher/goldnow-video-publisher.php';
@@ -43,6 +46,14 @@ function gnvp_set_state($videos, $queue) {
     update_option('gnvp_publish_queue', $queue, false);
 }
 $instance = new GoldNow_Video_Publisher();
+
+// Activation must replace legacy hourly events with the requested 3-hour recurrence.
+GoldNow_Video_Publisher::activate();
+$refresh_schedules = array_values(array_filter($GLOBALS['gnvp_scheduled'], function ($event) {
+    return $event[0] === 'gnvp_refresh_prices_event';
+}));
+gnvp_assert(count($refresh_schedules) === 1 && $refresh_schedules[0][1] === 'gnvp_every_three_hours', 'activation must schedule price refresh every three hours');
+gnvp_assert(in_array('gnvp_refresh_prices_event', $GLOBALS['gnvp_cleared'], true), 'activation must clear any legacy refresh recurrence');
 $cleanup = new ReflectionMethod('GoldNow_Video_Publisher', 'cleanup_failed_video_files');
 $cleanup->setAccessible(true);
 $delete = new ReflectionMethod('GoldNow_Video_Publisher', 'safe_delete_video_file');
