@@ -65,6 +65,11 @@ function gnvp_set_state($videos, $queue) {
     update_option('gnvp_publish_queue', $queue, false);
 }
 $instance = new GoldNow_Video_Publisher();
+$settings_method = new ReflectionMethod('GoldNow_Video_Publisher', 'settings');
+$settings_method->setAccessible(true);
+$pilot_settings = $settings_method->invoke($instance);
+gnvp_assert(!empty($pilot_settings['auto_refresh']), 'automatic price refresh must be enabled by default');
+gnvp_assert(!empty($pilot_settings['auto_render']), 'scheduled video generation must be enabled by default for the pilot');
 
 // All supported language editions must resolve to a valid Google TTS locale.
 $tts_locale = new ReflectionMethod('GoldNow_Video_Publisher', 'tts_language_code');
