@@ -271,7 +271,7 @@ final class GoldNow_Video_Publisher {
         $settings = $this->sanitize_settings_from_post();
         update_option(GNVP_OPTION, $settings, false);
         wp_clear_scheduled_hook(self::CRON_HOOK);
-        if ($settings['auto_refresh']) { wp_schedule_event(time() + 300, 'hourly', self::CRON_HOOK); }
+        if ($settings['auto_refresh']) { wp_schedule_event(time() + 300, 'gnvp_every_three_hours', self::CRON_HOOK); }
         $this->refresh_snapshot();
         wp_safe_redirect(add_query_arg(array('page' => self::MENU_SLUG, 'saved' => '1'), admin_url('admin.php')));
         exit;
