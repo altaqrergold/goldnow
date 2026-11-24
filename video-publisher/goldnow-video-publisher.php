@@ -461,12 +461,12 @@ final class GoldNow_Video_Publisher {
             $bold_tag = $bold ? '\\b1' : '\\b0';
 
 
-            $events[] = 'Dialogue: 1,0:00:00.00,0:00:15.00,Gold,,0,0,0,,' . '{\\an5\\pos(' . $center_x . ',' . (int) $y . ')\\fs' . (int) $size . '\\c' . $color . $bold_tag . '\\bord' . (int) $outline . '\\shad0\\fad(500,500)\\move(' . $center_x . ',' . ((int) $y + 12) . ',' . $center_x . ',' . (int) $y . ',0,700)}' . $escaped;
+            $events[] = 'Dialogue: 1,0:00:00.00,0:00:45.00,Gold,,0,0,0,,' . '{\\an5\\pos(' . $center_x . ',' . (int) $y . ')\\fs' . (int) $size . '\\c' . $color . $bold_tag . '\\bord' . (int) $outline . '\\shad0\\fad(500,500)\\move(' . $center_x . ',' . ((int) $y + 12) . ',' . $center_x . ',' . (int) $y . ',0,700)}' . $escaped;
         };
         $box = function($y, $box_height, $fill = '&H88070402&') use (&$events, $width) {
             $x = 54; $box_width = $width - 108; $top = (int) ($y - ($box_height / 2));
             $drawing = '{\\an7\\pos(' . $x . ',' . $top . ')\\p1\\1c&H020407&\\1a&H88&\\bord0}m 0 0 l ' . $box_width . ' 0 l ' . $box_width . ' ' . (int) $box_height . ' l 0 ' . (int) $box_height . '{\\p0}';
-            $events[] = 'Dialogue: 0,0:00:00.00,0:00:15.00,Gold,,0,0,0,,' . $drawing;
+            $events[] = 'Dialogue: 0,0:00:00.00,0:00:45.00,Gold,,0,0,0,,' . $drawing;
         };
 
         $push('AlTaqrer Gold', $brand_y, $brand_size, '&H0000C5FF&', true, 1);
@@ -648,6 +648,7 @@ $shaped[] = $glyphs[$curr][$form];
         $txt_path = trailingslashit($upload_dir['basedir']) . $base . '.txt';
         $mp4_path = trailingslashit($upload_dir['basedir']) . $base . '.mp4';
         $ass_path = trailingslashit($upload_dir['basedir']) . $base . '.ass';
+        $voice_path = trailingslashit($upload_dir['basedir']) . $base . '.mp3';
 
         if ($is_ar) {
             $data_updated_at = !empty($snapshot['source_updated_at']) ? $snapshot['source_updated_at'] : $snapshot['gold_date'];
@@ -683,6 +684,9 @@ $shaped[] = $glyphs[$curr][$form];
             $lines[] = $t[7];
             $lines[] = 'AlTaqrer Gold';
         }
+        $voice_result = $this->synthesize_voiceover($lines, $job['language'], $voice_path);
+        if (is_wp_error($voice_result)) { return $voice_result; }
+
         $text = implode("\n", $lines);
         $font_size = $is_vertical ? 36 : 32;
         $filter = '';
@@ -701,7 +705,7 @@ $shaped[] = $glyphs[$curr][$form];
             $fonts_escaped = str_replace(array('\\', ':', "'", ','), array('\\\\', '\\:', "\\'", '\\,'), $fonts_dir);
             $panel_y = $is_vertical ? 360 : 250;
             $panel_h = $is_vertical ? 650 : 360;
-            $filter = 'drawbox=x=38:y=38:w=iw-76:h=ih-76:color=0x050403@0.06:t=fill,fade=t=in:st=0:d=0.7,fade=t=out:st=14.2:d=0.8,subtitles=filename=' . "'" . $ass_escaped . "':fontsdir='" . $fonts_escaped . "'";
+            $filter = 'drawbox=x=38:y=38:w=iw-76:h=ih-76:color=0x050403@0.06:t=fill,fade=t=in:st=0:d=0.7,fade=t=out:st=44.2:d=0.8,subtitles=filename=' . "'" . $ass_escaped . "':fontsdir='" . $fonts_escaped . "'";
         } elseif ($has_drawtext) {
             if (file_put_contents($txt_path, $text) === false) { return new WP_Error('gnvp_text_write', 'Could not write the video text file.'); }
             $font_escaped = str_replace(array('\\', ':', "'"), array('\\\\', '\\:', "\\'"), $font);
@@ -720,24 +724,25 @@ $shaped[] = $glyphs[$curr][$form];
         } else {
             return new WP_Error('gnvp_no_text_filter', 'This FFmpeg build has neither drawtext nor subtitles/libass. The plugin cannot render multilingual text with this build.');
         }
-        $duration = 15;
+        $duration = 45;
         $filter = "zoompan=z='min(zoom+0.00005,1.025)':d=1:s={$width}x{$height}:fps=30," . $filter;
         $cmd = array(
             $ffmpeg, '-hide_banner', '-loglevel', 'error', '-y',
             '-loop', '1', '-framerate', '30', '-i', $background_file,
-            '-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100',
-            '-vf', $filter, '-t', (string) $duration,
+            '-i', $voice_path,
+            '-map', '0:v:0', '-map', '1:a:0',
+            '-vf', $filter, '-af', 'apad=pad_dur=' . $duration, '-t', (string) $duration,
             '-c:v', 'libx264', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-r', '30',
-            '-c:a', 'aac', '-b:a', '96k', '-shortest', '-movflags', '+faststart', $mp4_path,
+            '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', $mp4_path,
         );
         $descriptors = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
         $process = proc_open($cmd, $descriptors, $pipes);
-        if (!is_resource($process)) { @unlink($txt_path); @unlink($ass_path); return new WP_Error('gnvp_ffmpeg_start', 'Could not start FFmpeg.'); }
+        if (!is_resource($process)) { @unlink($txt_path); @unlink($ass_path); @unlink($voice_path); return new WP_Error('gnvp_ffmpeg_start', 'Could not start FFmpeg.'); }
         fclose($pipes[0]);
         $stdout = stream_get_contents($pipes[1]); fclose($pipes[1]);
         $stderr = stream_get_contents($pipes[2]); fclose($pipes[2]);
         $exit_code = proc_close($process);
-        @unlink($txt_path); @unlink($ass_path);
+        @unlink($txt_path); @unlink($ass_path); @unlink($voice_path);
         if ($exit_code !== 0 || !is_file($mp4_path) || filesize($mp4_path) < 10000) {
             @unlink($mp4_path);
             return new WP_Error('gnvp_ffmpeg_failed', 'FFmpeg could not create ' . $job['id'] . ': ' . substr(trim($stderr . ' ' . $stdout), 0, 900));
@@ -748,7 +753,7 @@ $shaped[] = $glyphs[$curr][$form];
             'created_at' => current_time('mysql'),
             'data_updated_at' => ($job['language'] === 'ar') ? (!empty($snapshot['source_updated_at']) ? $snapshot['source_updated_at'] : $snapshot['gold_date']) : (!empty($snapshot['ounce_updated_at']) ? $snapshot['ounce_updated_at'] : $snapshot['gold_date']),
             'data_updated_label' => ($job['language'] === 'ar') ? (!empty($snapshot['source_updated_at']) ? 'source_fetch_time' : 'gold_date_fallback') : (!empty($snapshot['ounce_updated_at']) ? 'ounce_fetch_time' : 'gold_date_fallback'),
-            'duration_seconds' => $duration, 'audio' => 'silent_track_pending_voice_integration');
+            'duration_seconds' => $duration, 'audio' => 'google_cloud_text_to_speech', 'audio_language_code' => $voice_result['language_code']);
     }
 
     private function merge_rendered_videos($new_results) {
@@ -1638,7 +1643,7 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
         if (function_exists('mb_substr')) { $text = mb_substr($text, 0, 4500, 'UTF-8'); }
         else { $text = substr($text, 0, 4500); }
 
-        $url = add_query_arg('key', rawurlencode($settings['api_key']), 'https://texttospeech.googleapis.com/v1/text:synthesize');
+        $url = add_query_arg('key', $settings['api_key'], 'https://texttospeech.googleapis.com/v1/text:synthesize');
         $response = wp_remote_post($url, array(
             'timeout' => 45,
             'redirection' => 0,
