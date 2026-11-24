@@ -1,0 +1,25 @@
+name: GoldNow Video Publisher PHP checks
+
+on:
+  push:
+    branches:
+      - release/goldnow-video-publisher-complete
+  pull_request:
+    branches:
+      - release/goldnow-video-publisher-complete
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+      - name: PHP syntax checks
+        run: |
+          php -l video-publisher/goldnow-video-publisher.php
+          php -l tests/test-video-retention.php
+      - name: Video retention regression tests
+        run: php tests/test-video-retention.php
