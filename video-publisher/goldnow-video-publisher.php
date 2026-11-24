@@ -1645,8 +1645,14 @@ $font_file = $fonts_dir . '/Cairo-Bold.ttf';
         }
         $text = implode('. ', $spoken_lines);
         if ($text === '') { return new WP_Error('gnvp_tts_empty_text', 'There is no localized text to synthesize.'); }
-        if (function_exists('mb_substr')) { $text = mb_substr($text, 0, 4500, 'UTF-8'); }
-        else { $text = substr($text, 0, 4500); }
+        // Google Cloud TTS limits plain-text input by UTF-8 bytes (not characters).
+        // Cut at a code-point boundary so CJK/Indic/Arabic text is not split mid-character.
+        if (function_exists('mb_strcut')) {
+            $text = mb_strcut($text, 0, 4800, 'UTF-8');
+        } else {
+            $text = substr($text, 0, 4800);
+            while ($text !== '' && !preg_match('//u', $text)) { $text = substr($text, 0, -1); }
+        }
 
         $url = add_query_arg('key', $settings['api_key'], 'https://texttospeech.googleapis.com/v1/text:synthesize');
         $response = wp_remote_post($url, array(
