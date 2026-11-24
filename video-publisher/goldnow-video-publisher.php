@@ -1014,13 +1014,21 @@ $shaped[] = $glyphs[$curr][$form];
             if (($video['format'] ?? '') === $format && empty($video['file_deleted']) && !empty($video['file'])) { $eligible[] = $video; }
         }
         if (!$eligible) { return false; }
+        // Do not enqueue a video again while one of its publish attempts is still pending.
+        $queue = get_option('gnvp_publish_queue', array());
+        $pending_ids = array();
+        foreach ((array) $queue as $queue_item) {
+            if (!empty($queue_item['video_id']) && in_array(($queue_item['status'] ?? ''), array('scheduled', 'uploading', 'processing', 'retrying'), true)) {
+                $pending_ids[$queue_item['video_id']] = true;
+            }
+        }
         $state = get_option('gnvp_video_rotation_state', array());
         $index = isset($state[$format]) ? absint($state[$format]) : 0;
         $count = count($eligible);
         for ($i = 0; $i < $count; $i++) {
             $candidate_index = ($index + $i) % $count;
             $candidate = $eligible[$candidate_index];
-            if (!in_array($candidate['id'], $already_selected, true)) {
+            if (!in_array($candidate['id'], $already_selected, true) && empty($pending_ids[$candidate['id']])) {
                 $state[$format] = ($candidate_index + 1) % $count;
                 update_option('gnvp_video_rotation_state', $state, false);
                 return $candidate;
