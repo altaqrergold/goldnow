@@ -45,7 +45,7 @@ function add_query_arg($key, $value, $url) { return $url . '?' . rawurlencode($k
 function wp_strip_all_tags($value) { return strip_tags($value); }
 function wp_remote_post($url, $args) {
     $GLOBALS['gnvp_last_http_request'] = array('url' => $url, 'args' => $args);
-    return array('response' => array('code' => 200), 'body' => json_encode(array('audioContent' => base64_encode('ID3' . str_repeat('A', 300))));
+    return array('response' => array('code' => 200), 'body' => json_encode(array('audioContent' => base64_encode('ID3' . str_repeat('A', 300)))));
 }
 function wp_remote_retrieve_response_code($response) { return $response['response']['code']; }
 function wp_remote_retrieve_body($response) { return $response['body']; }
