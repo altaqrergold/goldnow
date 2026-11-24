@@ -105,6 +105,17 @@ $snapshot = $build_snapshot->invoke($instance, $sample_data);
 gnvp_assert(count($snapshot['production_jobs']) === 30, 'default production matrix must contain 15 languages by 2 formats');
 $job_languages = array_values(array_unique(array_column($snapshot['production_jobs'], 'language')));
 gnvp_assert(count($job_languages) === 15, 'production matrix must include all 15 configured languages');
+$english_egypt_jobs = array_values(array_filter($snapshot['production_jobs'], function ($job) {
+    return $job['language'] === 'en';
+}));
+gnvp_assert(count($english_egypt_jobs) === 2, 'English must have both Egypt pilot formats');
+foreach ($english_egypt_jobs as $english_job) {
+    gnvp_assert($english_job['market'] === 'EG' && $english_job['currency'] === 'EGP', 'English pilot jobs must use Egypt market and EGP');
+}
+$global_jobs = array_values(array_filter($snapshot['production_jobs'], function ($job) {
+    return $job['language'] === 'fr';
+}));
+gnvp_assert(count($global_jobs) === 2 && $global_jobs[0]['market'] === 'GLOBAL' && $global_jobs[0]['currency'] === 'USD', 'non-pilot languages must remain global USD editions');
 $job_formats = array_values(array_unique(array_column($snapshot['production_jobs'], 'format')));
 sort($job_formats);
 gnvp_assert($job_formats === array('horizontal', 'vertical'), 'production matrix must include vertical and horizontal formats');
