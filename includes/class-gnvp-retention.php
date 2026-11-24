@@ -29,7 +29,14 @@ final class GNVP_Media_Retention {
     }
 
     public static function delete_after_all_targets($video_id) {
-        return self::delete_video_file($video_id, 'all_targets_published');
+        $queue = get_option('gnvp_publish_queue', array());
+        $found = false;
+        foreach ((array) $queue as $item) {
+            if (($item['video_id'] ?? '') !== $video_id) { continue; }
+            $found = true;
+            if (($item['status'] ?? '') !== 'published') { return false; }
+        }
+        return $found ? self::delete_video_file($video_id, 'all_targets_published') : false;
     }
 
     public static function mark_final_failure($video_id, $failed_at = null) {
