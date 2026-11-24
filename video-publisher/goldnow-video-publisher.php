@@ -211,7 +211,8 @@ final class GoldNow_Video_Publisher {
         $jobs = array();
         foreach ($settings['languages'] as $language) {
             foreach ($settings['formats'] as $format) {
-                $is_global = ($language !== 'ar');
+                // The initial production market is Egypt in Arabic and English; other locales are global USD editions.
+                $is_global = !in_array($language, array('ar', 'en'), true);
                 $jobs[] = array(
                     'id' => ($is_global ? 'GLOBAL' : 'EG') . '-' . $language . '-' . $format,
                     'market' => $is_global ? 'GLOBAL' : 'EG',
@@ -665,8 +666,23 @@ $shaped[] = $glyphs[$curr][$form];
                 }
             }
             $lines[] = ''; $lines[] = 'AlTaqrer Gold';
+        } elseif (($job['market'] ?? '') === 'EG') {
+            // English is the second language edition for the Egypt pilot and must use EGP Gold Manager prices.
+            $data_updated_at = !empty($snapshot['source_updated_at']) ? $snapshot['source_updated_at'] : $snapshot['gold_date'];
+            $display_gold_date = $this->format_video_timestamp($snapshot['gold_date'], true);
+            $display_data_update = $this->format_video_timestamp($data_updated_at, false);
+            $lines = array('GOLD PRICES IN EGYPT TODAY', 'Date: ' . ($display_gold_date ?: 'N/A'), 'Last data update: ' . ($display_data_update ?: 'N/A'), '');
+            foreach (array('24K','22K','21K','18K','14K','12K') as $karat) {
+                foreach ($snapshot['prices'] as $price) {
+                    if (strtoupper($price['carat']) === $karat) {
+                        $lines[] = str_replace('K', '', $karat) . ' karat: ' . number_format((float) $price['price_egp'], 2, '.', '') . ' EGP per gram';
+                        break;
+                    }
+                }
+            }
+            $lines[] = ''; $lines[] = 'AlTaqrer Gold';
         } else {
-            // All non-Arabic editions use global USD spot pricing: ounce plus calculated karat gram prices.
+            // Non-Egyptian editions use global USD spot pricing: ounce plus calculated karat gram prices.
             $t = $this->global_video_copy($job['language']);
             $global_prices = $this->global_karat_prices($snapshot['global_ounce_usd']);
             $lines = array(
