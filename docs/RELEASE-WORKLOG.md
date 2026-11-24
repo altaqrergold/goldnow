@@ -30,3 +30,5 @@ Run: https://github.com/altaqrergold/goldnow/actions/runs/45407358706
 ## Not yet delivered / not claimed complete
 
 No claim is made here that Google TTS has been verified against a live billable API key, or that international FX adapters, the other four social publishing connectors, or the persistent multi-language live worker are complete. No public publishing or live broadcast was started. A production ZIP has not been built or released.
+
+- Expanded server diagnostics to check both required background images and the Arabic Cairo and English Noto Sans font files explicitly, rather than reporting only the Arabic font.
