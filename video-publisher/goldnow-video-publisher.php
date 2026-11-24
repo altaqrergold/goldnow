@@ -97,7 +97,7 @@ final class GoldNow_Video_Publisher {
             'market' => 'EG', 'currency' => 'EGP',
             'languages' => array('ar', 'en'),
             'formats' => array('vertical', 'horizontal'),
-            'auto_refresh' => 1, 'auto_render' => 0,
+            'auto_refresh' => 1, 'auto_render' => 1,
             'live_enabled' => 0, 'live_start' => '08:00', 'live_duration' => 60,
             'live_times' => array('08:00', '12:00', '16:00', '20:00', '00:00', '04:00'),
             'live_timezone' => 'Africa/Cairo', 'live_repeat' => 'every_4_hours',
