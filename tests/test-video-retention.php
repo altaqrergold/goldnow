@@ -100,6 +100,17 @@ gnvp_assert(($tts_payload['voice']['languageCode'] ?? '') === 'en-US', 'TTS requ
 gnvp_assert(($tts_payload['audioConfig']['audioEncoding'] ?? '') === 'MP3', 'TTS request must ask for MP3 audio');
 @unlink($mock_mp3);
 
+// An active upload lease must block overlapping scheduled publish executions.
+$publish_method = new ReflectionMethod('GoldNow_Video_Publisher', 'run_scheduled_publish');
+$publish_method->setAccessible(true);
+update_option('gnvp_publish_queue', array(
+    'active-upload' => array('id' => 'active-upload', 'video_id' => 'video-a', 'status' => 'uploading', 'attempt_started_at' => time()),
+), false);
+$publish_method->invoke($instance, 'active-upload');
+$active_queue = get_option('gnvp_publish_queue', array());
+gnvp_assert(($active_queue['active-upload']['status'] ?? '') === 'uploading', 'an active upload lease must not be started twice');
+gnvp_assert(count($GLOBALS['gnvp_scheduled']) === 0, 'an active upload lease must not enqueue an overlapping retry');
+
 // Rotation must skip videos that already have pending publication attempts.
 $rotation_method = new ReflectionMethod('GoldNow_Video_Publisher', 'next_rotated_video');
 $rotation_method->setAccessible(true);
