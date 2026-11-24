@@ -952,7 +952,22 @@ $shaped[] = $glyphs[$curr][$form];
 
     public function run_scheduled_publish($id) {
         $queue = get_option('gnvp_publish_queue', array());
-        if (empty($queue[$id]) || !in_array(($queue[$id]['status'] ?? ''), array('scheduled', 'retrying'), true)) { return; }
+        if (empty($queue[$id])) { return; }
+        $status = $queue[$id]['status'] ?? '';
+        if (!in_array($status, array('scheduled', 'retrying', 'uploading'), true)) { return; }
+        // Claim the queue item before the remote request so overlapping WP-Cron
+        // invocations do not publish the same video simultaneously.
+        if ($status === 'uploading') {
+            $started = absint($queue[$id]['attempt_started_at'] ?? 0);
+            if ($started && $started > time() - 1800) { return; }
+            // Recover a worker that died mid-request after a 30-minute lease.
+            $queue[$id]['status'] = 'retrying';
+            $queue[$id]['retry_count'] = absint($queue[$id]['retry_count'] ?? 0) + 1;
+        }
+        $queue[$id]['status'] = 'uploading';
+        $queue[$id]['attempt_started_at'] = time();
+        $queue[$id]['last_attempt_at'] = current_time('mysql');
+        update_option('gnvp_publish_queue', $queue, false);
         $result = $this->publish_facebook_video($queue[$id]);
         if (is_wp_error($result)) {
             $queue[$id]['error'] = $result->get_error_message();
