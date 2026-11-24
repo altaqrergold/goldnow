@@ -2,14 +2,14 @@
 /**
  * Plugin Name: AlTaqrer Gold Video Publisher
  * Description: AlTaqrer Gold multilingual gold video production, scheduling and publishing.
- * Version: 0.6.7-dev
+ * Version: 0.6.8-dev
  * Author: GoldNow
  * Text Domain: goldnow-video-publisher
  */
 
 if (!defined('ABSPATH')) { exit; }
 
-define('GNVP_VERSION', '0.6.7-dev');
+define('GNVP_VERSION', '0.6.8-dev');
 define('GNVP_FILE', __FILE__);
 define('GNVP_PATH', plugin_dir_path(__FILE__));
 define('GNVP_OPTION', 'gnvp_settings');
@@ -51,7 +51,7 @@ final class GoldNow_Video_Publisher {
         $saved = get_option(GNVP_OPTION, array());
         $auto_refresh = !isset($saved['auto_refresh']) || !empty($saved['auto_refresh']);
         if ($auto_refresh && !wp_next_scheduled(self::CRON_HOOK)) {
-            wp_schedule_event(time() + 300, 'hourly', self::CRON_HOOK);
+            wp_schedule_event(time() + 300, 'gnvp_every_three_hours', self::CRON_HOOK);
         }
         wp_clear_scheduled_hook(self::CLEANUP_HOOK);
         if (!wp_next_scheduled(self::CLEANUP_HOOK)) { wp_schedule_event(time() + 60, 'gnvp_retention_15_minutes', self::CLEANUP_HOOK); }
@@ -1084,19 +1084,17 @@ $shaped[] = $glyphs[$curr][$form];
     }
 
     private function schedule_video_retention_cleanup($video_id) {
-        $videos = get_option(GNVP_RENDER_OPTION, array());
-        foreach ($videos as $video) {
-            if (($video['id'] ?? '') !== $video_id) { continue; }
-            $base_time = 0;
-            $queue = get_option('gnvp_publish_queue', array());
-            foreach ((array) $queue as $item) {
-                if (($item['video_id'] ?? '') !== $video_id || ($item['status'] ?? '') !== 'failed') { continue; }
-                $candidate = !empty($item['failed_at']) ? $this->local_datetime_timestamp($item['failed_at']) : 0;
-                if ($candidate > $base_time) { $base_time = $candidate; }
-            }
-            if (!$base_time) { $base_time = !empty($video['created_at']) ? $this->local_datetime_timestamp($video['created_at']) : 0; }
-            if ($base_time) { wp_schedule_single_event(max(time() + 30, $base_time + DAY_IN_SECONDS), self::CLEANUP_HOOK); }
-            return;
+        $queue = get_option('gnvp_publish_queue', array());
+        $failed_at = 0;
+        foreach ((array) $queue as $item) {
+            if (($item['video_id'] ?? '') !== $video_id || ($item['status'] ?? '') !== 'failed' || empty($item['failed_at'])) { continue; }
+            $candidate = $this->local_datetime_timestamp($item['failed_at']);
+            if ($candidate > $failed_at) { $failed_at = $candidate; }
+        }
+        // The 24-hour clock starts only when the final destination failure is recorded.
+        // Never fall back to created_at: that can delete a video before its final failure.
+        if ($failed_at) {
+            wp_schedule_single_event(max(time() + 30, $failed_at + DAY_IN_SECONDS), self::CLEANUP_HOOK);
         }
     }
 
@@ -1111,6 +1109,58 @@ $shaped[] = $glyphs[$curr][$form];
         return $found ? $this->delete_video_file_after_success($video_id) : false;
     }
 
+    /**
+     * Delete only a regular MP4 whose canonical path remains inside our dedicated
+     * uploads directory. Symlinks, traversal, missing names and non-MP4 files fail closed.
+     */
+    private function safe_delete_video_file(&$video, $reason) {
+        if (!empty($video['file_deleted'])) { return true; }
+        $filename = isset($video['file']) ? (string) $video['file'] : '';
+        if ($filename === '' || basename($filename) !== $filename || !preg_match('/^[A-Za-z0-9._-]+\\.mp4$/i', $filename)) {
+            $video['file_delete_error'] = 'invalid_media_filename';
+            return false;
+        }
+        $uploads = wp_upload_dir();
+        if (!empty($uploads['error']) || empty($uploads['basedir'])) {
+            $video['file_delete_error'] = 'uploads_directory_unavailable';
+            return false;
+        }
+        $expected_dir = trailingslashit($uploads['basedir']) . 'goldnow-videos';
+        $root = realpath($expected_dir);
+        if (!$root || !is_dir($root)) {
+            $video['file_delete_error'] = 'media_directory_unavailable';
+            return false;
+        }
+        $candidate = trailingslashit($root) . $filename;
+        if (is_link($candidate)) {
+            $video['file_delete_error'] = 'symlink_rejected';
+            return false;
+        }
+        $real = realpath($candidate);
+        if ($real === false) {
+            if (file_exists($candidate)) {
+                $video['file_delete_error'] = 'unresolvable_media_path';
+                return false;
+            }
+            // An already absent file is safe to mark as absent; metadata is retained.
+        } else {
+            $prefix = trailingslashit($root);
+            if (strpos($real, $prefix) !== 0 || !is_file($real) || strtolower(pathinfo($real, PATHINFO_EXTENSION)) !== 'mp4') {
+                $video['file_delete_error'] = 'media_path_rejected';
+                return false;
+            }
+            if (!@unlink($real)) {
+                $video['file_delete_error'] = 'unlink_failed';
+                return false;
+            }
+        }
+        $video['file_deleted'] = 1;
+        $video['file_deleted_at'] = current_time('mysql');
+        $video['file_delete_reason'] = sanitize_key($reason);
+        unset($video['file_delete_error']);
+        return true;
+    }
+
     private function delete_video_file_after_success($video_id) {
         $videos = get_option(GNVP_RENDER_OPTION, array());
         $queue = get_option('gnvp_publish_queue', array());
@@ -1121,79 +1171,65 @@ $shaped[] = $glyphs[$curr][$form];
             if (($item['status'] ?? '') !== 'published') { return false; }
         }
         if (!$found_target) { return false; }
-        $upload = wp_upload_dir();
-        $root = realpath(trailingslashit($upload['basedir']) . 'goldnow-videos');
-        if (!$root) { return false; }
-        $deleted = false;
         foreach ($videos as &$video) {
             if (($video['id'] ?? '') !== $video_id) { continue; }
-            if (!empty($video['file_deleted'])) { $deleted = true; break; }
-            $candidate = $root . DIRECTORY_SEPARATOR . basename((string) ($video['file'] ?? ''));
-            $real_file = realpath($candidate);
-            if ($real_file && is_file($real_file) && strtolower(pathinfo($real_file, PATHINFO_EXTENSION)) === 'mp4'
-                && strpos($real_file, trailingslashit($root)) === 0) {
-                $deleted = @unlink($real_file);
-            } else {
-                $deleted = ($real_file === false && !file_exists($candidate));
-            }
-            if ($deleted) {
-                $video['file_deleted'] = 1;
-                $video['file_deleted_at'] = current_time('mysql');
-                $video['file_delete_reason'] = 'all_targets_published';
-            }
-            break;
+            $deleted = $this->safe_delete_video_file($video, 'all_targets_published');
+            unset($video);
+            update_option(GNVP_RENDER_OPTION, $videos, false);
+            return $deleted;
         }
         unset($video);
-        update_option(GNVP_RENDER_OPTION, $videos, false);
-        return $deleted;
+        return false;
     }
 
     public function cleanup_failed_video_files() {
         $queue = get_option('gnvp_publish_queue', array());
-        $video_states = array();
-        foreach ($queue as $item) {
+        $items_by_video = array();
+        foreach ((array) $queue as $item) {
             if (empty($item['video_id'])) { continue; }
-            $video_states[$item['video_id']][] = $item['status'] ?? '';
+            $items_by_video[(string) $item['video_id']][] = $item;
         }
-        $failed_video_ids = array();
-        foreach ($video_states as $video_id => $statuses) {
-            if (in_array('scheduled', $statuses, true) || in_array('retrying', $statuses, true)) { continue; }
-            if (in_array('failed', $statuses, true)) { $failed_video_ids[$video_id] = true; }
-        }
-        if (!$failed_video_ids) { return; }
+        if (!$items_by_video) { return; }
+
         $videos = get_option(GNVP_RENDER_OPTION, array());
-        $upload = wp_upload_dir();
+        if (!is_array($videos) || !$videos) { return; }
         $now = time();
+        $changed = false;
+        $final_statuses = array('published', 'failed');
+
         foreach ($videos as &$video) {
-            if (empty($failed_video_ids[$video['id'] ?? '']) || !empty($video['file_deleted'])) { continue; }
+            $video_id = (string) ($video['id'] ?? '');
+            if ($video_id === '' || !empty($video['file_deleted']) || empty($items_by_video[$video_id])) { continue; }
+            $items = $items_by_video[$video_id];
+            $statuses = array_map(static function ($item) { return (string) ($item['status'] ?? ''); }, $items);
+
+            // Any queued, scheduled, uploading, retrying, processing, live, or unknown
+            // destination is unresolved and must keep the local source file.
+            foreach ($statuses as $status) {
+                if (!in_array($status, $final_statuses, true)) { continue 2; }
+            }
+
+            $has_failure = in_array('failed', $statuses, true);
+            if (!$has_failure) {
+                // All destinations are confirmed published: delete promptly.
+                if ($this->safe_delete_video_file($video, 'all_targets_published')) { $changed = true; }
+                else { $changed = true; }
+                continue;
+            }
+
             $failed_at = 0;
-            foreach ($queue as $queue_item) {
-                if (($queue_item['video_id'] ?? '') !== ($video['id'] ?? '') || ($queue_item['status'] ?? '') !== 'failed') { continue; }
-                $candidate = !empty($queue_item['failed_at']) ? $this->local_datetime_timestamp($queue_item['failed_at']) : 0;
+            foreach ($items as $item) {
+                if (($item['status'] ?? '') !== 'failed' || empty($item['failed_at'])) { continue; }
+                $candidate = $this->local_datetime_timestamp($item['failed_at']);
                 if ($candidate > $failed_at) { $failed_at = $candidate; }
             }
+            // Missing final-failure timestamps are unresolved; never infer from render time.
             if (!$failed_at || ($now - $failed_at) < DAY_IN_SECONDS) { continue; }
-            $root = realpath(trailingslashit($upload['basedir']) . 'goldnow-videos');
-            $candidate = $root ? $root . DIRECTORY_SEPARATOR . basename((string) ($video['file'] ?? '')) : '';
-            $real_file = $candidate ? realpath($candidate) : false;
-            $deleted = false;
-            if ($real_file && is_file($real_file) && strtolower(pathinfo($real_file, PATHINFO_EXTENSION)) === 'mp4'
-                && strpos($real_file, trailingslashit($root)) === 0) {
-                $deleted = @unlink($real_file);
-            } elseif ($candidate && $real_file === false && !file_exists($candidate)) {
-                $deleted = true;
-            }
-            if ($deleted) {
-                $video['file_deleted'] = 1;
-                $video['file_deleted_at'] = current_time('mysql');
-                $video['file_delete_reason'] = 'failed_publish_retention_expired';
-            } else {
-                $video['file_delete_error'] = 'unlink_failed_or_path_rejected';
-                error_log('[GNVP] Retention cleanup could not safely delete MP4 for video ' . sanitize_text_field((string) ($video['id'] ?? 'unknown')));
-            }
+            $this->safe_delete_video_file($video, 'final_failure_retention_expired');
+            $changed = true;
         }
         unset($video);
-        update_option(GNVP_RENDER_OPTION, $videos, false);
+        if ($changed) { update_option(GNVP_RENDER_OPTION, $videos, false); }
     }
 
     public function delete_queue_item() {
